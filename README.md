@@ -1,2 +1,2 @@
-# json2text
-A command-line tool for turning raw text into json
+# text2json
+A tool for turning raw text of the Jewish bookshelf into json.
