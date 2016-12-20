@@ -1,4 +1,4 @@
-package text2json.test;
+package text2json;
 
 import text2json.Line;
 import text2json.LineMatcher;
@@ -14,6 +14,7 @@ public class MefareshParser extends Parser {
     private static final String BEGIN_PEREK = "begin_perek";
     private static final String BEGIN_RASHI = "begin_rashi";
     private static final String BEGIN_PASUK = "begin_pasuk";
+    private static final String MEFARESH_PARSER_ID = "parser.mefareshTanach";
     private int bookNum = 0;
     private int parashaNum = 0;
     private int perekNum = 0;
@@ -24,7 +25,10 @@ public class MefareshParser extends Parser {
     private String pasukLetter;
     private String perush;
 
-    MefareshParser(String mefaresh){ mefaresh = mefaresh; }
+    public MefareshParser(String mefaresh){
+        super();
+        mefaresh = mefaresh;
+    }
 
     protected void registerMatchers() {
         registerMatcher(new LineMatcher() {
@@ -89,6 +93,11 @@ public class MefareshParser extends Parser {
                 break;
 
         }
+    }
+
+    @Override
+    public String getId() {
+        return MEFARESH_PARSER_ID;
     }
 
 
