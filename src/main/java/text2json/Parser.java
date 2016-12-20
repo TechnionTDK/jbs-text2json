@@ -26,8 +26,12 @@ public abstract class Parser {
     public void parse(BufferedReader reader) throws IOException {
         String line;
         while((line = reader.readLine()) != null) {
+            Line l = new Line(line);
             // should check whether there is a match
             // and trigger onLineMatch appropriately.
+            matchers.forEach((matcher) -> {
+                if (matcher.match(l)) onLineMatch(matcher.type(), l);
+            });
         }
     }
 }

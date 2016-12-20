@@ -4,25 +4,37 @@ package text2json;
  * Created by omishali on 12/12/2016.
  */
 public class Line {
-    public boolean beginsWith(String s) {
-        return false;
-    }
+    private String line;
 
-    public int wordCount() {
-        return 0;
+    Line(String line){ line = line; }
+
+    public boolean beginsWith(String s) {
+        return line.startsWith(s);
     }
 
     public boolean contains(String s) {
-        return false;
+        return line.contains(s);
+    }
+
+    public int wordCount() {
+        return line.trim().split("\\s+").length;
     }
 
     /**
      * Returns the text in between first and last.
-     * If last is an empty string returns text between first and the end of the line.
-     * @param first
+     * If first or last are an empty space refer to them as beginning/end of line accordingly.
+     * @param
      * @return
      */
     public String extract(String first, String last) {
-        return null;
+        int firstIndex;
+        int lastIndex;
+
+        if(first == " ") firstIndex = 0;
+        else firstIndex = line.indexOf(first) + first.length();
+        if(last == " ") lastIndex = line.length();
+        else lastIndex = line.indexOf(last, firstIndex);
+
+        return line.substring(firstIndex, lastIndex);
     }
 }

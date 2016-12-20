@@ -7,13 +7,13 @@ public interface LineMatcher {
     /**
      * @return the type of the matcher, e.g., PARASHA_LINE
      */
-    public String type();
+    String type();
 
     /**
      * Whether the provided line matches the criteria defined by the LineMatcher
      * @param line
      * @return
      */
-    public boolean match(Line line);
+    boolean match(Line line);
 }
 

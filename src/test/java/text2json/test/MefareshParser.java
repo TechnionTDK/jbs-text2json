@@ -9,22 +9,28 @@ import text2json.Parser;
  * the name of the Mefaresh.
  * Created by omishali on 12/12/2016.
  */
-public class RashiParser extends Parser {
+public class MefareshParser extends Parser {
     private static final String BEGIN_PARASHA = "begin_parasha";
     private static final String BEGIN_PEREK = "begin_perek";
     private static final String BEGIN_RASHI = "begin_rashi";
+    private static final String BEGIN_PASUK = "begin_pasuk";
+    private int bookNum = 0;
     private int parashaNum = 0;
     private int perekNum = 0;
     private int positionInParasha = 0;
     private int positionInPerek = 0;
+    private String mefaresh;
     private String perekLetter;
+    private String pasukLetter;
+    private String perush;
+
+    MefareshParser(String mefaresh){ mefaresh = mefaresh; }
 
     protected void registerMatchers() {
         registerMatcher(new LineMatcher() {
             public String type() {
                 return BEGIN_PARASHA;
             }
-
             public boolean match(Line line) {
                 return line.beginsWith("פרשת") && line.wordCount() <= 4;
             }
@@ -34,9 +40,14 @@ public class RashiParser extends Parser {
             public String type() {
                 return BEGIN_PEREK;
             }
-
             public boolean match(Line line) {
                 return line.contains("פרק-") && line.wordCount() <= 4;
+            }
+        });
+
+        registerMatcher(new LineMatcher() {
+            public String type() { return BEGIN_PASUK; }
+            public boolean match(Line line) { return line.beginsWith("{");
             }
         });
 
@@ -44,11 +55,10 @@ public class RashiParser extends Parser {
             public String type() {
                 return BEGIN_RASHI;
             }
-
-            public boolean match(Line line) {
-                return line.beginsWith("רש\"י");
+            public boolean match(Line line) { return line.beginsWith(": (" + mefaresh + ")");
             }
         });
+
     }
 
     protected void onLineMatch(String type, Line line) {
@@ -58,11 +68,24 @@ public class RashiParser extends Parser {
                 positionInParasha = 0;
                 break;
             case BEGIN_PEREK:
+                // TODO: get bookNum in constructor or from book name?
+                // if(bookNum == 0) bookNum = getBookNum(line.extract(" ", " פרק-" ));
                 perekNum++;
                 positionInPerek = 0;
                 perekLetter = line.extract("פרק-", "");
                 break;
+            case BEGIN_PASUK:
+                String curr_pasuk = line.extract("{", "}");
+                if(pasukLetter == curr_pasuk)
+                    break;
+                pasukLetter = curr_pasuk;
+                positionInPerek++;
+                positionInParasha++;
+                break;
             case BEGIN_RASHI:
+                perush = line.extract(" ", ":");
+                //TODO: add json creation code here
+
                 break;
 
         }
