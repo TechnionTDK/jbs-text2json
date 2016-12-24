@@ -5,8 +5,16 @@ package text2json;
  */
 public class Line {
     private String line;
+    private boolean lineMatched;
 
-    Line(String line){ line = line; }
+    Line(String line){ this.line = line;
+                       this.lineMatched = false;}
+
+    public void lineMatched(){lineMatched = true; }
+
+    public boolean isLineMatched(){ return lineMatched; }
+
+    public String getLine() { return line; }
 
     public boolean beginsWith(String s) {
         return line.startsWith(s);
@@ -36,5 +44,9 @@ public class Line {
         else lastIndex = line.indexOf(last, firstIndex);
 
         return line.substring(firstIndex, lastIndex);
+    }
+
+    public boolean is(String s) {
+        return line == s;
     }
 }

@@ -96,6 +96,16 @@ public class MefareshParser extends Parser {
     }
 
     @Override
+    protected void onNoMatch(Line line) {
+
+    }
+
+    @Override
+    protected void onEOF() {
+
+    }
+
+    @Override
     public String getId() {
         return MEFARESH_PARSER_ID;
     }

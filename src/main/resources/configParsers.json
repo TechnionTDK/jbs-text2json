@@ -1,0 +1,6 @@
+{"inputBaseDir": "","outputBaseDir": "",
+"Parsers": [
+  {"parser":"MesilatYesharim",
+  "input": "jbs-raw",
+  "output": "tbs-text"}
+]}
