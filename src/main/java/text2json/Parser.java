@@ -14,6 +14,8 @@ import com.google.gson.Gson;
  * Created by omishali on 12/12/2016.
  */
 public abstract class Parser {
+    protected static final String NO_MATCH = "no_match";
+    private JsonObject jsonObject;
 
     protected ParserOutput jsonFile;
 
@@ -28,8 +30,10 @@ public abstract class Parser {
      */
     protected abstract void registerMatchers();
     protected abstract void onLineMatch(String type, Line line) throws IOException;
-    protected abstract void onNoMatch(Line line);
-    protected abstract void onEOF() throws IOException;
+    protected abstract String getUri();
+    protected void onEOF() throws IOException {
+        jsonObject.write();
+    }
     public abstract String getId();
     protected void registerMatcher(LineMatcher matcher) {
         matchers.add(matcher);
@@ -66,7 +70,7 @@ public abstract class Parser {
     // TODO
     // should be changed to return an object representing the
     // output json file.
-    protected ParserOutput parse(BufferedReader reader, String fileName) throws IOException {
+    protected ParserOutput parse(BufferedReader reader) throws IOException {
         //create json
         jsonFile = new ParserOutput(fileName);
         //create json main object
@@ -96,5 +100,29 @@ public abstract class Parser {
 
     protected void addJsonSubject(List<JsonObject> subject) throws IOException {
         jsonFile.addJsonSubject(subject);
+    }
+
+    /**
+     * Adds key-value to the current json object.
+     * @param key
+     * @param value
+     */
+    public void jsonObjectAdd(String key, String value) {
+    }
+
+    /**
+     * Writes the content of the current json object to ParserOutput
+     * and clears the contents of the current json object (creates a new one).
+     */
+    public void jsonObjectFlush() {
+    }
+
+    /**
+     * Appends the given value to the value of an existing key of the
+     * current json object. If key does not exist, it is created.
+     * @param key
+     * @param value
+     */
+    public void jsonObjectAppend(String key, String value) {
     }
 }
