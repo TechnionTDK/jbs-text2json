@@ -15,9 +15,9 @@ import com.google.gson.Gson;
  */
 public abstract class Parser {
     protected static final String NO_MATCH = "no_match";
-    private JsonObject jsonObject;
 
-    protected ParserOutput jsonFile;
+    private JsonObject jsonObject;
+    protected JsonFile jsonFile;
 
     List<LineMatcher> matchers = new ArrayList<LineMatcher>();
 
@@ -32,7 +32,7 @@ public abstract class Parser {
     protected abstract void onLineMatch(String type, Line line) throws IOException;
     protected abstract String getUri();
     protected void onEOF() throws IOException {
-        jsonObject.write();
+        jsonObjectFlush(/*jsonFile, jsonObject*/);
     }
     public abstract String getId();
     protected void registerMatcher(LineMatcher matcher) {
@@ -44,7 +44,6 @@ public abstract class Parser {
      */
     public void parse() throws IOException, ClassNotFoundException, IllegalAccessException, InstantiationException,
                                 NoSuchMethodException, InvocationTargetException {
-        // TODO
         Gson gson = new Gson();
         BufferedReader br = new BufferedReader(new FileReader("../resources/configParser"));
         ConfigFile configFile = gson.fromJson(br, ConfigFile.class);
@@ -61,45 +60,42 @@ public abstract class Parser {
             //get object function
             Method parse = parserType.getMethod("parse", BufferedReader.class);
             //invoke function
-            ParserOutput json = (ParserOutput) parse.invoke(parser, raw, configFile.getOutputBaseDir() + '/' + configParser.getOutput());
-
-
+            JsonFile json = (JsonFile) parse.invoke(parser, raw, configFile.getOutputBaseDir() + '/' + configParser.getOutput());
         }
     }
 
-    // TODO
-    // should be changed to return an object representing the
-    // output json file.
-    protected ParserOutput parse(BufferedReader reader) throws IOException {
+    protected JsonFile parse(BufferedReader reader) throws IOException {
         //create json
-        jsonFile = new ParserOutput(fileName);
+        jsonFile = new JsonFile(getId() + ".json");
+        jsonObject = new JsonObject();
         //create json main object
         jsonFile.createMainObject();
 
-
+        int lineNum = 0;
         String line;
         while((line = reader.readLine()) != null) {
             Line l = new Line(line);
+            lineNum++;
+            System.out.print("lineNum = " + lineNum + "\n");
             // checks whether there is a match
             // and trigger onLineMatch appropriately.
             for (LineMatcher matcher : matchers) {
                 if (matcher.match(l)) {
+                    //System.out.print("  matched " + l.getLine() + "\n");
+                    //System.out.print("  matcherType = " + matcher.type() + "\n");
                     onLineMatch(matcher.type(), l);
                     l.lineMatched();
+                    continue;
                 }
             }
-            if (!l.isLineMatched()){ onNoMatch(l);}
+            if (!l.isLineMatched()){
+                onLineMatch(NO_MATCH, l);
+            }
         }
         onEOF();
         //close json
         jsonFile.closeMainObject();
-
-
         return jsonFile;
-    }
-
-    protected void addJsonSubject(List<JsonObject> subject) throws IOException {
-        jsonFile.addJsonSubject(subject);
     }
 
     /**
@@ -107,14 +103,17 @@ public abstract class Parser {
      * @param key
      * @param value
      */
-    public void jsonObjectAdd(String key, String value) {
+    public void jsonObjectAdd(/*JsonObject jsonObject,*/ String key, String value) {
+        jsonObject.addObject(key, value);
     }
 
     /**
-     * Writes the content of the current json object to ParserOutput
+     * Writes the content of the current json object to JsonFile
      * and clears the contents of the current json object (creates a new one).
      */
-    public void jsonObjectFlush() {
+    public void jsonObjectFlush(/*JsonFile jsonFile, JsonObject jsonObject*/) throws IOException {
+        jsonFile.write(jsonObject);
+        jsonObject = new JsonObject();
     }
 
     /**
@@ -123,6 +122,9 @@ public abstract class Parser {
      * @param key
      * @param value
      */
-    public void jsonObjectAppend(String key, String value) {
+    public void jsonObjectAppend(/*JsonObject jsonObject,*/ String key, String value) {
+        jsonObject.append(key,value);
     }
+
+
 }

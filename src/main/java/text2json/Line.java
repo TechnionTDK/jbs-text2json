@@ -47,6 +47,6 @@ public class Line {
     }
 
     public boolean is(String s) {
-        return line == s;
+        return line.equals(s);
     }
 }

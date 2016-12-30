@@ -9,6 +9,7 @@ import text2json.Parser;
  * the name of the Mefaresh.
  * Created by omishali on 12/12/2016.
  */
+
 public class MefareshParser extends Parser {
     private static final String BEGIN_PARASHA = "begin_parasha";
     private static final String BEGIN_PEREK = "begin_perek";
@@ -96,15 +97,16 @@ public class MefareshParser extends Parser {
     }
 
     @Override
-    protected void onNoMatch(Line line) {
-
+    protected String getUri() {
+        return null;
     }
 
+    /*
     @Override
     protected void onEOF() {
 
     }
-
+    */
     @Override
     public String getId() {
         return MEFARESH_PARSER_ID;
