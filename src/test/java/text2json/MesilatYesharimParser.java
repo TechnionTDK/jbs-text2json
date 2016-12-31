@@ -19,6 +19,7 @@ public class MesilatYesharimParser extends Parser {
         registerMatcher(new LineMatcher() {
             public String type() { return BEGIN_HAKDAMA;}
             public boolean match(Line line) {
+                //System.out.println("In BEGIN_HAKDAMA\nline is: " + line.getLine() + " return value is: " + line.beginsWith("הקדמת הרב"));
                 return line.beginsWith("הקדמת הרב") && line.wordCount() <= 10;
             }
         });
@@ -50,7 +51,12 @@ public class MesilatYesharimParser extends Parser {
                 jsonObjectFlush();
                 perekNum++;
                 jsonObjectAdd("uri", getUri());
-                jsonObjectAdd("title", line.extract(" - ", " "));
+                if(perekNum <= 20) {
+                    jsonObjectAdd("title", line.extract(" - ", " "));
+                }
+                else {
+                    jsonObjectAdd("title", line.extract(" – ", " "));
+                }
                 jsonObjectAdd("sefer", "mesilatyesharim");
                 jsonObjectAdd("text", "");
                 break;

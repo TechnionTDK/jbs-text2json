@@ -23,6 +23,8 @@ public class JsonFile {
         }
     }
 
+    public JsonWriter getJsonWriter(){ return jsonWriter;}
+
     public void createMainObject() throws IOException {
         jsonWriter.beginObject();
         jsonWriter.name("subjects");

@@ -35,13 +35,16 @@ public class Line {
      * @return
      */
     public String extract(String first, String last) {
-        int firstIndex;
-        int lastIndex;
+        int firstIndex = 0;
+        int lastIndex = line.length();
 
-        if(first == " ") firstIndex = 0;
-        else firstIndex = line.indexOf(first) + first.length();
-        if(last == " ") lastIndex = line.length();
-        else lastIndex = line.indexOf(last, firstIndex);
+        if(first != " ") {
+            firstIndex = line.indexOf(first) + first.length();
+        }
+
+        if(last != " ") {
+            lastIndex = line.indexOf(last, firstIndex);
+        }
 
         return line.substring(firstIndex, lastIndex);
     }
