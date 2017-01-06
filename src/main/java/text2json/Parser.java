@@ -14,6 +14,8 @@ import com.google.gson.Gson;
  * Created by omishali on 12/12/2016.
  */
 public abstract class Parser {
+    private static final String TEXT_DIR = "/../../text/";
+    private static final String JSON_DIR = "/json/";
     protected static final String NO_MATCH = "no_match";
 
     private JsonObject jsonObject;
@@ -66,7 +68,7 @@ public abstract class Parser {
 
     protected JsonFile parse(BufferedReader reader) throws IOException {
         //create json
-        jsonFile = new JsonFile(getId() + ".json");
+        jsonFile = new JsonFile("." + JSON_DIR + getId() + ".json");
         jsonObject = new JsonObject();
         //create json main object
         jsonFile.createMainObject();
@@ -76,7 +78,8 @@ public abstract class Parser {
         while((line = reader.readLine()) != null) {
             Line l = new Line(line);
             lineNum++;
-            System.out.print("lineNum = " + lineNum + "\n");
+            System.out.println("lineNum = " + lineNum);
+            if(l.getLine() == "\n"){ continue;}
             // checks whether there is a match
             // and trigger onLineMatch appropriately.
             for (LineMatcher matcher : matchers) {

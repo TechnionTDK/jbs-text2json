@@ -17,13 +17,15 @@ public class JsonObject {
     }
 
     public void append(String key, String added_value) {
-        for(Tuple tuple : tuples){
-            if(tuple.getKey() == key){
+        for(Tuple tuple : tuples) {
+            if (tuple.getKey() == key) {
                 tuple.appendToValue(added_value);
-                break;
+                return;
             }
         }
+        tuples.add(new Tuple(key, added_value));
     }
+
 
     public void writeObject(JsonWriter jsonWriter) throws IOException {
         jsonWriter.beginObject();
