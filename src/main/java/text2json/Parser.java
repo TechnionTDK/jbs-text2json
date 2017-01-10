@@ -129,5 +129,13 @@ public abstract class Parser {
         jsonObject.append(key,value);
     }
 
+    public void jsonObjectAddArray(/*JsonObject jsonObject,*/ String arrayKey){
+        jsonObject.addArray(arrayKey);
+    }
 
+    public void jsonObjectAddObjectToArray(/*JsonObject jsonObject,*/){jsonObject.addObjectToArray();}
+
+    public void jsonObjectAddToArrayObject(/*JsonObject jsonObject,*/ String key, String value){
+        jsonObject.addToArrayObject(key, value);
+    }
 }

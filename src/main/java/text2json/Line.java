@@ -52,4 +52,8 @@ public class Line {
     public boolean is(String s) {
         return line.equals(s);
     }
+
+    public boolean endsWith(String s) {
+        return line.endsWith(s);
+    }
 }

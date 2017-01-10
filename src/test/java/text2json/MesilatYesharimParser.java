@@ -15,6 +15,7 @@ public class MesilatYesharimParser extends Parser {
 
     private int perekNum = 0;
 
+    @Override
     protected void registerMatchers() {
         registerMatcher(new LineMatcher() {
             public String type() { return BEGIN_HAKDAMA;}
