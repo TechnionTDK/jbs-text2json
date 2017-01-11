@@ -68,10 +68,10 @@ public class TanachParser extends Parser {
                 pasukTitle = line.extract("{", "}");
                 jsonObjectAdd("uri", getUri());
                 jsonObjectAdd("text", line.extract("{", ":"));
-                jsonObjectAddArray("titles");
-                jsonObjectAddObjectToArray();
-                jsonObjectAddToArrayObject("title", bookTitle + " " + perekTitle + " " + pasukTitle);
-                jsonObjectAddToArrayObject("title", bookTitle + "פרק " + perekTitle + "פרק " + pasukTitle);
+                jsonObjectOpenArray("titles");
+                jsonObjectAdd("title", bookTitle + " " + perekTitle + " " + pasukTitle);
+                jsonObjectAdd("title", bookTitle + "פרק " + perekTitle + "פרק " + pasukTitle);
+                jsonObjectcloseArray();
                 jsonObjectFlush();
                 break;
             case BEGIN_PERUSH:

@@ -114,7 +114,7 @@ public abstract class Parser {
      * Writes the content of the current json object to JsonFile
      * and clears the contents of the current json object (creates a new one).
      */
-    public void jsonObjectFlush(/*JsonFile jsonFile, JsonObject jsonObject*/) throws IOException {
+    public void jsonObjectFlush(/*JsonFile jsonFile*/) throws IOException {
         jsonFile.write(jsonObject);
         jsonObject = new JsonObject();
     }
@@ -125,17 +125,22 @@ public abstract class Parser {
      * @param key
      * @param value
      */
-    public void jsonObjectAppend(/*JsonObject jsonObject,*/ String key, String value) {
+    public void jsonObjectAppend(/*JsonFile jsonFile*/ String key, String value) {
         jsonObject.append(key,value);
     }
 
-    public void jsonObjectAddArray(/*JsonObject jsonObject,*/ String arrayKey){
-        jsonObject.addArray(arrayKey);
+    public void jsonObjectopenObject(String objectKey){ jsonObject.openObject(objectKey);}
+    public void jsonObjectopenObject(){jsonObject.openObject();}
+    public void jsonObjectOpenArray(/*JsonFile jsonFile*/ String arrayKey){
+        jsonObject.openArray(arrayKey);
+    }
+    public void jsonObjectOpenArray(/*JsonFile jsonFile*/){
+        jsonObject.openArray();
+    }
+    public void jsonObjectcloseArray() {
+        jsonObject.closeArray();
     }
 
-    public void jsonObjectAddObjectToArray(/*JsonObject jsonObject,*/){jsonObject.addObjectToArray();}
 
-    public void jsonObjectAddToArrayObject(/*JsonObject jsonObject,*/ String key, String value){
-        jsonObject.addToArrayObject(key, value);
-    }
+
 }
