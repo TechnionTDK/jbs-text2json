@@ -78,14 +78,16 @@ public abstract class Parser {
         while((line = reader.readLine()) != null) {
             Line l = new Line(line);
             lineNum++;
-            System.out.println("lineNum = " + lineNum);
+            //System.out.println("lineNum = " + lineNum);
             if(l.getLine() == "\n"){ continue;}
+
+            //System.out.println("    line = " + l.getLine());
             // checks whether there is a match
             // and trigger onLineMatch appropriately.
             for (LineMatcher matcher : matchers) {
                 if (matcher.match(l)) {
-                    //System.out.print("  matched " + l.getLine() + "\n");
-                    //System.out.print("  matcherType = " + matcher.type() + "\n");
+                    //System.out.println("  matched " + l.getLine());
+                    //System.out.println("  matcherType = " + matcher.type());
                     onLineMatch(matcher.type(), l);
                     l.lineMatched();
                     continue;
@@ -94,6 +96,7 @@ public abstract class Parser {
             if (!l.isLineMatched()){
                 onLineMatch(NO_MATCH, l);
             }
+            //if(lineNum >= 2) break;
         }
         onEOF();
         //close json
@@ -129,15 +132,16 @@ public abstract class Parser {
         jsonObject.append(key,value);
     }
 
-    public void jsonObjectopenObject(String objectKey){ jsonObject.openObject(objectKey);}
-    public void jsonObjectopenObject(){jsonObject.openObject();}
+    public void jsonObjectOpenObject(String objectKey){ jsonObject.openObject(objectKey);}
+    public void jsonObjectOpenObject(){jsonObject.openObject();}
+    public void jsonObjectCloseObject(){jsonObject.closeObject();}
     public void jsonObjectOpenArray(/*JsonFile jsonFile*/ String arrayKey){
         jsonObject.openArray(arrayKey);
     }
     public void jsonObjectOpenArray(/*JsonFile jsonFile*/){
         jsonObject.openArray();
     }
-    public void jsonObjectcloseArray() {
+    public void jsonObjectCloseArray() {
         jsonObject.closeArray();
     }
 

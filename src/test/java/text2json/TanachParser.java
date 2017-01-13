@@ -34,12 +34,14 @@ public class TanachParser extends Parser {
         registerMatcher(new LineMatcher() {
             public String type() { return BEGIN_PEREK;}
             public boolean match(Line line) {
-                return line.beginsWith(bookTitle + " פרק-") && line.wordCount() <= 5;}
+                //System.out.println("    contains perek- = " + line.contains(" פרק-") + "  word count = " + line.wordCount());
+                return line.contains(" פרק-") && line.wordCount() <= 4;}
         });
         registerMatcher(new LineMatcher() {
             public String type() { return BEGIN_PASUK;}
             public boolean match(Line line) {
-                return line.beginsWith("}") && line.endsWith(":") && !line.contains(")");}
+                return line.beginsWith("{") && line.contains("}") && !line.beginsWith("(") && !line.contains("\"")
+                        && !line.contains("!") && !line.endsWith("}") && !line.endsWith("} ");}
         });
         registerMatcher(new LineMatcher() {
             public String type() { return BEGIN_PERUSH;}
@@ -52,26 +54,37 @@ public class TanachParser extends Parser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch (type){
             case BEGIN_PARASHA:
-                jsonObjectFlush();
+                //jsonObjectFlush();
                 break;
             case BEGIN_PEREK:
+                //System.out.println("In BEGIN_PEREK");
                 if (bookTitle == null) {
                     bookTitle = line.extract(" ", " פרק");
                 }
+                //System.out.println("bookTitle = " + bookTitle);
                 jsonObjectFlush();
                 perekNum++;
+                pasukNum = 0;
                 perekTitle = line.extract("פרק-", " ");
+                //System.out.println("============ perek num = " + perekNum + " ==============");
                 break;
             case BEGIN_PASUK:
                 jsonObjectFlush();
                 pasukNum++;
                 pasukTitle = line.extract("{", "}");
                 jsonObjectAdd("uri", getUri());
-                jsonObjectAdd("text", line.extract("{", ":"));
+                if(line.contains(":"))
+                    jsonObjectAdd("text", line.extract("}", ":"));
+                else
+                    jsonObjectAdd("text", line.extract("}", " "));
                 jsonObjectOpenArray("titles");
+                jsonObjectOpenObject();
                 jsonObjectAdd("title", bookTitle + " " + perekTitle + " " + pasukTitle);
-                jsonObjectAdd("title", bookTitle + "פרק " + perekTitle + "פרק " + pasukTitle);
-                jsonObjectcloseArray();
+                jsonObjectCloseObject();
+                jsonObjectOpenObject();
+                jsonObjectAdd("title", bookTitle + " פרק " + perekTitle + " פסוק " + pasukTitle);
+                jsonObjectCloseObject();
+                jsonObjectCloseArray();
                 jsonObjectFlush();
                 break;
             case BEGIN_PERUSH:
