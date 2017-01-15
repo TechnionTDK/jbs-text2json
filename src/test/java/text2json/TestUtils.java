@@ -11,7 +11,7 @@ import java.io.FileReader;
  * Created by omishali on 26/12/2016.
  */
 public class TestUtils {
-    private static final String TEXT_DIR = "/../../text/";
+    private static final String TEXT_DIR = "/text/";
     private static final String JSON_DIR = "/json/";
 
     public static BufferedReader getText(String s) throws FileNotFoundException {
