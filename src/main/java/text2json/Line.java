@@ -46,7 +46,7 @@ public class Line {
             lastIndex = line.indexOf(last, firstIndex);
         }
 
-        return line.substring(firstIndex, lastIndex);
+        return line.substring(firstIndex, lastIndex).trim();
     }
 
     public boolean is(String s) {
