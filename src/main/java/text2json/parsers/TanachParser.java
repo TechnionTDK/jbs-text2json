@@ -1,4 +1,8 @@
-package text2json;
+package text2json.parsers;
+
+import text2json.Line;
+import text2json.LineMatcher;
+import text2json.Parser;
 
 import java.io.IOException;
 

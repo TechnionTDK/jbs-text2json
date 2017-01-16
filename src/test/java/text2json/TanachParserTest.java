@@ -3,6 +3,7 @@ package text2json;
 import com.google.gson.stream.JsonReader;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import text2json.parsers.TanachParser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
