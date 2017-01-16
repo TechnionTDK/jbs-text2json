@@ -74,9 +74,13 @@ public class TanachParser extends Parser {
                 pasukTitle = line.extract("{", "}");
                 jsonObjectAdd("uri", getUri());
                 if(line.contains(":"))
-                    jsonObjectAdd("text", line.extract("}", ":"));
+                    jsonObjectAdd("jbo:text", line.extract("}", ":"));
                 else
-                    jsonObjectAdd("text", line.extract("}", " "));
+                    jsonObjectAdd("jbo:text", line.extract("}", " "));
+
+                //jsonObjectAdd("rdfs:label", bookTitle + " " + perekTitle + " " + pasukTitle);
+                //jsonObjectAdd("jbo:sefer", "jbr:tanach-" + bookNum);
+
                 jsonObjectOpenArray("titles");
                 jsonObjectOpenObject();
                 jsonObjectAdd("title", bookTitle + " " + perekTitle + " " + pasukTitle);
@@ -97,7 +101,7 @@ public class TanachParser extends Parser {
 
     @Override
     protected String getUri() {
-        return "tanach-" + bookNum + "-" + perekNum + "-" + pasukNum;
+        return "jbr:tanach-" + bookNum + "-" + perekNum + "-" + pasukNum;
     }
 
     @Override
