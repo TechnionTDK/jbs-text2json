@@ -145,6 +145,14 @@ public abstract class Parser {
         jsonObject.closeArray();
     }
 
-
+    public String stripVowels(String rawString){
+        String newString = "";
+        for(int j=0; j<rawString.length(); j++) {
+            if(rawString.codePointAt(j)<1425
+                    || rawString.codePointAt(j)>1479)
+            { newString = newString + rawString.charAt(j); }
+        }
+        return(newString);
+    }
 
 }
