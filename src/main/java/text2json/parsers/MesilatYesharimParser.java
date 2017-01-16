@@ -47,37 +47,37 @@ public class MesilatYesharimParser extends Parser {
         switch(type) {
             case BEGIN_HAKDAMA:
                 jsonObjectAdd("uri", getUri());
-                jsonObjectAdd("title", line.getLine());
-                jsonObjectAdd("sefer", "mesilatyesharim");
+                jsonObjectAdd("rdfs:label", line.getLine());
+                jsonObjectAdd("jbo:sefer", "mesilatyesharim");
                 break;
             case BEGIN_PEREK:
                 jsonObjectFlush();
                 perekNum++;
                 jsonObjectAdd("uri", getUri());
                 if(perekNum <= 20) {
-                    jsonObjectAdd("title", line.extract(" - ", " "));
+                    jsonObjectAdd("rdfs:label", line.extract(" - ", " "));
                 }
                 else {
-                    jsonObjectAdd("title", line.extract(" – ", " "));
+                    jsonObjectAdd("rdfs:label", line.extract(" – ", " "));
                 }
-                jsonObjectAdd("sefer", "mesilatyesharim");
+                jsonObjectAdd("jbo:sefer", "mesilatyesharim");
                 break;
             case BEGIN_HATIMA:
                 jsonObjectFlush();
                 perekNum++;
                 jsonObjectAdd("uri", getUri());
-                jsonObjectAdd("title", line.getLine());
-                jsonObjectAdd("sefer", "mesilatyesharim");
+                jsonObjectAdd("rdfs:label", line.getLine());
+                jsonObjectAdd("jbo:sefer", "mesilatyesharim");
                 break;
             case NO_MATCH:
-                super.jsonObjectAppend("text", line.getLine());
+                super.jsonObjectAppend("jbo:text", line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return "mesilatyesharim" + "-" + perekNum;
+        return "jbr:mesilatyesharim" + "-" + perekNum;
     }
 
     @Override

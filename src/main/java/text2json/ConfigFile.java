@@ -9,7 +9,7 @@ import java.util.List;
 public class ConfigFile {
     String inputBaseDir;
     String outputBaseDir;
-    List<ConfigParser> Parsers = new ArrayList<ConfigParser>();
+    List<ConfigParser> parsers = new ArrayList<ConfigParser>();
 
     public String getInputBaseDir(){
         return inputBaseDir;
@@ -20,6 +20,6 @@ public class ConfigFile {
     }
 
     public List<ConfigParser> getAllParsers(){
-        return Parsers;
+        return parsers;
     }
 }

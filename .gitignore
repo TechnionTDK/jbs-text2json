@@ -17,3 +17,5 @@ target/
 
 # text2json
 json/
+jbs-raw/
+jbs-text/

@@ -19,13 +19,13 @@ public class MesilatYesharimParserTest {
     public static void setup() throws IOException {
         MesilatYesharimParser parser = new MesilatYesharimParser();
         BufferedReader reader = TestUtils.getText("mesilatyesharim.txt");
-        parser.parse(reader);
+        parser.parse(reader, "json/mesilatyesharim.json");
     }
 
     @Test
     //test the correctness with sampling a few values
     public void test() throws IOException {
-        JsonReader jsonReader = TestUtils.getJson("parser.mesilatYesharim.json");
+        JsonReader jsonReader = TestUtils.getJson("mesilatyesharim.json");
         //JsonReader jsonReader = new JsonReader(TestUtils.getFileReader("./parser.mesilatYesharim.json"));
         jsonReader.beginObject();
         assertEquals(jsonReader.nextName(), "subjects");

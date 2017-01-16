@@ -29,7 +29,7 @@ public class TanachParserTest {
             System.out.println("Creating json for book number " + bookNum);
             TanachParser parser = new TanachParser(bookNum);
             BufferedReader reader = TestUtils.getText("/tanach/tanach-" + bookNum + ".txt");
-            parser.parse(reader);
+            parser.parse(reader, "json/tanach-" + bookNum + ".json");
         }
     }
 
