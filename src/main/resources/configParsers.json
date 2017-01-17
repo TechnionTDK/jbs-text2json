@@ -2,5 +2,11 @@
 "parsers": [
   {"parser":"text2json.parsers.MesilatYesharimParser",
   "input": "mesilatyesharim",
-  "output": "mesilatyesharim"}
+  "output": "mesilatyesharim"},
+  {"parser":"text2json.parsers.ShmonaKvatzimParser",
+    "input": "shmonakvatzim",
+    "output": "shmonakvatzim"},
+  {"parser":"text2json.parsers.TanachParser",
+    "input": "tanach",
+    "output": "tanach"}
 ]}

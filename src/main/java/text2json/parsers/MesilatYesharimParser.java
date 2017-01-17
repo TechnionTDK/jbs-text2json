@@ -48,7 +48,7 @@ public class MesilatYesharimParser extends Parser {
             case BEGIN_HAKDAMA:
                 jsonObjectAdd(URI, getUri());
                 jsonObjectAdd(RDFS_LABEL, line.getLine());
-                jsonObjectAdd(JBO_BOOK, JBR + "mesilatyesharim");
+                jsonObjectAdd(JBO_SEFER, JBR + "mesilatyesharim");
                 break;
             case BEGIN_PEREK:
                 jsonObjectFlush();
@@ -60,14 +60,14 @@ public class MesilatYesharimParser extends Parser {
                 else {
                     jsonObjectAdd(RDFS_LABEL, line.extract(" – ", " "));
                 }
-                jsonObjectAdd(JBO_BOOK, JBR + "mesilatyesharim");
+                jsonObjectAdd(JBO_SEFER, JBR + "mesilatyesharim");
                 break;
             case BEGIN_HATIMA:
                 jsonObjectFlush();
                 perekNum++;
                 jsonObjectAdd(URI, getUri());
                 jsonObjectAdd(RDFS_LABEL, line.getLine());
-                jsonObjectAdd(JBO_BOOK, JBR + "mesilatyesharim");
+                jsonObjectAdd(JBO_SEFER, JBR + "mesilatyesharim");
                 break;
             case NO_MATCH:
                 super.jsonObjectAppend(JBO_TEXT, line.getLine());

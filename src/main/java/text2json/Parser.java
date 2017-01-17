@@ -40,31 +40,6 @@ public abstract class Parser {
     protected void registerMatcher(LineMatcher matcher) {
         matchers.add(matcher);
     }
-    /**
-     * Reads the PARSER_CONFIG_FILE and parses all input
-     * texts into output directory.
-     */
-    public void parse() throws IOException, ClassNotFoundException, IllegalAccessException, InstantiationException,
-                                NoSuchMethodException, InvocationTargetException {
-        Gson gson = new Gson();
-        BufferedReader br = new BufferedReader(new FileReader("../resources/configParser"));
-        ConfigFile configFile = gson.fromJson(br, ConfigFile.class);
-
-        List<ConfigParser> Parsers = configFile.getAllParsers();
-
-        for (ConfigParser configParser : Parsers){
-            BufferedReader raw = new BufferedReader(new FileReader(configFile.getInputBaseDir() + '/' + configParser.getInput()));
-
-            //get class from string
-            Class parserType = Class.forName(configParser.getParser());
-            //create new object of that class
-            Object parser = parserType.newInstance();
-            //get object function
-            Method parse = parserType.getMethod("parse", BufferedReader.class);
-            //invoke function
-            JsonFile json = (JsonFile) parse.invoke(parser, raw, configFile.getOutputBaseDir() + '/' + configParser.getOutput());
-        }
-    }
 
     public JsonFile parse(BufferedReader reader, String outputJson) throws IOException {
         //create json
@@ -80,7 +55,8 @@ public abstract class Parser {
             Line l = new Line(line);
             lineNum++;
             //System.out.println("lineNum = " + lineNum);
-            if(l.getLine() == "\n"){ continue;}
+            if(l.getLine().equals("\n")){ continue;}
+            if(l.getLine().equals("")){ continue;}
 
             //System.out.println("    line = " + l.getLine());
             // checks whether there is a match

@@ -3,7 +3,7 @@ package text2json.parsers;
 import text2json.Line;
 import text2json.LineMatcher;
 import text2json.Parser;
-
+import static text2json.JbsOntology.*;
 import java.io.IOException;
 
 /**
@@ -76,17 +76,17 @@ public class TanachParser extends Parser {
                 jsonObjectFlush();
                 pasukNum++;
                 pasukTitle = line.extract("{", "}");
-                jsonObjectAdd("uri", getUri());
+                jsonObjectAdd(URI, getUri());
                 if(line.contains(":")) {
-                    jsonObjectAdd("jbo:text", stripVowels(line.extract("}", ":")));
-                    jsonObjectAdd("jbo:textNikud", line.extract("}", ":"));
+                    jsonObjectAdd(JBO_TEXT, stripVowels(line.extract("}", ":")));
+                    jsonObjectAdd(JBO_TEXT_NIKUD, line.extract("}", ":"));
                 } else {
-                    jsonObjectAdd("jbo:text", stripVowels(line.extract("}", " ")));
-                    jsonObjectAdd("jbo:textNikud", line.extract("}", " "));
+                    jsonObjectAdd(JBO_TEXT, stripVowels(line.extract("}", " ")));
+                    jsonObjectAdd(JBO_TEXT_NIKUD, line.extract("}", " "));
                 }
 
-                jsonObjectAdd("rdfs:label", bookTitle + " " + perekTitle + " " + pasukTitle);
-                jsonObjectAdd("jbo:sefer", "jbr:tanach-" + bookNum);
+                jsonObjectAdd(RDFS_LABEL, bookTitle + " " + perekTitle + " " + pasukTitle);
+                jsonObjectAdd(JBO_SEFER, "jbr:tanach-" + bookNum);
 
                 jsonObjectOpenArray("titles");
                 jsonObjectOpenObject();
