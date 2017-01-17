@@ -73,7 +73,7 @@ public class TanachParserTest {
             }
             //System.out.println("    adv_perek = " + adv_perek);
             //System.out.println("perekNum = " + perekNum + "; pasukNum = " + pasukNum + "; positionInSefer = " + positionInSefer);
-            //======== TEXT ==============
+            //======== JBO_TEXT ==============
             assertEquals(jsonReader.nextName(), "jbo:text");
             testText(jsonReader, bookNum, perekNum, pasukNum);
             //======== TITLES ==============

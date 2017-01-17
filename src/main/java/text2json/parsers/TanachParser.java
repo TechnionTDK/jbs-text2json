@@ -24,7 +24,7 @@ public class TanachParser extends Parser {
     //private String pasukText;
     //private int positionInParasha = 0;
 
-    protected TanachParser(int bookNum){
+    public TanachParser(int bookNum){
         this.bookNum = bookNum;
     }
 
