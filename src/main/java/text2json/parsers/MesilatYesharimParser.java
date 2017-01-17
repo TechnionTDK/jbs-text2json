@@ -5,8 +5,8 @@ import text2json.LineMatcher;
 import text2json.Parser;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
+import static text2json.JbsOntology.*;
 
 /**
  * Created by USER on 23-Dec-16.
@@ -46,38 +46,38 @@ public class MesilatYesharimParser extends Parser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_HAKDAMA:
-                jsonObjectAdd("uri", getUri());
-                jsonObjectAdd("rdfs:label", line.getLine());
-                jsonObjectAdd("jbo:sefer", "mesilatyesharim");
+                jsonObjectAdd(URI, getUri());
+                jsonObjectAdd(RDFS_LABEL, line.getLine());
+                jsonObjectAdd(JBO_BOOK, JBR + "mesilatyesharim");
                 break;
             case BEGIN_PEREK:
                 jsonObjectFlush();
                 perekNum++;
-                jsonObjectAdd("uri", getUri());
+                jsonObjectAdd(URI, getUri());
                 if(perekNum <= 20) {
-                    jsonObjectAdd("rdfs:label", line.extract(" - ", " "));
+                    jsonObjectAdd(RDFS_LABEL, line.extract(" - ", " "));
                 }
                 else {
-                    jsonObjectAdd("rdfs:label", line.extract(" – ", " "));
+                    jsonObjectAdd(RDFS_LABEL, line.extract(" – ", " "));
                 }
-                jsonObjectAdd("jbo:sefer", "mesilatyesharim");
+                jsonObjectAdd(JBO_BOOK, JBR + "mesilatyesharim");
                 break;
             case BEGIN_HATIMA:
                 jsonObjectFlush();
                 perekNum++;
-                jsonObjectAdd("uri", getUri());
-                jsonObjectAdd("rdfs:label", line.getLine());
-                jsonObjectAdd("jbo:sefer", "mesilatyesharim");
+                jsonObjectAdd(URI, getUri());
+                jsonObjectAdd(RDFS_LABEL, line.getLine());
+                jsonObjectAdd(JBO_BOOK, JBR + "mesilatyesharim");
                 break;
             case NO_MATCH:
-                super.jsonObjectAppend("jbo:text", line.getLine());
+                super.jsonObjectAppend(JBO_TEXT, line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return "jbr:mesilatyesharim" + "-" + perekNum;
+        return JBR + "mesilatyesharim" + "-" + perekNum;
     }
 
     @Override
