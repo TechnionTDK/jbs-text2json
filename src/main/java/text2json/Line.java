@@ -14,7 +14,7 @@ public class Line {
 
     public boolean isLineMatched(){ return lineMatched; }
 
-    public String getLine() { return line; }
+    public String getLine() { return line.trim(); }
 
     public boolean beginsWith(String s) {
         return line.startsWith(s);
