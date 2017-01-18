@@ -47,7 +47,7 @@ public class TanachParserTest {
 
 
     private void testTanach(int bookNum) throws IOException {
-        JsonReader jsonReader = TestUtils.getJson("tanach-" + bookNum + ".json");
+        JsonReader jsonReader = null;// = TestUtils.getJson("tanach-" + bookNum + ".json");
         jsonReader.beginObject();
         assertEquals(jsonReader.nextName(), "subjects");
         jsonReader.beginArray();

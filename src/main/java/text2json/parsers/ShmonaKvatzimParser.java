@@ -14,7 +14,8 @@ public class ShmonaKvatzimParser extends Parser {
     private static final String BEGIN_KOVETZ = "begin_kovetz";
     private static final String BEGIN_SAIF = "begin_saif";
 
-
+    private String kovetz;
+    private String saif;
     private int kovetzNum = 0;
     private int saifNum = 0;
 
@@ -54,13 +55,13 @@ public class ShmonaKvatzimParser extends Parser {
                 saifNum = 0;
                 break;
             case BEGIN_SAIF:
+                jsonObjectFlush();
                 saifNum++;
                 jsonObjectAdd(URI, getUri());
 
                 break;
             case NO_MATCH:
                 jsonObjectAdd(JBO_TEXT, line.getLine());
-                jsonObjectFlush();
                 break;
         }
 

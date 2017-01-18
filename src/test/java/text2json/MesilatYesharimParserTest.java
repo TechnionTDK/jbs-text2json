@@ -25,7 +25,7 @@ public class MesilatYesharimParserTest {
     @Test
     //test the correctness with sampling a few values
     public void test() throws IOException {
-        JsonReader jsonReader = TestUtils.getJson("mesilatyesharim.json");
+        JsonReader jsonReader = null;//TestUtils.getJson("mesilatyesharim.json");
         //JsonReader jsonReader = new JsonReader(TestUtils.getFileReader("./parser.mesilatYesharim.json"));
         jsonReader.beginObject();
         assertEquals(jsonReader.nextName(), "subjects");

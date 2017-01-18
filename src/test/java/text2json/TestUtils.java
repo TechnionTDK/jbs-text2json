@@ -1,5 +1,6 @@
 package text2json;
 
+import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 
 import java.io.BufferedReader;
@@ -23,11 +24,8 @@ public class TestUtils {
         return new FileReader(filePath.concat(s));
     }
 
-
-    public static void toJson(JsonFile output) {
-    }
-
-    public static JsonReader getJson(String s) throws FileNotFoundException {
-        return new JsonReader(getFileReader(JSON_DIR + s));
+    static SubjectsJson getJson(String json) throws Exception {
+        Gson gson = new Gson();
+        return gson.fromJson(new BufferedReader(new FileReader(json)), SubjectsJson.class);
     }
 }
