@@ -5,5 +5,8 @@
   "output": "mesilatyesharim"},
   {"parser":"text2json.parsers.ShmonaKvatzimParser",
     "input": "shmonakvatzim",
-    "output": "shmonakvatzim"}
+    "output": "shmonakvatzim"},
+  {"parser":"text2json.parsers.SeferHamitzvotParser",
+    "input": "seferhamitzvot",
+    "output": "seferhamitzvot"}
 ]}
