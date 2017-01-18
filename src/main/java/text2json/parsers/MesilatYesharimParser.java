@@ -80,9 +80,4 @@ public class MesilatYesharimParser extends Parser {
         return JBR + "mesilatyesharim" + "-" + perekNum;
     }
 
-    @Override
-    public String getId() {
-        return MESILAT_YESHARIM_PARSER_ID;
-    }
-
 }

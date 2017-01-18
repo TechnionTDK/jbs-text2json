@@ -110,9 +110,4 @@ public class TanachParser extends Parser {
     protected String getUri() {
         return "jbr:tanach-" + bookNum + "-" + perekNum + "-" + pasukNum;
     }
-
-    @Override
-    public String getId() {
-        return "tanach-" + bookNum;
-    }
 }

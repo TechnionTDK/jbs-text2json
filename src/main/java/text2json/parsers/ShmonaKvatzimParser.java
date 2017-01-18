@@ -71,9 +71,4 @@ public class ShmonaKvatzimParser extends Parser {
     protected String getUri() {
         return JBR + "shmonakvatzim-" + kovetzNum + "-" + saifNum;
     }
-
-    @Override
-    public String getId() {
-        return null;
-    }
 }

@@ -1,21 +1,15 @@
 package text2json;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import com.google.gson.Gson;
 
 
 /**
  * Created by omishali on 12/12/2016.
  */
 public abstract class Parser {
-    private static final String TEXT_DIR = "/../../text/";
-    //private static final String JSON_DIR = "/json/";
     protected static final String NO_MATCH = "no_match";
 
     private JsonObject jsonObject;
@@ -36,7 +30,6 @@ public abstract class Parser {
     protected void onEOF() throws IOException {
         jsonObjectFlush(/*jsonFile, jsonObject*/);
     }
-    public abstract String getId();
     protected void registerMatcher(LineMatcher matcher) {
         matchers.add(matcher);
     }

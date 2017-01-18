@@ -107,10 +107,4 @@ public class MefareshParser extends Parser {
 
     }
     */
-    @Override
-    public String getId() {
-        return MEFARESH_PARSER_ID;
-    }
-
-
 }
