@@ -12,7 +12,7 @@ import java.io.FileReader;
  * Created by omishali on 26/12/2016.
  */
 public class TestUtils {
-    private static final String TEXT_DIR = "/text/";
+    private static final String TEXT_DIR = "/jbs-raw/";
     private static final String JSON_DIR = "/json/";
 
     public static BufferedReader getText(String s) throws FileNotFoundException {
@@ -22,6 +22,10 @@ public class TestUtils {
     static FileReader getFileReader(String s) throws FileNotFoundException {
         String filePath = new File("").getAbsolutePath();
         return new FileReader(filePath.concat(s));
+    }
+
+    static FileReader getJsonFileReader(String s) throws FileNotFoundException {
+        return getFileReader(JSON_DIR + s);
     }
 
     static SubjectsJson getJson(String json) throws Exception {

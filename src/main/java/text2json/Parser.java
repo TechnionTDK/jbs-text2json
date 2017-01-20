@@ -14,7 +14,7 @@ import com.google.gson.Gson;
  * Created by omishali on 12/12/2016.
  */
 public abstract class Parser {
-    private static final String TEXT_DIR = "/../../text/";
+    private static final String TEXT_DIR = "/../../jbs-raw/";
     //private static final String JSON_DIR = "/json/";
     protected static final String NO_MATCH = "no_match";
 

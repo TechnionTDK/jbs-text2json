@@ -8,5 +8,8 @@
     "output": "shmonakvatzim"},
   {"parser":"text2json.parsers.TanachParser",
     "input": "tanach",
-    "output": "tanach"}
+    "output": "tanach"},
+  {"parser":"text2json.parsers.MefareshParser",
+    "input": "tanach",
+    "output": "tanachMefarshim"}
 ]}
