@@ -66,7 +66,6 @@ public abstract class Parser {
             if (!l.isLineMatched()){
                 onLineMatch(NO_MATCH, l);
             }
-            //if(lineNum >= 2) break;
         }
         onEOF();
         //close json
@@ -80,6 +79,10 @@ public abstract class Parser {
      * @param value
      */
     public void jsonObjectAdd(/*JsonObject jsonObject,*/ String key, String value) {
+        jsonObject.addObject(key, value);
+    }
+
+    public void jsonObjectAdd(/*JsonObject jsonObject,*/ String key, int value) {
         jsonObject.addObject(key, value);
     }
 

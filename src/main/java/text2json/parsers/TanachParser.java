@@ -15,40 +15,43 @@ public class TanachParser extends Parser {
     private static final String BEGIN_PERUSH = "begin_perush";
     private static final String BEGIN_PARASHA = "begin_parasha";
 
-    private int bookNum;
+    private int bookNum = 0;
     private String bookTitle;
     private int perekNum = 0;
     private String perekTitle;
     private int pasukNum = 0;
     private String pasukTitle;
     //private String pasukText;
-    //private int positionInParasha = 0;
-
-    public TanachParser(int bookNum){
-        this.bookNum = bookNum;
-    }
+    private int positionInParasha;
 
     @Override
     protected void registerMatchers() {
         registerMatcher(new LineMatcher() {
+            @Override
             public String type() { return BEGIN_PARASHA;}
+            @Override
             public boolean match(Line line) {
                 return line.beginsWith("פרשת") && line.wordCount() <= 5;}
         });
         registerMatcher(new LineMatcher() {
+            @Override
             public String type() { return BEGIN_PEREK;}
+            @Override
             public boolean match(Line line) {
-                //System.out.println("    contains perek- = " + line.contains(" פרק-") + "  word count = " + line.wordCount());
                 return line.contains(" פרק-") && line.wordCount() <= 4;}
         });
         registerMatcher(new LineMatcher() {
+            @Override
             public String type() { return BEGIN_PASUK;}
+            @Override
             public boolean match(Line line) {
                 return line.beginsWith("{") && line.contains("}") && !line.beginsWith("(") && !line.contains("\"")
                         && !line.contains("!") && !line.endsWith("}") && !line.endsWith("} ");}
         });
         registerMatcher(new LineMatcher() {
+            @Override
             public String type() { return BEGIN_PERUSH;}
+            @Override
             public boolean match(Line line) {
                 return line.beginsWith(")");}
         });
@@ -58,44 +61,33 @@ public class TanachParser extends Parser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch (type){
             case BEGIN_PARASHA:
-                //jsonObjectFlush();
+                jsonObjectFlush();
+                positionInParasha = 0;
                 break;
             case BEGIN_PEREK:
-                //System.out.println("In BEGIN_PEREK");
-                if (bookTitle == null) {
+                if (bookNum == 0) {
                     bookTitle = line.extract(" ", " פרק");
-                }
-                //System.out.println("bookTitle = " + bookTitle);
+                    bookNum = getBookNum(bookTitle);}
                 jsonObjectFlush();
                 perekNum++;
                 pasukNum = 0;
                 perekTitle = line.extract("פרק-", " ");
-                //System.out.println("============ perek num = " + perekNum + " ==============");
                 break;
             case BEGIN_PASUK:
                 jsonObjectFlush();
+                positionInParasha++;
                 pasukNum++;
                 pasukTitle = line.extract("{", "}");
                 jsonObjectAdd(URI, getUri());
-                if(line.contains(":")) {
-                    jsonObjectAdd(JBO_TEXT, stripVowels(line.extract("}", ":")));
-                    jsonObjectAdd(JBO_TEXT_NIKUD, line.extract("}", ":"));
-                } else {
-                    jsonObjectAdd(JBO_TEXT, stripVowels(line.extract("}", " ")));
-                    jsonObjectAdd(JBO_TEXT_NIKUD, line.extract("}", " "));
-                }
-
+                String end = line.contains(":") ? ":" : " ";
+                jsonObjectAdd(JBO_TEXT, stripVowels(line.extract("}", end)));
+                jsonObjectAdd(JBO_TEXT_NIKUD, line.extract("}", end));
                 jsonObjectAdd(RDFS_LABEL, bookTitle + " " + perekTitle + " " + pasukTitle);
                 jsonObjectAdd(JBO_SEFER, "jbr:tanach-" + bookNum);
-
-                jsonObjectOpenArray("titles");
-                jsonObjectOpenObject();
-                jsonObjectAdd("title", bookTitle + " " + perekTitle + " " + pasukTitle);
-                jsonObjectCloseObject();
-                jsonObjectOpenObject();
-                jsonObjectAdd("title", bookTitle + " פרק " + perekTitle + " פסוק " + pasukTitle);
-                jsonObjectCloseObject();
-                jsonObjectCloseArray();
+                if(bookNum <= 5) {
+                    jsonObjectAdd(JBO_POSITION_IN_PARASHA, positionInParasha);
+                }
+                addTitlesArray(bookTitle, perekTitle, pasukTitle);
                 jsonObjectFlush();
                 break;
             case BEGIN_PERUSH:
@@ -104,6 +96,29 @@ public class TanachParser extends Parser {
             case NO_MATCH:
                 break;
         }
+    }
+
+    private int getBookNum(String bookTitle) {
+        String bookNames[] = {"בראשית", "שמות", "ויקרא", "במדבר", "דברים", "יהושע", "שופטים", "שמואל א", "שמואל ב",
+                "מלכים א","מלכים ב", "ישעיה","ירמיה","יחזקאל","הושע","יואל","עמוס","עובדיה","יונה","מיכה","נחום",
+                "חבקוק","צפניה","חגי","זכריה","מלאכי", "תהילים", "משלי", "איוב", "שיר השירים", "רות", "איכה", "קהלת",
+                "אסתר", "דניאל", "עזרא", "נחמיה", "דברי הימים א", "דברי הימים ב"};
+        for (int i = 0; i < 39; i++){
+            if(bookTitle.equals(bookNames[i]))
+                return i+1;
+        }
+        return -1;
+    }
+
+    private void addTitlesArray(String bookTitle, String perekTitle, String pasukTitle) {
+        jsonObjectOpenArray("titles");
+        jsonObjectOpenObject();
+        jsonObjectAdd("title", bookTitle + " " + perekTitle + " " + pasukTitle);
+        jsonObjectCloseObject();
+        jsonObjectOpenObject();
+        jsonObjectAdd("title", bookTitle + " פרק " + perekTitle + " פסוק " + pasukTitle);
+        jsonObjectCloseObject();
+        jsonObjectCloseArray();
     }
 
     @Override
