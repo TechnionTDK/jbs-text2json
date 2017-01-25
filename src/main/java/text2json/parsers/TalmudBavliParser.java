@@ -15,7 +15,7 @@ public class TalmudBavliParser extends Parser {
     private static final String BEGIN_AMUD = "begin_amud";
     private static final String BEGIN_PERUSH = "begin_perush";
     private static final String BEGIN_DAF_TEXT = "begin_daf_text";
-    
+
     private int masechetNum = 0;
     private String masechetTitle;
     private int perekNum = 0;
