@@ -12,7 +12,7 @@ import java.io.FileReader;
  * Created by omishali on 26/12/2016.
  */
 public class TestUtils {
-    private static final String TEXT_DIR = "/text/";
+    private static final String TEXT_DIR = "/../../text/";
     private static final String JSON_DIR = "/json/";
 
     public static BufferedReader getText(String s) throws FileNotFoundException {
@@ -28,4 +28,14 @@ public class TestUtils {
         Gson gson = new Gson();
         return gson.fromJson(new BufferedReader(new FileReader(json)), SubjectsJson.class);
     }
+
+    public static String stripVowels(String rawString){
+        String newString = "";
+        for(int j=0; j<rawString.length(); j++) {
+            if(rawString.codePointAt(j)<1425 || rawString.codePointAt(j)>1479)
+                { newString = newString + rawString.charAt(j); }
+        }
+        return(newString);
+    }
+
 }
