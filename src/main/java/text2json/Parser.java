@@ -1,21 +1,20 @@
 package text2json;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import com.google.gson.Gson;
 
 
 /**
  * Created by omishali on 12/12/2016.
  */
 public abstract class Parser {
+<<<<<<< HEAD
     private static final String TEXT_DIR = "/../../jbs-raw/";
     //private static final String JSON_DIR = "/json/";
+=======
+>>>>>>> 5af4bd5878a89455fba0ffd414b3a5bbcd09f62a
     protected static final String NO_MATCH = "no_match";
 
     private JsonObject jsonObject;
@@ -36,7 +35,6 @@ public abstract class Parser {
     protected void onEOF() throws IOException {
         jsonObjectFlush(/*jsonFile, jsonObject*/);
     }
-    public abstract String getId();
     protected void registerMatcher(LineMatcher matcher) {
         matchers.add(matcher);
     }
@@ -73,7 +71,6 @@ public abstract class Parser {
             if (!l.isLineMatched()){
                 onLineMatch(NO_MATCH, l);
             }
-            //if(lineNum >= 2) break;
         }
         onEOF();
         //close json
@@ -87,6 +84,10 @@ public abstract class Parser {
      * @param value
      */
     public void jsonObjectAdd(/*JsonObject jsonObject,*/ String key, String value) {
+        jsonObject.addObject(key, value);
+    }
+
+    public void jsonObjectAdd(/*JsonObject jsonObject,*/ String key, int value) {
         jsonObject.addObject(key, value);
     }
 

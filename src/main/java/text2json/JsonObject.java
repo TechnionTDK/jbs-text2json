@@ -24,6 +24,10 @@ public class JsonObject {
         tuples.add(new Tuple(key, value));
     }
 
+    public void addObject(String key, int value) {
+        addObject(key, String.valueOf(value));
+    }
+
     /**
      * append value to the tuple-object with a given key.
      * if no such key exists in the current level object, creates a new tuple-object with the given key and value.
