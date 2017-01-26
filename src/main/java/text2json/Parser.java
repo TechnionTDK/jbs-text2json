@@ -10,11 +10,8 @@ import java.util.List;
  * Created by omishali on 12/12/2016.
  */
 public abstract class Parser {
-<<<<<<< HEAD
     private static final String TEXT_DIR = "/../../jbs-raw/";
     //private static final String JSON_DIR = "/json/";
-=======
->>>>>>> 5af4bd5878a89455fba0ffd414b3a5bbcd09f62a
     protected static final String NO_MATCH = "no_match";
 
     private JsonObject jsonObject;
