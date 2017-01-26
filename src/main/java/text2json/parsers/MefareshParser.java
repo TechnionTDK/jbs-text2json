@@ -23,7 +23,7 @@ public class MefareshParser extends Parser {
     private static final String BEGIN_PASUK = "begin_pasuk";
     private static final String MEFARESH_PARSER_ID = "parser.mefareshTanach";
     private int bookNum = 0;
-    private int parashaNum = 0;
+    private int parashaNum = 1;
     private int perekNum = 0;
     private int pasukNum = 0;
     private int positionInParasha = 0;
@@ -112,17 +112,17 @@ public class MefareshParser extends Parser {
             case BEGIN_PERUSH:
                 mefareshId = get_mefareshId(line);
                 mefaresh = MefarshimEn[mefareshId];
-                perush = line.extract(" ", ":");
-
+                perush = line.extract(" ", ": (" + MefarshimHe[mefareshId] + ")");
                 jsonObjectFlush();
                 jsonObjectAdd(URI, getUri());
-                if(line.contains(":")) {
-                    jsonObjectAdd(JBO_TEXT, stripVowels(line.extract(" ", ":")));
+                jsonObjectAdd(JBO_TEXT, perush);
+                /*if(line.contains(":")) {
+                    jsonObjectAdd(JBO_TEXT, stripVowels(perush));
                     //jsonObjectAdd(JBO_TEXT_NIKUD, line.extract(" ", ":"));
                 } else {
-                    jsonObjectAdd(JBO_TEXT, stripVowels(line.extract(" ", " ")));
+                    jsonObjectAdd(JBO_TEXT, stripVowels(perush));
                     //jsonObjectAdd(JBO_TEXT_NIKUD, line.extract(" ", " "));
-                }
+                }*/
 
                 jsonObjectAdd(RDFS_LABEL, bookLetter + " " + perekLetter + " " + pasukLetter);
                 jsonObjectAdd(JBO_SEFER, "jbr:tanach-" + bookNum);
@@ -135,11 +135,15 @@ public class MefareshParser extends Parser {
                 jsonObjectAdd("title", bookLetter + " פרק " + perekLetter + " פסוק " + pasukLetter);
                 jsonObjectCloseObject();
                 jsonObjectCloseArray();
-                jsonObjectAdd(JBO_PARASHA, "jbr:parasha-" + parashaNum);
+                if (bookNum <= 5) {
+                    jsonObjectAdd(JBO_PARASHA, "jbr:parasha-" + parashaNum);
+                }
                 jsonObjectAdd(JBO_PEREK, "jbr:tanach-" + bookNum + "-" + perekNum);
                 jsonObjectAdd(JBO_INTERPRETS, "jbr:tanach-" + bookNum + "-" + perekNum + "-" + pasukNum);
                 jsonObjectAdd(JBO_POSITION_IN_PEREK, Integer.toString(positionInPerek));
-                jsonObjectAdd(JBO_POSITION_IN_PARASHA, Integer.toString(positionInParasha));
+                if (bookNum <=5) {
+                    jsonObjectAdd(JBO_POSITION_IN_PARASHA, Integer.toString(positionInParasha));
+                }
                 jsonObjectFlush();
                 break;
             case NO_MATCH:

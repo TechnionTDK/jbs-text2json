@@ -19,6 +19,21 @@ public class TestUtils {
         return new BufferedReader(getFileReader(TEXT_DIR + s));
     }
 
+    public static int countMtches(String str, String findStr){
+        int lastIndex = 0;
+        int count = 0;
+        while(lastIndex != -1){
+
+            lastIndex = str.indexOf(findStr,lastIndex);
+
+            if(lastIndex != -1){
+                count ++;
+                lastIndex += findStr.length();
+            }
+        }
+        return count;
+    }
+
     static FileReader getFileReader(String s) throws FileNotFoundException {
         String filePath = new File("").getAbsolutePath();
         return new FileReader(filePath.concat(s));
@@ -32,4 +47,5 @@ public class TestUtils {
         Gson gson = new Gson();
         return gson.fromJson(new BufferedReader(new FileReader(json)), SubjectsJson.class);
     }
+
 }
