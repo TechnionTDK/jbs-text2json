@@ -19,6 +19,12 @@ public class Line {
     public boolean beginsWith(String s) {
         return line.startsWith(s);
     }
+    public boolean endsWith(String[] stringArr) {
+        for(String s : stringArr){
+            if (line.endsWith(": (" + s + ")")) return true;
+        }
+        return false;
+    }
 
     public boolean contains(String s) {
         return line.contains(s);

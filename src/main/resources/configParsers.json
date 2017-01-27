@@ -6,7 +6,16 @@
   {"parser":"text2json.parsers.ShmonaKvatzimParser",
     "input": "shmonakvatzim",
     "output": "shmonakvatzim"},
+<<<<<<< HEAD
+  {"parser":"text2json.parsers.TanachParser",
+    "input": "tanach",
+    "output": "tanach"},
+  {"parser":"text2json.parsers.MefareshParser",
+    "input": "tanach",
+    "output": "tanachMefarshim"}
+=======
   {"parser":"text2json.parsers.SeferHamitzvotParser",
     "input": "seferhamitzvot",
     "output": "seferhamitzvot"}
+>>>>>>> 5af4bd5878a89455fba0ffd414b3a5bbcd09f62a
 ]}
