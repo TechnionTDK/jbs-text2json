@@ -78,14 +78,14 @@ public class TanachParser extends Parser {
                 positionInParasha++;
                 pasukNum++;
                 pasukTitle = line.extract("{", "}");
-                jsonObjectAdd(URI, getUri());
+                jsonObject().add(URI, getUri());
                 String end = line.contains(":") ? ":" : " ";
-                jsonObjectAdd(JBO_TEXT, stripVowels(line.extract("}", end)));
-                jsonObjectAdd(JBO_TEXT_NIKUD, line.extract("}", end));
-                jsonObjectAdd(RDFS_LABEL, bookTitle + " " + perekTitle + " " + pasukTitle);
-                jsonObjectAdd(JBO_SEFER, "jbr:tanach-" + bookNum);
+                jsonObject().add(JBO_TEXT, stripVowels(line.extract("}", end)));
+                jsonObject().add(JBO_TEXT_NIKUD, line.extract("}", end));
+                jsonObject().add(RDFS_LABEL, bookTitle + " " + perekTitle + " " + pasukTitle);
+                jsonObject().add(JBO_SEFER, "jbr:tanach-" + bookNum);
                 if(bookNum <= 5) {
-                    jsonObjectAdd(JBO_POSITION_IN_PARASHA, positionInParasha);
+                    jsonObject().add(JBO_POSITION_IN_PARASHA, positionInParasha);
                 }
                 addTitlesArray(bookTitle, perekTitle, pasukTitle);
                 jsonObjectFlush();
@@ -111,14 +111,14 @@ public class TanachParser extends Parser {
     }
 
     private void addTitlesArray(String bookTitle, String perekTitle, String pasukTitle) {
-        jsonObjectOpenArray("titles");
-        jsonObjectOpenObject();
-        jsonObjectAdd("title", bookTitle + " " + perekTitle + " " + pasukTitle);
-        jsonObjectCloseObject();
-        jsonObjectOpenObject();
-        jsonObjectAdd("title", bookTitle + " פרק " + perekTitle + " פסוק " + pasukTitle);
-        jsonObjectCloseObject();
-        jsonObjectCloseArray();
+        jsonObject().openArray("titles");
+        jsonObject().openObject();
+        jsonObject().add("title", bookTitle + " " + perekTitle + " " + pasukTitle);
+        jsonObject().closeObject();
+        jsonObject().openObject();
+        jsonObject().add("title", bookTitle + " פרק " + perekTitle + " פסוק " + pasukTitle);
+        jsonObject().closeObject();
+        jsonObject().closeArray();
     }
 
     @Override

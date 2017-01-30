@@ -131,14 +131,14 @@ public class TalmudBavliParser extends Parser {
                 }
                 currAmud = amudNum;
 
-                jsonObjectAdd(URI, getUri());
-                jsonObjectAdd(JBO_MASECHET, "bavli-" + masechetNum);
-                jsonObjectAdd(JBO_PEREK, perekTitle);
-                jsonObjectAdd(RDFS_LABEL, masechetTitle + " " + dafTitle + " " + amudTitle);
-                jsonObjectAdd(JBO_POSITION, positionInMasechet);
+                jsonObject().add(URI, getUri());
+                jsonObject().add(JBO_MASECHET, "bavli-" + masechetNum);
+                jsonObject().add(JBO_PEREK, perekTitle);
+                jsonObject().add(RDFS_LABEL, masechetTitle + " " + dafTitle + " " + amudTitle);
+                jsonObject().add(JBO_POSITION, positionInMasechet);
                 break;
             case BEGIN_AMUD_TEXT:
-                jsonObjectAdd(JBO_TEXT, line.getLine());
+                jsonObject().add(JBO_TEXT, line.getLine());
                 jsonObjectFlush();
                 break;
             case BEGIN_PERUSH:
@@ -155,13 +155,13 @@ public class TalmudBavliParser extends Parser {
                 }
                 currIdx = mefareshIdx;
 
-                jsonObjectAdd(URI, getMefareshUri(mefareshIdx));
-                jsonObjectAdd(JBO_MASECHET, "bavli-" + masechetNum);
-                jsonObjectAdd(JBO_PEREK, perekTitle);
-                jsonObjectAdd(RDFS_LABEL, mefarshimHeb[mefareshIdx] + " " + masechetTitle + " " + dafTitle + " " + amudTitle);
-                jsonObjectAdd(JBO_POSITION, positionInMasechet);
-                jsonObjectAdd(JBO_MEFARESH, getUri());
-                jsonObjectAdd(JBO_TEXT, line.getLine());
+                jsonObject().add(URI, getMefareshUri(mefareshIdx));
+                jsonObject().add(JBO_MASECHET, "bavli-" + masechetNum);
+                jsonObject().add(JBO_PEREK, perekTitle);
+                jsonObject().add(RDFS_LABEL, mefarshimHeb[mefareshIdx] + " " + masechetTitle + " " + dafTitle + " " + amudTitle);
+                jsonObject().add(JBO_POSITION, positionInMasechet);
+                jsonObject().add(JBO_MEFARESH, getUri());
+                jsonObject().add(JBO_TEXT, line.getLine());
                 jsonObjectFlush();
                 break;
             case NO_MATCH:
