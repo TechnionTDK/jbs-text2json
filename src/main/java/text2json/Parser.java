@@ -15,10 +15,21 @@ public abstract class Parser {
     private JsonObject defaultJsonObject;
     private JsonFile defaultJsonFile;
 
+    /** another json output file, used to hold info about
+        non-textual elements that serve as containers (packages)
+        such as prakim, parashot, etc.
+     **/
+    private JsonObject packagesJsonObject;
+    private JsonFile packagesJsonFile;
+    private boolean createPackages;
+
     List<LineMatcher> matchers = new ArrayList<LineMatcher>();
 
     protected JsonObject jsonObject() {
         return defaultJsonObject;
+    }
+    protected JsonObject packagesJsonObject() {
+        return packagesJsonObject;
     }
 
     protected Parser() {
@@ -38,13 +49,27 @@ public abstract class Parser {
         matchers.add(matcher);
     }
 
-    public JsonFile parse(BufferedReader reader, String outputJson) throws IOException {
-        //create json
+    /**
+     * Creates an additional output file for holding
+     * info about packages (non-textual) elements.
+     * The method should be called only once from the
+     * constructor of the parser.
+     */
+    protected void createPackagesJson() {
+        createPackages = true;
+    }
+
+    public void parse(BufferedReader reader, String outputJson) throws IOException {
+        // create default json
         defaultJsonFile = new JsonFile(outputJson);
-        //defaultJsonFile = new JsonFile("." + JSON_DIR + getId() + ".json");
         defaultJsonObject = new JsonObject();
-        //create json main object
         defaultJsonFile.createMainObject();
+
+        if (createPackages == true) {
+            packagesJsonFile = new JsonFile(outputJson + "packages.json");
+            packagesJsonObject = new JsonObject();
+            packagesJsonFile.createMainObject();
+        }
 
         int lineNum = 0;
         String line;
@@ -74,7 +99,8 @@ public abstract class Parser {
         onEOF();
         //close json
         defaultJsonFile.closeMainObject();
-        return defaultJsonFile;
+        if (createPackages == true)
+            packagesJsonFile.closeMainObject();
     }
 
     /**
@@ -84,6 +110,10 @@ public abstract class Parser {
     public void jsonObjectFlush() throws IOException {
         defaultJsonFile.write(defaultJsonObject);
         defaultJsonObject = new JsonObject();
+    }
+    public void packagesJsonObjectFlush() throws IOException {
+        packagesJsonFile.write(packagesJsonObject);
+        packagesJsonObject = new JsonObject();
     }
 
     public String stripVowels(String rawString){
