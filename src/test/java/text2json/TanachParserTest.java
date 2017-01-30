@@ -26,8 +26,8 @@ public class TanachParserTest {
             System.out.println("Creating json for book number " + bookNum);
             TanachParser parser = new TanachParser();
             BufferedReader reader = getText("/tanach/tanach-" + bookNum + ".txt");
-            parser.parse(reader, "json/tanach-" + bookNum + ".json");
-            json[bookNum] = getJson("json/tanach-" + bookNum + ".json");
+            parser.parse(reader, "json/tanach/tanach-" + bookNum + ".json");
+            json[bookNum] = getJson("json/tanach/tanach-" + bookNum + ".json");
         }
         System.out.println("");
 
