@@ -66,7 +66,9 @@ public abstract class Parser {
         defaultJsonFile.createMainObject();
 
         if (createPackages == true) {
-            packagesJsonFile = new JsonFile(outputJson + "packages.json");
+            // the name of the packages file is e.g., tanach-1-packages.json
+            String noSuffix = outputJson.split("\\.")[0];
+            packagesJsonFile = new JsonFile(noSuffix + "-packages.json");
             packagesJsonObject = new JsonObject();
             packagesJsonFile.createMainObject();
         }

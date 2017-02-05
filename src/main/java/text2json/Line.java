@@ -16,6 +16,15 @@ public class Line {
 
     public String getLine() { return line.trim(); }
 
+    /**
+     *
+     * @param position Starting from 0
+     * @return
+     */
+    public String getWord(int position) {
+        return getLine().split("\\s+")[position];
+    }
+
     public boolean beginsWith(String s) {
         return line.startsWith(s);
     }
