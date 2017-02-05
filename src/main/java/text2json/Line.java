@@ -28,6 +28,20 @@ public class Line {
     public boolean beginsWith(String s) {
         return line.startsWith(s);
     }
+
+    /**
+     * Whether the line begins with one of the elements in arr
+     * @param arr
+     * @return
+     */
+    public boolean beginsWith(String[] arr) {
+        for (String s : arr)
+            if (line.startsWith(s))
+                return true;
+
+        return false;
+    }
+
     public boolean endsWith(String[] stringArr) {
         for(String s : stringArr){
             if (line.endsWith(": (" + s + ")")) return true;
