@@ -13,7 +13,7 @@ import static text2json.JbsOntology.*;
  */
 
 public class MefareshParser extends Parser {
-    String[] MefarshimEn = {"Rashi", "ramban", "orhachaim", "ibnezra", "baalhaturim", "onkelos", "sforno", "kliyekar",
+    String[] MefarshimEn = {"rashi", "ramban", "orhachaim", "ibnezra", "baalhaturim", "onkelos", "sforno", "kliyekar",
             "daatzkenim", "metzudatdavid", "metzudattzion", "malbiminyan", "malbimmilot", "ralbag", "malbim"};
     String[] MefarshimHe = {"רש\"י", "הרמב\"ן", "אור החיים", "אבן עזרא", "בעל הטורים" , "אונקלוס", "ספורנו", "כלי יקר",
             "דעת זקנים", "מצודת דוד", "מצודת ציון", "מלבי\"ם באור הענין", "מלבי\"ם באור המלות", "רלב\"ג", "מלבי\"ם"};
