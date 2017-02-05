@@ -21,11 +21,6 @@ public class SeferHamitzvotParser extends Parser {
     private int mitzvaNum;
     private String mitzvaType;
 
-    public SeferHamitzvotParser() {
-        super();
-        createPackagesJson();
-    }
-
     @Override
     protected void registerMatchers() {
         registerMatcher(new LineMatcher() {
