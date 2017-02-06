@@ -129,7 +129,7 @@ public class TanachParser extends Parser {
     }
 
     private String getParashaUri() {
-        return JBR + "parasha-" + getFixedParashaPosition();
+        return JBR + "tanach-parasha-" + getFixedParashaPosition();
     }
     private String getBookUri() {
         return JBR + "tanach-" + bookNum;
