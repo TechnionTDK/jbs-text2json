@@ -30,6 +30,19 @@ public class Line {
     }
 
     /**
+     * Whether the line begins with (e + suffix) (e is one of the elements in arr)
+     * @param arr
+     * @return
+     */
+    public boolean beginsWith(String[] arr, String suffix) {
+        for (String s : arr)
+            if (line.startsWith(s + suffix))
+                return true;
+
+        return false;
+    }
+
+    /**
      * Whether the line begins with one of the elements in arr
      * @param arr
      * @return
