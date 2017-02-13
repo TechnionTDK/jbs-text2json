@@ -13,15 +13,16 @@ import static text2json.TestUtils.*;
  * Created by omishali on 05/02/2017.
  */
 public class MishneTorahParserTest {
-    private static final int NUM_OF_BOOKS = 5;
-    static SubjectsJson[] packagesJson = new SubjectsJson[NUM_OF_BOOKS];
-    static SubjectsJson[] json = new SubjectsJson[NUM_OF_BOOKS];
-    // number of hilchot in each sefer
     static final int[] hilchotNum = {5, 6, 10, 5, 3};
     // number of perakim in each sefer
     static final int[] perakimNum = {46, 46, 97, 53, 53};
     // number of halachot in each sefer (or part of them...)
     static final int[] halachotNum = {457};
+    private static final int NUM_OF_BOOKS = hilchotNum.length;
+    static SubjectsJson[] packagesJson = new SubjectsJson[NUM_OF_BOOKS];
+    static SubjectsJson[] json = new SubjectsJson[NUM_OF_BOOKS];
+    // number of hilchot in each sefer
+
 
     @BeforeClass
     public static void setup() throws Exception {
@@ -47,7 +48,7 @@ public class MishneTorahParserTest {
     @Test
     public void testNumberofHalachot() {
         // sefer Hamada
-        assertEquals(halachotNum[0], json[0].subjects.size());
+        assertEquals(halachotNum[0] + 45 + 309 + 198 + 49, json[0].subjects.size()); // perush, kesefmishne, lechemmishne + raabad
     }
 
 }
