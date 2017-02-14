@@ -5,8 +5,10 @@ import org.junit.Test;
 import text2json.parsers.MishneTorahParser;
 
 import java.io.BufferedReader;
+import java.util.Map;
 
 import static org.junit.Assert.*;
+import static text2json.JbsOntology.*;
 import static text2json.TestUtils.*;
 
 /**
@@ -51,4 +53,12 @@ public class MishneTorahParserTest {
         assertEquals(halachotNum[0] + 45 + 309 + 198 + 49, json[0].subjects.size()); // perush, kesefmishne, lechemmishne + raabad
     }
 
+    @Test
+    public void testFirstObject() {
+        Map<String, String> o = json[0].getObject(0);
+        assertEquals("jbr:mishnetorah-1-1-1-1", o.get(URI));
+        assertEquals("jbr:mishnetorah-1", o.get(JBO_SEFER));
+        assertEquals("jbr:mishnetorah-1-1-1", o.get(JBO_PEREK));
+        assertEquals("הלכות יסודי התורה א א", o.get(RDFS_LABEL));
+    }
 }

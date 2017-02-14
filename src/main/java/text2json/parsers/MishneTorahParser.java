@@ -20,7 +20,8 @@ public class MishneTorahParser extends Parser {
     private static final String BEGIN_HALACHA = "begin_halacha";
     private static final String[] MEFARSHIM_HEB = {"פירוש", "כסף משנה", "לחם משנה", "ההראב\"ד", "מגיד משנה"};
     private static final String[] MEFARSHIM_EN = {"perush", "kesefmishne", "lechemmishne", "raabad", "magidmishne"};
-    private static final String[] SEFARIM = {"המדע", "אהבה", "זמנים", "נשים", "קדושה"};
+    private static final String[] SEFARIM = {"המדע", "אהבה", "זמנים", "נשים", "קדושה", "הפלאה", "זרעים",
+                                            "עבודה", "קרבנות", "טהרה", "נזיקין", "קנין", "משפטים", "שופטים"};
 
 
     private int seferNum;
@@ -28,6 +29,8 @@ public class MishneTorahParser extends Parser {
     private int perekNum = 0;
     private int halachaNum = 0;
     private int perushNum = 0;
+
+    private String hilchotName;
 
 
     public MishneTorahParser() {
@@ -110,6 +113,7 @@ public class MishneTorahParser extends Parser {
             case BEGIN_HILCHOT:
                 hilchotNum++;
                 perekNum = 0;
+                hilchotName = line.getLine();
                 packagesJsonObject().add(URI, getHilchotURI());
                 packagesJsonObject().add(RDFS_LABEL, line.getLine());
                 packagesJsonObject().add(JBO_POSITION, hilchotNum);
@@ -132,6 +136,7 @@ public class MishneTorahParser extends Parser {
                 jsonObject().add(JBO_TEXT, stripVowels(line.getLine()));
                 jsonObject().add(JBO_SEFER, getSeferURI());
                 jsonObject().add(JBO_PEREK, getPerekURI());
+                jsonObject().add(RDFS_LABEL, getHalachaLabel());
                 jsonObjectFlush();
                 break;
             case BEGIN_PERUSH:
@@ -148,6 +153,10 @@ public class MishneTorahParser extends Parser {
                 //System.out.println(line.getLine());
                 break;
         }
+    }
+
+    private String getHalachaLabel() {
+        return hilchotName + " " + HEB_LETTERS_INDEX[perekNum -1] + " " + HEB_LETTERS_INDEX[halachaNum - 1];
     }
 
     private int getSeferNum(String name) {

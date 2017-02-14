@@ -76,17 +76,17 @@ public class Line {
      * @param
      * @return
      */
-    public String extract(String first, String last) {
-        int firstIndex = 0;
-        int lastIndex = getLine().length();
+        public String extract(String first, String last) {
+            int firstIndex = 0;
+            int lastIndex = getLine().length();
 
-        if(first != " ") {
-            firstIndex = getLine().indexOf(first) + first.length();
-        }
+            if(first != " ") {
+                firstIndex = getLine().indexOf(first) + first.length();
+            }
 
-        if(last != " ") {
-            lastIndex = getLine().indexOf(last, firstIndex);
-        }
+            if(last != " ") {
+                lastIndex = getLine().indexOf(last, firstIndex);
+            }
 
         return getLine().substring(firstIndex, lastIndex).trim();
     }
