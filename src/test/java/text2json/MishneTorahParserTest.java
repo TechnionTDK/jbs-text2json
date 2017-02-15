@@ -15,9 +15,9 @@ import static text2json.TestUtils.*;
  * Created by omishali on 05/02/2017.
  */
 public class MishneTorahParserTest {
-    static final int[] hilchotNum = {5, 6, 10, 5, 3};
+    static final int[] hilchotNum = {5, 6, 10, 5, 3, 4, 7, 9, 6, 8, 5, 5, 5, 5};
     // number of perakim in each sefer
-    static final int[] perakimNum = {46, 46, 97, 53, 53};
+    static final int[] perakimNum = {46, 46, 97, 53, 53, 43, 85, 95, 45, 144, 62, 75, 75, 81};
     // number of halachot in each sefer (or part of them...)
     static final int[] halachotNum = {457};
     private static final int NUM_OF_BOOKS = hilchotNum.length;
