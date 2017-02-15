@@ -61,4 +61,11 @@ public class MishneTorahParserTest {
         assertEquals("jbr:mishnetorah-1-1-1", o.get(JBO_PEREK));
         assertEquals("הלכות יסודי התורה א א", o.get(RDFS_LABEL));
     }
+
+    @Test
+    public void testPerushWithTwoLines() {
+        Map<String, String> o = json[0].getObject("jbr:mishnetorah-perush-1-1-1-1");
+        assertTrue(o.get(JBO_TEXT).contains("קראו ספר המדע לפי שכלל בו המצוות התלויות במחשבה ובמדע ובדעות")); // text from first line
+        assertTrue(o.get(JBO_TEXT).contains("כשתתבונן ארבע מלות")); // text from second line
+    }
 }

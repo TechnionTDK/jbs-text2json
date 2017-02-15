@@ -53,6 +53,14 @@ public class JsonObject {
         tuples.add(new Tuple(key, added_value));
     }
 
+    public boolean hasKey(String key) {
+        for (Tuple t : tuples)
+            if (t.getKey().equals(key))
+                return true;
+
+        return false;
+    }
+
     public void writeObject(JsonWriter jsonWriter) throws IOException {
         if(tuples.isEmpty()) return;
         jsonWriter.beginObject();
