@@ -149,8 +149,8 @@ public class MishneTorahParser extends Parser {
             case NO_MATCH:
                 if (jsonObject().hasKey(JBO_INTERPRETS))
                     jsonObject().append(JBO_TEXT, line.getLine());
-                else
-                    System.out.println(line.getLine());
+//                else
+//                    System.out.println(line.getLine());
                 break;
         }
     }
