@@ -13,10 +13,7 @@ import static text2json.JbsUtils.*;
  * Created by omishali on 05/02/2017.
  */
 public class MishneTorahParser extends Parser {
-    private static final String BEGIN_SEFER = "begin_sefer";
     private static final String BEGIN_HILCHOT = "begin_hilchot";
-    private static final String BEGIN_PEREK = "begin_perek";
-    private static final String BEGIN_PERUSH = "begin_perush";
     private static final String BEGIN_HALACHA = "begin_halacha";
     private static final String[] MEFARSHIM_HEB = {"פירוש", "כסף משנה", "לחם משנה", "ההראב\"ד", "מגיד משנה", "מהר\"ל נ' חביב"};
     private static final String[] MEFARSHIM_EN = {"perush", "kesefmishne", "lechemmishne", "raabad", "magidmishne", "maharalchaviv"};

@@ -13,7 +13,6 @@ import static text2json.JbsOntology.*;
  */
 public class MesilatYesharimParser extends Parser {
     private static final String BEGIN_HAKDAMA = "begin_hakdama";
-    private static final String BEGIN_PEREK = "begin_perek";
     private static final String BEGIN_HATIMA = "begin_hatima";
     private static final String MESILAT_YESHARIM_PARSER_ID = "parser.mesilatYesharim";
 

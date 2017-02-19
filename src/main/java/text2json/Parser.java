@@ -11,6 +11,13 @@ import java.util.List;
  */
 public abstract class Parser {
     protected static final String NO_MATCH = "no_match";
+    protected static final String BEGIN_SEFER = "begin_sefer";
+    protected static final String BEGIN_SEDER = "begin_seder";
+    protected static final String BEGIN_SAIF = "begin_saif";
+    protected static final String BEGIN_PEREK = "begin_perek";
+    protected static final String BEGIN_PERUSH = "begin_perush";
+    protected static final String BEGIN_PARASHA = "begin_parasha";
+
 
     private JsonObject defaultJsonObject;
     private JsonFile defaultJsonFile;

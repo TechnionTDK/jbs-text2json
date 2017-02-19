@@ -10,11 +10,7 @@ import java.io.IOException;
  * Created by USER on 06-Jan-17.
  */
 public class TanachParser extends Parser {
-    private static final String BEGIN_PEREK = "begin_perek";
     private static final String BEGIN_PASUK = "begin_pasuk";
-    private static final String BEGIN_PERUSH = "begin_perush";
-    private static final String BEGIN_PARASHA = "begin_parasha";
-    private static final String BEGIN_SEFER = "begin_sefer";
 
     private int bookNum = 0;
     private String bookName;
