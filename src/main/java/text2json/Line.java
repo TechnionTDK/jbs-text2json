@@ -19,9 +19,21 @@ public class Line {
     public boolean beginsWith(String s) {
         return line.startsWith(s);
     }
+
+    public boolean endsWith(String s) {
+        return line.endsWith(s);
+    }
+
     public boolean endsWith(String[] stringArr) {
         for(String s : stringArr){
             if (line.endsWith(": (" + s + ")")) return true;
+        }
+        return false;
+    }
+
+    public boolean beginsWith(String[] stringArr) {
+        for(String s : stringArr){
+            if (line.startsWith(s)) return true;
         }
         return false;
     }
@@ -57,9 +69,5 @@ public class Line {
 
     public boolean is(String s) {
         return line.equals(s);
-    }
-
-    public boolean endsWith(String s) {
-        return line.endsWith(s);
     }
 }

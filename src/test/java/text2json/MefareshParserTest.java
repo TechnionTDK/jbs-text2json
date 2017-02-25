@@ -23,12 +23,12 @@ public class MefareshParserTest {
 
     @BeforeClass
     public static void setup() throws IOException {
-        /*for (int bookNum = NUM_OF_FIRST_BOOK; bookNum <= NUM_OF_BOOKS; bookNum++) {
+        for (int bookNum = NUM_OF_FIRST_BOOK; bookNum <= NUM_OF_BOOKS; bookNum++) {
             System.out.println("Creating mefarshim json for book number " + bookNum);
-            MefareshParser parser = new MefareshParser(bookNum);
+            MefareshParser parser = new MefareshParser();
             BufferedReader reader = TestUtils.getText("/tanach/tanach-" + bookNum + ".txt");
             parser.parse(reader, "json/tanachMefarshim-" + bookNum + ".json");
-        }*/
+        }
         return;
     }
 
@@ -100,6 +100,7 @@ public class MefareshParserTest {
     private boolean testUri(JsonReader jsonReader, int bookNum, int perekNum) throws IOException {
         boolean retval = false;
         Line uriLine = new Line(jsonReader.nextString());
+        //System.out.println(uriLine.getLine());
         String uriMefaresh = uriLine.extract("tanach-", "-");
         mefaresh = uriMefaresh;
         int uriBook = Integer.valueOf(uriLine.extract("tanach-" + uriMefaresh + "-", "-"));

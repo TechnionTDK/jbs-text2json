@@ -6,21 +6,24 @@ import text2json.Parser;
 import java.io.IOException;
 import static text2json.JbsOntology.*;
 
-/**
- * Change to MefareshParser and provide in the c'tor
- * the name of the Mefaresh.
- * Created by omishali on 12/12/2016.
- */
 
 public class MefareshParser extends Parser {
     String[] MefarshimEn = {"Rashi", "ramban", "orhachaim", "ibnezra", "baalhaturim", "onkelos", "sforno", "kliyekar",
             "daatzkenim", "metzudatdavid", "metzudattzion", "malbiminyan", "malbimmilot", "ralbag", "malbim"};
     String[] MefarshimHe = {"רש\"י", "הרמב\"ן", "אור החיים", "אבן עזרא", "בעל הטורים" , "אונקלוס", "ספורנו", "כלי יקר",
             "דעת זקנים", "מצודת דוד", "מצודת ציון", "מלבי\"ם באור הענין", "מלבי\"ם באור המלות", "רלב\"ג", "מלבי\"ם"};
+    String[] ParashotHe = {"פרשת בראשית", "פרשת נח", "פרשת לך לך", "פרשת וירא", "פרשת חיי שרה" ,"פרשת תולדות" ,"פרשת ויצא",
+            "פרשת וישלח", "פרשת וישב", "פרשת מקץ", "פרשת ויגש", "פרשת ויחי", "פרשת שמות", "פרשת וארא", "פרשת בא",
+            "פרשת בשלח", "פרשת יתרו", "פרשת משפטים", "פרשת תרומה", "פרשת תצוה", "פרשת תשא כי", "פרשת ויקהל", "פרשת פקודי",
+            "פרשת ויקרא", "פרשת צו", "פרשת שמיני", "פרשת תזריע", "פרשת מצורע", "פרשת אחרי מות", "פרשת קדושים", "פרשת אמור",
+            "פרשת בהר", "פרשת בחקתי", "פרשת במדבר", "פרשת נשא", "פרשת בהעלתך", "פרשת שלח לך", "פרשת קרח", "פרשת חקת",
+            "פרשת בלק", "פרשת פינחס", "פרשת מטות", "פרשת מסעי", "פרשת דברים", "פרשת ואתחנן", "פרשת עקב", "פרשת ראה",
+            "פרשת שופטים", "פרשת כי תצא", "פרשת כי תבוא", "פרשת נצבים", "פרשת וילך", "פרשת האזינו", "פרשת וזאת הברכה"};
     private static final String BEGIN_PARASHA = "begin_parasha";
     private static final String BEGIN_PEREK = "begin_perek";
     private static final String BEGIN_PERUSH = "begin_perush";
     private static final String BEGIN_PASUK = "begin_pasuk";
+    private static final String MULTIPLE_LINE_PERUSH = "multiple_line_perush";
     private static final String MEFARESH_PARSER_ID = "parser.mefareshTanach";
     private int bookNum = 0;
     private int parashaNum = 1;
@@ -30,18 +33,15 @@ public class MefareshParser extends Parser {
     private int positionInPerek = 0;
     private String mefaresh;
     private int mefareshId;
-    private String bookLetter;
+    private String bookTitle;
     private String perekLetter;
     private String pasukLetter;
+    private String begining_of_long_perush = null;
+    private int mefareshId_Long_Perush;
+    boolean Just_finished_perush = false;
     private String perush;
 
-    public MefareshParser(int bookNum){
-        //super();
-        this.bookNum = bookNum;
-        mefaresh = mefaresh;
-    }
-
-    protected void registerMatchers() {
+        protected void registerMatchers() {
         registerMatcher(new LineMatcher() {
             public String type() {
                 return BEGIN_PARASHA;
@@ -74,27 +74,48 @@ public class MefareshParser extends Parser {
             }
         });
 
+        registerMatcher(new LineMatcher() {
+            public String type() {
+                return MULTIPLE_LINE_PERUSH;
+            }
+            public boolean match(Line line) { return (line.beginsWith(MefarshimHe) || (begining_of_long_perush != null));}
+        });
+
     }
 
     protected int get_mefareshId(Line line){
         String baseLine = line.getLine();
-        for(int i=0; i<MefarshimHe.length; i++){
+        for(int i=0; i < MefarshimHe.length; i++){
             if (baseLine.endsWith(": (" + MefarshimHe[i] + ")")) return i;
         }
         return -1;
     }
+    protected int get_mefareshId_from_beginning(Line line){
+        String baseLine = line.getLine();
+        for(int i=0; i < MefarshimHe.length; i++){
+            if (baseLine.startsWith(MefarshimHe[i])) return i;
+        }
+        return -1;
+    }
 
+    private int Find_Index_In_Arr(String[] Arr, String val){
+        for (int i = 0; i < Arr.length; i++){
+            if (Arr[i].contains(val)) return i;
+        }
+        return -1;
+    }
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type){
             case BEGIN_PARASHA:
-                parashaNum++;
+                parashaNum = Find_Index_In_Arr(ParashotHe, line.getLine()) + 1;
                 positionInParasha = 0;
                 break;
             case BEGIN_PEREK:
-                if (bookLetter == null) {
-                    bookLetter = line.extract(" ", " פרק");
+                if (bookNum == 0){
+                    bookTitle = line.extract(" ", " פרק");
+                    bookNum = getBookNum(bookTitle);
+                    System.out.println("booknum:" + bookNum);
                 }
-                // if(bookNum == 0) bookNum = getBookNum(line.extract(" ", " פרק-" ));
                 perekNum++;
                 pasukNum = 0;
                 positionInPerek = 0;
@@ -109,32 +130,33 @@ public class MefareshParser extends Parser {
                 positionInPerek++;
                 positionInParasha++;
                 break;
+            case MULTIPLE_LINE_PERUSH:
+                if (Just_finished_perush){
+                    begining_of_long_perush = null;
+                    Just_finished_perush = false;
+                }
+                else if (begining_of_long_perush == null){
+                    begining_of_long_perush = line.getLine();
+                }
+                else {
+                    begining_of_long_perush = begining_of_long_perush + " " + line.getLine();
+                }
+                break;
             case BEGIN_PERUSH:
                 mefareshId = get_mefareshId(line);
                 mefaresh = MefarshimEn[mefareshId];
                 perush = line.extract(" ", ": (" + MefarshimHe[mefareshId] + ")");
+
+                if (begining_of_long_perush != null) {
+                    perush = begining_of_long_perush + " " + perush;
+                    begining_of_long_perush = null;
+                }
                 jsonObjectFlush();
                 jsonObjectAdd(URI, getUri());
                 jsonObjectAdd(JBO_TEXT, perush);
-                /*if(line.contains(":")) {
-                    jsonObjectAdd(JBO_TEXT, stripVowels(perush));
-                    //jsonObjectAdd(JBO_TEXT_NIKUD, line.extract(" ", ":"));
-                } else {
-                    jsonObjectAdd(JBO_TEXT, stripVowels(perush));
-                    //jsonObjectAdd(JBO_TEXT_NIKUD, line.extract(" ", " "));
-                }*/
-
-                jsonObjectAdd(RDFS_LABEL, bookLetter + " " + perekLetter + " " + pasukLetter);
+                jsonObjectAdd(RDFS_LABEL, bookTitle + " " + perekLetter + " " + pasukLetter);
                 jsonObjectAdd(JBO_SEFER, "jbr:tanach-" + bookNum);
-
-                jsonObjectOpenArray("titles");
-                jsonObjectOpenObject();
-                jsonObjectAdd("title", bookLetter + " " + perekLetter + " " + pasukLetter);
-                jsonObjectCloseObject();
-                jsonObjectOpenObject();
-                jsonObjectAdd("title", bookLetter + " פרק " + perekLetter + " פסוק " + pasukLetter);
-                jsonObjectCloseObject();
-                jsonObjectCloseArray();
+                addTitlesArray (bookTitle, perekLetter, perekLetter);
                 if (bookNum <= 5) {
                     jsonObjectAdd(JBO_PARASHA, "jbr:parasha-" + parashaNum);
                 }
@@ -145,13 +167,36 @@ public class MefareshParser extends Parser {
                     jsonObjectAdd(JBO_POSITION_IN_PARASHA, Integer.toString(positionInParasha));
                 }
                 jsonObjectFlush();
+                Just_finished_perush = true;
                 break;
             case NO_MATCH:
                 break;
         }
     }
 
-    @Override
+    private int getBookNum(String bookTitle) {
+        String bookNames[] = {"בראשית", "שמות", "ויקרא", "במדבר", "דברים", "יהושע", "שופטים", "שמואל א", "שמואל ב",
+                "מלכים א","מלכים ב", "ישעיה","ירמיה","יחזקאל","הושע","יואל","עמוס","עובדיה","יונה","מיכה","נחום",
+                "חבקוק","צפניה","חגי","זכריה","מלאכי", "תהילים", "משלי", "איוב", "שיר השירים", "רות", "איכה", "קהלת",
+                "אסתר", "דניאל", "עזרא", "נחמיה", "דברי הימים א", "דברי הימים ב"};
+        for (int i = 0; i < 39; i++){
+            if(bookTitle.equals(bookNames[i]))
+                return i+1;
+        }
+        return -1;
+    }
+
+    private void addTitlesArray(String bookTitle, String perekLetter, String pasukLetter) {
+        jsonObjectOpenArray("titles");
+        jsonObjectOpenObject();
+        jsonObjectAdd("title", bookTitle + " " + perekLetter + " " + pasukLetter);
+        jsonObjectCloseObject();
+        jsonObjectOpenObject();
+        jsonObjectAdd("title", bookTitle + " פרק " + perekLetter + " פסוק " + pasukLetter);
+        jsonObjectCloseObject();
+        jsonObjectCloseArray();
+    }
+        @Override
     protected String getUri() {
         return "jbr:tanach-" + mefaresh + "-" + bookNum + "-" + perekNum + "-" + pasukNum;
     }

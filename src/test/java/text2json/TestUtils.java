@@ -19,7 +19,6 @@ public class TestUtils {
         return new BufferedReader(getFileReader(TEXT_DIR + s));
     }
 
-<<<<<<< HEAD
     public static int countMtches(String str, String findStr){
         int lastIndex = 0;
         int count = 0;
@@ -35,29 +34,21 @@ public class TestUtils {
         return count;
     }
 
-    static FileReader getFileReader(String s) throws FileNotFoundException {
-=======
     public static FileReader getFileReader(String s) throws FileNotFoundException {
->>>>>>> 5af4bd5878a89455fba0ffd414b3a5bbcd09f62a
         String filePath = new File("").getAbsolutePath();
         return new FileReader(filePath.concat(s));
     }
 
-<<<<<<< HEAD
     static FileReader getJsonFileReader(String s) throws FileNotFoundException {
         return getFileReader(JSON_DIR + s);
     }
 
-    static SubjectsJson getJson(String json) throws Exception {
-=======
+
     public static SubjectsJson getJson(String json) throws Exception {
->>>>>>> 5af4bd5878a89455fba0ffd414b3a5bbcd09f62a
         Gson gson = new Gson();
         return gson.fromJson(new BufferedReader(new FileReader(json)), SubjectsJson.class);
     }
 
-<<<<<<< HEAD
-=======
     public static String stripVowels(String rawString){
         String newString = "";
         for(int j=0; j<rawString.length(); j++) {
@@ -67,5 +58,4 @@ public class TestUtils {
         }
         return(newString);
     }
->>>>>>> 5af4bd5878a89455fba0ffd414b3a5bbcd09f62a
 }
