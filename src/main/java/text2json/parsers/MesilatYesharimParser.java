@@ -13,7 +13,6 @@ import static text2json.JbsOntology.*;
  */
 public class MesilatYesharimParser extends Parser {
     private static final String BEGIN_HAKDAMA = "begin_hakdama";
-    private static final String BEGIN_PEREK = "begin_perek";
     private static final String BEGIN_HATIMA = "begin_hatima";
     private static final String MESILAT_YESHARIM_PARSER_ID = "parser.mesilatYesharim";
 
@@ -46,31 +45,31 @@ public class MesilatYesharimParser extends Parser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_HAKDAMA:
-                jsonObjectAdd(URI, getUri());
-                jsonObjectAdd(RDFS_LABEL, line.getLine());
-                jsonObjectAdd(JBO_SEFER, JBR + "mesilatyesharim");
+                jsonObject().add(URI, getUri());
+                jsonObject().add(RDFS_LABEL, line.getLine());
+                jsonObject().add(JBO_SEFER, JBR + "mesilatyesharim");
                 break;
             case BEGIN_PEREK:
                 jsonObjectFlush();
                 perekNum++;
-                jsonObjectAdd(URI, getUri());
+                jsonObject().add(URI, getUri());
                 if(perekNum <= 20) {
-                    jsonObjectAdd(RDFS_LABEL, line.extract(" - ", " "));
+                    jsonObject().add(RDFS_LABEL, line.extract(" - ", " "));
                 }
                 else {
-                    jsonObjectAdd(RDFS_LABEL, line.extract(" – ", " "));
+                    jsonObject().add(RDFS_LABEL, line.extract(" – ", " "));
                 }
-                jsonObjectAdd(JBO_SEFER, JBR + "mesilatyesharim");
+                jsonObject().add(JBO_SEFER, JBR + "mesilatyesharim");
                 break;
             case BEGIN_HATIMA:
                 jsonObjectFlush();
                 perekNum++;
-                jsonObjectAdd(URI, getUri());
-                jsonObjectAdd(RDFS_LABEL, line.getLine());
-                jsonObjectAdd(JBO_SEFER, JBR + "mesilatyesharim");
+                jsonObject().add(URI, getUri());
+                jsonObject().add(RDFS_LABEL, line.getLine());
+                jsonObject().add(JBO_SEFER, JBR + "mesilatyesharim");
                 break;
             case NO_MATCH:
-                super.jsonObjectAppend(JBO_TEXT, line.getLine());
+                jsonObject().append(JBO_TEXT, line.getLine());
                 break;
         }
     }

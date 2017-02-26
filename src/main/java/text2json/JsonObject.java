@@ -20,12 +20,12 @@ public class JsonObject {
 
     List<Tuple> tuples = new ArrayList<Tuple>();
 
-    public void addObject(String key, String value) {
+    public void add(String key, String value) {
         tuples.add(new Tuple(key, value));
     }
 
-    public void addObject(String key, int value) {
-        addObject(key, String.valueOf(value));
+    public void add(String key, int value) {
+        add(key, String.valueOf(value));
     }
 
     /**
@@ -51,6 +51,14 @@ public class JsonObject {
         }
         //if here, no such key in current object. create new one.
         tuples.add(new Tuple(key, added_value));
+    }
+
+    public boolean hasKey(String key) {
+        for (Tuple t : tuples)
+            if (t.getKey().equals(key))
+                return true;
+
+        return false;
     }
 
     public void writeObject(JsonWriter jsonWriter) throws IOException {
@@ -101,32 +109,32 @@ public class JsonObject {
      * @param objectKey
      */
     public void openObject(String objectKey){
-        addObject(OPEN_OBJECT, objectKey);
+        add(OPEN_OBJECT, objectKey);
     }
     /**
      * open inner object without key
      */
     public void openObject(){
-        addObject(OPEN_OBJECT, null);
+        add(OPEN_OBJECT, null);
     }
     public void closeObject(){
-        addObject(CLOSE_OBJECT, null);
+        add(CLOSE_OBJECT, null);
     }
     /**
      * open array with a key before it i.e {super_key:[{key1:val1), {key2:val 2}]}
      * @param arrayKey
      */
     public void openArray(String arrayKey) {
-        addObject(OPEN_ARRAY, arrayKey);
+        add(OPEN_ARRAY, arrayKey);
     }
     /**
      * open array without a key
      */
     public void openArray() {
-        addObject(OPEN_ARRAY, null);
+        add(OPEN_ARRAY, null);
     }
     public void closeArray() {
-        addObject(CLOSE_ARRAY, null);
+        add(CLOSE_ARRAY, null);
     }
 
 

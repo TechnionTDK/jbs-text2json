@@ -57,11 +57,11 @@ public class ShmonaKvatzimParser extends Parser {
             case BEGIN_SAIF:
                 jsonObjectFlush();
                 saifNum++;
-                jsonObjectAdd(URI, getUri());
+                jsonObject().add(URI, getUri());
 
                 break;
             case NO_MATCH:
-                jsonObjectAdd(JBO_TEXT, line.getLine());
+                jsonObject().append(JBO_TEXT, line.getLine());
                 break;
         }
 

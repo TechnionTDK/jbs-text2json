@@ -10,14 +10,34 @@ import java.util.List;
  * Created by omishali on 12/12/2016.
  */
 public abstract class Parser {
-    private static final String TEXT_DIR = "/../../jbs-raw/";
-    //private static final String JSON_DIR = "/json/";
     protected static final String NO_MATCH = "no_match";
+    protected static final String BEGIN_SEFER = "begin_sefer";
+    protected static final String BEGIN_SEDER = "begin_seder";
+    protected static final String BEGIN_SAIF = "begin_saif";
+    protected static final String BEGIN_PEREK = "begin_perek";
+    protected static final String BEGIN_PERUSH = "begin_perush";
+    protected static final String BEGIN_PARASHA = "begin_parasha";
 
-    private JsonObject jsonObject;
-    protected JsonFile jsonFile;
+
+    private JsonObject defaultJsonObject;
+    private JsonFile defaultJsonFile;
+
+    /** another json output file, used to hold info about
+        non-textual elements that serve as containers (packages)
+        such as prakim, parashot, etc.
+     **/
+    private JsonObject packagesJsonObject;
+    private JsonFile packagesJsonFile;
+    private boolean createPackages;
 
     List<LineMatcher> matchers = new ArrayList<LineMatcher>();
+
+    protected JsonObject jsonObject() {
+        return defaultJsonObject;
+    }
+    protected JsonObject packagesJsonObject() {
+        return packagesJsonObject;
+    }
 
     protected Parser() {
         registerMatchers();
@@ -30,19 +50,35 @@ public abstract class Parser {
     protected abstract void onLineMatch(String type, Line line) throws IOException;
     protected abstract String getUri();
     protected void onEOF() throws IOException {
-        jsonObjectFlush(/*jsonFile, jsonObject*/);
+        jsonObjectFlush(/*defaultJsonFile, defaultJsonObject*/);
     }
     protected void registerMatcher(LineMatcher matcher) {
         matchers.add(matcher);
     }
 
-    public JsonFile parse(BufferedReader reader, String outputJson) throws IOException {
-        //create json
-        jsonFile = new JsonFile(outputJson);
-        //jsonFile = new JsonFile("." + JSON_DIR + getId() + ".json");
-        jsonObject = new JsonObject();
-        //create json main object
-        jsonFile.createMainObject();
+    /**
+     * Creates an additional output file for holding
+     * info about packages (non-textual) elements.
+     * The method should be called only once from the
+     * constructor of the parser.
+     */
+    protected void createPackagesJson() {
+        createPackages = true;
+    }
+
+    public void parse(BufferedReader reader, String outputJson) throws IOException {
+        // create default json
+        defaultJsonFile = new JsonFile(outputJson);
+        defaultJsonObject = new JsonObject();
+        defaultJsonFile.createMainObject();
+
+        if (createPackages == true) {
+            // the name of the packages file is e.g., tanach-1-packages.json
+            String noSuffix = outputJson.split("\\.")[0];
+            packagesJsonFile = new JsonFile(noSuffix + "-packages.json");
+            packagesJsonObject = new JsonObject();
+            packagesJsonFile.createMainObject();
+        }
 
         int lineNum = 0;
         String line;
@@ -71,53 +107,22 @@ public abstract class Parser {
         }
         onEOF();
         //close json
-        jsonFile.closeMainObject();
-        return jsonFile;
-    }
-
-    /**
-     * Adds key-value to the current json object.
-     * @param key
-     * @param value
-     */
-    public void jsonObjectAdd(/*JsonObject jsonObject,*/ String key, String value) {
-        jsonObject.addObject(key, value);
-    }
-
-    public void jsonObjectAdd(/*JsonObject jsonObject,*/ String key, int value) {
-        jsonObject.addObject(key, value);
+        defaultJsonFile.closeMainObject();
+        if (createPackages == true)
+            packagesJsonFile.closeMainObject();
     }
 
     /**
      * Writes the content of the current json object to JsonFile
      * and clears the contents of the current json object (creates a new one).
      */
-    public void jsonObjectFlush(/*JsonFile jsonFile*/) throws IOException {
-        jsonFile.write(jsonObject);
-        jsonObject = new JsonObject();
+    public void jsonObjectFlush() throws IOException {
+        defaultJsonFile.write(defaultJsonObject);
+        defaultJsonObject = new JsonObject();
     }
-
-    /**
-     * Appends the given value to the value of an existing key of the
-     * current json object. If key does not exist, it is created.
-     * @param key
-     * @param value
-     */
-    public void jsonObjectAppend(/*JsonFile jsonFile*/ String key, String value) {
-        jsonObject.append(key,value);
-    }
-
-    public void jsonObjectOpenObject(String objectKey){ jsonObject.openObject(objectKey);}
-    public void jsonObjectOpenObject(){jsonObject.openObject();}
-    public void jsonObjectCloseObject(){jsonObject.closeObject();}
-    public void jsonObjectOpenArray(/*JsonFile jsonFile*/ String arrayKey){
-        jsonObject.openArray(arrayKey);
-    }
-    public void jsonObjectOpenArray(/*JsonFile jsonFile*/){
-        jsonObject.openArray();
-    }
-    public void jsonObjectCloseArray() {
-        jsonObject.closeArray();
+    public void packagesJsonObjectFlush() throws IOException {
+        packagesJsonFile.write(packagesJsonObject);
+        packagesJsonObject = new JsonObject();
     }
 
     public String stripVowels(String rawString){
