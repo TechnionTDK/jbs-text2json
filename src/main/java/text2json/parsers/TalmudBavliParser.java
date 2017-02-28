@@ -11,12 +11,10 @@ import java.io.IOException;
  */
 public class TalmudBavliParser extends Parser {
     private static final String BEGIN_MASECHET = "begin_masechet";
-    private static final String BEGIN_PEREK = "begin_perek";
     private static final String BEGIN_AMUD = "begin_amud";
-    private static final String BEGIN_PERUSH = "begin_perush";
     private static final String BEGIN_AMUD_TEXT = "begin_daf_text";
 
-    private boolean perekText = false;
+    private boolean amud2ndPartText = false;
 
     private int masechetNum = 0;
     private String masechetTitle;
@@ -30,9 +28,7 @@ public class TalmudBavliParser extends Parser {
     private String mefarshim[] = {"rashi", "tosafot"};
     private String mefarshimHeb[] = {"רשי", "תוספות"};
 
-    private int currAmud = 0;
-    private int currIdx = 1;
-    private int checkedMasechet = 4;
+    public TalmudBavliParser() { createPackagesJson(); }
 
     @Override
     protected void registerMatchers() {
@@ -43,7 +39,7 @@ public class TalmudBavliParser extends Parser {
             }
             @Override
             public boolean match(Line line) {
-                return line.beginsWith("מסכת ") && line.wordCount() <= 5;
+                return (line.beginsWith("מסכת") || line.endsWith(" (מ)")) && line.wordCount() <= 5;
             }
         });
         registerMatcher(new LineMatcher() {
@@ -75,8 +71,8 @@ public class TalmudBavliParser extends Parser {
             @Override
             public boolean match(Line line) {
                 return line.beginsWith("רש\"י") || line.beginsWith(" רש\"י") ||
+                        line.beginsWith("פירוש") || line.beginsWith(" פירוש") ||
                         line.beginsWith("תוספות") || line.beginsWith(" תוספות");
-                        //|| line.beginsWith("רשב\"ם") || line.beginsWith(" רשב\"ם");
             }
         });
         registerMatcher(new LineMatcher() {
@@ -97,23 +93,33 @@ public class TalmudBavliParser extends Parser {
             case BEGIN_MASECHET:
                 masechetTitle = line.extract("מסכת ", " (מ)");
                 masechetNum = getMasechetNum(masechetTitle);
-
-                //System.out.println("Masechet " + masechetTitle + " Num " + masechetNum);
-
+                if (masechetNum == 36){ //masechet tamid starts from daf 25 amud 2
+                    dafNum = 25;
+                    amudNum = 1;
+                }
+                // adding masechet triplets to packages json
+                packagesJsonObject().add(URI, getMasechetUri());
+                packagesJsonObject().add(RDFS_LABEL, masechetTitle);
+                packagesJsonObject().add(JBO_POSITION, masechetNum);
+                packagesJsonObjectFlush();
                 break;
+
             case BEGIN_PEREK:
                 jsonObjectFlush();
-                perekText = true;
+                amud2ndPartText = true;
                 perekNum++;
                 perekTitle = line.getLine();
 
-                //System.out.println("================>> perekNum " + perekNum);
-                //System.out.println("================>> perekTitle " + perekTitle);
-
+                // adding masechet triplets to packages json
+                packagesJsonObject().add(URI, getPerekUri());
+                packagesJsonObject().add(RDFS_LABEL, perekTitle);
+                packagesJsonObject().add(JBO_POSITION, perekNum);
+                packagesJsonObjectFlush();
                 break;
+
             case BEGIN_AMUD:
                 jsonObjectFlush();
-                perekText = false;
+                amud2ndPartText = false;
                 dafTitle = line.extract("דף ", "-");
                 amudTitle = line.extract(" - ", " ");
                 if(amudTitle.equals("א")){
@@ -122,39 +128,41 @@ public class TalmudBavliParser extends Parser {
                 else {
                     amudNum++;}
                 positionInMasechet++;
-
-                //System.out.println("==========>> dafNum " + dafNum);
-                //System.out.println("=============>> amudNum " + amudNum);
-                if(amudNum == currAmud && masechetNum == checkedMasechet) {
-                    System.out.println("Skiped amud! <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-                    System.out.println("masechetNum " + masechetNum + " dafNum " + dafNum + " amudNum " + amudNum);
-                }
-                currAmud = amudNum;
-
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_MASECHET, "bavli-" + masechetNum);
                 jsonObject().add(JBO_PEREK, perekTitle);
                 jsonObject().add(RDFS_LABEL, masechetTitle + " " + dafTitle + " " + amudTitle);
                 jsonObject().add(JBO_POSITION, positionInMasechet);
-                break;
-            case BEGIN_AMUD_TEXT:
-                jsonObject().add(JBO_TEXT, line.getLine());
-                jsonObjectFlush();
-                break;
-            case BEGIN_PERUSH:
-                //TODO: what to do with other mefarshim? starting from masechet 4
-                if(perekText)
-                    break;
-                jsonObjectFlush();
-                int mefareshIdx = line.beginsWith("רש\"י") || line.beginsWith(" רש\"י") ? 0 :
-                        line.beginsWith("תוספות") || line.beginsWith(" תוספות") ? 1 : -1;
 
-                if(mefareshIdx == currIdx && masechetNum == checkedMasechet) {
-                    System.out.println("Skiped perush! <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<=========");
-                    System.out.println("masechetNum " + masechetNum + " dafNum " + dafNum + " amudNum " + amudNum + " mefaresh: " + mefarshim[mefareshIdx]);
+                if(amudTitle.equals("א") || (masechetNum == 36 && dafNum == 25)) {
+                    // adding daf triplets to packages json
+                    packagesJsonObject().add(URI, getDafUri());
+                    packagesJsonObject().add(RDFS_LABEL, dafTitle);
+                    packagesJsonObject().add(JBO_POSITION, dafNum);
+                    packagesJsonObjectFlush();
                 }
-                currIdx = mefareshIdx;
+                break;
 
+            case BEGIN_AMUD_TEXT:
+                if(amud2ndPartText) { //same daf and amud continues in next perek
+                    jsonObject().add(URI, getUri());
+                    jsonObject().add(JBO_MASECHET, "bavli-" + masechetNum);
+                    jsonObject().add(JBO_PEREK, perekTitle);
+                    jsonObject().add(RDFS_LABEL, masechetTitle + " " + dafTitle + " " + amudTitle);
+                    jsonObject().add(JBO_POSITION, positionInMasechet);
+                    jsonObject().add(JBO_TEXT, line.getLine());
+                }
+                else {
+                    jsonObject().add(JBO_TEXT, line.getLine());
+                }
+                jsonObjectFlush();
+                break;
+
+            case BEGIN_PERUSH:
+                jsonObjectFlush();
+                int mefareshIdx = line.beginsWith("רש\"י") || line.beginsWith(" רש\"י")
+                        || line.beginsWith("פירוש") || line.beginsWith(" פירוש") ? 0 :
+                        line.beginsWith("תוספות") || line.beginsWith(" תוספות") ? 1 : -1;
                 jsonObject().add(URI, getMefareshUri(mefareshIdx));
                 jsonObject().add(JBO_MASECHET, "bavli-" + masechetNum);
                 jsonObject().add(JBO_PEREK, perekTitle);
@@ -164,20 +172,22 @@ public class TalmudBavliParser extends Parser {
                 jsonObject().add(JBO_TEXT, line.getLine());
                 jsonObjectFlush();
                 break;
+
             case NO_MATCH:
-                if(!perekText)
+                if(perekNum > 0) {
                     onLineMatch(BEGIN_AMUD_TEXT, line);
+                }
                 break;
         }
     }
 
 
     private int getMasechetNum(String masechetTitle) {
-        String masachotNames[] = {"ברכות", "שבת", "עירובין", "פסחים", "שקלים", "ראש השנה", "יומא", "סוכה", "ביצה",
+        String masachotNames[] = {"ברכות", "שבת", "עירובין", "פסחים", "ראש השנה", "יומא", "סוכה", "ביצה",
                 "תענית","מגילה", "מועד קטן","חגיגה","יבמות","כתובות","נדרים","נזיר","סוטה","גיטין","קידושין","בבא קמא",
-                "בבא מציעא","בבא בתרא","סנהדרין","מכות","שבועות", "עבודה זרה", "הוריות", "עדיות", "זבחים", "מנחות",
+                "בבא מציעא","בבא בתרא","סנהדרין","מכות","שבועות", "עבודה זרה", "הוריות", "זבחים", "מנחות",
                 "חולין", "בכורות", "ערכין", "תמורה", "כריתות", "מעילה", "תמיד", "נדה"};
-        for (int i = 0; i < 39; i++){
+        for (int i = 0; i < 37; i++){
             if(masechetTitle.equals(masachotNames[i]))
                 return i+1;
         }
@@ -188,8 +198,10 @@ public class TalmudBavliParser extends Parser {
     protected String getUri() {
         return "jbr:bavli-" + masechetNum + "-" + dafNum + "-" + amudNum;
     }
-
+    protected String getMasechetUri() { return "jbr:bavli-" + masechetNum; }
     private String getMefareshUri(int mefareshIdx) {
         return "jbr:bavli-" + mefarshim[mefareshIdx] + "-" + masechetNum + "-" + dafNum + "-" + amudNum;
     }
+    private String getDafUri() {return "jbr:bavli-" + masechetNum + "-" + dafNum; }
+    private String getPerekUri() { return "jbr:bavli-" + masechetNum + "-perek:" + perekNum; }
 }
