@@ -108,8 +108,6 @@ public class ShulhanAruchParser extends Parser {
                 packagesJsonObject().add(RDFS_LABEL, halachotTitle);
                 packagesJsonObject().add(JBO_POSITION, halachotNum);
                 packagesJsonObjectFlush();
-
-                //System.out.println("Halachot num: " + halachotNum + " halachotTitle: " + halachotTitle);
                 break;
 
             case BEGIN_SIMAN:
@@ -126,13 +124,17 @@ public class ShulhanAruchParser extends Parser {
                 if(simanHebIdx.equals("רצז (א)")) simanNum--;
                 saifNum = 0;
                 //add siman to package json
-                packagesJsonObject().add(URI, getSimanUri());
-                packagesJsonObject().add(RDFS_LABEL, simanTitle);
-                packagesJsonObject().add(JBO_POSITION, simanNum);
+                if(simanHebIdx.equals("רצז (א)")) {
+                    packagesJsonObject().add(URI, "jbr:shulchanaruch-" + seferNum + "-" + halachotNum + "-197_1-" + saifNum);
+                    packagesJsonObject().add(RDFS_LABEL, simanTitle);
+                    packagesJsonObject().add(JBO_POSITION, "197_1");
+                }
+                else {
+                    packagesJsonObject().add(URI, getSimanUri());
+                    packagesJsonObject().add(RDFS_LABEL, simanTitle);
+                    packagesJsonObject().add(JBO_POSITION, simanNum);
+                }
                 packagesJsonObjectFlush();
-
-                //System.out.println("SimanIdx: " + simanHebIdx + " simanNum: " + simanNum );
-
                 break;
 
             case BEGIN_SAIF:
@@ -140,7 +142,12 @@ public class ShulhanAruchParser extends Parser {
                 saifNum++;
                 saifHebIdx = line.getFirstWord();
                 saifText = line.extract(saifHebIdx + " ", " ");
-                jsonObject().add(URI, getUri());
+                if(simanHebIdx.equals("רצז (א)")) {
+                    jsonObject().add(URI, "jbr:shulchanaruch-" + seferNum + "-" + halachotNum + "-197_1-" + saifNum);
+                }
+                else{
+                    jsonObject().add(URI, getUri());
+                }
                 jsonObject().add(JBO_SEFER, "shulchanaruch-" + seferNum);
                 jsonObject().add(JBO_SIMAN, simanTitle);
                 jsonObject().add(JBO_POSITION_IN_SIMAN, saifNum);
@@ -152,7 +159,12 @@ public class ShulhanAruchParser extends Parser {
                 break;
 
             case BEGIN_PERUSH:
-                jsonObject().add(URI, getPerushUri());
+                if(simanHebIdx.equals("רצז (א)")) {
+                    jsonObject().add(URI, "jbr:shulchanaruch-perush-" +  seferNum + "-" + halachotNum + "-197_7-" + saifNum);
+                }
+                else{
+                    jsonObject().add(URI, getPerushUri());
+                }
                 jsonObject().add(JBO_SEFER, "shulchanaruch-" + seferNum);
                 jsonObject().add(JBO_SIMAN, simanTitle);
                 jsonObject().add(JBO_POSITION_IN_SIMAN, saifNum);
@@ -184,6 +196,7 @@ public class ShulhanAruchParser extends Parser {
     private String getSimanUri(){
         return "jbr:shulchanaruch-" + seferNum + "-" + halachotNum + "-" + simanNum;
     }
+
 
     private boolean isLetterIdx(String str) {
         for (int i = 0; i < HEB_LETTERS_INDEX.length; i++){
