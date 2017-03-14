@@ -14,5 +14,8 @@
     "output": "tanachMefarshim"},
   {"parser":"text2json.parsers.SeferHamitzvotParser",
     "input": "seferhamitzvot",
-    "output": "seferhamitzvot"}
+    "output": "seferhamitzvot"},
+  {"parser":"text2json.parsers.MishneTorahParser",
+    "input": "mishnetorah",
+    "output": "mishnetorah"}
 ]}

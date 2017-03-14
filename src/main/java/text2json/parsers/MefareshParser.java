@@ -8,7 +8,7 @@ import static text2json.JbsOntology.*;
 
 
 public class MefareshParser extends Parser {
-    String[] MefarshimEn = {"Rashi", "ramban", "orhachaim", "ibnezra", "baalhaturim", "onkelos", "sforno", "kliyekar",
+    String[] MefarshimEn = {"rashi", "ramban", "orhachaim", "ibnezra", "baalhaturim", "onkelos", "sforno", "kliyekar",
             "daatzkenim", "metzudatdavid", "metzudattzion", "malbiminyan", "malbimmilot", "ralbag", "malbim"};
     String[] MefarshimHe = {"רש\"י", "הרמב\"ן", "אור החיים", "אבן עזרא", "בעל הטורים" , "אונקלוס", "ספורנו", "כלי יקר",
             "דעת זקנים", "מצודת דוד", "מצודת ציון", "מלבי\"ם באור הענין", "מלבי\"ם באור המלות", "רלב\"ג", "מלבי\"ם"};
@@ -152,19 +152,19 @@ public class MefareshParser extends Parser {
                     begining_of_long_perush = null;
                 }
                 jsonObjectFlush();
-                jsonObjectAdd(URI, getUri());
-                jsonObjectAdd(JBO_TEXT, perush);
-                jsonObjectAdd(RDFS_LABEL, bookTitle + " " + perekLetter + " " + pasukLetter);
-                jsonObjectAdd(JBO_SEFER, "jbr:tanach-" + bookNum);
+                jsonObject().add(URI, getUri());
+                jsonObject().add(JBO_TEXT, perush);
+                jsonObject().add(RDFS_LABEL, bookTitle + " " + perekLetter + " " + pasukLetter);
+                jsonObject().add(JBO_SEFER, "jbr:tanach-" + bookNum);
                 addTitlesArray (bookTitle, perekLetter, perekLetter);
                 if (bookNum <= 5) {
-                    jsonObjectAdd(JBO_PARASHA, "jbr:parasha-" + parashaNum);
+                    jsonObject().add(JBO_PARASHA, "jbr:parasha-" + parashaNum);
                 }
-                jsonObjectAdd(JBO_PEREK, "jbr:tanach-" + bookNum + "-" + perekNum);
-                jsonObjectAdd(JBO_INTERPRETS, "jbr:tanach-" + bookNum + "-" + perekNum + "-" + pasukNum);
-                jsonObjectAdd(JBO_POSITION_IN_PEREK, Integer.toString(positionInPerek));
+                jsonObject().add(JBO_PEREK, "jbr:tanach-" + bookNum + "-" + perekNum);
+                jsonObject().add(JBO_INTERPRETS, "jbr:tanach-" + bookNum + "-" + perekNum + "-" + pasukNum);
+                jsonObject().add(JBO_POSITION_IN_PEREK, Integer.toString(positionInPerek));
                 if (bookNum <=5) {
-                    jsonObjectAdd(JBO_POSITION_IN_PARASHA, Integer.toString(positionInParasha));
+                    jsonObject().add(JBO_POSITION_IN_PARASHA, Integer.toString(positionInParasha));
                 }
                 jsonObjectFlush();
                 Just_finished_perush = true;
@@ -187,14 +187,14 @@ public class MefareshParser extends Parser {
     }
 
     private void addTitlesArray(String bookTitle, String perekLetter, String pasukLetter) {
-        jsonObjectOpenArray("titles");
-        jsonObjectOpenObject();
-        jsonObjectAdd("title", bookTitle + " " + perekLetter + " " + pasukLetter);
-        jsonObjectCloseObject();
-        jsonObjectOpenObject();
-        jsonObjectAdd("title", bookTitle + " פרק " + perekLetter + " פסוק " + pasukLetter);
-        jsonObjectCloseObject();
-        jsonObjectCloseArray();
+        jsonObject().openArray("titles");
+        jsonObject().openObject();
+        jsonObject().add("title", bookTitle + " " + perekLetter + " " + pasukLetter);
+        jsonObject().closeObject();
+        jsonObject().openObject();
+        jsonObject().add("title", bookTitle + " פרק " + perekLetter + " פסוק " + pasukLetter);
+        jsonObject().closeObject();
+        jsonObject().closeArray();
     }
         @Override
     protected String getUri() {

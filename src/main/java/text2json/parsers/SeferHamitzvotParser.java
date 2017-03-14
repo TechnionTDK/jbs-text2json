@@ -21,7 +21,6 @@ public class SeferHamitzvotParser extends Parser {
     private int mitzvaNum;
     private String mitzvaType;
 
-
     @Override
     protected void registerMatchers() {
         registerMatcher(new LineMatcher() {
@@ -77,12 +76,12 @@ public class SeferHamitzvotParser extends Parser {
             case BEGIN_MITZVA:
                 jsonObjectFlush();
                 mitzvaNum++;
-                jsonObjectAdd(URI, getUri());
-                jsonObjectAdd(RDFS_LABEL, SEFER_HAMITZVOT + " " + mitzvaType + " " + line.getLine());
-                jsonObjectAdd(JBO_SEFER, JBR + "seferhamitzvot");
+                jsonObject().add(URI, getUri());
+                jsonObject().add(RDFS_LABEL, SEFER_HAMITZVOT + " " + mitzvaType + " " + line.getLine());
+                jsonObject().add(JBO_SEFER, JBR + "seferhamitzvot");
                 break;
             case NO_MATCH:
-                jsonObjectAppend(JBO_TEXT, line.getLine());
+                jsonObject().append(JBO_TEXT, line.getLine());
                 break;
         }
 

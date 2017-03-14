@@ -19,6 +19,7 @@ public class TestUtils {
         return new BufferedReader(getFileReader(TEXT_DIR + s));
     }
 
+
     public static int countMtches(String str, String findStr){
         int lastIndex = 0;
         int count = 0;
@@ -34,17 +35,18 @@ public class TestUtils {
         return count;
     }
 
-    public static FileReader getFileReader(String s) throws FileNotFoundException {
+
+    static FileReader getFileReader(String s) throws FileNotFoundException {
         String filePath = new File("").getAbsolutePath();
         return new FileReader(filePath.concat(s));
     }
+
 
     static FileReader getJsonFileReader(String s) throws FileNotFoundException {
         return getFileReader(JSON_DIR + s);
     }
 
-
-    public static SubjectsJson getJson(String json) throws Exception {
+    static SubjectsJson getJson(String json) throws Exception {
         Gson gson = new Gson();
         return gson.fromJson(new BufferedReader(new FileReader(json)), SubjectsJson.class);
     }
@@ -52,10 +54,10 @@ public class TestUtils {
     public static String stripVowels(String rawString){
         String newString = "";
         for(int j=0; j<rawString.length(); j++) {
-            if(rawString.codePointAt(j)<1425
-                    || rawString.codePointAt(j)>1479)
-            { newString = newString + rawString.charAt(j); }
+            if(rawString.codePointAt(j)<1425 || rawString.codePointAt(j)>1479)
+                { newString = newString + rawString.charAt(j); }
         }
         return(newString);
     }
+
 }
