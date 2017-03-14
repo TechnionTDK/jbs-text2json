@@ -83,6 +83,8 @@ public class MefareshParser extends Parser {
 
     }
 
+    public MefareshParser() { createPackagesJson(); }
+
     protected int get_mefareshId(Line line){
         String baseLine = line.getLine();
         for(int i=0; i < MefarshimHe.length; i++){
