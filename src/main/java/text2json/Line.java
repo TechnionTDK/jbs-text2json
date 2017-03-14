@@ -76,21 +76,24 @@ public class Line {
      * @param
      * @return
      */
-        public String extract(String first, String last) {
-            int firstIndex = 0;
-            int lastIndex = getLine().length();
-
-            if(first != " ") {
-                firstIndex = getLine().indexOf(first) + first.length();
-            }
-
-            if(last != " ") {
-                lastIndex = getLine().indexOf(last, firstIndex);
-            }
-
+    public String extract(String first, String last) {
+        int firstIndex = 0;
+        int lastIndex = getLine().length();
+        if(first != " ") {
+            firstIndex = getLine().indexOf(first) + first.length();
+        }
+        if(last != " ") {
+            lastIndex = getLine().indexOf(last, firstIndex);
+        }
         return getLine().substring(firstIndex, lastIndex).trim();
     }
 
+    public String getFirstWord(){
+        if (wordCount() == 1){
+            return getLine();
+        }
+        return getLine().substring(0, getLine().indexOf(' '));
+    }
     public boolean is(String s) {
         return getLine().equals(s);
     }
