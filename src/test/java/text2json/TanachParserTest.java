@@ -60,7 +60,7 @@ public class TanachParserTest {
         object = json[1].getObject(json[1].subjects.size()-1);
         assertEquals("jbr:tanach-1-50-26", object.get(URI));
         textNikud = "וַיָּמָת יוֹסֵף בֶּן מֵאָה וָעֶשֶׂר שָׁנִים וַיַּחַנְטוּ אֹתוֹ וַיִּישֶׂם בָּאָרוֹן בְּמִצְרָיִם";
-        text = stripVowels(textNikud);
+        text = TestUtils.stripVowels(textNikud);
         assertEquals(text, object.get(JBO_TEXT));
         assertEquals(textNikud, object.get(JBO_TEXT_NIKUD));
         assertEquals("בראשית נ כו", object.get(RDFS_LABEL));

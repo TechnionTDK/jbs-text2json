@@ -42,22 +42,25 @@ public class Line {
         return false;
     }
 
+    public boolean endsWith(String s) {
+        return line.endsWith(s);
+    }
     /**
      * Whether the line begins with one of the elements in arr
      * @param arr
      * @return
      */
-    public boolean beginsWith(String[] arr) {
-        for (String s : arr)
-            if (getLine().startsWith(s))
-                return true;
-
-        return false;
-    }
 
     public boolean endsWith(String[] stringArr) {
         for(String s : stringArr){
             if (getLine().endsWith(": (" + s + ")")) return true;
+        }
+        return false;
+    }
+
+    public boolean beginsWith(String[] stringArr) {
+        for(String s : stringArr){
+            if (line.startsWith(s)) return true;
         }
         return false;
     }
@@ -96,9 +99,5 @@ public class Line {
     }
     public boolean is(String s) {
         return getLine().equals(s);
-    }
-
-    public boolean endsWith(String s) {
-        return getLine().endsWith(s);
     }
 }
