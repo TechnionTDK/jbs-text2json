@@ -151,7 +151,7 @@ public class JsonObject {
         public String getKey(){return this.key;}
         public String getValue(){return this.value;}
         protected void setValue(String value){this.value = value;}
-        protected void appendToValue(String added_value){this.value += added_value;}
+        protected void appendToValue(String added_value){this.value = this.value+ "\n" +added_value;}
 
         public boolean isOpenArray(){
             return getKey() == OPEN_ARRAY;
