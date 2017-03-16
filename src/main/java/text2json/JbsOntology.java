@@ -11,7 +11,7 @@ public class JbsOntology {
     public static String JBO_SEFER = "jbo:sefer";
     public static String JBO_PARASHA = "jbo:parasha";
     public static String JBO_PEREK = "jbo:perek";
-    public static String JBO_MEFARESH = "jbo:mefaresh";
+    public static String JBO_NAME = "jbo:name";
     public static String JBO_POSITION_IN_PEREK = "jbo:positionInPerek";
     public static String JBO_POSITION = "jbo:position";
     public static String JBO_MASECHET = "jbo:masechet";
