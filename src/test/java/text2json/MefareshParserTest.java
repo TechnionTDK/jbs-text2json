@@ -67,12 +67,15 @@ public class MefareshParserTest {
             //======== LABLE ==============
             assertEquals(jsonReader.nextName(), "rdfs:label");
             assertNotNull(jsonReader.nextString());
+            //======== NAME ==============
+            assertEquals(jsonReader.nextName(), "jbo:name");
+            assertNotNull(jsonReader.nextString());
             //======== SEFER ==============
             assertEquals(jsonReader.nextName(), "jbo:sefer");
             testSefer(jsonReader, bookNum);
             //======== TITLES ==============
-            assertEquals(jsonReader.nextName(), "titles");
-            testTitels(jsonReader);
+            //assertEquals(jsonReader.nextName(), "titles");
+            //testTitels(jsonReader);
             //end of titles block
             //======== PARASHA ==============
             if (bookNum <= 5) {

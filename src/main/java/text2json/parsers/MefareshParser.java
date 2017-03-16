@@ -83,7 +83,7 @@ public class MefareshParser extends Parser {
 
     }
 
-    public MefareshParser() { createPackagesJson(); }
+    public MefareshParser() { return;}
 
     protected int get_mefareshId(Line line){
         String baseLine = line.getLine();
@@ -156,9 +156,10 @@ public class MefareshParser extends Parser {
                 jsonObjectFlush();
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_TEXT, perush);
-                jsonObject().add(RDFS_LABEL, bookTitle + " " + perekLetter + " " + pasukLetter);
+                jsonObject().add(RDFS_LABEL, MefarshimHe[mefareshId] + " " + bookTitle + " " + perekLetter + " " + pasukLetter);
+                jsonObject().add(JBO_NAME, MefarshimHe[mefareshId]);
                 jsonObject().add(JBO_SEFER, "jbr:tanach-" + bookNum);
-                addTitlesArray (bookTitle, perekLetter, perekLetter);
+                //addTitlesArray (bookTitle, perekLetter, perekLetter);
                 if (bookNum <= 5) {
                     jsonObject().add(JBO_PARASHA, "jbr:parasha-" + parashaNum);
                 }
@@ -182,7 +183,7 @@ public class MefareshParser extends Parser {
                 "חבקוק","צפניה","חגי","זכריה","מלאכי", "תהילים", "משלי", "איוב", "שיר השירים", "רות", "איכה", "קהלת",
                 "אסתר", "דניאל", "עזרא", "נחמיה", "דברי הימים א", "דברי הימים ב"};
         for (int i = 0; i < 39; i++){
-            if(bookTitle.equals(bookNames[i]))
+            if(bookTitle.contains(bookNames[i]))
                 return i+1;
         }
         return -1;
