@@ -18,5 +18,4 @@ public class JbsOntology {
     public static String JBO_INTERPRETS = "jbo:interprets";
     public static String JBO_POSITION_IN_PARASHA = "jbo:positionInParasha";
     public static String RDFS_LABEL = "rdfs:label";
-    public static String JBO_NAME = "jbo:name";
 }
