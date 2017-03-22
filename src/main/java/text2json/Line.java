@@ -50,6 +50,12 @@ public class Line {
      * @param arr
      * @return
      */
+    public boolean endsWith(String[] stringArr, String suffix) {
+        for(String s : stringArr){
+            if (getLine().endsWith(": (" + s + ")" + suffix)) return true;
+        }
+        return false;
+    }
 
     public boolean endsWith(String[] stringArr) {
         for(String s : stringArr){
