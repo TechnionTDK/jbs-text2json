@@ -6,7 +6,7 @@ import text2json.parsers.LikuteyMoharanParser;
 import static text2json.JbsOntology.*;
 import static text2json.TestUtils.*;
 import static org.junit.Assert.*;
-import static text2json.parsers.LikuteyMoharanParser.JBO_POSITION_IN_CHELEK;
+import static text2json.parsers.LikuteyMoharanParser.JBO_CHELEK;
 
 import java.io.BufferedReader;
 import java.util.Map;
@@ -42,8 +42,8 @@ public class LikuteyMoharanParserTest {
     public void testNumOfObjectsInPackage(){
         System.out.println("testNumOfObjectsInPackage:");
         assertNotNull(packageJson);
-        int numOfSaifim= (286 - 3) + (125-1);
-        assertEquals(2+numOfSaifim, packageJson.subjects.size());
+        //int numOfSaifim= (286 - 3) + (125-1);
+        assertEquals(3, packageJson.subjects.size());
         System.out.println("Success! :)");
     }
 
@@ -56,10 +56,11 @@ public class LikuteyMoharanParserTest {
         //chelek 1 saif 1
         object = json.getObject(0);
         assertEquals("jbr:likuteymoharan-1-1", object.get(URI));
-        assertEquals("likuteymoharan", object.get(JBO_SEFER));
-        assertEquals("1", object.get(JBO_POSITION_IN_CHELEK));
+        assertEquals("jbr:likuteymoharan", object.get(JBO_SEFER));
+        assertEquals("jbr:likuteymoharan-1", object.get(JBO_CHELEK));
         assertEquals("1", object.get(JBO_POSITION));
-        assertEquals("חלק א סעיף א - אשרי תמימי דרך", object.get(RDFS_LABEL));
+        assertEquals("ליקוטי מוהר''ן א א", object.get(RDFS_LABEL));
+        assertEquals("אשרי תמימי דרך", object.get(JBO_NAME));
         text = "אשרי תמימי דרך ההולכים בתורת ה' (תהלים קי\"ט):\n" +
                 "דע, כי על ידי התורה נתקבלים כל התפלות וכל הבקשות, שאנו מבקשים ומתפללים. והחן והחשיבות של ישראל נתעלה ונתרומם בפני כל מי שצריכין, הן ברוחני הן בגשמי. כי עכשו בעוונותינו הרבים חן וחשיבות האמיתי של ישראל נפל, כי עכשו עקר החשיבות והחן הוא אצלם. אבל על ידי התורה נתעלה החן והחשיבות של ישראל, כי התורה נקראת (משלי ה): \"אילת אהבים ויעלת חן\"; שמעלה חן על לומדיה (ערובין נ\"ד: ). ועל ידי זה נתקבלין כל התפלות והבקשות:\n" +
                 "כי איש הישראלי צריך תמיד להסתכל בהשכל, של כל דבר, ולקשר עצמו אל החכמה והשכל שיש בכל דבר, כדי שיאיר לו השכל, שיש בכל דבר, להתקרב להשם יתברך על ידי אותו הדבר. כי השכל הוא אור גדול ומאיר לו בכל דרכיו, כמו שכתוב (קהלת ח): \"חכמת אדם תאיר פניו\": וזה בחינת יעקב. כי יעקב זכה לבכורה שהוא ראשית, שהוא בחינת חכמה. (תקונים תקון י\"ד, זהר משפטים קכ\"א: ), כמו שכתוב (תהלים קי\"א): \"ראשית חכמה\". וזה בחינת (בראשית כ\"ז): \"ויעקבני זה פעמים\". ותרגום אונקלוס: וחכמני, וזה בחינת שמש. כי השכל הוא מאיר לו בכל דרכיו כמו השמש. וזה בחינת (משלי ד): \"וארח צדיקים כאור נגה הולך ואור עד נכון היום\": וזה בחינת חית - לשון חיות (עיין זוהר פנחס רמ\"ה: ובתיקונים תיקון ס\"ה). כי החכמה והשכל הוא החיות של כל דבר, כמו שכתוב (קהלת ז): \"החכמה תחיה\" וכו'. אך מחמת שאור השכל גדול מאד, אי אפשר לזכות אליו כי אם על ידי בחינת נון שהוא בחינת מלכות, כמו שכתוב (תהלים ע\"ב): \"לפני שמש ינון שמו\", ופרש רש\"י: 'לשון מלכות'. וזה בחינת לבנה, כי הלבנה אין לה אור מעצמה כי אם מה שמקבלת מהשמש (זהר ויחי רל\"ח. ורמ\"ט: ). וזהו בחינת מלכות, דלית לה מגרמה כלום, אלא מה שמקבלת מן החית, שהיא בחינת חכמה, בחינת שמש כנ\"ל, ונעשה (ישעיהו ל): \"אור הלבנה כאור החמה\": אבל מי שאינו מקשר עצמו אל השכל והחכמה והחיות, שיש בכל דבר, זה בחינת עשו שבזה את הבכורה, כמו שכתוב (בראשית כ\"ה): \"ויבז עשו את הבכורה\"; דהינו השכל כנ\"ל, בחינת (משלי י\"ח): \"לא יחפץ כסיל בתבונה כי אם בהתגלות לבו\". וזה בחינת מלכות הרשעה, בחינת לבנה דסטרא אחרא, שעליה נאמר (ישעיהו כ\"ד): \"וחפרה הלבנה\" וכו' (עין תיקון ח). וזה בחינת יצר טוב ויצר הרע. כי היצר טוב נקרא \"מסכן וחכם\" (קהלת ד), (עיין רש\"י ועיין זוהר וישב קע\"ט ובמ\"ר קהלת ובנדרים ל\"ב: ), בחינת מלכות, שהיא בחינת עניה ודלה דלית לה מגרמה כלום כי אם מה שמקבלת מחכמה. ויצר הרע נקרא \"מלך זקן וכסיל\" (שם), בחינת מלכות דסטרא אחרא, שאינה חפצה בחכמה ושכל, בחינת \"לא יחפץ כסיל בתבונה\" וכו', כנ\"ל. וצריך כל אחד לתן כח לבחינת מלכות דקדשה להתגבר על מלכות דסטרא אחרא. וכמו שאמרו רבותינו, זכרונם לברכה (ברכות ה.): 'לעולם ירגיז אדם יצר טוב על יצר הרע'. ועל ידי מה נותן כח למלכות דקדשה? על ידי התורה, שהוא עוסק בכח (כמו שאמרו רבותינו, זכרונם לברכה, שם: 'לעולם ירגיז וכו' - אי אזיל מוטב, ואם לאו - יעסק בתורה'). וכמו שאמרו רבותינו, זכרונם לברכה (קדושין ל: ): 'אם פגע בך מנול זה, משכהו לבית המדרש'. כי על ידי התורה נותן כח למלכות דקדשה. ואזי מקבלת המלכות, שהיא בחינת נ, חיות מן החכמה, שהיא בחינת ח, ונתחבר ונתקשר הח' והנ', ונעשה אור הלבנה כאור החמה: וכשזה קם, זה נופל (רש\"י בראשית כ\"ה פסוק כ\"ג), ואזי נופל ונתבטל מלכות הרשעה, כמו שכתוב (הושע י\"ד): \"כי ישרים דרכי ה', צדיקים ילכו בם, ופשעים יכשלו בם\". הינו על ידי דרכי ה', הינו התורה, על ידי זה הצדיקים, שדבקים במלכות דקדשה, הם נתחזקים ומקבלים כח על ידי זה. \"ופשעים יכשלו בם\" בחינת מלכות הרשעה, בחינת היצר הרע, שנופל ונכנע על ידי התורה, כנ\"ל.\n" +
@@ -73,20 +74,22 @@ public class LikuteyMoharanParserTest {
         //chelek 1 saif 284
         object = json.getObject(283-3);
         assertEquals("jbr:likuteymoharan-1-284", object.get(URI));
-        assertEquals("likuteymoharan", object.get(JBO_SEFER));
-        assertEquals("284", object.get(JBO_POSITION_IN_CHELEK));
+        assertEquals("jbr:likuteymoharan", object.get(JBO_SEFER));
+        assertEquals("jbr:likuteymoharan-1", object.get(JBO_CHELEK));
         assertEquals("281", object.get(JBO_POSITION));
-        assertEquals("חלק א סעיף רפד - הוכיח את אחד שאמר לו, שאין לו פנאי ללמד", object.get(RDFS_LABEL));
+        assertEquals("ליקוטי מוהר''ן א רפד", object.get(RDFS_LABEL));
+        assertEquals("הוכיח את אחד שאמר לו, שאין לו פנאי ללמד", object.get(JBO_NAME));
         text = "שמעתי בשמו, שהוכיח את אחד שאמר לו, שאין לו פנאי ללמד מחמת שעוסק במשא ומתן, אמר: שאף על פי כן ראוי לו לחטף איזה זמן לעסק בתורה בכל יום. ואמר, שזהו מה שאמרו רבותינו, זכרונם לברכה, (שבת לא), ששואלין את האדם: קבעת עתים לתורה? קבע הוא לשון גזלה, כמו שכתוב (משלי כ\"ב): \"וקבע את קבעיהם נפש\"; הינו ששואלין את האדם, אם גזל מן הזמן שהוא טרוד בעסקיו, אם גזלת מהן עתים לתורה, כי צריך האדם לחטף ולגזל עתים לתורה מתוך הטרדא והעסק:";
         assertEquals(text, object.get(JBO_TEXT));
 
         //chelek 2 saif 6
         object = json.getObject(283+5);
         assertEquals("jbr:likuteymoharan-2-6", object.get(URI));
-        assertEquals("likuteymoharan", object.get(JBO_SEFER));
-        assertEquals("6", object.get(JBO_POSITION_IN_CHELEK));
+        assertEquals("jbr:likuteymoharan", object.get(JBO_SEFER));
+        assertEquals("jbr:likuteymoharan-2", object.get(JBO_CHELEK));
         assertEquals("289", object.get(JBO_POSITION));
-        assertEquals("חלק ב סעיף ו - על ידי זעה טובה, על ידי זה נעשה שמחה", object.get(RDFS_LABEL));
+        assertEquals("ליקוטי מוהר''ן ב ו", object.get(RDFS_LABEL));
+        assertEquals("על ידי זעה טובה, על ידי זה נעשה שמחה", object.get(JBO_NAME));
         text = "על ידי זעה טובה (כגון כשמזיעין על ידי דבר שבקדשה), על ידי זה נעשה שמחה, בחינת (דברים ט\"ז): \"ושמחת בחגך\", בחינת שמחה של יום טוב. (ולאו דוקא יום טוב ממש, אלא כל יום שהוא בחינת טוב, נקרא יום טוב). כי השמחה - על ידי הדמים, כי העצבות - מן הטחול, וטחול היא עכירות הדמים. וכשמתגבר, חס ושלום, עכירת הדמים של הטחול, על ידי זה באין חלשות, חס ושלום, כי כשהעכירת הדמים הוא במדה בטחול, אזי אדרבא, הוא טובה מה שהטחול מקבל העכירת הדמים, כי נשארין הדמים זכים אבל כשעכירת הדמים של הטחול מתגבר, חס ושלום, נעשין חלשות, חס ושלום. והרפואה היא זעה, כי על ידי הזעה יוצא הארס, שיש בהדמים העכורים, שהם הפילו אותו למשכב, חס ושלום, ואזי נשארין הדמים זכים. ואזי זוכה לשמחה, כי עקר העצבות - על ידי הטחול, שהוא עכירת הדמים כנ\"ל, ועכשו שיוצאין עכירת הדמים על ידי זעה, נעשה שמחה וכו'. וזה אותיות זיעה - ראשי תבות: \"זה היום עשה י'י\" (תהלים קי\"ח) הינו בחינת שמחה של יום טוב, שנעשה על ידי זעה טובה כנ\"ל:\n" +
                 "וזה שאנו רואין, שהחולה תכף כשמזיע, נמשך עליו שמחה, כי על ידי הזעה נעשה שמחה כנ\"ל:";
         assertEquals(text, object.get(JBO_TEXT));
@@ -94,10 +97,11 @@ public class LikuteyMoharanParserTest {
         //chelek 2 saif 125
         object = json.getObject(json.subjects.size()-1);
         assertEquals("jbr:likuteymoharan-2-125", object.get(URI));
-        assertEquals("likuteymoharan", object.get(JBO_SEFER));
-        assertEquals("125", object.get(JBO_POSITION_IN_CHELEK));
+        assertEquals("jbr:likuteymoharan", object.get(JBO_SEFER));
+        assertEquals("jbr:likuteymoharan-2", object.get(JBO_CHELEK));
         assertEquals("407", object.get(JBO_POSITION));
-        assertEquals("חלק ב סעיף קכה - מענין אמירת תהלים", object.get(RDFS_LABEL));
+        assertEquals("ליקוטי מוהר''ן ב קכה", object.get(RDFS_LABEL));
+        assertEquals("מענין אמירת תהלים", object.get(JBO_NAME));
         text = "מענין אמירת תהלים דבר עם אחד ואמר לו, שעקר אמירת תהלים לומר כל מזמורי תהלים על עצמו, למצא את עצמו בתוך כל מזמור ומזמור. ושאל אותו זכרונו לברכה: איך, ופרש לו רבנו, זכרונו לברכה, קצת, כי כל המלחמות שבקש דוד המלך, עליו השלום, שיצילהו השם יתברך מהם - הכל צריכין לפרש לעצמו על מלחמת היצר הרע וחילותיו, וכיוצא בזה בשאר המזמורים (וכמבאר מזה לעיל בסימן קא). ושאל אותו: איך יפרש לעצמו מהפסוקים, שדוד המלך, עליו השלום, משבח את עצמו, כגון: \"שמרה נפשי כי חסיד אני\" (תהלים פ\"ו), וכיוצא בזה. השיב לו: גם זה צריכין לפרש על עצמו, כי צריכין לדון את עצמו לכף זכות, ולמצא בעצמו איזה זכות ונקדה טובה, אשר בבחינת הנקדה טובה הזאת הוא בחינת חסיד, וכיוצא. ואמר לו רבנו, זכרונו לברכה: הלא אצל יהושפט כתיב (דברי הימים ב יז): \"ויגבה לבו בדרכי ה'\", שבדרכי ה' ועבודתו יתברך הגביה לבו קצת. עוד אמר לו רבנו, זכרונו לברכה: הלא בבקר אנו אומרים בתחלה: 'מה אנו מה חיינו' וכו', ואנו מקטינים עצמנו מאד, ואחר כך אנו אומרים: 'אבל אנחנו עמך בני בריתך' וכו', שאחר כך אנו מחזקים עצמנו ומרימים את עצמנו, ואנו מספרים את גדלתנו ומתפארים, שאנחנו עמו בני בריתו זרע אברהם יצחק ויעקב וכו', כי כך צריכין להתנהג בעבודת השם כנ\"ל. ועין מזה ספר הראשון בסימן רפ\"ב, על פסוק: \"אזמרה לאלקי בעודי\":";
         assertEquals(text, object.get(JBO_TEXT));
 
@@ -109,18 +113,24 @@ public class LikuteyMoharanParserTest {
         System.out.print("testSpecificPackageObjects: ");
         Map<String, String> object;
 
-        //chelek 1
+        //sefer
         object = packageJson.getObject(0);
+        assertEquals("jbr:likuteymoharan",object.get(URI));
+        assertEquals("ליקוטי מוהר''ן",object.get(RDFS_LABEL));
+
+        //chelek 1
+        object = packageJson.getObject(1);
         assertEquals("jbr:likuteymoharan-1",object.get(URI));
         assertEquals("ליקוטי מוהר''ן - חלק א",object.get(RDFS_LABEL));
         assertEquals("1", object.get(JBO_POSITION));
 
         //chelek 2
-        object = packageJson.getObject(284);
+        object = packageJson.getObject(2);
         assertEquals("jbr:likuteymoharan-2",object.get(URI));
         assertEquals("ליקוטי מוהר''ן - חלק ב",object.get(RDFS_LABEL));
         assertEquals("2", object.get(JBO_POSITION));
 
+        /* saifim packages removed
         //chelek 1 saif 2
         object = packageJson.getObject(2);
         assertEquals("jbr:likuteymoharan-1-2",object.get(URI));
@@ -144,6 +154,7 @@ public class LikuteyMoharanParserTest {
         assertEquals("jbr:likuteymoharan-2-124",object.get(URI));
         assertEquals("לפעמים מגיע לאדם הרהור תשובה",object.get(RDFS_LABEL));
         assertEquals("406", object.get(JBO_POSITION));
+        */
 
         System.out.println("Success! :)");
     }

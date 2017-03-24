@@ -15,7 +15,7 @@ public class LikuteyMoharanParser extends Parser{
     protected static final String BEGIN_TEXT = "begin_text";
 
     //TODO: add to JbsOntology?
-    public static String JBO_POSITION_IN_CHELEK = "jbo:positionInChelek";
+    public static String JBO_CHELEK = "jbo:Chelek";
     //
 
     private int chelekNum = 0;
@@ -77,6 +77,9 @@ public class LikuteyMoharanParser extends Parser{
     protected void onLineMatch(String type, Line line) throws IOException {
         switch (type) {
             case BEGIN_SEFER:
+                packagesJsonObject().add(URI, "jbr:likuteymoharan");
+                packagesJsonObject().add(RDFS_LABEL, "ליקוטי מוהר''ן");
+                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_CHELEK:
@@ -100,15 +103,11 @@ public class LikuteyMoharanParser extends Parser{
                 saifHebIdx = line.getFirstWord();
                 saifTitle = line.extract(" - ", " ");
                 jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_SEFER, "likuteymoharan");
-                jsonObject().add(JBO_POSITION_IN_CHELEK, saifNum);
+                jsonObject().add(JBO_SEFER, "jbr:likuteymoharan");
+                jsonObject().add(JBO_CHELEK, "jbr:likuteymoharan-" + chelekNum);
                 jsonObject().add(JBO_POSITION, positionInSefer);
-                jsonObject().add(RDFS_LABEL, "חלק " + chelekHebIdx + " סעיף " + saifHebIdx + " - " + saifTitle);
-                //add saif to package json
-                packagesJsonObject().add(URI, getUri());
-                packagesJsonObject().add(RDFS_LABEL, saifTitle);
-                packagesJsonObject().add(JBO_POSITION, positionInSefer);
-                packagesJsonObjectFlush();
+                jsonObject().add(RDFS_LABEL, "ליקוטי מוהר''ן " + chelekHebIdx + " " + saifHebIdx);
+                jsonObject().add(JBO_NAME, saifTitle);
                 break;
 
             case BEGIN_TEXT:
