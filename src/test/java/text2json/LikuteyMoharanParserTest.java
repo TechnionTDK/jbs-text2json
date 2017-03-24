@@ -6,7 +6,6 @@ import text2json.parsers.LikuteyMoharanParser;
 import static text2json.JbsOntology.*;
 import static text2json.TestUtils.*;
 import static org.junit.Assert.*;
-import static text2json.parsers.LikuteyMoharanParser.JBO_CHELEK;
 
 import java.io.BufferedReader;
 import java.util.Map;

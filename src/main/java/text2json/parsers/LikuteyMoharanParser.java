@@ -14,10 +14,6 @@ public class LikuteyMoharanParser extends Parser{
     protected static final String BEGIN_CHELEK = "begin_chelek";
     protected static final String BEGIN_TEXT = "begin_text";
 
-    //TODO: add to JbsOntology?
-    public static String JBO_CHELEK = "jbo:Chelek";
-    //
-
     private int chelekNum = 0;
     private int saifNum = 0;
     private int positionInSefer = 0;

@@ -20,4 +20,9 @@ public class JbsOntology {
     public static String RDFS_LABEL = "rdfs:label";
     public static String JBO_SEDER = "jbo:seder";
     public static String JBO_MISHNA = "jbo:mishna";
+    public static String JBO_SIMAN = "jbo:siman";
+    public static String JBO_POSITION_IN_SIMAN = "jbo:positionInSiman";
+    public static String JBO_CHELEK = "jbo:chelek";
+    public static String JBO_HALACHOT = "jbo:halachot";
+
 }
