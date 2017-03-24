@@ -26,7 +26,7 @@ public class TalmudBavliParser extends Parser {
     private String amudTitle;
     private int positionInMasechet = 0;
     private String mefarshim[] = {"rashi", "tosafot"};
-    private String mefarshimHeb[] = {"רשי", "תוספות"};
+    private String mefarshimHeb[] = {"רש\"י", "תוספות"};
 
     public TalmudBavliParser() { createPackagesJson(); }
 
@@ -91,7 +91,7 @@ public class TalmudBavliParser extends Parser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type){
             case BEGIN_MASECHET:
-                masechetTitle = line.extract("מסכת ", " (מ)");
+                masechetTitle =  line.extract("מסכת ", " (מ)");
                 masechetNum = getMasechetNum(masechetTitle);
                 if (masechetNum == 36){ //masechet tamid starts from daf 25 amud 2
                     dafNum = 25;
@@ -99,7 +99,7 @@ public class TalmudBavliParser extends Parser {
                 }
                 // adding masechet triplets to packages json
                 packagesJsonObject().add(URI, getMasechetUri());
-                packagesJsonObject().add(RDFS_LABEL, masechetTitle);
+                packagesJsonObject().add(RDFS_LABEL, "מסכת " + masechetTitle);
                 packagesJsonObject().add(JBO_POSITION, masechetNum);
                 packagesJsonObjectFlush();
                 break;
@@ -130,10 +130,11 @@ public class TalmudBavliParser extends Parser {
                 positionInMasechet++;
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_MASECHET, "bavli-" + masechetNum);
-                jsonObject().add(JBO_PEREK, perekTitle);
-                jsonObject().add(RDFS_LABEL, masechetTitle + " " + dafTitle + " " + amudTitle);
+                jsonObject().add(JBO_PEREK, getPerekUri());
+                jsonObject().add(RDFS_LABEL, "מסכת " + masechetTitle + " " + dafTitle + " " + amudTitle);
                 jsonObject().add(JBO_POSITION, positionInMasechet);
 
+                /* no need for amud package
                 if(amudTitle.equals("א") || (masechetNum == 36 && dafNum == 25)) {
                     // adding daf triplets to packages json
                     packagesJsonObject().add(URI, getDafUri());
@@ -141,13 +142,14 @@ public class TalmudBavliParser extends Parser {
                     packagesJsonObject().add(JBO_POSITION, dafNum);
                     packagesJsonObjectFlush();
                 }
+                */
                 break;
 
             case BEGIN_AMUD_TEXT:
                 if(amud2ndPartText) { //same daf and amud continues in next perek
                     jsonObject().add(URI, getUri());
                     jsonObject().add(JBO_MASECHET, "bavli-" + masechetNum);
-                    jsonObject().add(JBO_PEREK, perekTitle);
+                    jsonObject().add(JBO_PEREK, getPerekUri());
                     jsonObject().add(RDFS_LABEL, masechetTitle + " " + dafTitle + " " + amudTitle);
                     jsonObject().add(JBO_POSITION, positionInMasechet);
                     jsonObject().add(JBO_TEXT, line.getLine());
@@ -165,7 +167,7 @@ public class TalmudBavliParser extends Parser {
                         line.beginsWith("תוספות") || line.beginsWith(" תוספות") ? 1 : -1;
                 jsonObject().add(URI, getMefareshUri(mefareshIdx));
                 jsonObject().add(JBO_MASECHET, "bavli-" + masechetNum);
-                jsonObject().add(JBO_PEREK, perekTitle);
+                jsonObject().add(JBO_PEREK, getPerekUri());
                 jsonObject().add(RDFS_LABEL, mefarshimHeb[mefareshIdx] + " " + masechetTitle + " " + dafTitle + " " + amudTitle);
                 jsonObject().add(JBO_POSITION, positionInMasechet);
                 jsonObject().add(JBO_INTERPRETS, getUri());
@@ -203,5 +205,5 @@ public class TalmudBavliParser extends Parser {
         return "jbr:bavli-" + mefarshim[mefareshIdx] + "-" + masechetNum + "-" + dafNum + "-" + amudNum;
     }
     private String getDafUri() {return "jbr:bavli-" + masechetNum + "-" + dafNum; }
-    private String getPerekUri() { return "jbr:bavli-" + masechetNum + "-perek:" + perekNum; }
+    private String getPerekUri() { return "jbr:bavli-perek-" + masechetNum + "-" + perekNum; }
 }
