@@ -24,10 +24,10 @@ public class TalmudBavliParserTest {
         for (int masechetNum = NUM_OF_FIRST_MASECHET; masechetNum <= NUM_OF_LAST_MASECHET; masechetNum++) {
             System.out.println("Creating json for masechet number " + masechetNum);
             TalmudBavliParser parser = new TalmudBavliParser();
-            BufferedReader reader = getText("/talmudbavli/talmudbavli-" + masechetNum + ".txt");
-            parser.parse(reader, "json/talmudbavli/talmudbavli-" + masechetNum + ".json");
-            json[masechetNum] = getJson("json/talmudbavli/talmudbavli-" + masechetNum + ".json");
-            packageJson[masechetNum] = getJson("json/talmudbavli/talmudbavli-" + masechetNum + "-packages.json");
+            BufferedReader reader = getText("talmudbavli/talmudbavli-" + masechetNum + ".txt");
+            parser.parse(reader, "../../jbs-text/talmudbavli/talmudbavli-" + masechetNum + ".json");
+            json[masechetNum] = getJson("../../jbs-text/talmudbavli/talmudbavli-" + masechetNum + ".json");
+            packageJson[masechetNum] = getJson("../../jbs-text/talmudbavli/talmudbavli-" + masechetNum + "-packages.json");
         }
         System.out.println("");
     }
