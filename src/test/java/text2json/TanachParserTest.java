@@ -26,9 +26,9 @@ public class TanachParserTest {
         for (int bookNum = NUM_OF_FIRST_BOOK; bookNum <= NUM_OF_LAST_BOOK; bookNum++) {
             TanachParser parser = new TanachParser();
             BufferedReader reader = getText("/tanach/tanach-" + bookNum + ".txt");
-            parser.parse(reader, "json/tanach/tanach-" + bookNum + ".json");
-            json[bookNum] = getJson("json/tanach/tanach-" + bookNum + ".json");
-            packagesJson[bookNum] = getJson("json/tanach/tanach-" + bookNum + "-packages.json");
+            parser.parse(reader, "../../jbs-text/tanach/tanach-" + bookNum + ".json");
+            json[bookNum] = getJson("../../jbs-text/tanach/tanach-" + bookNum + ".json");
+            packagesJson[bookNum] = getJson("../../jbs-text/tanach/tanach-" + bookNum + "-packages.json");
 
         }
     }
@@ -54,7 +54,7 @@ public class TanachParserTest {
         assertEquals("בראשית א א", object.get(RDFS_LABEL));
         assertEquals("jbr:tanach-1", object.get(JBO_SEFER));
         assertEquals("1", object.get(JBO_POSITION_IN_PARASHA));
-        assertTitlesArray(object, "[{title=בראשית א א}, {title=בראשית פרק א פסוק א}]");
+        //assertTitlesArray(object, "[{title=בראשית א א}, {title=בראשית פרק א פסוק א}]");
 
         //1-50-26
         object = json[1].getObject(json[1].subjects.size()-1);
@@ -66,7 +66,7 @@ public class TanachParserTest {
         assertEquals("בראשית נ כו", object.get(RDFS_LABEL));
         assertEquals("jbr:tanach-1", object.get(JBO_SEFER));
         assertEquals("85", object.get(JBO_POSITION_IN_PARASHA));
-        assertTitlesArray(object, "[{title=בראשית נ כו}, {title=בראשית פרק נ פסוק כו}]");
+        //assertTitlesArray(object, "[{title=בראשית נ כו}, {title=בראשית פרק נ פסוק כו}]");
 
         //5-4-10
         object = json[5].getObject(121);
@@ -78,10 +78,10 @@ public class TanachParserTest {
         assertEquals("דברים ד י", object.get(RDFS_LABEL));
         assertEquals("jbr:tanach-5", object.get(JBO_SEFER));
         assertEquals("17", object.get(JBO_POSITION_IN_PARASHA));
-        assertTitlesArray(object, "[{title=דברים ד י}, {title=דברים פרק ד פסוק י}]");
+        //assertTitlesArray(object, "[{title=דברים ד י}, {title=דברים פרק ד פסוק י}]");
 
         //6-2-17
-        object = json[6].getObject(34);
+        object = json[6].getObject(35);
         assertEquals("jbr:tanach-6-2-17", object.get(URI));
         textNikud = "וַיֹּאמְרוּ אֵלֶיהָ הָאֲנָשִׁים נְקִיִּם אֲנַחְנוּ מִשְּׁבֻעָתֵךְ הַזֶּה אֲשֶׁר הִשְׁבַּעְתָּנוּ";
         text = stripVowels(textNikud);
@@ -90,7 +90,7 @@ public class TanachParserTest {
         assertEquals("יהושע ב יז", object.get(RDFS_LABEL));
         assertEquals("jbr:tanach-6", object.get(JBO_SEFER));
         assertNull(object.get(JBO_POSITION_IN_PARASHA));
-        assertTitlesArray(object, "[{title=יהושע ב יז}, {title=יהושע פרק ב פסוק יז}]");
+        //assertTitlesArray(object, "[{title=יהושע ב יז}, {title=יהושע פרק ב פסוק יז}]");
     }
 
     @Test
@@ -109,7 +109,9 @@ public class TanachParserTest {
     }
 
 
-
+    /*
+    titles array was removed.
+     */
     private void assertTitlesArray(Map<String, String> object, String expected_titles) {
         String object_str = object.toString();
         int begin_idx = object_str.indexOf("[{");
@@ -120,7 +122,7 @@ public class TanachParserTest {
 
 
     private int numOfPsukimInBook(int bookNum) {
-        int psukimForBook[] = {0, 1533, 1210, 859, 1288, 956, 658, 618, 811, 695, 817,
+        int psukimForBook[] = {0, 1533, 1210, 859, 1288, 956, 659, 618, 816, 695, 817,
                 719, 1291, 1364, 1273, 197, 73, 146, 21, 48, 105, 47, 56, 53, 38, 211,
                 55, 2527, 915, 1070, 117, 85, 154, 222, 167, 357, 280, 405, 943, 822};
         return psukimForBook[bookNum];
