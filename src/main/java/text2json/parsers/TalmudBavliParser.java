@@ -25,8 +25,8 @@ public class TalmudBavliParser extends Parser {
     private String dafTitle;
     private String amudTitle;
     private int positionInMasechet = 0;
-    private String mefarshim[] = {"rashi", "tosafot"};
-    private String mefarshimHeb[] = {"רש\"י", "תוספות"};
+    private String mefarshim[] = {"rashi", "tosafot", "rashbam"};
+    private String mefarshimHeb[] = {"רש\"י", "תוספות", "רשב\"ם"};
 
     public TalmudBavliParser() { createPackagesJson(); }
 
@@ -72,7 +72,8 @@ public class TalmudBavliParser extends Parser {
             public boolean match(Line line) {
                 return line.beginsWith("רש\"י") || line.beginsWith(" רש\"י") ||
                         line.beginsWith("פירוש") || line.beginsWith(" פירוש") ||
-                        line.beginsWith("תוספות") || line.beginsWith(" תוספות");
+                        line.beginsWith("תוספות") || line.beginsWith(" תוספות") ||
+                        line.beginsWith("רשב\"ם") || line.beginsWith(" רשב\"ם");
             }
         });
         registerMatcher(new LineMatcher() {
@@ -164,7 +165,8 @@ public class TalmudBavliParser extends Parser {
                 jsonObjectFlush();
                 int mefareshIdx = line.beginsWith("רש\"י") || line.beginsWith(" רש\"י")
                         || line.beginsWith("פירוש") || line.beginsWith(" פירוש") ? 0 :
-                        line.beginsWith("תוספות") || line.beginsWith(" תוספות") ? 1 : -1;
+                        line.beginsWith("תוספות") || line.beginsWith(" תוספות") ? 1 :
+                        line.beginsWith("רשב\"ם") || line.beginsWith(" רשב\"ם") ? 2 : -1;
                 jsonObject().add(URI, getMefareshUri(mefareshIdx));
                 jsonObject().add(JBO_MASECHET, "bavli-" + masechetNum);
                 jsonObject().add(JBO_PEREK, getPerekUri());
