@@ -93,6 +93,10 @@ public class ShulhanAruchParser extends Parser {
                 packagesJsonObject().add(URI, "jbr:shulchanaruch");
                 packagesJsonObject().add(RDFS_LABEL, "שלחן ערוך");
                 packagesJsonObjectFlush();
+                //add sefer with perush to package json
+                packagesJsonObject().add(URI, "jbr:shulchanaruch-baerheytev");
+                packagesJsonObject().add(RDFS_LABEL, "שלחן ערוך באר היטב");
+                packagesJsonObjectFlush();
                 //add chelek to package json
                 packagesJsonObject().add(URI, getChelekUri());
                 packagesJsonObject().add(RDFS_LABEL, "שלחן ערוך - " + chelekTitle);

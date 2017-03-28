@@ -309,7 +309,7 @@ public class ShulchanAruchParserTest {
         assertEquals("שלחן ערוך",object.get(RDFS_LABEL));
 
         //sefer 1
-        object = packageJson[1].getObject(1);
+        object = packageJson[1].getObject(2);
         assertEquals("jbr:shulchanaruch-1",object.get(URI));
         assertEquals("שלחן ערוך - אורח חיים",object.get(RDFS_LABEL));
         assertEquals("1", object.get(JBO_POSITION));
@@ -320,32 +320,32 @@ public class ShulchanAruchParserTest {
         assertEquals("הלכות מגילה ופורים",object.get(RDFS_LABEL));
         assertEquals("39", object.get(JBO_POSITION));
         //sefer 1 halachot 7 siman 130
-        object = packageJson[1].getObject(138);
+        object = packageJson[1].getObject(139);
         assertEquals("jbr:shulchanaruch-1-130",object.get(URI));
         assertEquals("shulchanaruch-1",object.get(JBO_CHELEK));
         assertEquals("רבונו של עולם שאומרים בשעת נשיאת כפים",object.get(RDFS_LABEL));
         assertEquals("130", object.get(JBO_POSITION));
 
         //sefer 2
-        object = packageJson[2].getObject(1);
+        object = packageJson[2].getObject(2);
         assertEquals("jbr:shulchanaruch-2",object.get(URI));
         assertEquals("שלחן ערוך - יורה דעה",object.get(RDFS_LABEL));
         assertEquals("2", object.get(JBO_POSITION));
         //sefer 2 halachot 8
-        object = packageJson[2].getObject(77);
+        object = packageJson[2].getObject(78);
         assertEquals("jbr:shulchanaruch-halachot-2-8",object.get(URI));
         assertEquals("shulchanaruch-2",object.get(JBO_CHELEK));
         assertEquals("הלכות מליחה",object.get(RDFS_LABEL));
         assertEquals("8", object.get(JBO_POSITION));
         //sefer 2 halachot 16 siman 98
-        object = packageJson[2].getObject(115);
+        object = packageJson[2].getObject(116);
         assertEquals("jbr:shulchanaruch-2-98",object.get(URI));
         assertEquals("shulchanaruch-2",object.get(JBO_CHELEK));
         assertEquals("דין אסור שנתערב בהתר ואפן בטולו",object.get(RDFS_LABEL));
         assertEquals("98", object.get(JBO_POSITION));
 
         //sefer 3
-        object = packageJson[3].getObject(1);
+        object = packageJson[3].getObject(2);
         assertEquals("jbr:shulchanaruch-3",object.get(URI));
         assertEquals("שלחן ערוך - אבן העזר",object.get(RDFS_LABEL));
         assertEquals("3", object.get(JBO_POSITION));
@@ -356,19 +356,19 @@ public class ShulchanAruchParserTest {
         assertEquals("הלכות מאון",object.get(RDFS_LABEL));
         assertEquals("6", object.get(JBO_POSITION));
         //sefer 3 halachot 3 siman 26
-        object = packageJson[3].getObject(30);
+        object = packageJson[3].getObject(31);
         assertEquals("jbr:shulchanaruch-3-26",object.get(URI));
         assertEquals("shulchanaruch-3",object.get(JBO_CHELEK));
         assertEquals("שלא לקדש בביאה, ואסור ביאה על הפנויה אפלו אם יחדה",object.get(RDFS_LABEL));
         assertEquals("26", object.get(JBO_POSITION));
 
         //sefer 4
-        object = packageJson[4].getObject(1);
+        object = packageJson[4].getObject(2);
         assertEquals("jbr:shulchanaruch-4",object.get(URI));
         assertEquals("שלחן ערוך - חשן משפט",object.get(RDFS_LABEL));
         assertEquals("4", object.get(JBO_POSITION));
         //sefer 4 halachot 2
-        object = packageJson[4].getObject(30);
+        object = packageJson[4].getObject(31);
         assertEquals("jbr:shulchanaruch-halachot-4-2",object.get(URI));
         assertEquals("shulchanaruch-4",object.get(JBO_CHELEK));
         assertEquals("הלכות עדות",object.get(RDFS_LABEL));
@@ -392,7 +392,7 @@ public class ShulchanAruchParserTest {
     private int NumOfObjectsPerSeferPackage(int seferNum) {
         int numOfHalachotPerSefer[] = {-1, 39, 60, 8, 42};
         int numOfSimanimPerSefer[] = {-1, 697, 403, 178, 427};
-        return 1 + 1 + numOfHalachotPerSefer[seferNum] + numOfSimanimPerSefer[seferNum];
+        return 3 + numOfHalachotPerSefer[seferNum] + numOfSimanimPerSefer[seferNum];
     }
 
 
