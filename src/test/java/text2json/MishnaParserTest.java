@@ -22,6 +22,7 @@ public class MishnaParserTest {
     static int FileMasechetNum = 0;
     String mefaresh = null;
     String fileName = null;
+    boolean pasuk = false;
 
     @BeforeClass
     public static void setup() throws IOException {
@@ -106,8 +107,10 @@ public class MishnaParserTest {
             assertEquals(jsonReader.nextName(), "rdfs:label");
             assertNotNull(jsonReader.nextString());
             //======== NAME ==============
-            assertEquals(jsonReader.nextName(), "jbo:name");
-            assertNotNull(jsonReader.nextString());
+            if (pasuk == false) {
+                assertEquals(jsonReader.nextName(), "jbo:name");
+                assertNotNull(jsonReader.nextString());
+            }
             //======== SEDER ==============
             assertEquals(jsonReader.nextName(), "jbo:seder");
             testSeder(jsonReader);
@@ -118,7 +121,7 @@ public class MishnaParserTest {
             assertEquals(jsonReader.nextName(), "jbo:perek");
             assertNotNull(jsonReader.nextString());
             //======== INTERPRETS ==============
-            assertEquals(jsonReader.nextName(), "jbo:mishna");
+            assertEquals(jsonReader.nextName(), "jbo:interprets");
             assertNotNull(jsonReader.nextString());
 
             jsonReader.endObject();
@@ -131,19 +134,37 @@ public class MishnaParserTest {
         //System.out.println(uriLine.getLine());
         String uriMefaresh = uriLine.extract("mishna-", "-");
         mefaresh = uriMefaresh;
-        assertNotNull(mefaresh);
-        int uriSederNum = Integer.valueOf(uriLine.extract("mishna-"+uriMefaresh+"-","-"));
-        int uriMasechetNum = Integer.valueOf(uriLine.extract("mishna-"+uriMefaresh+"-"+uriSederNum+"-","-"));
-        int uriPerekNum = Integer.valueOf(uriLine.extract("mishna-"+uriMefaresh+"-"+uriSederNum+"-"+uriMasechetNum+"-","-"));
-        int uriMishnaNum = Integer.valueOf(uriLine.extract("mishna-"+uriMefaresh+"-"+uriSederNum+"-"+uriMasechetNum+"-"+uriPerekNum+"-"," "));
-        assertEquals(uriSederNum, FileSederNum);
-        assertEquals(uriMasechetNum, FileMasechetNum);
-        if (Integer.valueOf(uriPerekNum) != perekNum) {
-            perekNum++;
-            mishnaNum = 1;
-            retval = true;
+        if ((mefaresh.contains("bartanura")) || (mefaresh.contains("yomtov"))){
+            pasuk = false;
+            assertNotNull(mefaresh);
+            int uriSederNum = Integer.valueOf(uriLine.extract("mishna-" + uriMefaresh + "-", "-"));
+            int uriMasechetNum = Integer.valueOf(uriLine.extract("mishna-" + uriMefaresh + "-" + uriSederNum + "-", "-"));
+            int uriPerekNum = Integer.valueOf(uriLine.extract("mishna-" + uriMefaresh + "-" + uriSederNum + "-" + uriMasechetNum + "-", "-"));
+            int uriMishnaNum = Integer.valueOf(uriLine.extract("mishna-" + uriMefaresh + "-" + uriSederNum + "-" + uriMasechetNum + "-" + uriPerekNum + "-", " "));
+            assertEquals(uriSederNum, FileSederNum);
+            assertEquals(uriMasechetNum, FileMasechetNum);
+            if (Integer.valueOf(uriPerekNum) != perekNum) {
+                perekNum++;
+                mishnaNum = 1;
+                retval = true;
+            }
+            assertEquals(perekNum, uriPerekNum);
         }
-        assertEquals(perekNum, uriPerekNum);
+        else {
+            pasuk = true;
+            int uriSederNum = Integer.valueOf(uriLine.extract("mishna-", "-"));
+            int uriMasechetNum = Integer.valueOf(uriLine.extract("mishna-" + uriSederNum + "-", "-"));
+            int uriPerekNum = Integer.valueOf(uriLine.extract("mishna-" + uriSederNum + "-" + uriMasechetNum + "-", "-"));
+            int uriMishnaNum = Integer.valueOf(uriLine.extract("mishna-" + uriSederNum + "-" + uriMasechetNum + "-" + uriPerekNum + "-", " "));
+            assertEquals(uriSederNum, FileSederNum);
+            assertEquals(uriMasechetNum, FileMasechetNum);
+            if (Integer.valueOf(uriPerekNum) != perekNum) {
+                perekNum++;
+                mishnaNum = 1;
+                retval = true;
+            }
+            assertEquals(perekNum, uriPerekNum);
+        }
         //assertEquals(mishnaNum +1, uriMishnaNum);
         return retval;
     }

@@ -184,7 +184,6 @@ public class MishnaParser extends Parser {
                 jsonObject().add(JBO_TEXT, stripVowels(pasuk));
                 jsonObject().add(JBO_TEXT_NIKUD, pasuk);
                 jsonObject().add(RDFS_LABEL, masechetHE + " " + perekLetter + " " + mishnaLetter);
-                jsonObject().add(JBO_NAME, "Null");
                 jsonObject().add(JBO_SEDER, "jbr:mishna-" + sederNum);
                 jsonObject().add(JBO_MASECHET, "jbr:mishna-" + sederNum + "-" + masechetNum);
                 jsonObject().add(JBO_PEREK, "jbr:mishna-" + sederNum + "-" + masechetNum + "-" + perekNum);
