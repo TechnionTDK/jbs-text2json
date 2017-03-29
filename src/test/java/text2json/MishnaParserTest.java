@@ -99,6 +99,9 @@ public class MishnaParserTest {
             //======== JBO_TEXT ==============
             assertEquals(jsonReader.nextName(), "jbo:text");
             testText(jsonReader, perekNum, mishnaNum);
+            //======== JBO_TEXT ==============
+            assertEquals(jsonReader.nextName(), "jbo:textNikud");
+            assertNotNull(jsonReader.nextString());
             //======== LABLE ==============
             assertEquals(jsonReader.nextName(), "rdfs:label");
             assertNotNull(jsonReader.nextString());
@@ -114,7 +117,7 @@ public class MishnaParserTest {
             //======== PEREK ==============
             assertEquals(jsonReader.nextName(), "jbo:perek");
             assertNotNull(jsonReader.nextString());
-            //======== MISHNA ==============
+            //======== INTERPRETS ==============
             assertEquals(jsonReader.nextName(), "jbo:mishna");
             assertNotNull(jsonReader.nextString());
 

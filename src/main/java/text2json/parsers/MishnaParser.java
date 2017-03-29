@@ -11,6 +11,8 @@ import static text2json.JbsOntology.*;
  * Created by shilonoa on 3/16/2017.
  */
 public class MishnaParser extends Parser {
+    private static final String BEGIN_PASUK = "begin_pasuk";
+    private static final String MULTIPLE_LINE_PASUK = "long_pasuk";
     String[] MefarshimEn = {"bartanura", "yomtov"};
     String[] MefarshimHe = {"ר\"ע מברטנורה", "עיקר תוי\"ט"};
     String[] Sdarim = {"zraim","moed","nashim","nezikin","kdashim","teharot"};
@@ -35,6 +37,8 @@ public class MishnaParser extends Parser {
     private int mefareshId_Long_Perush;
     boolean Just_finished_perush = false;
     private String perush;
+    private String pasuk = null;
+    boolean new_mishna = false;
 
     protected void registerMatchers() {
         registerMatcher(new LineMatcher() {
@@ -53,6 +57,19 @@ public class MishnaParser extends Parser {
             public boolean match(Line line) {
                 return line.contains("פרק ") && line.wordCount() <= 2;
             }
+        });
+
+        registerMatcher(new LineMatcher() {
+            public String type() { return BEGIN_PASUK; }
+            public boolean match(Line line) { return line.endsWith(":");
+            }
+        });
+
+        registerMatcher(new LineMatcher() {
+            public String type() {
+                return MULTIPLE_LINE_PASUK;
+            }
+            public boolean match(Line line) { return ((pasuk==null) && (new_mishna));}
         });
 
         registerMatcher(new LineMatcher() {
@@ -110,8 +127,11 @@ public class MishnaParser extends Parser {
             case BEGIN_MISHNA:
                 mishnaLetter = line.extract(" - משנה ", " ");
                 mishnaNum ++;
+                new_mishna = true;
+                pasuk = null;
                 break;
             case MULTIPLE_LINE_PERUSH:
+                new_mishna = false;
                 if (Just_finished_perush){
                     begining_of_long_perush = null;
                     Just_finished_perush = false;
@@ -124,6 +144,7 @@ public class MishnaParser extends Parser {
                 }
                 break;
             case BEGIN_PERUSH:
+                new_mishna = false;
                 mefareshId = get_mefareshId(line);
                 mefaresh = MefarshimEn[mefareshId];
                 perush = line.extract(" ", ": (" + MefarshimHe[mefareshId] + ")");
@@ -134,15 +155,42 @@ public class MishnaParser extends Parser {
                 }
                 jsonObjectFlush();
                 jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_TEXT, perush);
+                jsonObject().add(JBO_TEXT, stripVowels(perush));
+                jsonObject().add(JBO_TEXT_NIKUD, perush);
                 jsonObject().add(RDFS_LABEL, MefarshimHe[mefareshId] + " " + masechetHE + " " + perekLetter + " " + mishnaLetter);
                 jsonObject().add(JBO_NAME, MefarshimHe[mefareshId]);
                 jsonObject().add(JBO_SEDER, "jbr:mishna-" + sederNum);
                 jsonObject().add(JBO_MASECHET, "jbr:mishna-" + sederNum + "-" + masechetNum);
                 jsonObject().add(JBO_PEREK, "jbr:mishna-" + sederNum + "-" + masechetNum + "-" + perekNum);
-                jsonObject().add(JBO_MISHNA, "jbr:mishna-" + sederNum + "-" + masechetNum + "-" + perekNum + "-" + mishnaNum);
+                jsonObject().add(JBO_INTERPRETS, "jbr:mishna-" + sederNum + "-" + masechetNum + "-" + perekNum + "-" + mishnaNum);
                 jsonObjectFlush();
                 Just_finished_perush = true;
+                break;
+            case MULTIPLE_LINE_PASUK:
+                if (pasuk != null) {
+                    pasuk = pasuk + " " + line.extract(" ", " ");
+                }
+                else pasuk = line.extract(" ", " ");
+                break;
+            case BEGIN_PASUK:
+                new_mishna = false;
+                if (pasuk != null) {
+                    pasuk = pasuk + " " + line.extract(" ", ":");
+                }
+                else pasuk = line.extract(" ", ":");
+
+                jsonObjectFlush();
+                jsonObject().add(URI, "jbr:mishna-" + sederNum + "-" + masechetNum + "-" + perekNum + "-" + mishnaNum);
+                jsonObject().add(JBO_TEXT, stripVowels(pasuk));
+                jsonObject().add(JBO_TEXT_NIKUD, pasuk);
+                jsonObject().add(RDFS_LABEL, masechetHE + " " + perekLetter + " " + mishnaLetter);
+                jsonObject().add(JBO_NAME, "Null");
+                jsonObject().add(JBO_SEDER, "jbr:mishna-" + sederNum);
+                jsonObject().add(JBO_MASECHET, "jbr:mishna-" + sederNum + "-" + masechetNum);
+                jsonObject().add(JBO_PEREK, "jbr:mishna-" + sederNum + "-" + masechetNum + "-" + perekNum);
+                jsonObject().add(JBO_INTERPRETS, "jbr:mishna-" + sederNum + "-" + masechetNum + "-" + perekNum + "-" + mishnaNum);
+                jsonObjectFlush();
+                pasuk = null;
                 break;
             case NO_MATCH:
                 break;
