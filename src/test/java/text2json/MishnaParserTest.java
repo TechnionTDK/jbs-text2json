@@ -68,6 +68,9 @@ public class MishnaParserTest {
         for (final File fileEntry : folder.listFiles()) {
             System.out.println(fileEntry.getAbsoluteFile() + "&&&&&&");
             fileName = fileEntry.getName();
+            if (fileName.contains("packages")){
+                continue;
+            }
             System.out.println("Testing:" + fileName);
             FileSederNum = Integer.valueOf(extract(fileName,"mishna-","-"));
             FileMasechetNum = Integer.valueOf(extract(fileName,"mishna-"+ FileSederNum + "-","."));
