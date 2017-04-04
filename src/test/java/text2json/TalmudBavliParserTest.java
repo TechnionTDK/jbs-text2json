@@ -37,6 +37,7 @@ public class TalmudBavliParserTest {
         System.out.print("testNumOfAmudimPerMasechet: ");
         for (int masechetNum = NUM_OF_FIRST_MASECHET; masechetNum <= NUM_OF_LAST_MASECHET; masechetNum++) {
             assertNotNull(json[masechetNum]);
+            System.out.println("Masechet " + masechetNum);
             assertEquals(numOfObjectsForMasechet(masechetNum),json[masechetNum].subjects.size());
         }
         System.out.print("Success! :)\n");
@@ -466,9 +467,9 @@ public class TalmudBavliParserTest {
     }
 
     private int numOfObjectsForMasechet(int masechetNum) {
-        int objectsPerMasechet[] = {-1, 390, 988, 648, 775, 210, 530, 341, 242, 186, 191, 168, 159, 758, 691, 653, 411,
-                                    310, 551, 493, 723, 725, 1064, 678, 142, 305, 459, 54, 796, 733, 860, 375, 214, 203,
-                                    176, 135, 46, 441};
+        int objectsPerMasechet[] = {-1, 390, 988, 648, 775, 210, 530, 341, 242, 185, 191, 168, 159, 758, 691, 653, 411,
+                                    308, 551, 493, 722, 725, 1062, 676, 142, 305, 459, 54, 746, 730, 860, 375, 214, 203,
+                                    176, 135, 44, 440};
         return objectsPerMasechet[masechetNum];
     }
 

@@ -25,8 +25,8 @@ public class TalmudBavliParser extends Parser {
     private String dafTitle;
     private String amudTitle;
     private int positionInMasechet = 0;
-    private String mefarshim[] = {"rashi", "tosafot", "rashbam"};
-    private String mefarshimHeb[] = {"רש\"י", "תוספות", "רשב\"ם"};
+    private String mefarshim[] = {"rashi", "tosafot", "rashbam", "ran"};
+    private String mefarshimHeb[] = {"רש\"י", "תוספות","רשב\"ם", "ר\"נ"};
 
     public TalmudBavliParser() { createPackagesJson(); }
 
@@ -73,7 +73,8 @@ public class TalmudBavliParser extends Parser {
                 return line.beginsWith("רש\"י") || line.beginsWith(" רש\"י") ||
                         line.beginsWith("פירוש") || line.beginsWith(" פירוש") ||
                         line.beginsWith("תוספות") || line.beginsWith(" תוספות") ||
-                        line.beginsWith("רשב\"ם") || line.beginsWith(" רשב\"ם");
+                        line.beginsWith("רשב\"ם") || line.beginsWith(" רשב\"ם") ||
+                        line.beginsWith("ר\"נ") || line.beginsWith(" ר\"נ");
             }
         });
         registerMatcher(new LineMatcher() {
@@ -153,12 +154,12 @@ public class TalmudBavliParser extends Parser {
                     jsonObject().add(JBO_PEREK, getPerekUri());
                     jsonObject().add(RDFS_LABEL, masechetTitle + " " + dafTitle + " " + amudTitle);
                     jsonObject().add(JBO_POSITION, positionInMasechet);
-                    jsonObject().add(JBO_TEXT, line.getLine());
+                    jsonObject().append(JBO_TEXT, line.getLine());
                 }
                 else {
-                    jsonObject().add(JBO_TEXT, line.getLine());
+                    jsonObject().append(JBO_TEXT, line.getLine());
                 }
-                jsonObjectFlush();
+                //jsonObjectFlush();
                 break;
 
             case BEGIN_PERUSH:
@@ -166,15 +167,16 @@ public class TalmudBavliParser extends Parser {
                 int mefareshIdx = line.beginsWith("רש\"י") || line.beginsWith(" רש\"י")
                         || line.beginsWith("פירוש") || line.beginsWith(" פירוש") ? 0 :
                         line.beginsWith("תוספות") || line.beginsWith(" תוספות") ? 1 :
-                        line.beginsWith("רשב\"ם") || line.beginsWith(" רשב\"ם") ? 2 : -1;
+                        line.beginsWith("רשב\"ם") || line.beginsWith(" רשב\"ם") ? 2 :
+                        line.beginsWith("ר\"נ") || line.beginsWith(" ר\"נ") ? 3 : -1;
                 jsonObject().add(URI, getMefareshUri(mefareshIdx));
                 jsonObject().add(JBO_MASECHET, "bavli-" + masechetNum);
                 jsonObject().add(JBO_PEREK, getPerekUri());
                 jsonObject().add(RDFS_LABEL, mefarshimHeb[mefareshIdx] + " " + masechetTitle + " " + dafTitle + " " + amudTitle);
                 jsonObject().add(JBO_POSITION, positionInMasechet);
                 jsonObject().add(JBO_INTERPRETS, getUri());
-                jsonObject().add(JBO_TEXT, line.getLine());
-                jsonObjectFlush();
+                jsonObject().append(JBO_TEXT, line.getLine());
+                //jsonObjectFlush();
                 break;
 
             case NO_MATCH:
