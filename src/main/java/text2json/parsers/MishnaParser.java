@@ -24,6 +24,7 @@ public class MishnaParser extends Parser {
     private static final String MULTIPLE_LINE_PERUSH = "multiple_line_perush";
     private static final String MEFARESH_PARSER_ID = "parser.mefareshMishna";
     private int sederNum = 0;
+    private String sederName = null;
     private String masechetHE = null;
     private String masechetEN = null;
     private int masechetNum = 0;
@@ -41,7 +42,7 @@ public class MishnaParser extends Parser {
     boolean new_mishna = false;
     boolean first_masechet = true;
 
-    public MishnaParser(){
+    public MishnaParser() {
         createPackagesJson();
     }
     protected void registerMatchers() {
@@ -124,9 +125,15 @@ public class MishnaParser extends Parser {
                 getSederNum(masechetHE);
 
                 if (first_masechet){
+                    // adding sefer object in packages json
+                    packagesJsonObject().add(URI, "jbr:mishna");
+                    packagesJsonObject().add(JBO_SEFER, "משנה");
+                    packagesJsonObjectFlush();
                     // adding seder object in packages json
                     packagesJsonObject().add(URI, "jbr:mishna-" + sederNum);
+                    packagesJsonObject().add(RDFS_LABEL, "סדר " + sederName);
                     packagesJsonObject().add(JBO_SEDER, "jbr:mishna-" + sederNum);
+                    packagesJsonObject().add(JBO_POSITION, sederNum);
                     packagesJsonObjectFlush();
                 }
                 // adding masechet object in packages json
@@ -134,6 +141,7 @@ public class MishnaParser extends Parser {
                 packagesJsonObject().add(RDFS_LABEL, line.getLine());
                 packagesJsonObject().add(JBO_SEDER, "jbr:mishna-" + sederNum);
                 packagesJsonObject().add(JBO_MASECHET, "jbr:mishna-" + sederNum + "-" + masechetNum);
+                packagesJsonObject().add(JBO_POSITION, masechetNum);
                 packagesJsonObjectFlush();
                 break;
             case BEGIN_PEREK:
@@ -142,10 +150,11 @@ public class MishnaParser extends Parser {
                 mishnaNum = 0;
                 // adding perek object in packages json
                 packagesJsonObject().add(URI, "jbr:mishna-" + sederNum + "-" + masechetNum + "-" + perekNum);
-                packagesJsonObject().add(RDFS_LABEL, line.getLine());
+                packagesJsonObject().add(RDFS_LABEL, "משנה " + masechetHE + " " +  line.getLine());
                 packagesJsonObject().add(JBO_SEDER, "jbr:mishna-" + sederNum);
                 packagesJsonObject().add(JBO_MASECHET, "jbr:mishna-" + sederNum + "-" + masechetNum);
                 packagesJsonObject().add(JBO_PEREK, "jbr:mishna-" + sederNum + "-" + masechetNum + "-" + perekNum);
+                packagesJsonObject().add(JBO_POSITION, perekNum);
                 packagesJsonObjectFlush();
                 break;
             case BEGIN_MISHNA:
@@ -153,14 +162,6 @@ public class MishnaParser extends Parser {
                 mishnaNum ++;
                 new_mishna = true;
                 pasuk = null;
-                // adding mishna object in packages json
-                packagesJsonObject().add(URI, "jbr:mishna-"+sederNum+"-"+masechetNum+"-"+perekNum+"-"+mishnaNum);
-                packagesJsonObject().add(RDFS_LABEL, line.getLine());
-                packagesJsonObject().add(JBO_SEDER, "jbr:mishna-" + sederNum);
-                packagesJsonObject().add(JBO_MASECHET, "jbr:mishna-" + sederNum + "-" + masechetNum);
-                packagesJsonObject().add(JBO_PEREK, "jbr:mishna-" + sederNum + "-" + masechetNum + "-" + perekNum);
-                packagesJsonObject().add(JBO_INTERPRETS, "jbr:mishna-"+sederNum+"-"+masechetNum+"-"+perekNum+"-"+mishnaNum);
-                packagesJsonObjectFlush();
                 break;
             case MULTIPLE_LINE_PERUSH:
                 new_mishna = false;
@@ -189,7 +190,7 @@ public class MishnaParser extends Parser {
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_TEXT, stripVowels(perush));
                 jsonObject().add(JBO_TEXT_NIKUD, perush);
-                jsonObject().add(RDFS_LABEL, MefarshimHe[mefareshId] + " " + masechetHE + " " + perekLetter + " " + mishnaLetter);
+                jsonObject().add(RDFS_LABEL, MefarshimHe[mefareshId] + " משנה " + masechetHE + " " + perekLetter + " " + mishnaLetter);
                 jsonObject().add(JBO_NAME, MefarshimHe[mefareshId]);
                 jsonObject().add(JBO_SEDER, "jbr:mishna-" + sederNum);
                 jsonObject().add(JBO_MASECHET, "jbr:mishna-" + sederNum + "-" + masechetNum);
@@ -215,7 +216,7 @@ public class MishnaParser extends Parser {
                 jsonObject().add(URI, "jbr:mishna-" + sederNum + "-" + masechetNum + "-" + perekNum + "-" + mishnaNum);
                 jsonObject().add(JBO_TEXT, stripVowels(pasuk));
                 jsonObject().add(JBO_TEXT_NIKUD, pasuk);
-                jsonObject().add(RDFS_LABEL, masechetHE + " " + perekLetter + " " + mishnaLetter);
+                jsonObject().add(RDFS_LABEL, "משנה " + masechetHE + " " + perekLetter + " " + mishnaLetter);
                 jsonObject().add(JBO_SEDER, "jbr:mishna-" + sederNum);
                 jsonObject().add(JBO_MASECHET, "jbr:mishna-" + sederNum + "-" + masechetNum);
                 jsonObject().add(JBO_PEREK, "jbr:mishna-" + sederNum + "-" + masechetNum + "-" + perekNum);
@@ -251,26 +252,32 @@ public class MishnaParser extends Parser {
         }
         if (i < 11){
             sederNum = 1;
+            sederName = "זרעים";
             masechetNum = i + 1;
         }
         else if (i < 23){
             sederNum = 2;
+            sederName = "מועד";
             masechetNum = i + 1 -11;
         }
         else if (i < 30){
             sederNum = 3;
+            sederName = "נשים";
             masechetNum = i + 1 -23;
         }
         else if (i < 40){
             sederNum = 4;
+            sederName = "נזיקין";
             masechetNum = i + 1 -30;
         }
         else if (i < 51){
             sederNum = 5;
+            sederName = "קדשים";
             masechetNum = i + 1 -40;
         }
         else if (i < 63){
             sederNum = 6;
+            sederName = "טהרות";
             masechetNum = i + 1 -51;
         }
         return -1;
