@@ -9,9 +9,10 @@ import static text2json.JbsOntology.*;
 
 public class MefareshParser extends Parser {
     String[] MefarshimEn = {"rashi", "ramban", "orhachaim", "ibnezra", "baalhaturim", "onkelos", "sforno", "kliyekar",
-            "daatzkenim", "metzudatdavid", "metzudattzion", "malbiminyan", "malbimmilot", "ralbag", "malbim"};
+            "daatzkenim", "metzudatdavid", "metzudattzion", "malbiminyan", "malbimmilot", "ralbag", "malbim", "yonatan", "sifteychachamim"};
     String[] MefarshimHe = {"רש\"י", "הרמב\"ן", "אור החיים", "אבן עזרא", "בעל הטורים" , "אונקלוס", "ספורנו", "כלי יקר",
-            "דעת זקנים", "מצודת דוד", "מצודת ציון", "מלבי\"ם באור הענין", "מלבי\"ם באור המלות", "רלב\"ג", "מלבי\"ם"};
+            "דעת זקנים", "מצודת דוד", "מצודת ציון", "מלבי\"ם באור הענין", "מלבי\"ם באור המלות", "רלב\"ג", "מלבי\"ם",
+            "תרגום יונתן", "שפתי חכמים"};
     String[] ParashotHe = {"פרשת בראשית", "פרשת נח", "פרשת לך לך", "פרשת וירא", "פרשת חיי שרה" ,"פרשת תולדות" ,"פרשת ויצא",
             "פרשת וישלח", "פרשת וישב", "פרשת מקץ", "פרשת ויגש", "פרשת ויחי", "פרשת שמות", "פרשת וארא", "פרשת בא",
             "פרשת בשלח", "פרשת יתרו", "פרשת משפטים", "פרשת תרומה", "פרשת תצוה", "פרשת תשא כי", "פרשת ויקהל", "פרשת פקודי",
@@ -78,7 +79,8 @@ public class MefareshParser extends Parser {
             public String type() {
                 return MULTIPLE_LINE_PERUSH;
             }
-            public boolean match(Line line) { return (line.beginsWith(MefarshimHe) || (begining_of_long_perush != null));}
+            public boolean match(Line line) { return ((line.beginsWith(MefarshimHe) && !(line.endsWith(MefarshimHe)))
+                    || (begining_of_long_perush != null));}
         });
 
     }
@@ -133,11 +135,7 @@ public class MefareshParser extends Parser {
                 positionInParasha++;
                 break;
             case MULTIPLE_LINE_PERUSH:
-                if (Just_finished_perush){
-                    begining_of_long_perush = null;
-                    Just_finished_perush = false;
-                }
-                else if (begining_of_long_perush == null){
+                if (begining_of_long_perush == null){
                     begining_of_long_perush = line.getLine();
                 }
                 else {
@@ -170,7 +168,7 @@ public class MefareshParser extends Parser {
                     jsonObject().add(JBO_POSITION_IN_PARASHA, Integer.toString(positionInParasha));
                 }
                 jsonObjectFlush();
-                Just_finished_perush = true;
+                begining_of_long_perush = null;
                 break;
             case NO_MATCH:
                 break;
