@@ -42,6 +42,16 @@ public class TanachParserTest {
     }
 
     @Test
+    public void testTotalNumberOfObjectsInPackage() {
+        for (int bookNum = NUM_OF_FIRST_BOOK; bookNum <= NUM_OF_LAST_BOOK; bookNum++) {
+            assertNotNull(packagesJson[bookNum]);
+            assertEquals(numOfObjectsInPackage(bookNum), packagesJson[bookNum].subjects.size());
+        }
+    }
+
+
+
+    @Test
     public void testSpecificObjects() {
         Map<String, String> object;
         //1-1-1
@@ -122,9 +132,19 @@ public class TanachParserTest {
 
 
     private int numOfPsukimInBook(int bookNum) {
-        int psukimForBook[] = {0, 1533, 1210, 859, 1288, 956, 659, 618, 816, 695, 817,
+        int psukimForBook[] = {0, 1533, 1210, 859, 1288, 956, 659, 618, 811, 695, 817,
                 719, 1291, 1364, 1273, 197, 73, 146, 21, 48, 105, 47, 56, 53, 38, 211,
                 55, 2527, 915, 1070, 117, 85, 154, 222, 167, 357, 280, 405, 943, 822};
         return psukimForBook[bookNum];
+    }
+
+    private int numOfObjectsInPackage(int bookNum) {
+        int prakimForBook[] = {0, 50, 40, 27, 36, 34, 24, 21, 31, 24, 22,
+                25, 66, 52, 48, 14, 4, 9, 1, 4, 7, 3, 3, 3, 2, 14,
+                3, 150, 31, 42, 8, 4, 5, 12, 10, 12, 10, 13, 29, 36};
+        int parashotForBook[] = {0, 12, 11, 10, 10, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+        return 1 + parashotForBook[bookNum] + prakimForBook[bookNum];
     }
 }

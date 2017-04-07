@@ -21,7 +21,7 @@ public class TanachParser extends Parser {
     private String pasukTitle;
     private int positionInParasha;
     private int positionInPerek = 0;
-    
+
     public TanachParser() {
         createPackagesJson();
     }
@@ -40,7 +40,8 @@ public class TanachParser extends Parser {
             public String type() { return BEGIN_SEFER;}
             @Override
             public boolean match(Line line) {
-                return (line.beginsWith("ספר ") || line.contains("ספר בראשית")) && line.wordCount() <= 4;}
+                return (line.beginsWith("ספר ") || line.contains("ספר בראשית") || line.contains("ספר שמואל א")
+                        || line.contains("ספר נחמיה")) && line.wordCount() <= 4;}
         });
         registerMatcher(new LineMatcher() {
             @Override
@@ -101,9 +102,10 @@ public class TanachParser extends Parser {
                 packagesJsonObject().add(URI, getPerekUri());
                 packagesJsonObject().add(RDFS_LABEL, line.getLine().replace('-', ' '));
                 packagesJsonObject().add(JBO_POSITION, perekNum);
-                packagesJsonObject().add(JBO_SEFER, "tanach-"+bookNum);
+                packagesJsonObject().add(JBO_SEFER, "jbr:tanach-"+bookNum);
                 packagesJsonObjectFlush();
                 break;
+
             case BEGIN_PASUK:
                 jsonObjectFlush();
                 positionInParasha++;
