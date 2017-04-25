@@ -71,14 +71,12 @@ public class SeferHakuzariParser extends Parser {
                 if (maamarNum == 1){
                     // adding sefer object in packages json
                     packagesJsonObject().add(URI, "jbr:seferhakuzari");
-                    packagesJsonObject().add(JBO_TEXT, "ספר הכוזרי");
                     packagesJsonObject().add(JBO_SEFER, "jbr:seferhakuzari");
                     packagesJsonObject().add(RDFS_LABEL, "הכוזרי");
                     packagesJsonObjectFlush();
                 }
                 // adding maamar object in packages json
                 packagesJsonObject().add(URI, "jbr:seferhakuzari-" + maamarNum);
-                packagesJsonObject().add(JBO_TEXT, line.getLine());
                 packagesJsonObject().add(JBO_SEFER, "jbr:seferhakuzari");
                 packagesJsonObject().add(RDFS_LABEL, "הכוזרי " + short_maamar);
                 packagesJsonObject().add(JBO_CHELEK, "jbr:seferhakuzari-" + maamarNum);
@@ -97,6 +95,9 @@ public class SeferHakuzariParser extends Parser {
                 break;
             case MULTIPLE_LINE_SEIF:
                 begining_of_long_seif = begining_of_long_seif + " " + line.getLine();
+                if ( (maamarNum==5) && (seifNum==20) && (stripVowels(line.getLine())).endsWith("והחסרון והדומה לזה .")){
+                    CreateObject();
+                }
                 break;
             case NO_MATCH:
                 break;

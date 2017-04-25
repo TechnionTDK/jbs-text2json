@@ -143,13 +143,13 @@ public class MidrashRabaParser extends Parser {
                 seif = line.extract(SeifLetter+" ", " ");
                 Long_Seif = true;
                 seifPosition = getSeifNum(SeifLetter);
-                //getSeifPositionInParasha++;
+                EndOfFile(line);
                 break;
             case MULTIPLE_LINE_SAIF:
                 seif = seif + " " + line.getLine();
+                EndOfFile(line);
                 break;
             case NO_MATCH:
-                //jsonObject().append(JBO_TEXT, line.getLine());
                 break;
         }
 
@@ -195,5 +195,61 @@ public class MidrashRabaParser extends Parser {
     @Override
     protected String getUri() {
         return "jbr:tanach-midrashraba-"+ BookNum + "-" + parashaNum + "-" + seifPosition;
+    }
+
+    protected void EndOfFile(Line line) throws IOException{
+        switch (BookNum){
+            case 1:
+                if ((parashaNum==100) && (seifPosition==13) && (stripVowels(line.getLine()).endsWith("ימצא בה תודה וקול זמרה."))){
+                    CreateObject();
+                }
+                break;
+            case 2:
+                if ((parashaNum==52) && (seifPosition==5) && (stripVowels(line.getLine()).endsWith("ימצא בה תודה וקול זמרה."))){
+                    CreateObject();
+                }
+                break;
+            case 3:
+                if ((parashaNum==37) && (seifPosition==4) && (stripVowels(line.getLine()).endsWith("כי לעולם חסדו."))){
+                    CreateObject();
+                }
+                break;
+            case 4:
+                if ((parashaNum==23) && (seifPosition==14) && (stripVowels(line.getLine()).endsWith("ששון ושמחה ישיגו ונסו יגון ואנחה."))){
+                    CreateObject();
+                }
+                break;
+            case 5:
+                if ((parashaNum==11) && (seifPosition==9) && (stripVowels(line.getLine()).endsWith("ברוך ה' לעולם אמן ואמן."))){
+                    CreateObject();
+                }
+                break;
+            case 30:
+                if ((parashaNum==8) && (seifPosition==1) && (stripVowels(line.getLine()).endsWith("יהי רצון במהרה בימינו אמן."))){
+                    CreateObject();
+                }
+                break;
+            case 31:
+                if ((parashaNum==8) && (seifPosition==1) && (stripVowels(line.getLine()).endsWith("מצאתי דוד עבדי."))){
+                    CreateObject();
+                }
+                break;
+            case 32:
+                if ((parashaNum==5) && (seifPosition==22) && (stripVowels(line.getLine()).endsWith("דכעיס סופיה לאיתרציא"))){
+                    CreateObject();
+                }
+                break;
+            case 33:
+                if ((parashaNum==12) && (seifPosition==1) && (stripVowels(line.getLine()).endsWith("שאני בת רב חסדא דקים ליה בחסדה בגוה [אם טוב ואם רע]."))){
+                    CreateObject();
+                }
+                break;
+            case 34:
+                if ((parashaNum==10) && (seifPosition==14) && (stripVowels(line.getLine()).endsWith("נשלם מדרש אסתר"))){
+                    CreateObject();
+                }
+                break;
+
+        }
     }
 }
