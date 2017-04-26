@@ -30,11 +30,7 @@ Install Gson library form this [link](https://github.com/google/gson/releases)
 1. Git clone jbs-raw repository to a directory.
 
         git clone git@github.com:TechnionTDK/jbs-raw.git
-
-1. Go into jbs-text2json/ and build the project.
-
-        ./text2json.sh -b
-   This command will call `mvn install`.
+        
       
 # Using the tool - creating a new parser
 
