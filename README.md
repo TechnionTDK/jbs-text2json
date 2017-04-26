@@ -142,7 +142,9 @@ each test has two parts
         
 #### going over the Jsons
 
-here our prefered method was to create a new JsonReader with the Jasons the parser made and going over every Json Object to see if the values are correct
+here we had two ways to test:
+
+1. the firsd method was to create a new JsonReader with the Jasons the parser made and going over every Json Object to see if the values are correct
 
 for example:
 
@@ -163,9 +165,37 @@ and then:
                 testText(jsonReader);
                 jsonReader.endObject();
              }
-             
+ 
+
+ 2. the second methos was to put all the objects in an array and randomly test objects
+ 
+ for example:
+ 
+        static SubjectsJson json[] = new SubjectsJson[NUM_OF_LAST_MASECHET + 1];
+
+filling the array:
+
+        for (int masechetNum = NUM_OF_FIRST_MASECHET; masechetNum <= NUM_OF_LAST_MASECHET; masechetNum++) {
+            TalmudBavliParser parser = new TalmudBavliParser();
+            BufferedReader reader = getText("talmudbavli/talmudbavli-" + masechetNum + ".txt");
+            parser.parse(reader, "../../jbs-text/talmudbavli/talmudbavli-" + masechetNum + ".json");
+            json[masechetNum] = getJson("../../jbs-text/talmudbavli/talmudbavli-" + masechetNum + ".json");
+        }
+        
+        
 of course feel free to test your Jsons any way you feel best :)
 
+
+# confic file
+the configParsers.json is a file that contains the names of the input and output folders for every parser, in this way a new developer doesnt need to change the paths (to the local paths) to use the already written parsers.
+
+the file is under jbs-text2json>src>main>resourcer>configParsers.json
+
+every parser has a Json object, for example:
+
+        "parser":"text2json.parsers.MishneTorahParser",
+                "input": "mishnetorah",
+                "output": "mishnetorah"}
 
 # Tips For Champions
 
@@ -178,6 +208,10 @@ the tool is easy to use and makes adding new parser relatively easy, however we 
 1. since it isn't always possible to verify the correctnes of every single entry we suggest you add tests specifically for the first and last json object in the file (or at least insome of the files)
 
 1. we found it's helpful to see the json using Json viewing tools such as [this](http://jsonviewer.stack.hu/)
+
+1. in your tests it is very helpful to check the number of objects you are expecting, this will catch cases where the matcher misses lines
+
+1. if a line is matched to more then one lineMatcher the behavior is undefined
 
 1. use the Line class, it has most of what you need to analyze the text
 
