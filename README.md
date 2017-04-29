@@ -23,11 +23,11 @@ Install Gson library form this [link](https://github.com/google/gson/releases)
 
         git clone git@github.com:TechnionTDK/jbs-text2json.git
 
-1. Git clone jbs-text repository to a directory.
+1. Git clone jbs-text repository to a directory from jbs-text2json.
 
         git clone git@github.com:TechnionTDK/jbs-text.git
 
-1. Git clone jbs-raw repository to a directory.
+1. Git clone jbs-raw repository to a directory from jbs-text2json.
 
         git clone git@github.com:TechnionTDK/jbs-raw.git
         
@@ -62,48 +62,94 @@ when syncing new data to any Git folder
 
 ## writing a new parser and tests
 
+in this readme all the eaxmples are fro the raw text:
+            פרשת בראשית  
+            בראשית פרק-א
+            {א}  בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָרֶץ:
+            {ב}  וְהָאָרֶץ הָיְתָה תֹהוּ וָבֹהוּ וְחשֶׁךְ עַל פְּנֵי תְהוֹם וְרוּחַ אֱלֹהִים מְרַחֶפֶת עַל פְּנֵי הַמָּיִם:
+            
 ### writing the parser
 
 now you need to fill in three functions:
 
         protected abstract void registerMatchers();
         
-this fuction contains all the "rules" the parse will work with, every line you want the parser to notice hase to have a matching lineMatcher in "register matchers
+this fuction contains all the "rules" the parse will work with, every line you want the parser to notice has to have a matching lineMatcher in "register matchers
 
 for example:
       
       registerMatcher(new LineMatcher() {
             @Override
-            public String type() {
-                return BEGIN_SEFER;
-            }
-
+            public String type() { 
+                    return BEGIN_PARASHA;
+                }
             @Override
             public boolean match(Line line) {
-                return line.contains("מדרש רבה");
-            }
-
-the "BEGIN_SEFER" is defined in the file jbsOntology (also under text2json), feel free to add your ontologys
+                return line.beginsWith("פרשת") && line.wordCount() <= 5;
+                }
+        });
+        
+        registerMatcher(new LineMatcher() {
+            @Override
+            public String type() { 
+                 return BEGIN_PEREK;
+                 }
+            @Override
+            public boolean match(Line line) {
+                return line.contains(" פרק-") && line.wordCount() <= 4;
+                }
+        });
+        
+        **for this raw text there is a thirs matcher for BEGIN_PASUK, you can fill it in yourself
+the "BEGIN_PARASHA" is defined in the file Parser (also under text2json) and is a simple constant, feel free to add your constants
     
         protected abstract void onLineMatch(String type, Line line) throws IOException;
   
-onLineMatch is the function the program will get to if one of the LineMatchers returns a true value (which means the parser detected an interesting line). the function should contain a switch case for every relevant ontology (like BEGIN_SEFER fron the example) and the function is where you build your Json (using functionaleties of the class "Line", that is also defined in text2json, and Gson capabilities
+onLineMatch is the function the program will get to if one of the LineMatchers returns a true value (which means the parser detected an interesting line). the function should contain a switch case for every relevant constant (like BEGIN_SEFER from the example) and the function is where you build your Json (using functionaleties of the class "Line", that is also defined in text2json, and Gson capabilities
 
 for example:
 
-      jsonObjectFlush();
-      jsonObject().add(URI, getUri());
-      jsonObject().add(JBO_TEXT, stripVowels(seif));
-      
+      protected void onLineMatch(String type, Line line) throws IOException {
+        switch (type){
+            case BEGIN_PARASHA: // we assume bookNum is initialized
+                jsonObjectFlush();
+                positionInParasha = 0;
+                parashaNum++;
+                // adding parasha triples in packages json
+                packagesJsonObject().add(URI, getParashaUri());
+                packagesJsonObject().add(RDFS_LABEL, line.getLine());
+                packagesJsonObject().add(JBO_POSITION, getFixedParashaPosition());
+                packagesJsonObjectFlush();
+                break;
+
+            case BEGIN_PEREK:
+                jsonObjectFlush();
+                perekNum++;
+                positionInPerek = 0;
+                pasukNum = 0;
+                perekTitle = line.extract("פרק-", " ");
+
+                // adding perek triples in packages json
+                packagesJsonObject().add(URI, getPerekUri());
+                packagesJsonObject().add(RDFS_LABEL, line.getLine().replace('-', ' '));
+                packagesJsonObject().add(JBO_POSITION, perekNum);
+                packagesJsonObject().add(JBO_SEFER, "jbr:tanach-"+bookNum);
+                packagesJsonObjectFlush();
+                break;
+
 more examples are in the already written parsers like "tanachParser" and "mishnaParser"
       
       protected abstract String getUri();
 
 this function usualy returns a String containg the relevant uri for the parser
 
+for example:
+     
+     protected String getUri() {return "jbr:tanach-" + bookNum + "-" + perekNum + "-" + pasukNum;}
+
 ### writing the tests
 
-for this part we use JUnit,  we used intelliJ and found [this](https://www.jetbrains.com/help/idea/2017.1/configuring-testing-libraries.html)guide helful
+for this part we use JUnit,  we used intelliJ and found [this](https://www.jetbrains.com/help/idea/2017.1/configuring-testing-libraries.html) guide helful
 
 in your workspace the tests go under jbs-jext2json>src>test>java>text2json 
 
@@ -182,7 +228,7 @@ filling the array:
 of course feel free to test your Jsons any way you feel best :)
 
 
-# confic file
+# config file
 the configParsers.json is a file that contains the names of the input and output folders for every parser, in this way a new developer doesnt need to change the paths (to the local paths) to use the already written parsers.
 
 the file is under jbs-text2json>src>main>resourcer>configParsers.json
@@ -212,3 +258,5 @@ the tool is easy to use and makes adding new parser relatively easy, however we 
 1. use the Line class, it has most of what you need to analyze the text
 
 1. notice that "registerMatchers" runs fully before "OnLineMatch" so matchers can't rely on changes made by the match part of the "OnLineMatch" function
+
+1. print unmatched lines, this will help you find bugs
