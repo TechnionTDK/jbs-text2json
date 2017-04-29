@@ -4,12 +4,9 @@ import com.google.gson.stream.JsonReader;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.MidrashRabaParser;
-import text2json.parsers.MishneTorahParser;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-
 import static org.junit.Assert.*;
 import static text2json.JbsOntology.*;
 import static text2json.TestUtils.getJson;
