@@ -217,11 +217,11 @@ and then:
 
 filling the array:
 
-        for (int masechetNum = NUM_OF_FIRST_MASECHET; masechetNum <= NUM_OF_LAST_MASECHET; masechetNum++) {
-            TalmudBavliParser parser = new TalmudBavliParser();
-            BufferedReader reader = getText("talmudbavli/talmudbavli-" + masechetNum + ".txt");
-            parser.parse(reader, "../../jbs-text/talmudbavli/talmudbavli-" + masechetNum + ".json");
-            json[masechetNum] = getJson("../../jbs-text/talmudbavli/talmudbavli-" + masechetNum + ".json");
+        for (int bookNum = NUM_OF_FIRST_BOOK; bookNum <= NUM_OF_LAST_BOOK; bookNum++) {
+            TanachParser parser = new TanachParser();
+            BufferedReader reader = getText("/tanach/tanach-" + bookNum + ".txt");
+            parser.parse(reader, "../../jbs-text/tanach/tanach-" + bookNum + ".json");
+            json[bookNum] = getJson("../../jbs-text/tanach/tanach-" + bookNum + ".json");
         }
         
         
@@ -235,9 +235,9 @@ the file is under jbs-text2json>src>main>resourcer>configParsers.json
 
 every parser has a Json object, for example:
 
-        "parser":"text2json.parsers.MishneTorahParser",
-                "input": "mishnetorah",
-                "output": "mishnetorah"}
+        "parser":"text2json.parsers.TanachParser",
+                "input": "tanach",
+                "output": "tanach"}
 
 # Tips For Champions
 
