@@ -11,11 +11,7 @@ This tool was devleoped as part of the JBS (Jewish Book Shelf) project in the [T
 # getting started
 
 ## Prerequisites
-Install [Maven](https://maven.apache.org/) on your machine.
-
-    apt-get install maven
-
-Install Gson library form this [link](https://github.com/google/gson/releases)
+we used intellij (by JetBrains) and suggest you do the same. it has built in Maven and Gson that we need.
 
 ## Installation
 
