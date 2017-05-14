@@ -225,15 +225,17 @@ of course feel free to test your Jsons any way you feel best :)
 
 
 # config file
-the configParsers.json is a file that contains the names of the input and output folders for every parser, in this way a new developer doesnt need to change the paths (to the local paths) to use the already written parsers.
+Assuming that you have a tested parser, next step is to deploy the results into jbs-text. To do that, you have to update the file **configParsers.json** with basic details about your new parser. You have to provide the fully qualified name of the parser, as well as the input and output folders in jbs-raw and jbs-text, respectively.
 
-the file is under jbs-text2json>src>main>resourcer>configParsers.json
+The file is under jbs-text2json>src>main>resourcer>configParsers.json. An example entry:
 
-every parser has a Json object, for example:
+```
+{"parser":"text2json.parsers.TanachParser",
+    "input": "tanach",
+    "output": "tanach"}
+```
 
-        "parser":"text2json.parsers.TanachParser",
-                "input": "tanach",
-                "output": "tanach"}
+After the update, execute the **main** method within class **Text2Json**. The method executes all parsers based on the config file, and produces outputs to jbs-text. Eventually you have to push changes in jbs-text.
 
 # Tips For Champions
 
