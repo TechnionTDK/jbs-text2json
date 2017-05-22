@@ -63,7 +63,8 @@ public class MidrashRabaParser extends Parser {
 
             @Override
             public boolean match(Line line) {
-                return (line.beginsWith("פרשה") && line.wordCount() <= 2) || (line.getLine().equals("פתיחתא דחכימי"));
+                return (line.beginsWith("פרשה") && line.wordCount() <= 2) || (line.getLine().equals("פתיחתא דחכימי"))
+                        || (line.getLine().equals("פתיחתא דרות רבה")) || (line.getLine().equals("פתיחתא דאסתר רבא"));
             }
         });
 
@@ -114,14 +115,16 @@ public class MidrashRabaParser extends Parser {
                 sederNum++;
                 break;
             case BEGIN_PARASHA:
-                if ((parashaNum!=0 && seif!=null) || (ParashaName == "פתיחתא דחכימי" && seif!=null)){
+                if ((parashaNum!=0 && seif!=null) || (ParashaName == "פתיחתא דחכימי" && seif!=null) ||
+                        (ParashaName == "פתיחתא דרות רבה" && seif!=null) || (ParashaName == "פתיחתא דאסתר רבא" && seif!=null)){
                     CreateObject();
                     seif = null;
                     Long_Seif = false;
                 }
                 ParashaName = line.extract("פרשה ", " ");
                 parashaNum++;
-                if (line.getLine().contains("פתיחתא דחכימי")){
+                if ((line.getLine().contains("פתיחתא דחכימי")) || (line.getLine().contains("פתיחתא דרות רבה")) ||
+                        (line.getLine().contains("פתיחתא דאסתר רבא"))){
                     parashaNum = 0;
                     ParashaName = "פתיחתא דחכימי";
                 }
@@ -235,7 +238,7 @@ public class MidrashRabaParser extends Parser {
                 }
                 break;
             case 32:
-                if ((parashaNum==5) && (seifPosition==22) && (stripVowels(line.getLine()).endsWith("דכעיס סופיה לאיתרציא"))){
+                if ((parashaNum==5) && (seifPosition==22) && (stripVowels(line.getLine()).endsWith("דכעיס סופיה לאיתרציא."))){
                     CreateObject();
                 }
                 break;
