@@ -9,7 +9,7 @@ import static text2json.JbsUtils.*;
 /**
  * Created by USER on 02-Mar-17.
  */
-public class ShulhanAruchParser extends Parser {
+public class ShulchanAruchParser extends Parser {
     protected static final String BEGIN_CHELEK = "begin_sefer";  //in parser
     protected static final String BEGIN_HALACHOT = "begin_halacha";
     protected static final String BEGIN_SIMAN = "begin_siman";
@@ -28,7 +28,7 @@ public class ShulhanAruchParser extends Parser {
     private String saifText;
     private int positionInChelek = 0;
 
-    public ShulhanAruchParser() { createPackagesJson(); }
+    public ShulchanAruchParser() { createPackagesJson(); }
 
     @Override
     protected void registerMatchers() {

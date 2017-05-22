@@ -2,7 +2,7 @@ package text2json;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import text2json.parsers.ShulhanAruchParser;
+import text2json.parsers.ShulchanAruchParser;
 import static text2json.JbsOntology.*;
 import static text2json.TestUtils.*;
 import static org.junit.Assert.*;
@@ -23,7 +23,7 @@ public class ShulchanAruchParserTest {
     public static void setup() throws Exception {
         for (int seferNum = 1; seferNum <= NUM_OF_SFARIM; seferNum++) {
             System.out.println("Creating json for sefer number " + seferNum);
-            ShulhanAruchParser parser = new ShulhanAruchParser();
+            ShulchanAruchParser parser = new ShulchanAruchParser();
             BufferedReader reader = getText("/shulchanaruch/shulchanaruch-" + seferNum + ".txt");
             parser.parse(reader, "../../jbs-text/shulchanaruch/shulchanaruch-" + seferNum + ".json");
             json[seferNum] = getJson("../../jbs-text/shulchanaruch/shulchanaruch-" + seferNum + ".json");
