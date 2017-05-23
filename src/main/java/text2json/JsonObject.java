@@ -11,10 +11,6 @@ import java.util.*;
  * Created by USER on 24-Dec-16.
  */
 public class JsonObject {
-    private static final String OPEN_ARRAY = "open_new_array";
-    private static final String CLOSE_ARRAY = "close_current_array";
-    private static final String OPEN_OBJECT = "open_new_object";
-    private static final String CLOSE_OBJECT = "close_current_object";
 
     private List<Tuple> tuples = new ArrayList<Tuple>();
     private Map<String, List<String>> arrays = new HashMap<>();
@@ -44,9 +40,6 @@ public class JsonObject {
                 tuple.appendToValue(added_value);
                 return;
             }
-            if(tuplekey == OPEN_ARRAY || tuplekey == CLOSE_ARRAY || tuplekey == OPEN_OBJECT || tuplekey == CLOSE_OBJECT){
-                break;
-            }
         }
         //if here, no such key in current object. create new one.
         tuples.add(new Tuple(key, added_value));
@@ -65,22 +58,22 @@ public class JsonObject {
         jsonWriter.beginObject();
         writeArrays(jsonWriter);
         for(Tuple tuple : tuples){
-            if(tuple.isOpenArray()){
-                writeOpenArray(jsonWriter, tuple);
-            }
-            else if(tuple.isCloseArray()){
-                writeCloseArray(jsonWriter);
-            }
-            else if(tuple.isOpenObject()){
-                writeOpenObject(jsonWriter, tuple);
-            }
-            else if(tuple.isCloseObject()){
-                writeCloseObject(jsonWriter);
-            }
-            else {
+//            if(tuple.isOpenArray()){
+//                writeOpenArray(jsonWriter, tuple);
+//            }
+//            else if(tuple.isCloseArray()){
+//                writeCloseArray(jsonWriter);
+//            }
+//            else if(tuple.isOpenObject()){
+//                writeOpenObject(jsonWriter, tuple);
+//            }
+//            else if(tuple.isCloseObject()){
+//                writeCloseObject(jsonWriter);
+//            }
+//            else {
                 jsonWriter.name(tuple.getKey());
                 jsonWriter.value(tuple.getValue());
-            }
+            //}
         }
         jsonWriter.endObject();
     }
@@ -94,58 +87,6 @@ public class JsonObject {
             writer.endArray();
         }
     }
-
-    private void writeOpenObject(JsonWriter jsonWriter, Tuple tuple) throws IOException {
-        if(tuple.getValue() != null){
-            jsonWriter.name(tuple.getValue());
-        }
-        jsonWriter.beginObject();
-    }
-    private void writeCloseObject(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.endObject();
-    }
-    private void writeOpenArray(JsonWriter jsonWriter, Tuple tuple) throws IOException {
-        if(tuple.getValue() != null) {
-            jsonWriter.name(tuple.getValue());
-        }
-        jsonWriter.beginArray();
-    }
-    private void writeCloseArray(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.endArray();
-    }
-
-//    /**
-//     * open inner object with key. i.e {super_key:{sub_key:value}}
-//     * @param objectKey
-//     */
-//    public void openObject(String objectKey){
-//        add(OPEN_OBJECT, objectKey);
-//    }
-    /**
-     * open inner object without key
-     */
-//    public void openObject(){
-//        add(OPEN_OBJECT, null);
-//    }
-//    public void closeObject(){
-//        add(CLOSE_OBJECT, null);
-//    }
-//    /**
-//     * open array with a key before it i.e {super_key:[{key1:val1), {key2:val 2}]}
-//     * @param arrayKey
-//     */
-//    public void openArray(String arrayKey) {
-//        add(OPEN_ARRAY, arrayKey);
-//    }
-//    /**
-//     * open array without a key
-//     */
-//    public void openArray() {
-//        add(OPEN_ARRAY, null);
-//    }
-//    public void closeArray() {
-//        add(CLOSE_ARRAY, null);
-//    }
 
     public void addToArray(String key, String value) {
         if (arrays.containsKey(key))
@@ -172,20 +113,20 @@ public class JsonObject {
         protected void setValue(String value){this.value = value;}
         protected void appendToValue(String added_value){this.value = this.value+ "\n" +added_value;}
 
-        public boolean isOpenArray(){
-            return getKey() == OPEN_ARRAY;
-        }
-
-        public boolean isCloseArray() {
-            return getKey() == CLOSE_ARRAY;
-        }
-
-        public boolean isOpenObject() {
-            return getKey() == OPEN_OBJECT;
-        }
-
-        public boolean isCloseObject() {
-            return getKey() == CLOSE_OBJECT;
-        }
+//        public boolean isOpenArray(){
+//            return getKey() == OPEN_ARRAY;
+//        }
+//
+//        public boolean isCloseArray() {
+//            return getKey() == CLOSE_ARRAY;
+//        }
+//
+//        public boolean isOpenObject() {
+//            return getKey() == OPEN_OBJECT;
+//        }
+//
+//        public boolean isCloseObject() {
+//            return getKey() == CLOSE_OBJECT;
+//        }
     }
 }
