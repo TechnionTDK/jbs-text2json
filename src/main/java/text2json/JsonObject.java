@@ -58,22 +58,8 @@ public class JsonObject {
         jsonWriter.beginObject();
         writeArrays(jsonWriter);
         for(Tuple tuple : tuples){
-//            if(tuple.isOpenArray()){
-//                writeOpenArray(jsonWriter, tuple);
-//            }
-//            else if(tuple.isCloseArray()){
-//                writeCloseArray(jsonWriter);
-//            }
-//            else if(tuple.isOpenObject()){
-//                writeOpenObject(jsonWriter, tuple);
-//            }
-//            else if(tuple.isCloseObject()){
-//                writeCloseObject(jsonWriter);
-//            }
-//            else {
-                jsonWriter.name(tuple.getKey());
-                jsonWriter.value(tuple.getValue());
-            //}
+            jsonWriter.name(tuple.getKey());
+            jsonWriter.value(tuple.getValue());
         }
         jsonWriter.endObject();
     }
@@ -110,23 +96,7 @@ public class JsonObject {
 
         public String getKey(){return this.key;}
         public String getValue(){return this.value;}
-        protected void setValue(String value){this.value = value;}
         protected void appendToValue(String added_value){this.value = this.value+ "\n" +added_value;}
 
-//        public boolean isOpenArray(){
-//            return getKey() == OPEN_ARRAY;
-//        }
-//
-//        public boolean isCloseArray() {
-//            return getKey() == CLOSE_ARRAY;
-//        }
-//
-//        public boolean isOpenObject() {
-//            return getKey() == OPEN_OBJECT;
-//        }
-//
-//        public boolean isCloseObject() {
-//            return getKey() == CLOSE_OBJECT;
-//        }
     }
 }
