@@ -24,4 +24,5 @@ public class JbsOntology {
     public static String JBO_POSITION_IN_SIMAN = "jbo:positionInSiman";
     public static String JBO_CHELEK = "jbo:within";//"jbo:chelek";
     public static String JBO_HALACHOT = "jbo:within";//"jbo:halachot";
+    public static String JBO_WITHIN = "jbo:within";
 }

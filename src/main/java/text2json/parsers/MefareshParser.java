@@ -186,17 +186,6 @@ public class MefareshParser extends Parser {
         }
         return -1;
     }
-
-    private void addTitlesArray(String bookTitle, String perekLetter, String pasukLetter) {
-        jsonObject().openArray("titles");
-        jsonObject().openObject();
-        jsonObject().add("title", bookTitle + " " + perekLetter + " " + pasukLetter);
-        jsonObject().closeObject();
-        jsonObject().openObject();
-        jsonObject().add("title", bookTitle + " פרק " + perekLetter + " פסוק " + pasukLetter);
-        jsonObject().closeObject();
-        jsonObject().closeArray();
-    }
         @Override
     protected String getUri() {
         return "jbr:tanach-" + mefaresh + "-" + bookNum + "-" + perekNum + "-" + pasukNum;

@@ -5,9 +5,7 @@ import com.google.gson.stream.JsonWriter;
 //import org.codehaus.groovy.runtime.ReverseListIterator;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 /**
  * Created by USER on 24-Dec-16.
@@ -18,7 +16,8 @@ public class JsonObject {
     private static final String OPEN_OBJECT = "open_new_object";
     private static final String CLOSE_OBJECT = "close_current_object";
 
-    List<Tuple> tuples = new ArrayList<Tuple>();
+    private List<Tuple> tuples = new ArrayList<Tuple>();
+    private Map<String, List<String>> arrays = new HashMap<>();
 
     public void add(String key, String value) {
         tuples.add(new Tuple(key, value));
@@ -64,6 +63,7 @@ public class JsonObject {
     public void writeObject(JsonWriter jsonWriter) throws IOException {
         if(tuples.isEmpty()) return;
         jsonWriter.beginObject();
+        writeArrays(jsonWriter);
         for(Tuple tuple : tuples){
             if(tuple.isOpenArray()){
                 writeOpenArray(jsonWriter, tuple);
@@ -85,6 +85,16 @@ public class JsonObject {
         jsonWriter.endObject();
     }
 
+    private void writeArrays(JsonWriter writer) throws IOException {
+        for (String key : arrays.keySet()) {
+            writer.name(key);
+            writer.beginArray();
+            for (String value : arrays.get(key))
+                writer.value(value);
+            writer.endArray();
+        }
+    }
+
     private void writeOpenObject(JsonWriter jsonWriter, Tuple tuple) throws IOException {
         if(tuple.getValue() != null){
             jsonWriter.name(tuple.getValue());
@@ -104,39 +114,48 @@ public class JsonObject {
         jsonWriter.endArray();
     }
 
-    /**
-     * open inner object with key. i.e {super_key:{sub_key:value}}
-     * @param objectKey
-     */
-    public void openObject(String objectKey){
-        add(OPEN_OBJECT, objectKey);
-    }
+//    /**
+//     * open inner object with key. i.e {super_key:{sub_key:value}}
+//     * @param objectKey
+//     */
+//    public void openObject(String objectKey){
+//        add(OPEN_OBJECT, objectKey);
+//    }
     /**
      * open inner object without key
      */
-    public void openObject(){
-        add(OPEN_OBJECT, null);
-    }
-    public void closeObject(){
-        add(CLOSE_OBJECT, null);
-    }
-    /**
-     * open array with a key before it i.e {super_key:[{key1:val1), {key2:val 2}]}
-     * @param arrayKey
-     */
-    public void openArray(String arrayKey) {
-        add(OPEN_ARRAY, arrayKey);
-    }
-    /**
-     * open array without a key
-     */
-    public void openArray() {
-        add(OPEN_ARRAY, null);
-    }
-    public void closeArray() {
-        add(CLOSE_ARRAY, null);
-    }
+//    public void openObject(){
+//        add(OPEN_OBJECT, null);
+//    }
+//    public void closeObject(){
+//        add(CLOSE_OBJECT, null);
+//    }
+//    /**
+//     * open array with a key before it i.e {super_key:[{key1:val1), {key2:val 2}]}
+//     * @param arrayKey
+//     */
+//    public void openArray(String arrayKey) {
+//        add(OPEN_ARRAY, arrayKey);
+//    }
+//    /**
+//     * open array without a key
+//     */
+//    public void openArray() {
+//        add(OPEN_ARRAY, null);
+//    }
+//    public void closeArray() {
+//        add(CLOSE_ARRAY, null);
+//    }
 
+    public void addToArray(String key, String value) {
+        if (arrays.containsKey(key))
+            arrays.get(key).add(value);
+        else {
+            List<String> list = new ArrayList<String>();
+            list.add(value);
+            arrays.put(key, list);
+        }
+    }
 
 
     private class Tuple {
