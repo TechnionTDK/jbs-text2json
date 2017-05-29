@@ -222,7 +222,6 @@ public class MishnaParser extends Parser {
                 jsonObject().addToArray(JBO_WITHIN, "jbr:mishna-" + sederNum);
                 jsonObject().addToArray(JBO_WITHIN, "jbr:mishna-" + sederNum + "-" + masechetNum);
                 jsonObject().addToArray(JBO_WITHIN, "jbr:mishna-" + sederNum + "-" + masechetNum + "-" + perekNum);
-                jsonObject().add(JBO_INTERPRETS, "jbr:mishna-" + sederNum + "-" + masechetNum + "-" + perekNum + "-" + mishnaNum);
                 jsonObjectFlush();
                 pasuk = null;
                 break;
