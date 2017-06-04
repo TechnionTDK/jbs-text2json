@@ -156,12 +156,11 @@ public class MefareshParser extends Parser {
                 jsonObject().add(JBO_TEXT, perush);
                 jsonObject().add(RDFS_LABEL, MefarshimHe[mefareshId] + " " + bookTitle + " " + perekLetter + " " + pasukLetter);
                 jsonObject().add(JBO_NAME, MefarshimHe[mefareshId]);
-                jsonObject().add(JBO_SEFER, "jbr:tanach-" + bookNum);
-                //addTitlesArray (bookTitle, perekLetter, perekLetter);
+                jsonObject().addToArray(JBO_WITHIN, "jbr:tanach-" + bookNum);
                 if (bookNum <= 5) {
-                    jsonObject().add(JBO_PARASHA, "jbr:parasha-" + parashaNum);
+                    jsonObject().addToArray(JBO_WITHIN, "jbr:parasha-" + parashaNum);
                 }
-                jsonObject().add(JBO_PEREK, "jbr:tanach-" + bookNum + "-" + perekNum);
+                jsonObject().addToArray(JBO_WITHIN, "jbr:tanach-" + bookNum + "-" + perekNum);
                 jsonObject().add(JBO_INTERPRETS, "jbr:tanach-" + bookNum + "-" + perekNum + "-" + pasukNum);
                 jsonObject().add(JBO_POSITION_IN_PEREK, Integer.toString(positionInPerek));
                 if (bookNum <=5) {

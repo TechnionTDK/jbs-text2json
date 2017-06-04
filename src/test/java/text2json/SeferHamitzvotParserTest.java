@@ -39,14 +39,14 @@ public class SeferHamitzvotParserTest {
         Map<String, String> o = json.getObject(0);
         assertEquals("jbr:seferhamitzvot-3-1", o.get(URI));
         assertEquals("ספר המצוות עשה מצוה א.", o.get(RDFS_LABEL));
-        assertEquals("jbr:seferhamitzvot", o.get(JBO_SEFER));
+        //assertEquals("jbr:seferhamitzvot", o.get(JBO_SEFER));
         assertTrue(o.get(JBO_TEXT).startsWith("היא הצווי אשר צונו בהאמנת"));
 
         // test last object
         o = json.getObject(612);
         assertEquals("jbr:seferhamitzvot-4-365", o.get(URI));
         assertEquals("ספר המצוות לא תעשה מצוה שסה:", o.get(RDFS_LABEL));
-        assertEquals("jbr:seferhamitzvot", o.get(JBO_SEFER));
+        //assertEquals("jbr:seferhamitzvot", o.get(JBO_SEFER));
         assertTrue(o.get(JBO_TEXT).startsWith("הזהיר המלך מהרבות ממון מיוחד לעצמו"));
     }
 }

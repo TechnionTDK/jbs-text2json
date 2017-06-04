@@ -62,8 +62,8 @@ public class TalmudBavliParserTest {
         //masechet 1 daf 2 amud 1
         object = json[1].getObject(0);
         assertEquals("jbr:bavli-1-2-1", object.get(URI));
-        assertEquals("bavli-1", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-1-1", object.get(JBO_PEREK));
+        //assertEquals("bavli-1", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-1-1", object.get(JBO_PEREK));
         assertEquals("מסכת ברכות ב א", object.get(RDFS_LABEL));
         assertEquals("1", object.get(JBO_POSITION));
         text = "מתני' מאימתי קורין את שמע בערבין. משעה שהכהנים נכנסים לאכול בתרומתן עד סוף האשמורה הראשונה דברי ר' אליעזר. וחכמים אומרים עד חצות. רבן גמליאל אומר עד שיעלה עמוד השחר. מעשה ובאו בניו מבית המשתה אמרו לו לא קרינו את שמע אמר להם אם לא עלה עמוד השחר חייבין אתם לקרות ולא זו בלבד אמרו אלא כל מה שאמרו חכמים עד חצות מצותן עד שיעלה עמוד השחר הקטר חלבים ואברים מצותן עד שיעלה עמוד השחר וכל הנאכלים ליום אחד מצותן עד שיעלה עמוד השחר א''כ למה אמרו חכמים עד חצות כדי להרחיק אדם מן העבירה: גמ' תנא היכא קאי דקתני מאימתי ותו מאי שנא דתני בערבית ברישא לתני דשחרית ברישא תנא אקרא קאי דכתיב {דברים ו-ז} בשכבך ובקומך והכי קתני זמן קריאת שמע דשכיבה אימת משעה שהכהנים נכנסין לאכול בתרומתן ואי בעית אימא יליף מברייתו של עולם דכתיב {בראשית א-ה} ויהי ערב ויהי בקר יום אחד אי הכי סיפא דקתני בשחר מברך שתים לפניה ואחת לאחריה ובערב מברך שתים לפניה ושתים לאחריה לתני דערבית ברישא. תנא פתח בערבית והדר תני בשחרית עד דקאי בשחרית פריש מילי דשחרית והדר פריש מילי דערבית: אמר מר משעה שהכהנים נכנסים לאכול בתרומתן. מכדי כהנים אימת קא אכלי תרומה משעת צאת הכוכבים לתני משעת צאת הכוכבים. מלתא אגב אורחיה קמשמע לן כהנים אימת קא אכלי בתרומה משעת צאת הכוכבים והא קמשמע לן דכפרה לא מעכבא כדתניא {ויקרא כב-ז} ובא השמש וטהר ביאת שמשו מעכבתו מלאכול בתרומה ואין כפרתו מעכבתו מלאכול בתרומה. וממאי דהאי ובא השמש ביאת השמש והאי וטהר טהר יומא";
@@ -71,8 +71,8 @@ public class TalmudBavliParserTest {
         //masechet 1 daf 2 amud 1 - perush rashi
         object = json[1].getObject(1);
         assertEquals("jbr:bavli-rashi-1-2-1", object.get(URI));
-        assertEquals("bavli-1", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-1-1", object.get(JBO_PEREK));
+        //assertEquals("bavli-1", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-1-1", object.get(JBO_PEREK));
         assertEquals("רש\"י ברכות ב א", object.get(RDFS_LABEL));
         assertEquals("1", object.get(JBO_POSITION));
         assertEquals("jbr:bavli-1-2-1", object.get(JBO_INTERPRETS));
@@ -81,8 +81,8 @@ public class TalmudBavliParserTest {
         //masechet 1 daf 2 amud 1 - perush tosafot
         object = json[1].getObject(2);
         assertEquals("jbr:bavli-tosafot-1-2-1", object.get(URI));
-        assertEquals("bavli-1", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-1-1", object.get(JBO_PEREK));
+        //assertEquals("bavli-1", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-1-1", object.get(JBO_PEREK));
         assertEquals("תוספות ברכות ב א", object.get(RDFS_LABEL));
         assertEquals("1", object.get(JBO_POSITION));
         assertEquals("jbr:bavli-1-2-1", object.get(JBO_INTERPRETS));
@@ -92,8 +92,8 @@ public class TalmudBavliParserTest {
         //masechet 1 daf 64 amud 1
         object = json[1].getObject(json[1].subjects.size()-3);
         assertEquals("jbr:bavli-1-64-1", object.get(URI));
-        assertEquals("bavli-1", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-1-9", object.get(JBO_PEREK));
+        //assertEquals("bavli-1", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-1-9", object.get(JBO_PEREK));
         assertEquals("מסכת ברכות סד א", object.get(RDFS_LABEL));
         assertEquals("125", object.get(JBO_POSITION));
         text = "שנאמר {דברי הימים א כו-ה} פעלתי השמיני וכתיב {דברי הימים א כו-ה} כי ברכו אלהים {דברי הימים א כו-ח} כל אלה [מבני] (ל) עובד אדום המה ובניהם ואחיהם (אנשי) [איש] חיל בכח לעבודה ששים ושנים לעובד אדום אמר ר' אבין הלוי כל הדוחק את השעה שעה דוחקתו וכל הנדחה מפני השעה שעה נדחת מפניו מדרבה ורב יוסף. דרב יוסף סיני ורבה עוקר הרים אצטריכא להו שעתא שלחו להתם סיני ועוקר הרים איזה מהם קודם שלחו להו סיני קודם שהכל צריכין למרי חטיא אף על פי כן לא קבל עליו ר' יוסף דאמרי ליה כלדאי מלכת תרתין שנין מלך רבה עשרין ותרתין שנין מלך רב יוסף תרתין שנין ופלגא כל הנך שני דמלך רבה אפילו אומנא לביתיה לא קרא: ואמר רבי אבין הלוי מאי דכתיב {תהילים כ-ב} יענך ה' ביום צרה ישגבך שם אלהי יעקב אלהי יעקב ולא אלהי אברהם ויצחק מכאן לבעל הקורה שיכנס בעביה של קורה: ואמר רבי אבין הלוי כל הנהנה מסעודה שתלמיד חכם שרוי בתוכה כאילו נהנה מזיו שכינה שנאמר {שמות יח-יב} ויבא אהרן וכל זקני ישראל לאכל לחם עם חותן משה לפני האלהים וכי לפני אלהים אכלו והלא לפני משה אכלו אלא לומר לך כל הנהנה מסעודה שתלמיד חכם שרוי בתוכה כאילו נהנה מזיו שכינה: ואמר רבי אבין הלוי הנפטר מחברו אל יאמר לו לך בשלום אלא לך לשלום שהרי יתרו שאמר לו למשה {שמות ד-יח} לך לשלום עלה והצליח דוד שאמר לו לאבשלום {שמואל ב טו-ט} לך בשלום הלך ונתלה: ואמר רבי אבין הלוי הנפטר מן המת אל יאמר לו לך לשלום אלא לך בשלום שנאמר {בראשית טו-טו} ואתה תבא אל אבותיך בשלום: אמר רבי לוי בר חייא היוצא מבית הכנסת ונכנס לבית המדרש ועוסק בתורה זוכה ומקבל פני שכינה שנאמר {תהילים פד-ח} ילכו מחיל אל חיל יראה אל אלהים בציון. אמר רבי חייא בר אשי אמר רב תלמידי חכמים אין להם מנוחה לא בעולם הזה ולא בעולם הבא שנאמר ילכו מחיל אל חיל יראה אל אלהים בציון: אמר רבי אלעזר אמר רבי חנינא תלמידי חכמים מרבים שלום בעולם שנאמר {ישעיה נד-יג} וכל בניך למודי ה' ורב שלום בניך אל תקרי בניך אלא בוניך {תהילים קיט-קסה} שלום רב לאוהבי תורתך ואין למו מכשול {תהילים קכב-ז} יהי שלום בחילך שלוה בארמנותיך {תהילים קכב-ח} למען אחי ורעי אדברה נא שלום בך {תהילים קכב-ט} למען בית ה' אלהינו אבקשה טוב לך {תהילים כט-יא} ה' עוז לעמו יתן ה' יברך את עמו בשלום:";
@@ -101,8 +101,8 @@ public class TalmudBavliParserTest {
         //masechet 1 daf 64 amud 1 - perush rashi
         object = json[1].getObject(json[1].subjects.size()-2);
         assertEquals("jbr:bavli-rashi-1-64-1", object.get(URI));
-        assertEquals("bavli-1", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-1-9", object.get(JBO_PEREK));
+        //assertEquals("bavli-1", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-1-9", object.get(JBO_PEREK));
         assertEquals("רש\"י ברכות סד א", object.get(RDFS_LABEL));
         assertEquals("125", object.get(JBO_POSITION));
         assertEquals("jbr:bavli-1-64-1", object.get(JBO_INTERPRETS));
@@ -111,8 +111,8 @@ public class TalmudBavliParserTest {
         //masechet 1 daf 64 amud 1 - perush tosafot
         object = json[1].getObject(json[1].subjects.size()-1);
         assertEquals("jbr:bavli-tosafot-1-64-1", object.get(URI));
-        assertEquals("bavli-1", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-1-9", object.get(JBO_PEREK));
+        //assertEquals("bavli-1", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-1-9", object.get(JBO_PEREK));
         assertEquals("תוספות ברכות סד א", object.get(RDFS_LABEL));
         assertEquals("125", object.get(JBO_POSITION));
         assertEquals("jbr:bavli-1-64-1", object.get(JBO_INTERPRETS));
@@ -122,8 +122,8 @@ public class TalmudBavliParserTest {
         //masechet 2 daf 157 amud 2
         object = json[2].getObject(json[2].subjects.size()-3);
         assertEquals("jbr:bavli-2-157-2", object.get(URI));
-        assertEquals("bavli-2", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-2-24", object.get(JBO_PEREK));
+        //assertEquals("bavli-2", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-2-24", object.get(JBO_PEREK));
         assertEquals("מסכת שבת קנז ב", object.get(RDFS_LABEL));
         assertEquals("312", object.get(JBO_POSITION));
         text = "וגיגית סדוקה מונחת על גבן ופקקו את המאור בטפיח וקשרו את המקידה בגמי לידע אם יש שם בגיגית פותח טפח אם לאו: ומדבריהם למדנו שפוקקין ומודדין וקושרין בשבת: עולא איקלע לבי ריש גלותא חזייה לרבה בר רב הונא דיתיב באוונא דמיא וקא משח ליה אמר ליה אימר דאמרי רבנן מדידה דמצוה דלאו מצוה מי אמור אמר ליה מתעסק בעלמא אנא:";
@@ -131,8 +131,8 @@ public class TalmudBavliParserTest {
         //masechet 2 daf 157 amud 2 - perush rashi
         object = json[2].getObject(json[2].subjects.size()-2);
         assertEquals("jbr:bavli-rashi-2-157-2", object.get(URI));
-        assertEquals("bavli-2", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-2-24", object.get(JBO_PEREK));
+        //assertEquals("bavli-2", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-2-24", object.get(JBO_PEREK));
         assertEquals("רש\"י שבת קנז ב", object.get(RDFS_LABEL));
         assertEquals("312", object.get(JBO_POSITION));
         assertEquals("jbr:bavli-2-157-2", object.get(JBO_INTERPRETS));
@@ -141,8 +141,8 @@ public class TalmudBavliParserTest {
         //masechet 2 daf 157 amud 2 - perush tosafot
         object = json[2].getObject(json[2].subjects.size()-1);
         assertEquals("jbr:bavli-tosafot-2-157-2", object.get(URI));
-        assertEquals("bavli-2", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-2-24", object.get(JBO_PEREK));
+        //assertEquals("bavli-2", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-2-24", object.get(JBO_PEREK));
         assertEquals("תוספות שבת קנז ב", object.get(RDFS_LABEL));
         assertEquals("312", object.get(JBO_POSITION));
         assertEquals("jbr:bavli-2-157-2", object.get(JBO_INTERPRETS));
@@ -152,8 +152,8 @@ public class TalmudBavliParserTest {
         //masechet 3 daf 2 amud 2
         object = json[3].getObject(3);
         assertEquals("jbr:bavli-3-2-2", object.get(URI));
-        assertEquals("bavli-3", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-3-1", object.get(JBO_PEREK));
+        //assertEquals("bavli-3", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-3-1", object.get(JBO_PEREK));
         assertEquals("מסכת עירובין ב ב", object.get(RDFS_LABEL));
         assertEquals("2", object.get(JBO_POSITION));
         text = "ההוא בארון כתיב אלא מהכא {שמות כה-ח} ועשו לי מקדש ושכנתי בתוכם בין לרבנן ובין לרבי יהודה לילפו מפתח שער החצר דכתיב {שמות כז-יח} אורך החצר מאה באמה ורחב חמשים בחמשים וקומה חמש אמות וכתיב {שמות כז-יד} וחמש עשרה אמה קלעים לכתף וכתיב {שמות לח-טו} ולכתף השנית מזה ומזה לשער החצר קלעים חמש עשרה אמה מה להלן חמש ברוחב עשרים אף כאן חמש ברוחב עשרים פתח שער החצר איקרי פתח סתמא לא איקרי ואיבעית אימא כי כתיב קלעים חמש עשרה אמה לכתף בגובהה הוא דכתיב גובהה והא כתיב וקומה חמש אמות ההוא משפת מזבח ולמעלה ורבי יהודה מפתחו של אולם גמר והא תנן והרחב מעשר אמות ימעט ולא פליג ר' יהודה אמר אביי פליג בברייתא דתניא והרחב מי' אמות ימעט ר' יהודה אומר אינו צריך למעט וליפלוג במתני' פליג בגובהה וה''ה לרחבה ואכתי ר' יהודה מפתחו של אולם גמר והתניא מבוי שהוא גבוה מכ' אמה ימעט ורבי יהודה מכשיר עד מ' ונ' אמה ותני בר קפרא עד מאה בשלמא לבר קפרא גוזמא אלא לרב יהודה מאי גוזמא בשלמא לרבי יהודה ארבעים גמר מפתחו של אולם אלא נ' מנא ליה א''ר חסדא הא מתניתא אטעיתיה לרב דתניא מבוי שהוא גבוה מכ' אמה יותר מפתחו של היכל ימעט הוא סבר מדרבנן מפתחו של היכל גמרי רבי יהודה מפתחו של אולם גמר ולא היא ר' יהודה מפתחא דמלכין גמר ורבנן אי מפתחו של היכל גמירי ליבעו דלתות כהיכל אלמה תנן הכשר מבוי ב''ש אומרים לחי וקורה וב''ה אומרים לחי או קורה דלתות היכל לצניעות בעלמא הוא דעבידן אלא מעתה לא תיהני ליה צורת הפתח דהא היכל צורת הפתח הויא לו אפילו הכי עשר אמות הוא דרויח אלמה תנן אם יש לו צורת הפתח אע''פ שרחב מעשר אמות אינו צריך למעט מידי הוא טעמא אלא לרב הא מתני ליה רב יהודה לחייא בר רב קמיה דרב אינו צריך למעט וא''ל אתנייה צריך למעט אלא מעתה";
@@ -161,8 +161,8 @@ public class TalmudBavliParserTest {
         //masechet 3 daf 2 amud 2 - perush rashi
         object = json[3].getObject(4);
         assertEquals("jbr:bavli-rashi-3-2-2", object.get(URI));
-        assertEquals("bavli-3", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-3-1", object.get(JBO_PEREK));
+        //assertEquals("bavli-3", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-3-1", object.get(JBO_PEREK));
         assertEquals("רש\"י עירובין ב ב", object.get(RDFS_LABEL));
         assertEquals("2", object.get(JBO_POSITION));
         assertEquals("jbr:bavli-3-2-2", object.get(JBO_INTERPRETS));
@@ -171,8 +171,8 @@ public class TalmudBavliParserTest {
         //masechet 3 daf 2 amud 2 - perush tosafot
         object = json[3].getObject(5);
         assertEquals("jbr:bavli-tosafot-3-2-2", object.get(URI));
-        assertEquals("bavli-3", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-3-1", object.get(JBO_PEREK));
+        //assertEquals("bavli-3", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-3-1", object.get(JBO_PEREK));
         assertEquals("תוספות עירובין ב ב", object.get(RDFS_LABEL));
         assertEquals("2", object.get(JBO_POSITION));
         assertEquals("jbr:bavli-3-2-2", object.get(JBO_INTERPRETS));
@@ -182,8 +182,8 @@ public class TalmudBavliParserTest {
         //masechet 4 daf 21 amud 1 2nd part - in perek 2
         object = json[4].getObject(117);
         assertEquals("jbr:bavli-4-21-1", object.get(URI));
-        assertEquals("bavli-4", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-4-2", object.get(JBO_PEREK));
+        //assertEquals("bavli-4", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-4-2", object.get(JBO_PEREK));
         assertEquals("פסחים כא א", object.get(RDFS_LABEL));
         assertEquals("39", object.get(JBO_POSITION));
         text = "מתני' כל שעה שמותר לאכול מאכיל לבהמה לחיה ולעופות ומוכר לנכרי ומותר בהנאתו עבר זמנו אסור בהנאתו ולא יסיק בו תנור וכירים ר' יהודה אומר אין ביעור חמץ אלא שריפה וחכמים אומרים אף מפרר וזורה לרוח או מטיל לים: גמ' כל שעה שמותר לאכול מאכיל הא כל שעה שאינו מותר לאכול אינו מאכיל לימא מתני' דלא כר' יהודה דאי ר' יהודה הא איכא חמש דאינו אוכל ומאכיל דתנן ר' מאיר אומר אוכלין כל חמש ושורפין בתחלת שש רבי יהודה אומר אוכלין כל ארבע ותולין כל חמש ושורפין בתחלת שש ואלא מאי ר' מאיר היא האי כל שעה שמותר לאכול מאכיל כל שעה שאוכל מאכיל מיבעי ליה אמר רבה בר עולא מתניתין רבן גמליאל היא דתנן רבן גמליאל אומר חולין נאכלין כל ארבע תרומה כל חמש ושורפין בתחלת שש והכי קאמר כל שעה שמותר לאכול כהן בתרומה ישראל מאכיל חולין לבהמה לחיה ולעופות למה לי למיתנא בהמה למה לי למיתנא חיה צריכא דאי תנא בהמה דאי משיירא חזי לה אבל חיה דאי משיירא קמצנעא לה אימא לא ואי תנא חיה משום דאי משיירא מיהת מצנעא אבל בהמה זימנין דמשיירא ולא מסיק אדעתיה וקאי עליה בבל יראה ובבל ימצא אימא לא צריכא עופות ל''ל איידי דתנא בהמה וחיה תנא נמי עופות: ומוכרו לנכרי: פשיטא לאפוקי מהאי תנא דתניא ב''ש אומרים לא ימכור אדם חמצו לנכרי אא''כ יודע בו שיכלה קודם פסח וב''ה אומרים כל שעה שמותר לאכול מותר למכור";
@@ -191,8 +191,8 @@ public class TalmudBavliParserTest {
         //masechet 4 daf 21 amud 1 2nd part - in perek 2 - perush rashi
         object = json[4].getObject(118);
         assertEquals("jbr:bavli-rashi-4-21-1", object.get(URI));
-        assertEquals("bavli-4", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-4-2", object.get(JBO_PEREK));
+        //assertEquals("bavli-4", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-4-2", object.get(JBO_PEREK));
         assertEquals("רש\"י פסחים כא א", object.get(RDFS_LABEL));
         assertEquals("39", object.get(JBO_POSITION));
         assertEquals("jbr:bavli-4-21-1", object.get(JBO_INTERPRETS));
@@ -201,8 +201,8 @@ public class TalmudBavliParserTest {
         //masechet 4 daf 21 amud 1 2nd part - in perek 2 - perush tosafot
         object = json[4].getObject(119);
         assertEquals("jbr:bavli-tosafot-4-21-1", object.get(URI));
-        assertEquals("bavli-4", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-4-2", object.get(JBO_PEREK));
+        //assertEquals("bavli-4", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-4-2", object.get(JBO_PEREK));
         assertEquals("תוספות פסחים כא א", object.get(RDFS_LABEL));
         assertEquals("39", object.get(JBO_POSITION));
         assertEquals("jbr:bavli-4-21-1", object.get(JBO_INTERPRETS));
@@ -212,8 +212,8 @@ public class TalmudBavliParserTest {
         //masechet 6 daf 87 amud 2
         object = json[6].getObject(json[6].subjects.size()-6);
         assertEquals("jbr:bavli-6-87-2", object.get(URI));
-        assertEquals("bavli-6", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-6-8", object.get(JBO_PEREK));
+        //assertEquals("bavli-6", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-6-8", object.get(JBO_PEREK));
         assertEquals("מסכת יומא פז ב", object.get(RDFS_LABEL));
         assertEquals("172", object.get(JBO_POSITION));
         text = "אתא ר' חייא הדר לרישא עייל בר קפרא הדר לרישא אתא ר''ש ברבי הדר לרישא אתא ר' חנינא (בר) חמא אמר כולי האי נהדר וניזיל לא הדר איקפיד ר' חנינא אזל רב לגביה תליסר מעלי יומי דכפורי ולא איפייס והיכי עביד הכי והאמר ר' יוסי בר חנינא כל המבקש מטו מחבירו אל יבקש ממנו יותר משלש פעמים רב שאני ור' חנינא היכי עביד הכי והאמר רבא כל המעביר על מדותיו מעבירין לו על כל פשעיו אלא ר' חנינא חלמא חזי ליה לרב דזקפוהו בדיקלא וגמירי דכל דזקפוהו בדיקלא רישא הוי אמר שמע מינה בעי למעבד רשותא ולא איפייס כי היכי דליזיל ולגמר אורייתא בבבל ת''ר מצות וידוי ערב יוה''כ עם חשכה אבל אמרו חכמים יתודה קודם שיאכל וישתה שמא תטרף דעתו בסעודה ואע''פ שהתודה קודם שאכל ושתה מתודה לאחר שיאכל וישתה שמא אירע דבר קלקלה בסעודה ואף על פי שהתודה ערבית יתודה שחרית שחרית יתודה במוסף במוסף יתודה במנחה במנחה יתודה בנעילה והיכן אומרו יחיד אחר תפלתו ושליח צבור אומרו באמצע מאי אמר אמר רב אתה יודע רזי עולם ושמואל אמר ממעמקי הלב ולוי אמר ובתורתך כתוב לאמר ר' יוחנן אמר רבון העולמים ר' יהודה אמר כי עונותינו רבו מלמנות וחטאתינו עצמו מספר רב המנונא אמר אלהי עד שלא נוצרתי איני כדאי עכשיו שנוצרתי כאילו לא נוצרתי עפר אני בחיי ק''ו במיתתי הרי אני לפניך ככלי מלא בושה וכלימה יהי רצון מלפניך שלא אחטא ומה שחטאתי מרוק ברחמיך אבל לא ע''י יסורין והיינו וידויא דרבא כולה שתא ודרב המנונא זוטא ביומא דכפורי אמר מר זוטרא לא אמרן אלא דלא אמר אבל אנחנו חטאנו אבל אמר אבל אנחנו חטאנו תו לא צריך דאמר בר המדודי הוה קאימנא קמיה דשמואל והוה יתיב וכי מטא שליחא דצבורא ואמר אבל אנחנו חטאנו קם מיקם אמר שמע מינה עיקר וידוי האי הוא תנן התם בשלשה פרקים בשנה כהנים נושאין את כפיהן ארבעה פעמים ביום בשחרית במוסף במנחה ובנעילת שערים ואלו הן שלשה פרקים בתעניות ובמעמדות וביום הכפורים מאי נעילת שערים רב אמר צלותא יתירתא ושמואל אמר מה אנו מה חיינו מיתיבי אור יוה''כ מתפלל שבע ומתודה בשחרית מתפלל שבע ומתודה במוסף מתפלל שבע ומתודה במנחה מתפלל שבע ומתודה בנעילה מתפלל שבע ומתודה תנאי היא דתניא יום הכפורים עם חשיכה מתפלל שבע ומתודה וחותם בוידוי דברי ר''מ וחכמים אומרים מתפלל שבע ואם רצה לחתום בוידוי חותם תיובתא דשמואל תיובתא עולא בר רב נחית קמיה דרבא פתח באתה בחרתנו וסיים במה אנו מה חיינו ושבחיה רב הונא בריה דרב נתן אמר ויחיד אומרה אחר תפלתו אמר רב תפלת נעילה פוטרת את של ערבית רב לטעמיה דאמר צלותא יתירא היא וכיון דצלי ליה תו לא צריך ומי אמר רב הכי והאמר רב הלכה כדברי האומר תפלת ערבית רשות לדברי האומר חובה קאמר מיתיבי אור יום הכפורים מתפלל שבע ומתודה שחרית שבע ומתודה מוסף שבע ומתודה בנעילה מתפלל שבע ומתודה ערבית מתפלל שבע מעין שמונה עשרה רבי חנינא בן גמליאל משום אבותיו מתפלל שמונה עשרה שלימות";
@@ -221,8 +221,8 @@ public class TalmudBavliParserTest {
         //masechet 6 daf 87 amud 2 - perush rashi
         object = json[6].getObject(json[6].subjects.size()-5);
         assertEquals("jbr:bavli-rashi-6-87-2", object.get(URI));
-        assertEquals("bavli-6", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-6-8", object.get(JBO_PEREK));
+        //assertEquals("bavli-6", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-6-8", object.get(JBO_PEREK));
         assertEquals("רש\"י יומא פז ב", object.get(RDFS_LABEL));
         assertEquals("172", object.get(JBO_POSITION));
         assertEquals("jbr:bavli-6-87-2", object.get(JBO_INTERPRETS));
@@ -232,8 +232,8 @@ public class TalmudBavliParserTest {
         //masechet 6 daf 87 amud 2 - perush tosafot
         object = json[6].getObject(json[6].subjects.size()-4);
         assertEquals("jbr:bavli-tosafot-6-87-2", object.get(URI));
-        assertEquals("bavli-6", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-6-8", object.get(JBO_PEREK));
+        //assertEquals("bavli-6", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-6-8", object.get(JBO_PEREK));
         assertEquals("תוספות יומא פז ב", object.get(RDFS_LABEL));
         assertEquals("172", object.get(JBO_POSITION));
         assertEquals("jbr:bavli-6-87-2", object.get(JBO_INTERPRETS));
@@ -243,8 +243,8 @@ public class TalmudBavliParserTest {
         //masechet 9 daf 2 amud 1
         object = json[9].getObject(0);
         assertEquals("jbr:bavli-9-2-1", object.get(URI));
-        assertEquals("bavli-9", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-9-1", object.get(JBO_PEREK));
+        //assertEquals("bavli-9", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-9-1", object.get(JBO_PEREK));
         assertEquals("מסכת תענית ב א", object.get(RDFS_LABEL));
         assertEquals("1", object.get(JBO_POSITION));
         text = "מתני' מאימתי מזכירין גבורות גשמים רבי אליעזר אומר מיום טוב הראשון של חג ר' יהושע אומר מיום טוב האחרון של חג אמר לו ר' יהושע הואיל ואין הגשמים אלא סימן קללה בחג למה הוא מזכיר אמר לו ר' אליעזר אף אני לא אמרתי לשאול אלא להזכיר משיב הרוח ומוריד הגשם בעונתו אמר לו א''כ לעולם יהא מזכיר אין שואלין את הגשמים אלא סמוך לגשמים ר' יהודה אומר העובר לפני התיבה ביו''ט האחרון של חג האחרון מזכיר הראשון אינו מזכיר ביו''ט הראשון של פסח הראשון מזכיר האחרון אינו מזכיר: גמ' תנא היכא קאי דקתני מאימתי תנא התם קאי דקתני מזכירין גבורות גשמים בתחיית המתים ושואלין בברכת השנים והבדלה בחונן הדעת וקתני מאימתי מזכירין גבורות גשמים וליתני התם מ''ש דשבקיה עד הכא אלא תנא מראש השנה סליק דתנן ובחג נידונין על המים ואיידי דתנא ובחג נידונין על המים תנא מאימתי מזכירין גבורות גשמים וליתני מאימתי מזכירין על הגשמים מאי גבורות גשמים א''ר יוחנן מפני שיורדין בגבורה שנאמר {איוב ט-י} עושה גדולות עד אין חקר ונפלאות עד אין מספר וכתיב {איוב ה-י} הנותן מטר על פני ארץ ושולח מים על פני חוצות מאי משמע אמר רבה בר שילא אתיא חקר חקר מברייתו של עולם כתיב הכא עושה גדולות עד אין חקר וכתיב התם {ישעיה מ-כח} הלא ידעת אם לא שמעת אלהי עולם ה' בורא קצות הארץ לא ייעף ולא ייגע אין חקר לתבונתו וכתיב {תהילים סה-ז} מכין הרים בכחו נאזר בגבורה ומנא לן דבתפלה דתניא {דברים יא-יג} לאהבה את ה' אלהיכם ולעבדו בכל לבבכם איזו היא עבודה שהיא בלב הוי אומר זו תפלה וכתיב בתריה {דברים יא-יד} ונתתי מטר ארצכם בעתו יורה ומלקוש אמר ר' יוחנן ג' מפתחות בידו של הקב''ה שלא נמסרו ביד שליח ואלו הן מפתח של גשמים ומפתח של חיה ומפתח של תחיית המתים מפתח של גשמים דכתיב {דברים כח-יב} יפתח ה' לך את אוצרו הטוב את השמים לתת מטר ארצך בעתו מפתח של חיה מנין דכתיב {בראשית ל-כב} ויזכור אלהים את רחל וישמע";
@@ -252,8 +252,8 @@ public class TalmudBavliParserTest {
         //masechet 9 daf 2 amud 1 - perush rashi
         object = json[9].getObject(1);
         assertEquals("jbr:bavli-rashi-9-2-1", object.get(URI));
-        assertEquals("bavli-9", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-9-1", object.get(JBO_PEREK));
+        //assertEquals("bavli-9", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-9-1", object.get(JBO_PEREK));
         assertEquals("רש\"י תענית ב א", object.get(RDFS_LABEL));
         assertEquals("1", object.get(JBO_POSITION));
         assertEquals("jbr:bavli-9-2-1", object.get(JBO_INTERPRETS));
@@ -262,8 +262,8 @@ public class TalmudBavliParserTest {
         //masechet 9 daf 2 amud 1 - perush tosafot
         object = json[9].getObject(2);
         assertEquals("jbr:bavli-tosafot-9-2-1", object.get(URI));
-        assertEquals("bavli-9", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-9-1", object.get(JBO_PEREK));
+        //assertEquals("bavli-9", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-9-1", object.get(JBO_PEREK));
         assertEquals("תוספות תענית ב א", object.get(RDFS_LABEL));
         assertEquals("1", object.get(JBO_POSITION));
         assertEquals("jbr:bavli-9-2-1", object.get(JBO_INTERPRETS));
@@ -273,8 +273,8 @@ public class TalmudBavliParserTest {
         //masechet 12 daf 11 amud 2 - 1st part in perek 1
         object = json[12].getObject(57);
         assertEquals("jbr:bavli-12-11-2", object.get(URI));
-        assertEquals("bavli-12", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-12-1", object.get(JBO_PEREK));
+        //assertEquals("bavli-12", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-12-1", object.get(JBO_PEREK));
         assertEquals("מסכת חגיגה יא ב", object.get(RDFS_LABEL));
         assertEquals("20", object.get(JBO_POSITION));
         text = "לבתו מאנוסתו דלא כתיבא דאמר רבא אמר לי ר' יצחק בר אבדימי אתיא הנה הנה אתיא זימה זימה: הן הן גופי תורה: הני אין הנך לא אלא אימא הן והן גופי תורה:";
@@ -282,8 +282,8 @@ public class TalmudBavliParserTest {
         //masechet 12 daf 11 amud 2 - 1st part in perek 1 - perush rashi
         object = json[12].getObject(58);
         assertEquals("jbr:bavli-rashi-12-11-2", object.get(URI));
-        assertEquals("bavli-12", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-12-1", object.get(JBO_PEREK));
+        //assertEquals("bavli-12", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-12-1", object.get(JBO_PEREK));
         assertEquals("רש\"י חגיגה יא ב", object.get(RDFS_LABEL));
         assertEquals("20", object.get(JBO_POSITION));
         assertEquals("jbr:bavli-12-11-2", object.get(JBO_INTERPRETS));
@@ -292,8 +292,8 @@ public class TalmudBavliParserTest {
         //masechet 12 daf 11 amud 2 - 1st part in perek 1 - perush tosafot
         object = json[12].getObject(59);
         assertEquals("jbr:bavli-tosafot-12-11-2", object.get(URI));
-        assertEquals("bavli-12", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-12-1", object.get(JBO_PEREK));
+        //assertEquals("bavli-12", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-12-1", object.get(JBO_PEREK));
         assertEquals("תוספות חגיגה יא ב", object.get(RDFS_LABEL));
         assertEquals("20", object.get(JBO_POSITION));
         assertEquals("jbr:bavli-12-11-2", object.get(JBO_INTERPRETS));
@@ -303,8 +303,8 @@ public class TalmudBavliParserTest {
         //masechet 17 daf 2 amud 1
         object = json[17].getObject(0);
         assertEquals("jbr:bavli-17-2-1", object.get(URI));
-        assertEquals("bavli-17", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-17-1", object.get(JBO_PEREK));
+        //assertEquals("bavli-17", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-17-1", object.get(JBO_PEREK));
         assertEquals("מסכת סוטה ב א", object.get(RDFS_LABEL));
         assertEquals("1", object.get(JBO_POSITION));
         text = "מתני' המקנא לאשתו רבי אליעזר אומר מקנא לה על פי שנים ומשקה על פי עד אחד או ע''פ עצמו רבי יהושע אומר מקנא לה על פי שנים ומשקה ע''פ שנים כיצד מקנא לה אומר לה בפני שנים אל תדברי עם איש פלוני ודברה עמו עדיין היא מותרת לביתה ומותרת לאכול בתרומה נכנסה עמו לבית הסתר ושהתה עמו כדי טומאה אסורה לביתה ואסורה לאכול בתרומה ואם מת חולצת ולא מתייבמת: גמ' מכדי תנא מנזיר סליק מאי תנא דקא תנא סוטה כדרבי דתניא רבי אומר למה נסמכה פרשת נזיר לפרשת סוטה לומר לך שכל הרואה סוטה בקלקולה יזיר עצמו מן היין וליתני סוטה והדר ליתני נזיר איידי דתנא כתובות ותנא המדיר תנא נדרים ואיידי דתנא נדרים תנא נזיר דדמי לנדרים וקתני סוטה כדרבי: המקנא דיעבד אין לכתחילה לא קסבר תנא דידן אסור לקנאות א''ר שמואל בר רב יצחק כי הוה פתח ריש לקיש בסוטה אמר הכי אין מזווגין לו לאדם אשה אלא לפי מעשיו שנא' {תהילים קכה-ג} כי לא ינוח שבט הרשע על גורל הצדיקים אמר רבה בר בר חנה אמר ר' יוחנן וקשין לזווגן כקריעת ים סוף שנאמר {תהילים סח-ז} אלהים מושיב יחידים ביתה מוציא אסירים בכושרות איני והא אמר רב יהודה אמר רב ארבעים יום קודם יצירת הולד בת קול יוצאת ואומרת בת פלוני לפלוני בית פלוני לפלוני שדה פלוני לפלוני לא קשיא הא בזוג ראשון הא בזוג שני: ר''א אומר מקנא לה על פי שנים וכו': עד כאן לא פליגי אלא בקינוי וסתירה אבל בטומאה עד אחד מהימן ותנן נמי עד אחד אומר אני ראיתי שניטמאת לא היתה שותה מדאורייתא מנלן דמהימן עד אחד דתנו רבנן {במדבר ה-יג} ועד אין בה בשנים הכתוב מדבר או אינו אלא אפילו באחד ת''ל {דברים יט-טו} לא יקום עד אחד באיש";
@@ -312,8 +312,8 @@ public class TalmudBavliParserTest {
         //masechet 17 daf 2 amud 1 - perush rashi
         object = json[17].getObject(1);
         assertEquals("jbr:bavli-rashi-17-2-1", object.get(URI));
-        assertEquals("bavli-17", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-17-1", object.get(JBO_PEREK));
+        //assertEquals("bavli-17", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-17-1", object.get(JBO_PEREK));
         assertEquals("רש\"י סוטה ב א", object.get(RDFS_LABEL));
         assertEquals("1", object.get(JBO_POSITION));
         assertEquals("jbr:bavli-17-2-1", object.get(JBO_INTERPRETS));
@@ -322,8 +322,8 @@ public class TalmudBavliParserTest {
         //masechet 17 daf 2 amud 1 - perush tosafot
         object = json[17].getObject(2);
         assertEquals("jbr:bavli-tosafot-17-2-1", object.get(URI));
-        assertEquals("bavli-17", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-17-1", object.get(JBO_PEREK));
+        //assertEquals("bavli-17", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-17-1", object.get(JBO_PEREK));
         assertEquals("תוספות סוטה ב א", object.get(RDFS_LABEL));
         assertEquals("1", object.get(JBO_POSITION));
         assertEquals("jbr:bavli-17-2-1", object.get(JBO_INTERPRETS));
@@ -333,8 +333,8 @@ public class TalmudBavliParserTest {
         //masechet 36 daf 25 amud 2
         object = json[36].getObject(0);
         assertEquals("jbr:bavli-36-25-2", object.get(URI));
-        assertEquals("bavli-36", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-36-1", object.get(JBO_PEREK));
+        //assertEquals("bavli-36", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-36-1", object.get(JBO_PEREK));
         assertEquals("מסכת תמיד כה ב", object.get(RDFS_LABEL));
         assertEquals("1", object.get(JBO_POSITION));
         text = "מתני' בשלשה מקומות הכהנים שומרים בבית המקדש בית אבטינס בית הניצוץ בית המוקד בבית אבטינס ובבית הניצוץ היו עליות הרובים שומרים שם בית המוקד כיפה ובית הגדול היה מוקף רובדין של אבן זקני בית אב ישנים שם ומפתחות העזרה בידם פרחי כהונה איש בארץ לא היו ישנים בבגדי קדש אלא היו פושטין ומניחין אותן תחת ראשיהם ומתכסין בכסות עצמן אירע קרי לאחד מהן יוצא והולך לו";
@@ -342,8 +342,8 @@ public class TalmudBavliParserTest {
         //masechet 36 daf 25 amud 2 - perush rashi
         object = json[36].getObject(1);
         assertEquals("jbr:bavli-rashi-36-25-2", object.get(URI));
-        assertEquals("bavli-36", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-36-1", object.get(JBO_PEREK));
+        //assertEquals("bavli-36", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-36-1", object.get(JBO_PEREK));
         assertEquals("רש\"י תמיד כה ב", object.get(RDFS_LABEL));
         assertEquals("1", object.get(JBO_POSITION));
         assertEquals("jbr:bavli-36-25-2", object.get(JBO_INTERPRETS));
@@ -353,8 +353,8 @@ public class TalmudBavliParserTest {
         //masechet 37 daf 72 amud 2
         object = json[37].getObject(json[37].subjects.size()-4);
         assertEquals("jbr:bavli-37-72-2", object.get(URI));
-        assertEquals("bavli-37", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-37-10", object.get(JBO_PEREK));
+        //assertEquals("bavli-37", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-37-10", object.get(JBO_PEREK));
         assertEquals("מסכת נדה עב ב", object.get(RDFS_LABEL));
         assertEquals("142", object.get(JBO_POSITION));
         text = "ותניא המסיט את הראייה ב''ש אומרים תולין וב''ה מטהרין משכבות ומושבות שבין ראייה ראשונה לראייה שנייה ב''ש תולין וב''ה מטהרין וקתני רישא הרואה ראייה אחת של זוב ב''ש אומרים כשומרת יום כנגד יום אלמא שומרת יום כנגד יום לב''ש תולין לא תימא שומרת יום כנגד יום אלא אימא כבועל שומרת יום כנגד יום מאי שנא איהו דלא מטמא משכב ומושב ומאי שנא איהי דמטמיא ליה איהו דלא שכיחי ביה דמים לא גזור ביה רבנן איהי דשכיחי בה דמים גזור בה רבנן ומאי שנא משכב ומושב דמטמיא ליה ומאי שנא בועל דלא מטמיא ליה משכב ומושב דשכיח מטמיא ליה בועל דלא שכיח לא מטמיא תנן טבלה יום שלאחריו ושמשה הרי זו תרבות רעה מגען ובעילתן תלויין מאי לאו דברי הכל היא לא ב''ה היא דתניא אמר להם רבי יהודה לב''ה וכי לזו אתם קורין תרבות רעה והלא לא נתכוון זה אלא לבעול את הנדה נדה ס''ד אלא אימא לבעול את הזבה זבה ס''ד אלא אימא לבעול שומרת יום כנגד יום איתמר עשירי רבי יוחנן אמר עשירי כתשיעי מה תשיעי בעי שימור אף עשירי בעי שימור ר''ל אמר עשירי כאחד עשר מה אחד עשר לא בעי שימור אף עשירי לא בעי שימור איכא דמתני לה אהא אמר לו רבי אלעזר בן עזריה לר''ע אפי' אתה מרבה בשמן [בשמן] כל היום כולו איני שומע לך אלא חצי לוג שמן לתודה ורביעית יין לנזיר ואחד עשר יום שבין נדה לנדה הלכה למשה מסיני מאי הלכה ר' יוחנן אמר הלכה י''א ר''ל אומר הלכות אחד עשר ר' יוחנן אמר הלכה אחד עשר אחד עשר הוא דלא בעי שימור הא לאחריני עביד שימור ור''ל אמר הלכות אחד עשר לא אחד עשר בעי שימור ולא שימור לעשירי הוי הני הלכות נינהו הני קראי נינהו דתניא יכול הרואה ג' ימים בתחילת נדה רצופים תהא זבה ומה אני מקיים {ויקרא טו-יט} אשה כי תהיה זבה דם יהיה זובה ברואה יום אחד (אבל הרואה ג' ימים בתחילה תהיה זבה) תלמוד לומר";
@@ -362,8 +362,8 @@ public class TalmudBavliParserTest {
         //masechet 37 daf 72 amud 2 - perush rashi
         object = json[37].getObject(json[37].subjects.size()-3);
         assertEquals("jbr:bavli-rashi-37-72-2", object.get(URI));
-        assertEquals("bavli-37", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-37-10", object.get(JBO_PEREK));
+        //assertEquals("bavli-37", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-37-10", object.get(JBO_PEREK));
         assertEquals("רש\"י נדה עב ב", object.get(RDFS_LABEL));
         assertEquals("142", object.get(JBO_POSITION));
         assertEquals("jbr:bavli-37-72-2", object.get(JBO_INTERPRETS));
@@ -372,8 +372,8 @@ public class TalmudBavliParserTest {
         //masechet 37 daf 72 amud 2 - perush tosafot
         object = json[37].getObject(json[37].subjects.size()-2);
         assertEquals("jbr:bavli-tosafot-37-72-2", object.get(URI));
-        assertEquals("bavli-37", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-37-10", object.get(JBO_PEREK));
+        //assertEquals("bavli-37", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-37-10", object.get(JBO_PEREK));
         assertEquals("תוספות נדה עב ב", object.get(RDFS_LABEL));
         assertEquals("142", object.get(JBO_POSITION));
         assertEquals("jbr:bavli-37-72-2", object.get(JBO_INTERPRETS));
@@ -382,8 +382,8 @@ public class TalmudBavliParserTest {
         //masechet 37 daf 73 amud 1
         object = json[37].getObject(json[37].subjects.size()-1);
         assertEquals("jbr:bavli-37-73-1", object.get(URI));
-        assertEquals("bavli-37", object.get(JBO_MASECHET));
-        assertEquals("jbr:bavli-perek-37-10", object.get(JBO_PEREK));
+        //assertEquals("bavli-37", object.get(JBO_MASECHET));
+        //assertEquals("jbr:bavli-perek-37-10", object.get(JBO_PEREK));
         assertEquals("מסכת נדה עג א", object.get(RDFS_LABEL));
         assertEquals("143", object.get(JBO_POSITION));
         text = "{ויקרא טו-כה} בלא עת נדתה (על נדתה) סמוך לנדתה ואין לי אלא סמוך לנדתה מופלג לנדתה יום אחד מנין ת''ל {ויקרא טו-כה} או כי תזוב אין לי אלא יום אחד מנין לרבות מופלג שנים שלשה ארבעה חמשה ששה ושבעה שמונה תשעה עשרה מנין אמרת מה מצינו ברביעי שראוי לספירה וראוי לזיבה אף אני אביא העשירי שראוי לספירה וראוי לזיבה ומנין לרבות אחד עשר ת''ל בלא עת נדתה יכול שאני מרבה אף שנים עשר אמרת לאו ומה ראית לרבות אחד עשר ולהוציא שנים עשר מרבה אני אחד עשר שראוי לספירת או כי תזוב ומוציא אני י''ב שאין ראוי לספירת או כי תזוב ואין לי אלא שלשה ימים שני ימים מנין ת''ל ימי יום אחד מנין ת''ל כל ימי טמאה מלמד שמטמאה את בועלה כנדה היא היא מטמאה את בועלה ואין הזב מטמא מה שהוא בועל והלא דין הוא ומה היא שאינה מטמאה בראיות כבימים מטמאה את בועלה הוא שמטמא בראיות כבימים אינו דין שמטמא מה שהוא בועל ת''ל היא היא מטמאה את בועלה ואין הזב מטמא מה שהוא בועל ומנין שהוא עושה משכב ומושב ת''ל {ויקרא טו-כו} כמשכב נדתה ואין לי אלא שלשה ימים שני ימים מנין ת''ל ימי יום אחד מנין ת''ל כל ימי ומנין שסופרת אחד לאחד ת''ל יהיה לה יכול תספור שבעה לשנים ודין הוא ומה הוא שאין סופר אחד לאחד סופר שבעה לשנים היא שסופרת אחד לאחד אינו דין שתספור שבעה לשנים ת''ל יהיה לה אינה סופרת אלא יומה אלמא קראי נינהו לר''ע קראי לר' אלעזר בן עזריה הלכתא א''ל רב שמעיה לר' אבא אימא ביממא תהוי זבה בליליא תהוי נדה א''ל עלך אמר קרא {ויקרא טו-כה} על נדתה סמוך לנדתה סמוך לנדתה אימת הוי בליליא וקא קרי לה זבה תנא דבי אליהו כל השונה הלכות בכל יום מובטח לו שהוא בן העולם הבא שנאמר {חבקוק ג-ו} הליכות עולם לו אל תקרי הליכות אלא הלכות:";

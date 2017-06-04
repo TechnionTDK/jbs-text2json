@@ -14,7 +14,6 @@ import static text2json.JbsOntology.*;
 public class MesilatYesharimParser extends Parser {
     private static final String BEGIN_HAKDAMA = "begin_hakdama";
     private static final String BEGIN_HATIMA = "begin_hatima";
-    private static final String MESILAT_YESHARIM_PARSER_ID = "parser.mesilatYesharim";
 
     private int perekNum = 0;
 
@@ -47,7 +46,7 @@ public class MesilatYesharimParser extends Parser {
             case BEGIN_HAKDAMA:
                 jsonObject().add(URI, getUri());
                 jsonObject().add(RDFS_LABEL, line.getLine());
-                jsonObject().add(JBO_SEFER, JBR + "mesilatyesharim");
+                jsonObject().addToArray(JBO_WITHIN, JBR + "mesilatyesharim");
                 break;
             case BEGIN_PEREK:
                 jsonObjectFlush();
@@ -59,14 +58,14 @@ public class MesilatYesharimParser extends Parser {
                 else {
                     jsonObject().add(RDFS_LABEL, line.extract(" – ", " "));
                 }
-                jsonObject().add(JBO_SEFER, JBR + "mesilatyesharim");
+                jsonObject().addToArray(JBO_WITHIN, JBR + "mesilatyesharim");
                 break;
             case BEGIN_HATIMA:
                 jsonObjectFlush();
                 perekNum++;
                 jsonObject().add(URI, getUri());
                 jsonObject().add(RDFS_LABEL, line.getLine());
-                jsonObject().add(JBO_SEFER, JBR + "mesilatyesharim");
+                jsonObject().addToArray(JBO_WITHIN, JBR + "mesilatyesharim");
                 break;
             case NO_MATCH:
                 jsonObject().append(JBO_TEXT, line.getLine());

@@ -102,7 +102,7 @@ public class MidrashRabaParser extends Parser {
                 // adding sefer object in packages json
                 packagesJsonObject().add(URI, "jbr:tanach-midrashraba-"+BookNum);
                 packagesJsonObject().add(JBO_TEXT, line.getLine());
-                packagesJsonObject().add(JBO_SEFER, "jbr:tanach-midrashraba-"+BookNum);
+                packagesJsonObject().addToArray(JBO_WITHIN, "jbr:tanach-midrashraba-"+BookNum);
                 packagesJsonObject().add(RDFS_LABEL, "מדרש רבה " + BookName);
                 packagesJsonObjectFlush();
                 break;
@@ -133,7 +133,7 @@ public class MidrashRabaParser extends Parser {
                 // adding parasha object in packages json
                 packagesJsonObject().add(URI, "jbr:tanach-midrashraba-"+BookNum+"-"+parashaNum);
                 packagesJsonObject().add(JBO_TEXT, line.getLine());
-                packagesJsonObject().add(JBO_SEFER, "jbr:tanach-midrashraba-"+BookNum);
+                packagesJsonObject().addToArray(JBO_WITHIN, "jbr:tanach-midrashraba-"+BookNum);
                 packagesJsonObject().add(RDFS_LABEL, "מדרש רבה " + BookName + " " + ParashaName );
                 packagesJsonObject().add(JBO_POSITION, parashaNum);
                 packagesJsonObjectFlush();
@@ -183,8 +183,8 @@ public class MidrashRabaParser extends Parser {
         jsonObject().add(URI, getUri());
         jsonObject().add(JBO_TEXT, stripVowels(seif));
         jsonObject().add(JBO_TEXT_NIKUD, seif);
-        jsonObject().add(JBO_SEFER, "jbr:tanach-midrashraba-"+ BookNum);
-        jsonObject().add(JBO_PARASHA, "jbr:tanach-midrashraba-"+ BookNum + "-" + parashaNum);
+        jsonObject().addToArray(JBO_WITHIN, "jbr:tanach-midrashraba-"+ BookNum);
+        jsonObject().add(JBO_WITHIN, "jbr:tanach-midrashraba-"+ BookNum + "-" + parashaNum);
         jsonObject().add(JBO_POSITION, seifPosition);
         if (BookNum<=5) {
             jsonObject().add(RDFS_LABEL, "מדרש רבה " + SederName + " " + ParashaName + " " + SeifLetter);

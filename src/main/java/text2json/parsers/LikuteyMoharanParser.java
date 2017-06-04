@@ -99,8 +99,8 @@ public class LikuteyMoharanParser extends Parser{
                 saifHebIdx = line.getFirstWord();
                 saifTitle = line.extract(" - ", " ");
                 jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_SEFER, "jbr:likuteymoharan");
-                jsonObject().add(JBO_CHELEK, "jbr:likuteymoharan-" + chelekNum);
+                jsonObject().addToArray(JBO_WITHIN, "jbr:likuteymoharan");
+                jsonObject().addToArray(JBO_WITHIN, "jbr:likuteymoharan-" + chelekNum);
                 jsonObject().add(JBO_POSITION, positionInSefer);
                 jsonObject().add(RDFS_LABEL, "ליקוטי מוהר''ן " + chelekHebIdx + " " + saifHebIdx);
                 jsonObject().add(JBO_NAME, saifTitle);

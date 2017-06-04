@@ -129,8 +129,8 @@ public class MishneTorahParser extends Parser {
                 jsonObject().add(JBO_POSITION, halachaNum);
                 jsonObject().add(JBO_TEXT_NIKUD, line.getLine());
                 jsonObject().add(JBO_TEXT, stripVowels(line.getLine()));
-                jsonObject().add(JBO_SEFER, getSeferURI());
-                jsonObject().add(JBO_PEREK, getPerekURI());
+                jsonObject().addToArray(JBO_WITHIN, getSeferURI());
+                jsonObject().addToArray(JBO_WITHIN, getPerekURI());
                 jsonObject().add(RDFS_LABEL, getHalachaLabel());
                 break;
             case BEGIN_PERUSH:
@@ -140,8 +140,8 @@ public class MishneTorahParser extends Parser {
                 jsonObject().add(JBO_POSITION, perushNum);
                 jsonObject().add(JBO_TEXT, line.getLine());
                 jsonObject().add(JBO_INTERPRETS, getHalachaURI());
-                jsonObject().add(JBO_SEFER, getSeferURI());
-                jsonObject().add(JBO_PEREK, getPerekURI());
+                jsonObject().addToArray(JBO_WITHIN, getSeferURI());
+                jsonObject().addToArray(JBO_WITHIN, getPerekURI());
                 break;
             case NO_MATCH:
                 if (jsonObject().hasKey(JBO_INTERPRETS))
