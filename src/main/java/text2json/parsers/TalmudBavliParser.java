@@ -131,7 +131,7 @@ public class TalmudBavliParser extends Parser {
                     amudNum++;}
                 positionInMasechet++;
                 jsonObject().add(URI, getUri());
-                jsonObject().addToArray(JBO_WITHIN, "bavli-" + masechetNum);
+                jsonObject().addToArray(JBO_WITHIN, getMasechetUri());
                 jsonObject().addToArray(JBO_WITHIN, getPerekUri());
                 jsonObject().add(RDFS_LABEL, "מסכת " + masechetTitle + " " + dafTitle + " " + amudTitle);
                 jsonObject().add(JBO_POSITION, positionInMasechet);
@@ -150,7 +150,7 @@ public class TalmudBavliParser extends Parser {
             case BEGIN_AMUD_TEXT:
                 if(amud2ndPartText) { //same daf and amud continues in next perek
                     jsonObject().add(URI, getUri());
-                    jsonObject().addToArray(JBO_WITHIN, "bavli-" + masechetNum);
+                    jsonObject().addToArray(JBO_WITHIN, getMasechetUri());
                     jsonObject().addToArray(JBO_WITHIN, getPerekUri());
                     jsonObject().add(RDFS_LABEL, masechetTitle + " " + dafTitle + " " + amudTitle);
                     jsonObject().add(JBO_POSITION, positionInMasechet);
@@ -170,7 +170,7 @@ public class TalmudBavliParser extends Parser {
                         line.beginsWith("רשב\"ם") || line.beginsWith(" רשב\"ם") ? 2 :
                         line.beginsWith("ר\"נ") || line.beginsWith(" ר\"נ") ? 3 : -1;
                 jsonObject().add(URI, getMefareshUri(mefareshIdx));
-                jsonObject().addToArray(JBO_WITHIN, "bavli-" + masechetNum);
+                jsonObject().addToArray(JBO_WITHIN, getMasechetUri());
                 jsonObject().addToArray(JBO_WITHIN, getPerekUri());
                 jsonObject().add(RDFS_LABEL, mefarshimHeb[mefareshIdx] + " " + masechetTitle + " " + dafTitle + " " + amudTitle);
                 jsonObject().add(JBO_POSITION, positionInMasechet);

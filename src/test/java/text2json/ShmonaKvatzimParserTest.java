@@ -38,7 +38,7 @@ public class ShmonaKvatzimParserTest {
         assertEquals("jbr:shmonakvatzim-1-1", o.get(URI));
         String text = "חיים אנו עם הציורים הרוחניים שבהשאיפה של נשמת האומה. בכל מקום שהניצוצות של אור הללו גנוזים הם שם, הננו מקושרים בקשר של נשמה של חיים, של כל הוייתנו, אליו. בין שיהיה מקום זה מקום ממשי, מדת ארץ, בין שיהיו מעשים שאלו הציורים כמוסים ביסודם, בין שיהיו מחשבות ורעיונות מאיזה מין שיהיו.";
         assertEquals(text, o.get(JBO_TEXT));
-        //assertEquals("שמונה קבצים א א", o.get(RDFS_LABEL));
+        assertEquals("שמונה קבצים 1 1", o.get(RDFS_LABEL));
 
         // test last object
         o = json.getObject(json.subjects.size()-1);

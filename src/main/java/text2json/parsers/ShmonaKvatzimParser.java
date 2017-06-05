@@ -62,6 +62,7 @@ public class ShmonaKvatzimParser extends Parser {
                 break;
             case NO_MATCH:
                 jsonObject().append(JBO_TEXT, line.getLine());
+                jsonObject().add(RDFS_LABEL, "שמונה קבצים " + kovetzNum + " " + saifNum);
                 break;
         }
 
