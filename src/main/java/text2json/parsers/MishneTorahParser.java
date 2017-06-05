@@ -139,12 +139,12 @@ public class MishneTorahParser extends Parser {
                 jsonObject().add(URI, getPerushURI(line));
                 jsonObject().add(JBO_POSITION, perushNum);
                 jsonObject().add(JBO_TEXT, line.getLine());
-                jsonObject().add(JBO_INTERPRETS, getHalachaURI());
+                jsonObject().add(JBO_EXPLAINS, getHalachaURI());
                 jsonObject().addToArray(JBO_WITHIN, getSeferURI());
                 jsonObject().addToArray(JBO_WITHIN, getPerekURI());
                 break;
             case NO_MATCH:
-                if (jsonObject().hasKey(JBO_INTERPRETS))
+                if (jsonObject().hasKey(JBO_EXPLAINS))
                     jsonObject().append(JBO_TEXT, line.getLine());
 //                else
 //                    System.out.println(line.getLine());
