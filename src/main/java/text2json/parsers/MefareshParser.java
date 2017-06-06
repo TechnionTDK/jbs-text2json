@@ -10,7 +10,7 @@ import static text2json.JbsOntology.*;
 public class MefareshParser extends Parser {
     String[] MEFARSHIM_EN = {"rashi", "ramban", "orhachaim", "ibnezra", "baalhaturim", "onkelos", "sforno", "keliyekar",
             "daatzkenim", "metzudatdavid", "metzudattzion", "malbiminyan", "malbimmilot", "ralbag", "malbim", "yonatan", "sifteychachamim"};
-    String[] MefarshimHe = {"רש\"י", "הרמב\"ן", "אור החיים", "אבן עזרא", "בעל הטורים" , "אונקלוס", "ספורנו", "כלי יקר",
+    String[] MEFARSHIM_HE = {"רש\"י", "הרמב\"ן", "אור החיים", "אבן עזרא", "בעל הטורים" , "אונקלוס", "ספורנו", "כלי יקר",
             "דעת זקנים", "מצודת דוד", "מצודת ציון", "מלבי\"ם באור הענין", "מלבי\"ם באור המלות", "רלב\"ג", "מלבי\"ם",
             "תרגום יונתן", "שפתי חכמים"};
     String[] PARASHOT_HE = {"פרשת בראשית", "פרשת נח", "פרשת לך לך", "פרשת וירא", "פרשת חיי שרה" ,"פרשת תולדות" ,"פרשת ויצא",
@@ -24,7 +24,6 @@ public class MefareshParser extends Parser {
     private static final String BEGIN_PEREK = "begin_perek";
     private static final String BEGIN_PERUSH = "begin_perush";
     private static final String BEGIN_PASUK = "begin_pasuk";
-    private static final String MULTIPLE_LINE_PERUSH = "multiple_line_perush";
     private int bookNum = 0;
     private int parashaNum = 1;
     private int perekNum = 0;
@@ -36,12 +35,8 @@ public class MefareshParser extends Parser {
     private String bookTitle;
     private String perekLetter;
     private String pasukLetter;
-    private String begining_of_long_perush = null;
-    private int mefareshId_Long_Perush;
-    boolean Just_finished_perush = false;
-    //private String perush;
 
-        protected void registerMatchers() {
+    protected void registerMatchers() {
         registerMatcher(new LineMatcher() {
             public String type() {
                 return BEGIN_PARASHA;
@@ -70,28 +65,16 @@ public class MefareshParser extends Parser {
             public String type() {
                 return BEGIN_PERUSH;
             }
-            public boolean match(Line line) { return line.beginsWith(MefarshimHe);
+            public boolean match(Line line) { return line.beginsWith(MEFARSHIM_HE);
             }
         });
 
     }
 
     protected int getMefareshId(Line line){
-//        String baseLine = line.getLine();
-//        for(int i=0; i < MefarshimHe.length; i++){
-//            if (baseLine.endsWith(": (" + MefarshimHe[i] + ")")) return i;
-//        }
-//        return -1;
         String text = line.getLine();
-        for(int i=0; i < MefarshimHe.length; i++){
-            if (text.startsWith(MefarshimHe[i])) return i;
-        }
-        return -1;
-    }
-    protected int get_mefareshId_from_beginning(Line line){
-        String baseLine = line.getLine();
-        for(int i=0; i < MefarshimHe.length; i++){
-            if (baseLine.startsWith(MefarshimHe[i])) return i;
+        for(int i = 0; i < MEFARSHIM_HE.length; i++){
+            if (text.startsWith(MEFARSHIM_HE[i])) return i;
         }
         return -1;
     }
@@ -121,35 +104,19 @@ public class MefareshParser extends Parser {
             case BEGIN_PASUK:
                 jsonObjectFlush(); // for the previous perush...
                 String currPasuk = line.extract("{", "}");
-//                if(pasukLetter.equals(currPasuk))
-//                    break;
                 pasukLetter = currPasuk;
                 pasukNum++;
                 positionInPerek++;
                 positionInParasha++;
                 break;
-//            case MULTIPLE_LINE_PERUSH:
-//                if (begining_of_long_perush == null){
-//                    begining_of_long_perush = line.getLine();
-//                }
-//                else {
-//                    begining_of_long_perush = begining_of_long_perush + " " + line.getLine();
-//                }
-//                break;
             case BEGIN_PERUSH:
                 mefareshId = getMefareshId(line);
                 mefaresh = MEFARSHIM_EN[mefareshId];
-                //perush = line.extract(" ", ": (" + MefarshimHe[mefareshId] + ")");
-
-//                if (begining_of_long_perush != null) {
-//                    perush = begining_of_long_perush + " " + perush;
-//                    begining_of_long_perush = null;
-//                }
                 jsonObjectFlush();
                 jsonObject().add(URI, getUri());
                 jsonObject().append(JBO_TEXT, line.getLine());
-                jsonObject().add(RDFS_LABEL, MefarshimHe[mefareshId] + " " + bookTitle + " " + perekLetter + " " + pasukLetter);
-                jsonObject().add(JBO_NAME, MefarshimHe[mefareshId]);
+                jsonObject().add(RDFS_LABEL, MEFARSHIM_HE[mefareshId] + " " + bookTitle + " " + perekLetter + " " + pasukLetter);
+                jsonObject().add(JBO_NAME, MEFARSHIM_HE[mefareshId]);
                 jsonObject().addToArray(JBO_WITHIN, "jbr:tanach-" + bookNum);
                 if (bookNum <= 5) {
                     jsonObject().addToArray(JBO_WITHIN, "jbr:parasha-" + parashaNum);
@@ -160,8 +127,6 @@ public class MefareshParser extends Parser {
                 if (bookNum <=5) {
                     jsonObject().add(JBO_POSITION_IN_PARASHA, Integer.toString(positionInParasha));
                 }
-                //jsonObjectFlush();
-                //begining_of_long_perush = null;
                 break;
             case NO_MATCH:
                 // add line to the current perush
@@ -185,11 +150,4 @@ public class MefareshParser extends Parser {
     protected String getUri() {
         return "jbr:tanach-" + mefaresh + "-" + bookNum + "-" + perekNum + "-" + pasukNum;
     }
-
-    /*
-    @Override
-    protected void onEOF() {
-
-    }
-    */
 }
