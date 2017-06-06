@@ -120,7 +120,7 @@ public class MishnaParser extends Parser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type){
             case BEGIN_MASECHET:
-                //parashaNum = Find_Index_In_Arr(ParashotHe, line.getLine()) + 1;
+                //parashaNum = Find_Index_In_Arr(PARASHOT_HE, line.getLine()) + 1;
                 masechetHE = line.extract("משנה מסכת", " ");
                 getSederNum(masechetHE);
 

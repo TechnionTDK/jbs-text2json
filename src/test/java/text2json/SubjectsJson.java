@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static text2json.JbsOntology.JBO_TEXT;
 import static text2json.JbsOntology.URI;
 
 /**
@@ -26,6 +27,15 @@ public class SubjectsJson {
             String eUri = ((Map<String, String>)e).get(URI);
             if (eUri.equals(uri))
                 return (Map<String, String>)e;
+        }
+        return null;
+    }
+
+    public Map<String, String> getObjectByText(String text) {
+        for (Object obj : subjects) {
+            String objText = ((Map<String, String>)obj).get(JBO_TEXT);
+            if (objText.contains(text))
+                return (Map<String, String>)obj;
         }
         return null;
     }
