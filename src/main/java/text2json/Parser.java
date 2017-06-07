@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
+import static text2json.JbsUtils.*;
 
 /**
  * Created by omishali on 12/12/2016.
@@ -133,6 +133,14 @@ public abstract class Parser {
             { newString = newString + rawString.charAt(j); }
         }
         return(newString);
+    }
+
+    protected String format(String text) {
+        // remove all (mefaresh) from text
+        for (String mefaresh: MEFARSHIM_HE)
+            text = text.replace("(" + mefaresh + ")", "");
+
+        return text.trim();
     }
 
 }

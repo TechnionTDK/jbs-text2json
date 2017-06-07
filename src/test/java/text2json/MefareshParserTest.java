@@ -12,7 +12,7 @@ import static text2json.TestUtils.getJson;
 import static text2json.TestUtils.getText;
 
 /**
- * Created by shilonoa on 1/18/2017.
+ * Created by omishali.
  */
 public class MefareshParserTest {
     private static final int NUM_OF_LAST_BOOK = 39;
@@ -31,7 +31,7 @@ public class MefareshParserTest {
     }
 
     @Test
-    public void testObject1() {
+    public void testObject1Book4() {
         Map<String, String> object;
         object = subjectJsons[4].getObjectByText("הוקשה אל המפרשים מאחר שפני המנורה היינו הנר האמצעי");
         assertEquals("jbr:tanach-keliyekar-4-8-2", object.get(URI));
@@ -41,16 +41,88 @@ public class MefareshParserTest {
     }
 
     @Test
-    public void testObject2() {
+    public void testObject2Book4() {
         Map<String, String> object;
         object = subjectJsons[4].getObjectByText("למה נסמכה פרשת המנורה לפרשת הנשיאים, לפי שכשראה אהרן חנוכת הנשיאים חלשה אז דעתו");
         assertEquals("jbr:tanach-rashi-4-8-2", object.get(URI));
     }
 
     @Test
-    public void testLastObject() {
+    public void testFirstObjectBook4() {
+        Map<String, String> object;
+        object = subjectJsons[4].getObject(0);
+        assertEquals("jbr:tanach-onkelos-4-1-1", object.get(URI));
+        assertEquals("אונקלוס  וּמַלִיל יְיָ עִם משֶׁה בְּמַדְבְּרָא דְסִינַי בְּמַשְׁכַּן זִמְנָא בְּחַד לְיַרְחָא תִנְיָנָא בְּשַׁתָּא תִנְיֵתָא לְמִפַּקְהוֹן מֵאַרְעָא דְמִצְרַיִם לְמֵימָר:", object.get(JBO_TEXT));
+    }
+
+    @Test
+    public void testSecondObjectBook4() {
+        Map<String, String> object;
+        object = subjectJsons[4].getObject(1);
+        assertEquals("jbr:tanach-yonatan-4-1-1", object.get(URI));
+        //assertEquals("אונקלוס  וּמַלִיל יְיָ עִם משֶׁה בְּמַדְבְּרָא דְסִינַי בְּמַשְׁכַּן זִמְנָא בְּחַד לְיַרְחָא תִנְיָנָא בְּשַׁתָּא תִנְיֵתָא לְמִפַּקְהוֹן מֵאַרְעָא דְמִצְרַיִם לְמֵימָר:", object.get(JBO_TEXT));
+    }
+
+    @Test
+    public void testThirdObjectBook4() {
+        Map<String, String> object;
+        object = subjectJsons[4].getObject(2);
+        assertEquals("jbr:tanach-rashi-4-1-1", object.get(URI));
+        assertEquals("רש\"י  וידבר. במדבר סיני באחד לחדש. מתוך חיבתן לפניו מונה אותם כל שעה. (א) כשיצאו ממצרים מנאן, וכשנפלו בעגל מנאן לידע (ב) מנין הנותרים, כשבא להשרות שכינתו עליהם מנאם, באחד בניסן הוקם המשכן, ובאחד (ג) באייר מנאם:", object.get(JBO_TEXT));
+    }
+
+    @Test
+    public void testSixthObjectBook4() {
+        Map<String, String> object;
+        object = subjectJsons[4].getObject(5);
+        assertEquals("jbr:tanach-ramban-4-1-1", object.get(URI));
+    }
+
+    @Test
+    public void testLastObjectBook4() {
         Map<String, String> object;
         object = subjectJsons[4].getObject(subjectJsons[4].subjects.size() -1);
         assertEquals("jbr:tanach-ibnezra-4-36-13", object.get(URI));
+    }
+
+    @Test
+    public void testFirstObjectBook27() {
+        Map<String, String> object;
+        object = subjectJsons[27].getObject(0);
+        assertEquals("jbr:tanach-rashi-27-1-1", object.get(URI));
+    }
+
+    @Test
+    public void testSecondObjectBook27() {
+        Map<String, String> object;
+        object = subjectJsons[27].getObject(1);
+        assertEquals("jbr:tanach-metzudatdavid-27-1-1", object.get(URI));
+    }
+
+    @Test
+    public void testThirdObjectBook27() {
+        Map<String, String> object;
+        object = subjectJsons[27].getObject(2);
+        assertEquals("jbr:tanach-metzudattzion-27-1-1", object.get(URI));
+    }
+
+    @Test
+    public void testFourthObjectBook27() {
+        Map<String, String> object;
+        object = subjectJsons[27].getObject(3);
+        assertEquals("jbr:tanach-malbiminyan-27-1-1", object.get(URI));
+    }
+
+    @Test
+    public void testFourthObject27_2() {
+        Map<String, String> object;
+        object = subjectJsons[27].getObjectByText("שם לאום מציין תמיד את האומה מצד הדת");
+        assertEquals("jbr:tanach-malbimmilot-27-2-1", object.get(URI));
+    }
+
+    @Test
+    public void testGetMefareshId() {
+        MefareshParser parser = new MefareshParser();
+        assertEquals(11, parser.getMefareshId("מלבי\"ם - באור הענין  למה, אחר שבאר אבדן הרשע כי הוא כמוץ אשר תדפנו רוח ואין לו תקוה רק אם הוא שומר את הבר ונוטר את הצדיק, אומר. אם כן למה רגשו גוים למרוד במשיח ה' ובישראל עמו, הלא אך בזה יהיה להם קיום אם יעבדו את ה' ואת דוד מלכו. למה רגשו גוים, יש הבדל בין גוים ובין לאומים, גוי נקרא הקיבוץ מבלי השקף אם הוא בעל דת או לאו, ובשם לאום נקרא מצד שמתאחד תחת דת מיוחד, ומצייר שהקשר שהתקשרו נגדו היה אלהותיי וגם מדיניי, כמ''ש על ה' ועל משיחו, על ה', לפרוק עול הדת ושבע מצות שהכריחם דוד לקיימם, ועל משיחו, לפרוק עול מלכותו ועבודתו, והגוים רגשו ברגש ומרד למרוד במלכות בית דוד, והלאומים מצד ענין הדת הגו מחשבות נגד דת ומצות ה' : (מלבי\"ם באור הענין)\n"));
     }
 }

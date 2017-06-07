@@ -5,21 +5,12 @@ import text2json.LineMatcher;
 import text2json.Parser;
 import java.io.IOException;
 import static text2json.JbsOntology.*;
+import static text2json.JbsUtils.*;
 
 
 public class MefareshParser extends Parser {
     String[] MEFARSHIM_EN = {"rashi", "ramban", "orhachaim", "ibnezra", "baalhaturim", "onkelos", "sforno", "keliyekar",
             "daatzkenim", "metzudatdavid", "metzudattzion", "malbiminyan", "malbimmilot", "ralbag", "malbim", "yonatan", "sifteychachamim"};
-    String[] MEFARSHIM_HE = {"רש\"י", "הרמב\"ן", "אור החיים", "אבן עזרא", "בעל הטורים" , "אונקלוס", "ספורנו", "כלי יקר",
-            "דעת זקנים", "מצודת דוד", "מצודת ציון", "מלבי\"ם באור הענין", "מלבי\"ם באור המלות", "רלב\"ג", "מלבי\"ם",
-            "תרגום יונתן", "שפתי חכמים"};
-    String[] PARASHOT_HE = {"פרשת בראשית", "פרשת נח", "פרשת לך לך", "פרשת וירא", "פרשת חיי שרה" ,"פרשת תולדות" ,"פרשת ויצא",
-            "פרשת וישלח", "פרשת וישב", "פרשת מקץ", "פרשת ויגש", "פרשת ויחי", "פרשת שמות", "פרשת וארא", "פרשת בא",
-            "פרשת בשלח", "פרשת יתרו", "פרשת משפטים", "פרשת תרומה", "פרשת תצוה", "פרשת תשא כי", "פרשת ויקהל", "פרשת פקודי",
-            "פרשת ויקרא", "פרשת צו", "פרשת שמיני", "פרשת תזריע", "פרשת מצורע", "פרשת אחרי מות", "פרשת קדושים", "פרשת אמור",
-            "פרשת בהר", "פרשת בחקתי", "פרשת במדבר", "פרשת נשא", "פרשת בהעלתך", "פרשת שלח לך", "פרשת קרח", "פרשת חקת",
-            "פרשת בלק", "פרשת פינחס", "פרשת מטות", "פרשת מסעי", "פרשת דברים", "פרשת ואתחנן", "פרשת עקב", "פרשת ראה",
-            "פרשת שופטים", "פרשת כי תצא", "פרשת כי תבוא", "פרשת נצבים", "פרשת וילך", "פרשת האזינו", "פרשת וזאת הברכה"};
     private static final String BEGIN_PARASHA = "begin_parasha";
     private static final String BEGIN_PEREK = "begin_perek";
     private static final String BEGIN_PERUSH = "begin_perush";
@@ -37,6 +28,14 @@ public class MefareshParser extends Parser {
     private String pasukLetter;
 
     protected void registerMatchers() {
+        registerMatcher(new LineMatcher() {
+            @Override
+            public String type() { return BEGIN_SEFER;}
+            @Override
+            public boolean match(Line line) {
+                return line.beginsWith("ספר ") && line.wordCount() <= 5;
+            }
+        });
         registerMatcher(new LineMatcher() {
             public String type() {
                 return BEGIN_PARASHA;
@@ -71,8 +70,7 @@ public class MefareshParser extends Parser {
 
     }
 
-    protected int getMefareshId(Line line){
-        String text = line.getLine();
+    public int getMefareshId(String text){
         for(int i = 0; i < MEFARSHIM_HE.length; i++){
             if (text.startsWith(MEFARSHIM_HE[i])) return i;
         }
@@ -87,15 +85,15 @@ public class MefareshParser extends Parser {
     }
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type){
+            case BEGIN_SEFER:
+                bookTitle = line.extract(" ספר", " ");
+                bookNum = getBookNum(bookTitle);
+                break;
             case BEGIN_PARASHA:
                 parashaNum = findIndexInArray(PARASHOT_HE, line.getLine()) + 1;
                 positionInParasha = 0;
                 break;
             case BEGIN_PEREK:
-                if (bookNum == 0){
-                    bookTitle = line.extract(" ", " פרק");
-                    bookNum = getBookNum(bookTitle);
-                }
                 perekNum++;
                 pasukNum = 0;
                 positionInPerek = 0;
@@ -110,11 +108,11 @@ public class MefareshParser extends Parser {
                 positionInParasha++;
                 break;
             case BEGIN_PERUSH:
-                mefareshId = getMefareshId(line);
+                mefareshId = getMefareshId(line.getLine());
                 mefaresh = MEFARSHIM_EN[mefareshId];
                 jsonObjectFlush();
                 jsonObject().add(URI, getUri());
-                jsonObject().append(JBO_TEXT, line.getLine());
+                jsonObject().append(JBO_TEXT, format(line.getLine()));
                 jsonObject().add(RDFS_LABEL, MEFARSHIM_HE[mefareshId] + " " + bookTitle + " " + perekLetter + " " + pasukLetter);
                 jsonObject().add(JBO_NAME, MEFARSHIM_HE[mefareshId]);
                 jsonObject().addToArray(JBO_WITHIN, "jbr:tanach-" + bookNum);
