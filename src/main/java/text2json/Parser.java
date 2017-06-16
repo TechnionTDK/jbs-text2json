@@ -17,6 +17,7 @@ public abstract class Parser {
     protected static final String BEGIN_PEREK = "begin_perek";
     protected static final String BEGIN_PERUSH = "begin_perush";
     protected static final String BEGIN_PARASHA = "begin_parasha";
+    protected static final String BEGIN_HAKDAMA = "begin_parasha";
 
 
     private JsonObject defaultJsonObject;
