@@ -50,37 +50,37 @@ public class OrotHaKodeshParserTest {
         object = json.getObject(0);
         assertEquals("jbr:orothakodesh-1-1", object.get(URI));
         assertEquals("1", object.get(JBO_POSITION));
-        assertEquals("אורות הקודש - חלק א - הוראה א", object.get(RDFS_LABEL));
+        assertEquals("אורות הקודש א א", object.get(RDFS_LABEL));
 
 
         object = json.getObject(3);
         assertEquals("jbr:orothakodesh-1-4", object.get(URI));
-        assertEquals("אורות הקודש - חלק א - הוראה ד", object.get(RDFS_LABEL));
+        assertEquals("אורות הקודש א ד", object.get(RDFS_LABEL));
         assertEquals("4", object.get(JBO_POSITION));
 
         object = json.getObject(23);
         assertEquals("jbr:orothakodesh-2-4", object.get(URI));
-        assertEquals("אורות הקודש - חלק ב - הוראה ד", object.get(RDFS_LABEL));
+        assertEquals("אורות הקודש ב ד", object.get(RDFS_LABEL));
         assertEquals("4", object.get(JBO_POSITION));
 
         object = json.getObject(32);
         assertEquals("jbr:orothakodesh-2-13", object.get(URI));
-        assertEquals("אורות הקודש - חלק ב - הוראה יג", object.get(RDFS_LABEL));
+        assertEquals("אורות הקודש ב יג", object.get(RDFS_LABEL));
         assertEquals("13", object.get(JBO_POSITION));
 
         object = json.getObject(57);
         assertEquals("jbr:orothakodesh-3-18", object.get(URI));
-        assertEquals("אורות הקודש - חלק ג - הוראה יח", object.get(RDFS_LABEL));
+        assertEquals("אורות הקודש ג יח", object.get(RDFS_LABEL));
         assertEquals("18", object.get(JBO_POSITION));
 
         object = json.getObject(94);
         assertEquals("jbr:orothakodesh-5-15", object.get(URI));
-        assertEquals("אורות הקודש - חלק ה - הוראה טו", object.get(RDFS_LABEL));
+        assertEquals("אורות הקודש ה טו", object.get(RDFS_LABEL));
         assertEquals("15", object.get(JBO_POSITION));
 
         object = json.getObject(120);
         assertEquals("jbr:orothakodesh-7-18", object.get(URI));
-        assertEquals("אורות הקודש - חלק ז - הוראה יח", object.get(RDFS_LABEL));
+        assertEquals("אורות הקודש ז יח", object.get(RDFS_LABEL));
         assertEquals("18", object.get(JBO_POSITION));
 
     }

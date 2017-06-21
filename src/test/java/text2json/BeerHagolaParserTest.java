@@ -55,12 +55,12 @@ public class BeerHagolaParserTest {
 
         object = json.getObject(6);
         assertEquals("jbr:beerhagola-6", object.get(URI));
-        assertEquals("באר הגולה - באר ו ", object.get(RDFS_LABEL));
+        assertEquals("באר הגולה - באר ו", object.get(RDFS_LABEL));
         assertEquals("7", object.get(JBO_POSITION));
 
         object = json.getObject(2);
         assertEquals("jbr:beerhagola-2", object.get(URI));
-        assertEquals("באר הגולה - באר ב ", object.get(RDFS_LABEL));
+        assertEquals("באר הגולה - באר ב", object.get(RDFS_LABEL));
         assertEquals("3", object.get(JBO_POSITION));
     }
 }

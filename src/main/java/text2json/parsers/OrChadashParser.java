@@ -68,6 +68,7 @@ public class OrChadashParser extends Parser {
                 jsonObjectFlush();
                 hakdamaNum++;
                 jsonObject().add(URI, getUri());
+                jsonObject().add(JBO_BOOK, JBR + "orchadash");
                 jsonObject().add(JBO_POSITION, hakdamaNum);
                 if (hakdamaNum ==1)
                     jsonObject().add(RDFS_LABEL,"אור חדש - הקדמה א");
@@ -80,15 +81,15 @@ public class OrChadashParser extends Parser {
                 packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
-                String chapterName = "פרק " + HEB_LETTERS_INDEX[chapterNum-1]+ " ";
+                String chapterName =HEB_LETTERS_INDEX[chapterNum-1];
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_POSITION, chapterNum+2);
-                jsonObject().addToArray(JBO_WITHIN, getcorpus());
-                String rdfs = "אור חדש - " + chapterName;
+                jsonObject().add(JBO_BOOK, JBR + "orchadash");
+                String rdfs = "אור חדש " + chapterName;
                 jsonObject().add(RDFS_LABEL,rdfs);
-                packagesJsonObject().add(URI, getUri());
-                packagesJsonObject().add(RDFS_LABEL, rdfs);
-                packagesJsonObjectFlush();
+//                packagesJsonObject().add(URI, getUri());
+//                packagesJsonObject().add(RDFS_LABEL, rdfs);
+//                packagesJsonObjectFlush();
                 break;
 
             case NO_MATCH:

@@ -54,38 +54,38 @@ public class HaemunotVehadeotParserTest {
 
         object = json.getObject(5);
         assertEquals("jbr:haemunotvehadeot-0-5", object.get(URI));
-        assertEquals("האמונות והדעות - הקדמה - פרק ה", object.get(RDFS_LABEL));
+        assertEquals("האמונות והדעות - הקדמה ה", object.get(RDFS_LABEL));
         assertEquals("5", object.get(JBO_POSITION));
 
 
         object = json.getObject(13);
         assertEquals("jbr:haemunotvehadeot-1-4", object.get(URI));
-        assertEquals("האמונות והדעות - מאמר הראשון חדוש - פרק ד", object.get(RDFS_LABEL));
+        assertEquals("האמונות והדעות - מאמר הראשון חדוש ד", object.get(RDFS_LABEL));
         assertEquals("4", object.get(JBO_POSITION));
 
         object = json.getObject(34);
         assertEquals("jbr:haemunotvehadeot-3-5", object.get(URI));
-        assertEquals("האמונות והדעות - מאמר השלישי צווי ואזהרה - פרק ה", object.get(RDFS_LABEL));
+        assertEquals("האמונות והדעות - מאמר השלישי צווי ואזהרה ה", object.get(RDFS_LABEL));
         assertEquals("5", object.get(JBO_POSITION));
 
         object = json.getObject(54);
         assertEquals("jbr:haemunotvehadeot-5-8", object.get(URI));
-        assertEquals("האמונות והדעות - מאמר החמישי זכיות וחובות - פרק ח", object.get(RDFS_LABEL));
+        assertEquals("האמונות והדעות - מאמר החמישי זכיות וחובות ח", object.get(RDFS_LABEL));
         assertEquals("8", object.get(JBO_POSITION));
 
         object = json.getObject(81);
         assertEquals("jbr:haemunotvehadeot-9-2", object.get(URI));
-        assertEquals("האמונות והדעות - מאמר התשיעי גמול ועונש - פרק ב", object.get(RDFS_LABEL));
+        assertEquals("האמונות והדעות - מאמר התשיעי גמול ועונש ב", object.get(RDFS_LABEL));
         assertEquals("2", object.get(JBO_POSITION));
 
         object = json.getObject(102);
         assertEquals("jbr:haemunotvehadeot-10-11", object.get(URI));
-        assertEquals("האמונות והדעות - מאמר העשירי הנהגת האדם - פרק יא", object.get(RDFS_LABEL));
+        assertEquals("האמונות והדעות - מאמר העשירי הנהגת האדם יא", object.get(RDFS_LABEL));
         assertEquals("11", object.get(JBO_POSITION));
 
         object = json.getObject(110);
         assertEquals("jbr:haemunotvehadeot-10-19", object.get(URI));
-        assertEquals("האמונות והדעות - מאמר העשירי הנהגת האדם - פרק יט", object.get(RDFS_LABEL));
+        assertEquals("האמונות והדעות - מאמר העשירי הנהגת האדם יט", object.get(RDFS_LABEL));
         assertEquals("19", object.get(JBO_POSITION));
     }
 }

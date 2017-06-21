@@ -96,6 +96,7 @@ public class HaemunotVehadeotParser extends Parser {
                 perekNum=0;
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_POSITION, "0");
+                jsonObject().add(JBO_BOOK, JBR + "haemunotvehadeot");
                 jsonObject().add(RDFS_LABEL,"האמונות והדעות - הקדמה");
                 packagesJsonObject().add(URI, "haemunotvehadeot - hakdama");
                 packagesJsonObject().add(RDFS_LABEL,"האמונות והדעות - הקדמה");
@@ -120,6 +121,7 @@ public class HaemunotVehadeotParser extends Parser {
                 perekNum=0;
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_POSITION, perekNum);
+                jsonObject().add(JBO_BOOK, JBR + "haemunotvehadeot");
                 jsonObject().addToArray(JBO_WITHIN, getcorpus());
                 jsonObject().addToArray(JBO_WITHIN, maamarName);
                 String rdfs = "האמונות והדעות - פתיחה";
@@ -131,28 +133,28 @@ public class HaemunotVehadeotParser extends Parser {
                     case (1): // in hakdam's chapters
                         jsonObjectFlush();
                         perekNum++;
-                        perekName = "פרק " + HEB_LETTERS_INDEX[perekNum - 1];
+                        perekName = HEB_LETTERS_INDEX[perekNum - 1];
                         jsonObject().add(URI, getUri());
+                        jsonObject().add(JBO_BOOK, JBR + "haemunotvehadeot");
                         jsonObject().add(JBO_POSITION, perekNum);
-                        jsonObject().addToArray(JBO_WITHIN, getcorpus());
                         jsonObject().addToArray(JBO_WITHIN, "האמונות והדעות - הקדמה");
-                        String rdfs0 = "האמונות והדעות - הקדמה" + " - " + perekName;
+                        String rdfs0 = "האמונות והדעות - הקדמה "  + perekName;
                         jsonObject().add(RDFS_LABEL,rdfs0);
                         break;
 
                     case (0): // in regular maamar chapters
                         jsonObjectFlush();
                         perekNum++;
-                        perekName = "פרק " + HEB_LETTERS_INDEX[perekNum - 1];
+                        perekName = HEB_LETTERS_INDEX[perekNum - 1];
                         jsonObject().add(URI, getUri());
+                        jsonObject().add(JBO_BOOK, JBR + "haemunotvehadeot");
                         jsonObject().add(JBO_POSITION, perekNum);
-                        jsonObject().addToArray(JBO_WITHIN, getcorpus());
                         jsonObject().addToArray(JBO_WITHIN, maamarName);
-                        String rdfs1 = "האמונות והדעות - " + maamarName + " - " + perekName;
+                        String rdfs1 = "האמונות והדעות - " + maamarName + " " + perekName;
                         jsonObject().add(RDFS_LABEL,rdfs1);
-                        packagesJsonObject().add(URI, "haemunotvehadeot - " + maamarNum + " - " + perekNum);
-                        packagesJsonObject().add(RDFS_LABEL,"האמונות והדעות - " + maamarName + " - " + perekName );
-                        packagesJsonObjectFlush();
+//                        packagesJsonObject().add(URI, "haemunotvehadeot - " + maamarNum + " - " + perekNum);
+//                        packagesJsonObject().add(RDFS_LABEL,"האמונות והדעות - " + maamarName + " - " + perekName );
+//                        packagesJsonObjectFlush();
                         break;
                 }
 

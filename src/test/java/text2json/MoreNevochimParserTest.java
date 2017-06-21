@@ -54,48 +54,48 @@ public class MoreNevochimParserTest {
 
         object = json.getObject(15);
         assertEquals("jbr:morenevochim-1-12", object.get(URI));
-        assertEquals("מורה נבוכים - חלק א - פרק יב", object.get(RDFS_LABEL));
+        assertEquals("מורה נבוכים א יב", object.get(RDFS_LABEL));
         assertEquals("12", object.get(JBO_POSITION));
 
 
         object = json.getObject(33);
         assertEquals("jbr:morenevochim-1-30", object.get(URI));
-        assertEquals("מורה נבוכים - חלק א - פרק ל", object.get(RDFS_LABEL));
+        assertEquals("מורה נבוכים א ל", object.get(RDFS_LABEL));
         assertEquals("30", object.get(JBO_POSITION));
 
         object = json.getObject(54);
         assertEquals("jbr:morenevochim-1-51", object.get(URI));
-        assertEquals("מורה נבוכים - חלק א - פרק נא", object.get(RDFS_LABEL));
+        assertEquals("מורה נבוכים א נא", object.get(RDFS_LABEL));
         assertEquals("51", object.get(JBO_POSITION));
 
         object = json.getObject(74);
         assertEquals("jbr:morenevochim-1-71", object.get(URI));
-        assertEquals("מורה נבוכים - חלק א - פרק עא", object.get(RDFS_LABEL));
+        assertEquals("מורה נבוכים א עא", object.get(RDFS_LABEL));
         assertEquals("71", object.get(JBO_POSITION));
 
         object = json.getObject(91);
         assertEquals("jbr:morenevochim-2-11", object.get(URI));
-        assertEquals("מורה נבוכים - חלק ב - פרק יא", object.get(RDFS_LABEL));
+        assertEquals("מורה נבוכים ב יא", object.get(RDFS_LABEL));
         assertEquals("11", object.get(JBO_POSITION));
 
         object = json.getObject(114);
         assertEquals("jbr:morenevochim-2-34", object.get(URI));
-        assertEquals("מורה נבוכים - חלק ב - פרק לד", object.get(RDFS_LABEL));
+        assertEquals("מורה נבוכים ב לד", object.get(RDFS_LABEL));
         assertEquals("34", object.get(JBO_POSITION));
 
         object = json.getObject(146);
         assertEquals("jbr:morenevochim-3-17", object.get(URI));
-        assertEquals("מורה נבוכים - חלק ג - פרק יז", object.get(RDFS_LABEL));
+        assertEquals("מורה נבוכים ג יז", object.get(RDFS_LABEL));
         assertEquals("17", object.get(JBO_POSITION));
 
         object = json.getObject(160);
         assertEquals("jbr:morenevochim-3-31", object.get(URI));
-        assertEquals("מורה נבוכים - חלק ג - פרק לא", object.get(RDFS_LABEL));
+        assertEquals("מורה נבוכים ג לא", object.get(RDFS_LABEL));
         assertEquals("31", object.get(JBO_POSITION));
 
         object = json.getObject(183);
         assertEquals("jbr:morenevochim-3-54", object.get(URI));
-        assertEquals("מורה נבוכים - חלק ג - פרק נד", object.get(RDFS_LABEL));
+        assertEquals("מורה נבוכים ג נד", object.get(RDFS_LABEL));
         assertEquals("54", object.get(JBO_POSITION));
     }
 }

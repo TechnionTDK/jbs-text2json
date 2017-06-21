@@ -11,13 +11,13 @@ import static text2json.JbsOntology.*;
 /**
  * Created by Assaf on 08/06/2017.
  */
-public class DrashotMaharalParser extends Parser {
+public class DerashotMaharalParser extends Parser {
 
     private int chapterNum = 0;
     private int hakdamaNum = 0;
 
 
-    public DrashotMaharalParser() {
+    public DerashotMaharalParser() {
         createPackagesJson();
     }
 
@@ -67,6 +67,7 @@ public class DrashotMaharalParser extends Parser {
                 jsonObjectFlush();
                 hakdamaNum++;
                 jsonObject().add(URI, getUri());
+                jsonObject().add(JBO_BOOK, JBR + "derashotmaharal");
                 jsonObject().add(JBO_POSITION, hakdamaNum);
                 jsonObject().add(RDFS_LABEL,"דרשות מהר\"ל - הקדמה ");
 
@@ -79,12 +80,12 @@ public class DrashotMaharalParser extends Parser {
                 String chapterName = line.getLine();
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_POSITION, chapterNum);
-                jsonObject().addToArray(JBO_WITHIN, getcorpus());
+                jsonObject().add(JBO_BOOK, JBR + "derashotmaharal");
                 String rdfs = "דרשות מהר\"ל - " + chapterName;
                 jsonObject().add(RDFS_LABEL,rdfs);
-                packagesJsonObject().add(URI, getUri());
-                packagesJsonObject().add(RDFS_LABEL, rdfs);
-                packagesJsonObjectFlush();
+//                packagesJsonObject().add(URI, getUri());
+//                packagesJsonObject().add(RDFS_LABEL, rdfs);
+//                packagesJsonObjectFlush();
                 break;
 
             case NO_MATCH:
@@ -95,8 +96,8 @@ public class DrashotMaharalParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR + "drashotmaharal-" + chapterNum ;    }
-    protected String getcorpus() { return JBR + "drashotmaharal";    }
+        return JBR + "derashotmaharal-" + chapterNum ;    }
+    protected String getcorpus() { return JBR + "derashotmaharal";    }
 
 
 }

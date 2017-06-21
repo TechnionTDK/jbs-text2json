@@ -3,9 +3,10 @@ package text2json.parsers;
 import text2json.Line;
 import text2json.LineMatcher;
 import text2json.Parser;
-import static text2json.JbsOntology.*;
+
 import java.io.IOException;
-import static text2json.JbsUtils.*;
+
+import static text2json.JbsOntology.*;
 
 /**
  * Created by USER on 16-Mar-17.
@@ -99,7 +100,7 @@ public class LikuteyMoharanParser extends Parser{
                 saifHebIdx = line.getFirstWord();
                 saifTitle = line.extract(" - ", " ");
                 jsonObject().add(URI, getUri());
-                jsonObject().addToArray(JBO_WITHIN, "jbr:likuteymoharan");
+                jsonObject().add(JBO_BOOK, JBR + "likuteymoharan");
                 jsonObject().addToArray(JBO_WITHIN, "jbr:likuteymoharan-" + chelekNum);
                 jsonObject().add(JBO_POSITION, positionInSefer);
                 jsonObject().add(RDFS_LABEL, "ליקוטי מוהר''ן " + chelekHebIdx + " " + saifHebIdx);

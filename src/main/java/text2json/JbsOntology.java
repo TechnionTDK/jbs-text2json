@@ -16,4 +16,5 @@ public class JbsOntology {
     public static String RDFS_LABEL = "rdfs:label";
     public static String JBO_POSITION_IN_SIMAN = "jbo:positionInSiman";
     public static String JBO_WITHIN = "jbo:within";
+    public static String JBO_BOOK = "jbo:book";
 }

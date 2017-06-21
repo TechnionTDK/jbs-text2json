@@ -68,6 +68,7 @@ public class GevurotHashemParser extends Parser {
                 jsonObjectFlush();
                 hakdamaNum++;
                 jsonObject().add(URI, getUri());
+                jsonObject().add(JBO_BOOK, JBR + "gevurothashem");
                 jsonObject().add(JBO_POSITION, hakdamaNum);
                 if (hakdamaNum ==1)
                     jsonObject().add(RDFS_LABEL,"גבורות השם - הקדמה א");
@@ -82,15 +83,15 @@ public class GevurotHashemParser extends Parser {
                 packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
-                String chapterName = "פרק " + HEB_LETTERS_INDEX[chapterNum-1]+ " ";
+                String chapterName = HEB_LETTERS_INDEX[chapterNum-1];
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_POSITION, chapterNum+3);
-                jsonObject().addToArray(JBO_WITHIN, getcorpus());
-                String rdfs = "גבורות השם - " + chapterName;
+                jsonObject().add(JBO_BOOK, JBR + "gevurothashem");
+                String rdfs = "גבורות השם " + chapterName;
                 jsonObject().add(RDFS_LABEL,rdfs);
-                packagesJsonObject().add(URI, getUri());
-                packagesJsonObject().add(RDFS_LABEL, rdfs);
-                packagesJsonObjectFlush();
+//                packagesJsonObject().add(URI, getUri());
+//                packagesJsonObject().add(RDFS_LABEL, rdfs);
+//                packagesJsonObjectFlush();
                 break;
 
             case NO_MATCH:

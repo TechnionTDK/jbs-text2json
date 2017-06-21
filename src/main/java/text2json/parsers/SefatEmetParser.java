@@ -10,13 +10,13 @@ import static text2json.JbsUtils.*;
 /**
  * Created by Assaf on 08/06/2017.
  */
-public class SfatEmetParser extends Parser {
+public class SefatEmetParser extends Parser {
 
     private int parashaNum = 0;
     private int seferNum = 0;
     private int seifNum = 0;
 
-    public SfatEmetParser() {
+    public SefatEmetParser() {
         createPackagesJson();
     }
 
@@ -67,7 +67,6 @@ public class SfatEmetParser extends Parser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_PERUSH:
-//                System.out.println("found beginning of file - START");
                 packagesJsonObject().add(URI, getcorpus());
                 packagesJsonObject().add(RDFS_LABEL, "שפת אמת");
                 packagesJsonObjectFlush();
@@ -76,37 +75,32 @@ public class SfatEmetParser extends Parser {
             case BEGIN_SEFER:
                 jsonObjectFlush();
                 seferNum++;
-//                System.out.println("\n            found sefer number: " + seferNum+"\n");
+                packagesJsonObject().add(URI, JBR + "tanach-sefetemet-" + seferNum);
+                packagesJsonObject().add(RDFS_LABEL, "שפת אמת");
+                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_PARASHA:
                 jsonObjectFlush();
-//                System.out.println("last seif is: "+ seifNum);
                 seifNum=0;
                 parashaNum++;
-//                System.out.println(seferNum +" "+ parashaNum);
-//                String bookName = "ספר "+ SFARIM_TANACH_HE[seferNum-1] + " ";
-//                String parashaName = PARASHOT_HE[parashaNum-1] + " ";
-//                System.out.println("found parasha "+ parashaName +"(" +parashaNum+")"+ " of book "+ bookName);
-
+                packagesJsonObject().add(URI, JBR + "tanach-sefetemet-" + seferNum +"-" + parashaNum);
+                packagesJsonObject().add(RDFS_LABEL,  "שפת אמת " + PARASHOT_HE[parashaNum-1]);
+                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_SAIF:
                 jsonObjectFlush();
                 seifNum++;
-//                System.out.println("found seif number: " + seifNum );
-                String bookName1 = "ספר "+ SFARIM_TANACH_HE[seferNum-1] + " ";
-                String parashaName1 = PARASHOT_HE[parashaNum-1] + " ";
-                String seifName = "סעיף " + HEB_LETTERS_INDEX[seifNum-1]+ " ";
-//                System.out.println(bookName +" "+ parashaName + " " + seifName);
-//                System.out.println(seferNum +" "+ parashaNum + " " + seifNum);
+                String parashaName1 = PARASHOT_HE[parashaNum-1];
+                String seifName = HEB_LETTERS_INDEX[seifNum-1];
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_EXPLAINS,parashaName1);
-                jsonObject().add(JBO_POSITION_IN_PARASHA, seifNum);
-                jsonObject().addToArray(JBO_WITHIN, getcorpus());
-                jsonObject().addToArray(JBO_WITHIN, bookName1);
-                jsonObject().addToArray(JBO_WITHIN, parashaName1);
-                String rdfs = "שפת אמת, " + bookName1 + parashaName1 + seifName;
+                jsonObject().add(JBO_POSITION, seifNum);
+                jsonObject().add(JBO_BOOK, JBR + "orot");
+                jsonObject().addToArray(JBO_WITHIN, JBR + "tanach-sefetemet-" + seferNum);
+                jsonObject().addToArray(JBO_WITHIN, JBR + "tanach-sefetemet-" + seferNum +"-" + parashaNum);
+                String rdfs = "שפת אמת" + " " + parashaName1 + " " + seifName;
                 jsonObject().add(RDFS_LABEL,rdfs);
 
                 break;

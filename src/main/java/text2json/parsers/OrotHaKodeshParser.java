@@ -70,8 +70,10 @@ public class OrotHaKodeshParser extends Parser {
                 jsonObjectFlush();
                 teachingNum=0;
                 sectionNum++;
-                packagesJsonObject().add(URI, "חלק " + HEB_LETTERS_INDEX[sectionNum-1]);
-
+                packagesJsonObject().add(JBO_BOOK, JBR + "orothakodesh");
+                packagesJsonObject().add(URI,JBR + "orothakodesh-" + sectionNum);
+                packagesJsonObject().add(RDFS_LABEL,"אורות הקודש" + " " + HEB_LETTERS_INDEX[sectionNum-1]);
+                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_TEACHING:
@@ -79,13 +81,13 @@ public class OrotHaKodeshParser extends Parser {
                 teachingNum++;
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_POSITION, teachingNum);
-                jsonObject().addToArray(JBO_WITHIN, getcorpus());
-                jsonObject().addToArray(JBO_WITHIN, "חלק " + sectionNum);
-                String rdfs = "אורות הקודש - " + "חלק " + HEB_LETTERS_INDEX[sectionNum-1] + " - הוראה " + HEB_LETTERS_INDEX[teachingNum-1];
+                jsonObject().add(JBO_BOOK, JBR + "orothakodesh");
+                jsonObject().addToArray(JBO_WITHIN,JBR + "orothakodesh-" + sectionNum);
+                String rdfs = "אורות הקודש" + " " + HEB_LETTERS_INDEX[sectionNum-1] + " " + HEB_LETTERS_INDEX[teachingNum-1];
                 jsonObject().add(RDFS_LABEL,rdfs);
-                packagesJsonObject().add(URI, getUri());
-                packagesJsonObject().add(RDFS_LABEL, rdfs);
-                packagesJsonObjectFlush();
+//                packagesJsonObject().add(URI, getUri());
+//                packagesJsonObject().add(RDFS_LABEL, rdfs);
+//                packagesJsonObjectFlush();
 
                 break;
 

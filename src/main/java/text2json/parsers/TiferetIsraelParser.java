@@ -68,7 +68,7 @@ public class TiferetIsraelParser extends Parser {
                 chapterNum++;
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_POSITION, chapterNum+1);
-                jsonObject().add(RDFS_LABEL,"תפארת ישראל - הקדמה ");
+                jsonObject().add(RDFS_LABEL,"תפארת ישראל - הקדמה");
 
                 break;
 
@@ -77,15 +77,15 @@ public class TiferetIsraelParser extends Parser {
                 packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
-                String chapterName = "פרק " + HEB_LETTERS_INDEX[chapterNum-1]+ " ";
+                String chapterName =HEB_LETTERS_INDEX[chapterNum-1];
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_POSITION, chapterNum+1);
-                jsonObject().addToArray(JBO_WITHIN, getcorpus());
-                String rdfs = "תפארת ישראל - " + chapterName;
+                jsonObject().add(JBO_BOOK, JBR + "tiferetisrael");
+                String rdfs = "תפארת ישראל " + chapterName;
                 jsonObject().add(RDFS_LABEL,rdfs);
-                packagesJsonObject().add(URI, getUri());
-                packagesJsonObject().add(RDFS_LABEL, rdfs);
-                packagesJsonObjectFlush();
+//                packagesJsonObject().add(URI, getUri());
+//                packagesJsonObject().add(RDFS_LABEL, rdfs);
+//                packagesJsonObjectFlush();
                 break;
 
             case NO_MATCH:

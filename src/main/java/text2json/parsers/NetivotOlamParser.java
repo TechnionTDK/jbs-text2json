@@ -76,8 +76,9 @@ public class NetivotOlamParser extends Parser {
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 jsonObject().add(URI, getUri());
+                jsonObject().add(JBO_BOOK, JBR + "netivotolam");
                 jsonObject().add(JBO_POSITION, "1");
-                jsonObject().add(RDFS_LABEL,"נתיבות עולם - הקדמה ");
+                jsonObject().add(RDFS_LABEL,"נתיבות עולם - הקדמה");
 
                 break;
 
@@ -86,23 +87,24 @@ public class NetivotOlamParser extends Parser {
                 perekNum=0;
                 nativNum++;
                 nativName = line.getLine();
-                packagesJsonObject().add(URI, nativName);
-
+                packagesJsonObject().add(URI, JBR + "netivotolam-" + nativNum);
+                packagesJsonObject().add(RDFS_LABEL, "נתיבות עולם - " + nativName);
+                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_PEREK:
                 jsonObjectFlush();
                 perekNum++;
-                String perekName = "פרק " + HEB_LETTERS_INDEX[perekNum-1]+ " ";
+                String perekName = HEB_LETTERS_INDEX[perekNum-1];
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_POSITION, perekNum+1);
-                jsonObject().addToArray(JBO_WITHIN, getcorpus());
-                jsonObject().addToArray(JBO_WITHIN, nativName);
-                String rdfs = "נתיבות עולם - " + nativName +" - " + perekName;
+                jsonObject().add(JBO_BOOK, JBR + "netivotolam");
+                jsonObject().addToArray(JBO_WITHIN, JBR + "netivotolam-" + nativNum);
+                String rdfs = "נתיבות עולם - " + nativName +" " + perekName;
                 jsonObject().add(RDFS_LABEL,rdfs);
-                packagesJsonObject().add(URI, getUri());
-                packagesJsonObject().add(RDFS_LABEL, rdfs);
-                packagesJsonObjectFlush();
+//                packagesJsonObject().add(URI, getUri());
+//                packagesJsonObject().add(RDFS_LABEL, rdfs);
+//                packagesJsonObjectFlush();
 
                 break;
 

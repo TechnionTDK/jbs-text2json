@@ -50,32 +50,32 @@ public class NetzachIsraelParserTest {
         object = json.getObject(0);
         assertEquals("jbr:netzachisrael-1", object.get(URI));
         assertEquals("1", object.get(JBO_POSITION));
-        assertEquals("נצח ישראל - פרק א ", object.get(RDFS_LABEL));
+        assertEquals("נצח ישראל א", object.get(RDFS_LABEL));
 
 
         object = json.getObject(3);
         assertEquals("jbr:netzachisrael-4", object.get(URI));
-        assertEquals("נצח ישראל - פרק ד ", object.get(RDFS_LABEL));
+        assertEquals("נצח ישראל ד", object.get(RDFS_LABEL));
         assertEquals("4", object.get(JBO_POSITION));
 
         object = json.getObject(23);
         assertEquals("jbr:netzachisrael-24", object.get(URI));
-        assertEquals("נצח ישראל - פרק כד ", object.get(RDFS_LABEL));
+        assertEquals("נצח ישראל כד", object.get(RDFS_LABEL));
         assertEquals("24", object.get(JBO_POSITION));
 
         object = json.getObject(32);
         assertEquals("jbr:netzachisrael-33", object.get(URI));
-        assertEquals("נצח ישראל - פרק לג ", object.get(RDFS_LABEL));
+        assertEquals("נצח ישראל לג", object.get(RDFS_LABEL));
         assertEquals("33", object.get(JBO_POSITION));
 
         object = json.getObject(57);
         assertEquals("jbr:netzachisrael-58", object.get(URI));
-        assertEquals("נצח ישראל - פרק נח ", object.get(RDFS_LABEL));
+        assertEquals("נצח ישראל נח", object.get(RDFS_LABEL));
         assertEquals("58", object.get(JBO_POSITION));
 
         object = json.getObject(63);
         assertEquals("jbr:netzachisrael-64", object.get(URI));
-        assertEquals("נצח ישראל - פרק סד ", object.get(RDFS_LABEL));
+        assertEquals("נצח ישראל סד", object.get(RDFS_LABEL));
         assertEquals("64", object.get(JBO_POSITION));
     }
 }

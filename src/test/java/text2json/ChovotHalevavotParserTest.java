@@ -54,38 +54,38 @@ public class ChovotHalevavotParserTest {
 
         object = json.getObject(5);
         assertEquals("jbr:chovothalevavot-1-4", object.get(URI));
-        assertEquals("חובות הלבבות - שער ראשון - שער ייחוד - פרק ד", object.get(RDFS_LABEL));
+        assertEquals("חובות הלבבות - שער ראשון - שער ייחוד - ד", object.get(RDFS_LABEL));
         assertEquals("4", object.get(JBO_POSITION));
 
 
         object = json.getObject(13);
         assertEquals("jbr:chovothalevavot-2-1", object.get(URI));
-        assertEquals("חובות הלבבות - שער שני - שער הבחינה - פרק א", object.get(RDFS_LABEL));
+        assertEquals("חובות הלבבות - שער שני - שער הבחינה - א", object.get(RDFS_LABEL));
         assertEquals("1", object.get(JBO_POSITION));
 
         object = json.getObject(34);
         assertEquals("jbr:chovothalevavot-4-4", object.get(URI));
-        assertEquals("חובות הלבבות - שער רביעי - שער הביטחון - פרק ד", object.get(RDFS_LABEL));
+        assertEquals("חובות הלבבות - שער רביעי - שער הביטחון - ד", object.get(RDFS_LABEL));
         assertEquals("4", object.get(JBO_POSITION));
 
         object = json.getObject(54);
         assertEquals("jbr:chovothalevavot-6-9", object.get(URI));
-        assertEquals("חובות הלבבות - שער שישי - שער הכניעה - פרק ט", object.get(RDFS_LABEL));
+        assertEquals("חובות הלבבות - שער שישי - שער הכניעה - ט", object.get(RDFS_LABEL));
         assertEquals("9", object.get(JBO_POSITION));
 
         object = json.getObject(71);
         assertEquals("jbr:chovothalevavot-8-4", object.get(URI));
-        assertEquals("חובות הלבבות - שער שמיני - שער חשבון הנפש - פרק ד", object.get(RDFS_LABEL));
+        assertEquals("חובות הלבבות - שער שמיני - שער חשבון הנפש - ד", object.get(RDFS_LABEL));
         assertEquals("4", object.get(JBO_POSITION));
 
         object = json.getObject(84);
         assertEquals("jbr:chovothalevavot-10-2", object.get(URI));
-        assertEquals("חובות הלבבות - שער עשירי - שער אהבת ה' - פרק ב", object.get(RDFS_LABEL));
+        assertEquals("חובות הלבבות - שער עשירי - שער אהבת ה' - ב", object.get(RDFS_LABEL));
         assertEquals("2", object.get(JBO_POSITION));
 
         object = json.getObject(89);
         assertEquals("jbr:chovothalevavot-10-7", object.get(URI));
-        assertEquals("חובות הלבבות - שער עשירי - שער אהבת ה' - פרק ז", object.get(RDFS_LABEL));
+        assertEquals("חובות הלבבות - שער עשירי - שער אהבת ה' - ז", object.get(RDFS_LABEL));
         assertEquals("7", object.get(JBO_POSITION));
     }
 }

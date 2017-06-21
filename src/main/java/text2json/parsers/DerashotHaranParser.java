@@ -47,16 +47,15 @@ public class DerashotHaranParser extends Parser {
                 packagesJsonObject().add(RDFS_LABEL, "דרשות הר\"ן");
                 packagesJsonObjectFlush();
                 break;
+
             case BEGIN_PEREK:
                 jsonObjectFlush();
-
                 perekNum++;
                 jsonObject().add(URI, getUri());
-                jsonObject().add(URI, getBookUri());
+                jsonObject().add(JBO_BOOK, getBookUri());
                 jsonObject().add(JBO_POSITION,perekNum);
-                String rdfs = "דרשות הר\"ן פרק " + HEB_LETTERS_INDEX[perekNum-1];
+                String rdfs = "דרשות הר\"ן " + HEB_LETTERS_INDEX[perekNum-1];
                 jsonObject().add(RDFS_LABEL,rdfs);
-
                 break;
 
             case NO_MATCH:

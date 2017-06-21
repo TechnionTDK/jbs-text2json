@@ -61,13 +61,13 @@ public class MidbarShurParser extends Parser {
                 chapterNum++;
                 String chapterName = "דרוש " + HEB_LETTERS_INDEX[chapterNum-1];
                 jsonObject().add(URI, getUri());
+                jsonObject().add(JBO_BOOK, JBR + "midbarshur");
                 jsonObject().add(JBO_POSITION, chapterNum);
-                jsonObject().addToArray(JBO_WITHIN, getcorpus());
                 String rdfs = "מדבר שור - " + chapterName;
                 jsonObject().add(RDFS_LABEL,rdfs);
-                packagesJsonObject().add(URI, getUri());
-                packagesJsonObject().add(RDFS_LABEL, rdfs);
-                packagesJsonObjectFlush();
+//                packagesJsonObject().add(URI, getUri());
+//                packagesJsonObject().add(RDFS_LABEL, rdfs);
+//                packagesJsonObjectFlush();
                 break;
 
             case NO_MATCH:

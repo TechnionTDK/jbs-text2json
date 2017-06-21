@@ -4,8 +4,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.DerashotHaranParser;
 import java.io.BufferedReader;
+import java.util.Map;
 
 import static org.junit.Assert.*;
+import static text2json.JbsOntology.JBO_POSITION;
+import static text2json.JbsOntology.RDFS_LABEL;
+import static text2json.JbsOntology.URI;
 import static text2json.TestUtils.*;
 
 /**
@@ -34,5 +38,34 @@ import static text2json.TestUtils.*;
     public void testTotalNumberOfObjects() {
         assertNotNull(json);
         assertEquals(12, json.subjects.size());
+    }
+
+
+    @Test
+    public void testSpecificPackageObjects() {
+        Map<String, String> object;
+
+
+        object = json.getObject(0);
+        assertEquals("jbr:derashotharan-1", object.get(URI));
+        assertEquals("1", object.get(JBO_POSITION));
+        assertEquals("דרשות הר\"ן א", object.get(RDFS_LABEL));
+
+
+        object = json.getObject(4);
+        assertEquals("jbr:derashotharan-5", object.get(URI));
+        assertEquals("דרשות הר\"ן ה", object.get(RDFS_LABEL));
+        assertEquals("5", object.get(JBO_POSITION));
+
+        object = json.getObject(8);
+        assertEquals("jbr:derashotharan-9", object.get(URI));
+        assertEquals("דרשות הר\"ן ט", object.get(RDFS_LABEL));
+        assertEquals("9", object.get(JBO_POSITION));
+
+        object = json.getObject(11);
+        assertEquals("jbr:derashotharan-12", object.get(URI));
+        assertEquals("דרשות הר\"ן יב", object.get(RDFS_LABEL));
+        assertEquals("12", object.get(JBO_POSITION));
+
     }
 }

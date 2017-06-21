@@ -78,8 +78,9 @@ public class DerechChaimParser extends Parser {
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 jsonObject().add(URI, getUri());
+                jsonObject().add(JBO_BOOK, "derechchaim");
                 jsonObject().add(JBO_POSITION, "1");
-                jsonObject().add(RDFS_LABEL,"דרך חיים - הקדמה ");
+                jsonObject().add(RDFS_LABEL,"דרך חיים - הקדמה");
 
                 break;
 
@@ -87,22 +88,26 @@ public class DerechChaimParser extends Parser {
                 jsonObjectFlush();
                 mishnaNum=0;
                 perekNum++;
-                packagesJsonObject().add(URI, "פרק " + HEB_LETTERS_INDEX[perekNum-1]);
-
+                packagesJsonObject().add(URI, JBR + "derechchaim-" + perekNum);
+                String rdfs1 = "דרך חיים " + HEB_LETTERS_INDEX[perekNum-1];
+                packagesJsonObject().add(RDFS_LABEL, rdfs1);
+                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_MISHNA:
                 jsonObjectFlush();
                 mishnaNum++;
                 jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_POSITION, mishnaNum+1);
-                jsonObject().addToArray(JBO_WITHIN, getcorpus());
-                jsonObject().addToArray(JBO_WITHIN, "פרק " + perekNum);
-                String rdfs = "דרך חיים - " + "פרק " + HEB_LETTERS_INDEX[perekNum-1] + " - משנה " + HEB_LETTERS_INDEX[mishnaNum-1];
+                jsonObject().add(JBO_POSITION, mishnaNum);
+                jsonObject().add(JBO_BOOK, "derechchaim");
+                jsonObject().add(JBO_EXPLAINS, "jbr:mishna-4-9-" + perekNum+"-"+mishnaNum);
+                jsonObject().addToArray(JBO_WITHIN, JBR + "derechchaim-" +  perekNum);
+
+                String rdfs = "דרך חיים " + HEB_LETTERS_INDEX[perekNum-1] + " " + HEB_LETTERS_INDEX[mishnaNum-1];
                 jsonObject().add(RDFS_LABEL,rdfs);
-                packagesJsonObject().add(URI, getUri());
-                packagesJsonObject().add(RDFS_LABEL, rdfs);
-                packagesJsonObjectFlush();
+//                packagesJsonObject().add(URI, getUri());
+//                packagesJsonObject().add(RDFS_LABEL, rdfs);
+//                packagesJsonObjectFlush();
 
                 break;
 

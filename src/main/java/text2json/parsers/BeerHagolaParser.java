@@ -67,6 +67,7 @@ public class BeerHagolaParser extends Parser {
                 jsonObjectFlush();
                 beerNum++;
                 jsonObject().add(URI, getUri());
+                jsonObject().add(JBO_BOOK, JBR + "beerhagola");
                 jsonObject().add(JBO_POSITION, beerNum+1);
                 jsonObject().add(RDFS_LABEL,"באר הגולה - הקדמה");
                 break;
@@ -76,14 +77,15 @@ public class BeerHagolaParser extends Parser {
                 packagesJsonObjectFlush();
                 jsonObjectFlush();
                 beerNum++;
-                String beerName = "באר " + HEB_LETTERS_INDEX[beerNum-1]+ " ";
+                String beerName = "באר " + HEB_LETTERS_INDEX[beerNum-1];
                 jsonObject().add(URI, getUri());
+                jsonObject().add(JBO_BOOK, "beerhagola");
                 jsonObject().add(JBO_POSITION, beerNum+1);
                 jsonObject().addToArray(JBO_WITHIN, getcorpus());
                 String rdfs = "באר הגולה - " + beerName;
                 jsonObject().add(RDFS_LABEL,rdfs);
-                packagesJsonObject().add(URI, getUri());
-                packagesJsonObject().add(RDFS_LABEL, rdfs);
+//                packagesJsonObject().add(URI, getUri());
+//                packagesJsonObject().add(RDFS_LABEL, rdfs);
                 break;
 
             case NO_MATCH:

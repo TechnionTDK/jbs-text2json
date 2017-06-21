@@ -50,32 +50,32 @@ public class TiferetIsraelParserTest {
         object = json.getObject(0);
         assertEquals("jbr:tiferetisrael-0", object.get(URI));
         assertEquals("1", object.get(JBO_POSITION));
-        assertEquals("תפארת ישראל - הקדמה ", object.get(RDFS_LABEL));
+        assertEquals("תפארת ישראל - הקדמה", object.get(RDFS_LABEL));
 
 
         object = json.getObject(3);
         assertEquals("jbr:tiferetisrael-3", object.get(URI));
-        assertEquals("תפארת ישראל - פרק ג ", object.get(RDFS_LABEL));
+        assertEquals("תפארת ישראל ג", object.get(RDFS_LABEL));
         assertEquals("4", object.get(JBO_POSITION));
 
         object = json.getObject(23);
         assertEquals("jbr:tiferetisrael-23", object.get(URI));
-        assertEquals("תפארת ישראל - פרק כג ", object.get(RDFS_LABEL));
+        assertEquals("תפארת ישראל כג", object.get(RDFS_LABEL));
         assertEquals("24", object.get(JBO_POSITION));
 
         object = json.getObject(32);
         assertEquals("jbr:tiferetisrael-32", object.get(URI));
-        assertEquals("תפארת ישראל - פרק לב ", object.get(RDFS_LABEL));
+        assertEquals("תפארת ישראל לב", object.get(RDFS_LABEL));
         assertEquals("33", object.get(JBO_POSITION));
 
         object = json.getObject(57);
         assertEquals("jbr:tiferetisrael-57", object.get(URI));
-        assertEquals("תפארת ישראל - פרק נז ", object.get(RDFS_LABEL));
+        assertEquals("תפארת ישראל נז", object.get(RDFS_LABEL));
         assertEquals("58", object.get(JBO_POSITION));
 
         object = json.getObject(64);
         assertEquals("jbr:tiferetisrael-64", object.get(URI));
-        assertEquals("תפארת ישראל - פרק סד ", object.get(RDFS_LABEL));
+        assertEquals("תפארת ישראל סד", object.get(RDFS_LABEL));
         assertEquals("65", object.get(JBO_POSITION));
     }
 }

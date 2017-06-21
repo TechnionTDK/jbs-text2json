@@ -55,12 +55,12 @@ public class OrChadashParserTest {
 
         object = json.getObject(3);
         assertEquals("jbr:orchadash-2", object.get(URI));
-        assertEquals("אור חדש - פרק ב ", object.get(RDFS_LABEL));
+        assertEquals("אור חדש ב", object.get(RDFS_LABEL));
         assertEquals("4", object.get(JBO_POSITION));
 
         object = json.getObject(2);
         assertEquals("jbr:orchadash-1", object.get(URI));
-        assertEquals("אור חדש - פרק א ", object.get(RDFS_LABEL));
+        assertEquals("אור חדש א", object.get(RDFS_LABEL));
         assertEquals("3", object.get(JBO_POSITION));
     }
 }

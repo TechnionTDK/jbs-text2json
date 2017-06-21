@@ -108,6 +108,7 @@ public class MoreNevochimParser extends Parser {
                 perekNum=0;
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_POSITION, "0");
+                jsonObject().add(JBO_BOOK, JBR + "morenevochim");
                 jsonObject().add(RDFS_LABEL,"מורה נבוכים - הקדמות המתרגמים");
                 packagesJsonObject().add(URI, "morenevochim - writers prolog");
                 packagesJsonObject().add(RDFS_LABEL,"מורה נבוכים - הקדמות המתרגמים");
@@ -119,10 +120,11 @@ public class MoreNevochimParser extends Parser {
                 perekNum++;
                 ptihaName = line.getLine();
                 jsonObject().add(URI, getUri());
+                jsonObject().add(JBO_BOOK, JBR + "morenevochim");
                 jsonObject().add(JBO_POSITION, perekNum);
-                jsonObject().add(RDFS_LABEL,"מורה נבוכים - הקדמות המתרגמים - " + ptihaName);
-                packagesJsonObject().add(URI, "morenevochim - " + partNum + " - " + perekNum);
-                packagesJsonObject().add(RDFS_LABEL,"מורה נבוכים - הקדמות המתרגמים - " + ptihaName );
+                jsonObject().add(RDFS_LABEL,"מורה נבוכים - הקדמות המתרגמים " + ptihaName);
+                packagesJsonObject().add(URI, "morenevochim " + partNum + " " + perekNum);
+                packagesJsonObject().add(RDFS_LABEL,"מורה נבוכים - הקדמות המתרגמים " + ptihaName );
                 packagesJsonObjectFlush();
                 break;
 
@@ -131,7 +133,8 @@ public class MoreNevochimParser extends Parser {
                 perekNum=1;
                 partNum++;
                 packagesJsonObject().add(URI, "morenevochim - " + partNum);
-                packagesJsonObject().add(RDFS_LABEL,"מורה נבוכים - חלק " + HEB_LETTERS_INDEX[partNum - 1] );
+                packagesJsonObject().add(JBO_BOOK, JBR + "morenevochim");
+                packagesJsonObject().add(RDFS_LABEL,"מורה נבוכים " + HEB_LETTERS_INDEX[partNum - 1] );
                 packagesJsonObjectFlush();
                 break;
 
@@ -141,8 +144,8 @@ public class MoreNevochimParser extends Parser {
                 perekNum=0;
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_POSITION, perekNum);
-                jsonObject().addToArray(JBO_WITHIN, getcorpus());
-                jsonObject().addToArray(JBO_WITHIN,"מורה נבוכים - חלק " + HEB_LETTERS_INDEX[partNum - 1] );
+                jsonObject().add(JBO_BOOK, JBR + "morenevochim");
+                jsonObject().addToArray(JBO_WITHIN,JBR + "morenevochim-" + partNum);
                 String rdfs = "מורה נבוכים - חלק " + HEB_LETTERS_INDEX[partNum - 1] + "הקדמה";
                 jsonObject().add(RDFS_LABEL,rdfs);
                 break;
@@ -150,16 +153,16 @@ public class MoreNevochimParser extends Parser {
             case BEGIN_PEREK:
                 jsonObjectFlush();
                 perekNum++;
-                perekName = "פרק " + HEB_LETTERS_INDEX[perekNum - 1];
+                perekName = HEB_LETTERS_INDEX[perekNum - 1];
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_POSITION, perekNum);
-                jsonObject().addToArray(JBO_WITHIN, getcorpus());
-                jsonObject().addToArray(JBO_WITHIN, "מורה נבוכים - חלק " + HEB_LETTERS_INDEX[partNum - 1]);
-                String rdfs1 = "מורה נבוכים - חלק " + HEB_LETTERS_INDEX[partNum - 1] + " - "  + perekName;
+                jsonObject().add(JBO_BOOK, JBR + "morenevochim");
+                jsonObject().addToArray(JBO_WITHIN, JBR + "morenevochim-" + partNum);
+                String rdfs1 = "מורה נבוכים " + HEB_LETTERS_INDEX[partNum - 1] + " "  + perekName;
                 jsonObject().add(RDFS_LABEL,rdfs1);
-                packagesJsonObject().add(URI, getUri());
-                packagesJsonObject().add(RDFS_LABEL,rdfs1 );
-                packagesJsonObjectFlush();
+//                packagesJsonObject().add(URI, getUri());
+//                packagesJsonObject().add(RDFS_LABEL,rdfs1 );
+//                packagesJsonObjectFlush();
                 break;
 
             case NO_MATCH:
