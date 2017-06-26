@@ -18,7 +18,6 @@ public abstract class Parser {
     protected static final String BEGIN_PERUSH = "begin_perush";
     protected static final String BEGIN_PARASHA = "begin_parasha";
 
-
     private JsonObject defaultJsonObject;
     private JsonFile defaultJsonFile;
 
@@ -142,5 +141,4 @@ public abstract class Parser {
 
         return text.trim();
     }
-
 }
