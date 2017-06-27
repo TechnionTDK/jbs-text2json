@@ -11,7 +11,6 @@ import java.util.List;
  * Created by omishali on 20/12/2016.
  */
 public class JsonFile {
-
     protected JsonWriter jsonWriter;
 
     protected JsonFile(String filename){
@@ -40,5 +39,4 @@ public class JsonFile {
     public void write(JsonObject jsonObject) throws IOException {
         jsonObject.writeObject(jsonWriter);
     }
-
 }
