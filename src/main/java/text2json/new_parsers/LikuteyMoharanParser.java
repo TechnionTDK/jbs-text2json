@@ -1,4 +1,4 @@
-package text2json.parsers;
+package text2json.new_parsers;
 
 import text2json.Line;
 import text2json.LineMatcher;

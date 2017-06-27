@@ -2,7 +2,7 @@ package text2json;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import text2json.parsers.NetzachIsraelParser;
+import text2json.new_parsers.NetzachIsraelParser;
 
 import java.io.BufferedReader;
 import java.util.Map;
@@ -48,34 +48,34 @@ public class NetzachIsraelParserTest {
 
 
         object = json.getObject(0);
-        assertEquals("jbr:netzachisrael-1", object.get(URI));
+        assertEquals("jbr:netzachisrael-0", object.get(URI));
         assertEquals("1", object.get(JBO_POSITION));
-        assertEquals("נצח ישראל א", object.get(RDFS_LABEL));
+        assertEquals("נצח ישראל הקדמה", object.get(RDFS_LABEL));
 
 
         object = json.getObject(3);
-        assertEquals("jbr:netzachisrael-4", object.get(URI));
-        assertEquals("נצח ישראל ד", object.get(RDFS_LABEL));
+        assertEquals("jbr:netzachisrael-3", object.get(URI));
+        assertEquals("נצח ישראל ג", object.get(RDFS_LABEL));
         assertEquals("4", object.get(JBO_POSITION));
 
         object = json.getObject(23);
-        assertEquals("jbr:netzachisrael-24", object.get(URI));
-        assertEquals("נצח ישראל כד", object.get(RDFS_LABEL));
+        assertEquals("jbr:netzachisrael-23", object.get(URI));
+        assertEquals("נצח ישראל כג", object.get(RDFS_LABEL));
         assertEquals("24", object.get(JBO_POSITION));
 
         object = json.getObject(32);
-        assertEquals("jbr:netzachisrael-33", object.get(URI));
-        assertEquals("נצח ישראל לג", object.get(RDFS_LABEL));
+        assertEquals("jbr:netzachisrael-32", object.get(URI));
+        assertEquals("נצח ישראל לב", object.get(RDFS_LABEL));
         assertEquals("33", object.get(JBO_POSITION));
 
         object = json.getObject(57);
-        assertEquals("jbr:netzachisrael-58", object.get(URI));
-        assertEquals("נצח ישראל נח", object.get(RDFS_LABEL));
+        assertEquals("jbr:netzachisrael-57", object.get(URI));
+        assertEquals("נצח ישראל נז", object.get(RDFS_LABEL));
         assertEquals("58", object.get(JBO_POSITION));
 
         object = json.getObject(63);
-        assertEquals("jbr:netzachisrael-64", object.get(URI));
-        assertEquals("נצח ישראל סד", object.get(RDFS_LABEL));
+        assertEquals("jbr:netzachisrael-63", object.get(URI));
+        assertEquals("נצח ישראל סג", object.get(RDFS_LABEL));
         assertEquals("64", object.get(JBO_POSITION));
     }
 }

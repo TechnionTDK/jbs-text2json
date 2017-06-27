@@ -2,14 +2,15 @@ package text2json;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import text2json.parsers.ShulchanAruchParser;
-import static text2json.JbsOntology.*;
-import static text2json.TestUtils.*;
-import static org.junit.Assert.*;
-
+import text2json.new_parsers.ShulchanAruchParser;
 
 import java.io.BufferedReader;
 import java.util.Map;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static text2json.JbsOntology.*;
+import static text2json.TestUtils.*;
 
 /**
  * Created by USER on 02-Mar-17.

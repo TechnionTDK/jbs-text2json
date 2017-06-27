@@ -2,7 +2,9 @@ package text2json;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import text2json.parsers.ChovotHalevavotParser;
+import text2json.Parser;
+import text2json.SubjectsJson;
+import text2json.new_parsers.ChovotHalevavotParser;
 
 import java.io.BufferedReader;
 import java.util.Map;

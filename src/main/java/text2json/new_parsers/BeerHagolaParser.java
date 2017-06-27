@@ -1,4 +1,4 @@
-package text2json.parsers;
+package text2json.new_parsers;
 
 import text2json.Line;
 import text2json.LineMatcher;
@@ -79,9 +79,8 @@ public class BeerHagolaParser extends Parser {
                 beerNum++;
                 String beerName = "באר " + HEB_LETTERS_INDEX[beerNum-1];
                 jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_BOOK, "beerhagola");
+                jsonObject().add(JBO_BOOK,JBR + "beerhagola");
                 jsonObject().add(JBO_POSITION, beerNum+1);
-                jsonObject().addToArray(JBO_WITHIN, getcorpus());
                 String rdfs = "באר הגולה - " + beerName;
                 jsonObject().add(RDFS_LABEL,rdfs);
 //                packagesJsonObject().add(URI, getUri());

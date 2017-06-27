@@ -1,4 +1,4 @@
-package text2json.parsers;
+package text2json.new_parsers;
 
 import text2json.Line;
 import text2json.LineMatcher;
@@ -12,13 +12,15 @@ import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 /**
  * Created by Assaf on 08/06/2017.
  */
-public class GevurotHashemParser extends Parser {
+public class DerechChaimParser extends Parser {
 
-    private int chapterNum = 0;
-    private int hakdamaNum = 0;
+    protected static final String BEGIN_MISHNA = "begin_mishna";
+    private int mishnaNum = 0;
+    private int perekNum = 0;
+    private int position = 0;
+    private String nativName = "";
 
-
-    public GevurotHashemParser() {
+    public DerechChaimParser() {
         createPackagesJson();
     }
 
@@ -30,7 +32,7 @@ public class GevurotHashemParser extends Parser {
 
             @Override
             public boolean match(Line line) {
-                return line.beginsWith("גבורות השם") && line.wordCount() <= 10;
+                return line.beginsWith("דרך חיים") && line.wordCount() <= 10;
             }
         });
 
@@ -53,6 +55,16 @@ public class GevurotHashemParser extends Parser {
                 return line.beginsWith("Chapter ") && line.wordCount() <= 10;
             }
         });
+
+        registerMatcher(new LineMatcher() {
+            @Override
+            public String type() { return BEGIN_MISHNA;}
+
+            @Override
+            public boolean match(Line line) {
+                return line.beginsWith("Mishna") && line.wordCount() <= 10;
+            }
+        });
     }
 
     @Override
@@ -60,38 +72,46 @@ public class GevurotHashemParser extends Parser {
         switch(type) {
             case BEGIN_SEFER:
                 packagesJsonObject().add(URI, getcorpus());
-                packagesJsonObject().add(RDFS_LABEL, "גבורות השם");
+                packagesJsonObject().add(RDFS_LABEL, "דרך חיים ");
                 packagesJsonObjectFlush();
                 break;
 
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
-                hakdamaNum++;
+                position++;
                 jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_BOOK, JBR + "gevurothashem");
-                jsonObject().add(JBO_POSITION, hakdamaNum);
-                if (hakdamaNum ==1)
-                    jsonObject().add(RDFS_LABEL,"גבורות השם - הקדמה א");
-                if (hakdamaNum ==2)
-                    jsonObject().add(RDFS_LABEL,"גבורות השם - הקדמה ב");
-                if (hakdamaNum ==3)
-                    jsonObject().add(RDFS_LABEL,"גבורות השם - הקדמה ג");
+                jsonObject().add(JBO_BOOK,JBR + "derechchaim");
+                jsonObject().add(JBO_POSITION, position);
+                jsonObject().add(RDFS_LABEL,"דרך חיים - הקדמה");
+
                 break;
 
-
             case BEGIN_PEREK:
-                packagesJsonObjectFlush();
                 jsonObjectFlush();
-                chapterNum++;
-                String chapterName = HEB_LETTERS_INDEX[chapterNum-1];
+                mishnaNum=0;
+                perekNum++;
+                packagesJsonObject().add(URI, JBR + "derechchaim-" + perekNum);
+                String rdfs1 = "דרך חיים " + HEB_LETTERS_INDEX[perekNum-1];
+                packagesJsonObject().add(RDFS_LABEL, rdfs1);
+                packagesJsonObjectFlush();
+                break;
+
+            case BEGIN_MISHNA:
+                jsonObjectFlush();
+                mishnaNum++;
+                position++;
                 jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_POSITION, chapterNum+3);
-                jsonObject().add(JBO_BOOK, JBR + "gevurothashem");
-                String rdfs = "גבורות השם " + chapterName;
+                jsonObject().add(JBO_POSITION, position);
+                jsonObject().add(JBO_BOOK,JBR + "derechchaim");
+                jsonObject().add(JBO_EXPLAINS, "jbr:mishna-4-9-" + perekNum+"-"+mishnaNum);
+                jsonObject().addToArray(JBO_WITHIN, JBR + "derechchaim-" +  perekNum);
+
+                String rdfs = "דרך חיים " + HEB_LETTERS_INDEX[perekNum-1] + " " + HEB_LETTERS_INDEX[mishnaNum-1];
                 jsonObject().add(RDFS_LABEL,rdfs);
 //                packagesJsonObject().add(URI, getUri());
 //                packagesJsonObject().add(RDFS_LABEL, rdfs);
 //                packagesJsonObjectFlush();
+
                 break;
 
             case NO_MATCH:
@@ -102,8 +122,8 @@ public class GevurotHashemParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR + "gevurothashem-" + chapterNum ;    }
-    protected String getcorpus() { return JBR + "gevurothashem";    }
+        return JBR + "derechchaim-" + perekNum + "-"+ mishnaNum;    }
+    protected String getcorpus() { return JBR + "derechchaim";    }
 
 
 }

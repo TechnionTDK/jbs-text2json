@@ -2,7 +2,7 @@ package text2json;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import text2json.parsers.OrChadashParser;
+import text2json.new_parsers.OrChadashParser;
 
 import java.io.BufferedReader;
 import java.util.Map;
@@ -39,7 +39,7 @@ public class OrChadashParserTest {
     @Test
     public void testTotalNumberOfObjects() {
         assertNotNull(json);
-        assertEquals(4, json.subjects.size());
+        assertEquals(12, json.subjects.size());
     }
 
     @Test
@@ -48,19 +48,35 @@ public class OrChadashParserTest {
 
 
         object = json.getObject(0);
-        assertEquals("jbr:orchadash-0", object.get(URI));
+        assertEquals("jbr:orchadash-00", object.get(URI));
         assertEquals("1", object.get(JBO_POSITION));
         assertEquals("אור חדש - הקדמה א", object.get(RDFS_LABEL));
 
-
-        object = json.getObject(3);
-        assertEquals("jbr:orchadash-2", object.get(URI));
-        assertEquals("אור חדש ב", object.get(RDFS_LABEL));
-        assertEquals("4", object.get(JBO_POSITION));
 
         object = json.getObject(2);
         assertEquals("jbr:orchadash-1", object.get(URI));
         assertEquals("אור חדש א", object.get(RDFS_LABEL));
         assertEquals("3", object.get(JBO_POSITION));
+
+        object = json.getObject(5);
+        assertEquals("jbr:orchadash-4", object.get(URI));
+        assertEquals("אור חדש ד", object.get(RDFS_LABEL));
+        assertEquals("6", object.get(JBO_POSITION));
+
+        object = json.getObject(6);
+        assertEquals("jbr:orchadash-5", object.get(URI));
+        assertEquals("אור חדש ה", object.get(RDFS_LABEL));
+        assertEquals("7", object.get(JBO_POSITION));
+
+        object = json.getObject(9);
+        assertEquals("jbr:orchadash-8", object.get(URI));
+        assertEquals("אור חדש ח", object.get(RDFS_LABEL));
+        assertEquals("10", object.get(JBO_POSITION));
+
+        object = json.getObject(11);
+        assertEquals("jbr:orchadash-10", object.get(URI));
+        assertEquals("אור חדש י", object.get(RDFS_LABEL));
+        assertEquals("12", object.get(JBO_POSITION));
+
     }
 }

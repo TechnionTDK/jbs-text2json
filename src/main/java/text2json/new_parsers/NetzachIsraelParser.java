@@ -1,4 +1,4 @@
-package text2json.parsers;
+package text2json.new_parsers;
 
 import text2json.Line;
 import text2json.LineMatcher;
@@ -14,7 +14,7 @@ import static text2json.JbsUtils.HEB_LETTERS_INDEX;
  */
 public class NetzachIsraelParser extends Parser {
 
-    private int chapterNum = 0;
+    private int chapterNum = -1, first =0;
 
 
     public NetzachIsraelParser() {
@@ -59,19 +59,32 @@ public class NetzachIsraelParser extends Parser {
                 packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
-                String chapterName =HEB_LETTERS_INDEX[chapterNum-1];
-                jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_POSITION, chapterNum);
-                jsonObject().add(JBO_BOOK, JBR + "netzachisrael");
-                String rdfs = "נצח ישראל " + chapterName;
-                jsonObject().add(RDFS_LABEL,rdfs);
-//                packagesJsonObject().add(URI, getUri());
-//                packagesJsonObject().add(RDFS_LABEL, rdfs);
-//                packagesJsonObjectFlush();
+                first = 1;
+                if (chapterNum>0) {
+                    String chapterName = HEB_LETTERS_INDEX[chapterNum - 1];
+                    jsonObject().add(URI, getUri());
+                    jsonObject().add(JBO_POSITION, chapterNum+1);
+                    jsonObject().add(JBO_BOOK, JBR + "netzachisrael");
+                    String rdfs = "נצח ישראל " + chapterName;
+                    jsonObject().add(RDFS_LABEL, rdfs);
+                    //                packagesJsonObject().add(URI, getUri());
+                    //                packagesJsonObject().add(RDFS_LABEL, rdfs);
+//                    packagesJsonObjectFlush();
+                }
+                else{
+                    jsonObject().add(URI, getUri());
+                    jsonObject().add(JBO_POSITION, chapterNum+1);
+                    jsonObject().add(JBO_BOOK, JBR + "netzachisrael");
+                    String rdfs = "נצח ישראל הקדמה";
+                    jsonObject().add(RDFS_LABEL, rdfs);
+                }
                 break;
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                if(first == 0)
+                    jsonObject().append(JBO_TEXT, line.getLine());
+                else
+                    first = 0;
                 break;
         }
     }

@@ -1,4 +1,4 @@
-package text2json.parsers;
+package text2json.new_parsers;
 
 import text2json.Line;
 import text2json.LineMatcher;
@@ -12,12 +12,13 @@ import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 /**
  * Created by Assaf on 08/06/2017.
  */
-public class TiferetIsraelParser extends Parser {
+public class OrChadashParser extends Parser {
 
-    private int chapterNum = -1;
+    private int chapterNum = 0;
+    private int hakdamaNum = -1;
 
 
-    public TiferetIsraelParser() {
+    public OrChadashParser() {
         createPackagesJson();
     }
 
@@ -29,7 +30,7 @@ public class TiferetIsraelParser extends Parser {
 
             @Override
             public boolean match(Line line) {
-                return line.beginsWith("תפארת ישראל") && line.wordCount() <= 10;
+                return line.beginsWith("אור חדש") && line.wordCount() <= 10;
             }
         });
 
@@ -59,17 +60,20 @@ public class TiferetIsraelParser extends Parser {
         switch(type) {
             case BEGIN_SEFER:
                 packagesJsonObject().add(URI, getcorpus());
-                packagesJsonObject().add(RDFS_LABEL, "תפארת ישראל");
+                packagesJsonObject().add(RDFS_LABEL, "אור חדש");
                 packagesJsonObjectFlush();
                 break;
 
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
-                chapterNum++;
-                jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_POSITION, chapterNum+1);
-                jsonObject().add(RDFS_LABEL,"תפארת ישראל - הקדמה");
-
+                hakdamaNum++;
+                jsonObject().add(URI, JBR + "orchadash-0" +hakdamaNum);
+                jsonObject().add(JBO_BOOK, JBR + "orchadash");
+                jsonObject().add(JBO_POSITION, hakdamaNum+1);
+                if (hakdamaNum ==00)
+                    jsonObject().add(RDFS_LABEL,"אור חדש - הקדמה א");
+                if (hakdamaNum ==01)
+                    jsonObject().add(RDFS_LABEL,"אור חדש - הקדמה ב");
                 break;
 
 
@@ -79,9 +83,9 @@ public class TiferetIsraelParser extends Parser {
                 chapterNum++;
                 String chapterName =HEB_LETTERS_INDEX[chapterNum-1];
                 jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_POSITION, chapterNum+1);
-                jsonObject().add(JBO_BOOK, JBR + "tiferetisrael");
-                String rdfs = "תפארת ישראל " + chapterName;
+                jsonObject().add(JBO_POSITION, chapterNum+2);
+                jsonObject().add(JBO_BOOK, JBR + "orchadash");
+                String rdfs = "אור חדש " + chapterName;
                 jsonObject().add(RDFS_LABEL,rdfs);
 //                packagesJsonObject().add(URI, getUri());
 //                packagesJsonObject().add(RDFS_LABEL, rdfs);
@@ -96,8 +100,8 @@ public class TiferetIsraelParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR + "tiferetisrael-" + chapterNum ;    }
-    protected String getcorpus() { return JBR + "tiferetisrael";    }
+        return JBR + "orchadash-" + chapterNum ;    }
+    protected String getcorpus() { return JBR + "orchadash";    }
 
 
 }

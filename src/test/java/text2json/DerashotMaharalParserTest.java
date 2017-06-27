@@ -2,7 +2,7 @@ package text2json;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import text2json.parsers.DerashotMaharalParser;
+import text2json.new_parsers.DerashotMaharalParser;
 
 import java.io.BufferedReader;
 import java.util.Map;
@@ -39,7 +39,7 @@ public class DerashotMaharalParserTest {
     @Test
     public void testTotalNumberOfObjects() {
         assertNotNull(json);
-        assertEquals(6, json.subjects.size());
+        assertEquals(5, json.subjects.size());
     }
 
     @Test
@@ -50,21 +50,25 @@ public class DerashotMaharalParserTest {
         object = json.getObject(0);
         assertEquals("jbr:derashotmaharal-0", object.get(URI));
         assertEquals("1", object.get(JBO_POSITION));
-        assertEquals("דרשות מהר\"ל - הקדמה ", object.get(RDFS_LABEL));
+        assertEquals("דרשות מהר\"ל - הקדמה לדרוש על התורה", object.get(RDFS_LABEL));
 
-
-        object = json.getObject(2);
-        assertEquals("jbr:derashotmaharal-2", object.get(URI));
+        object = json.getObject(1);
+        assertEquals("jbr:derashotmaharal-1", object.get(URI));
         assertEquals("דרשות מהר\"ל - דרוש על התורה", object.get(RDFS_LABEL));
         assertEquals("2", object.get(JBO_POSITION));
 
-        object = json.getObject(3);
-        assertEquals("jbr:derashotmaharal-3", object.get(URI));
+        object = json.getObject(2);
+        assertEquals("jbr:derashotmaharal-2", object.get(URI));
         assertEquals("דרשות מהר\"ל - דרוש על המצות", object.get(RDFS_LABEL));
         assertEquals("3", object.get(JBO_POSITION));
 
-        object = json.getObject(5);
-        assertEquals("jbr:derashotmaharal-5", object.get(URI));
+        object = json.getObject(3);
+        assertEquals("jbr:derashotmaharal-3", object.get(URI));
+        assertEquals("דרשות מהר\"ל - דרוש לשבת תשובה", object.get(RDFS_LABEL));
+        assertEquals("4", object.get(JBO_POSITION));
+
+        object = json.getObject(4);
+        assertEquals("jbr:derashotmaharal-4", object.get(URI));
         assertEquals("דרשות מהר\"ל - דרוש לשבת הגדול", object.get(RDFS_LABEL));
         assertEquals("5", object.get(JBO_POSITION));
 

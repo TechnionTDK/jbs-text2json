@@ -2,7 +2,7 @@ package text2json;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import text2json.parsers.TiferetIsraelParser;
+import text2json.new_parsers.TiferetIsraelParser;
 
 import java.io.BufferedReader;
 import java.util.Map;
@@ -39,7 +39,7 @@ public class TiferetIsraelParserTest {
     @Test
     public void testTotalNumberOfObjects() {
         assertNotNull(json);
-        assertEquals(65, json.subjects.size());
+        assertEquals(71, json.subjects.size());
     }
 
     @Test
@@ -77,5 +77,15 @@ public class TiferetIsraelParserTest {
         assertEquals("jbr:tiferetisrael-64", object.get(URI));
         assertEquals("תפארת ישראל סד", object.get(RDFS_LABEL));
         assertEquals("65", object.get(JBO_POSITION));
+
+        object = json.getObject(69);
+        assertEquals("jbr:tiferetisrael-69", object.get(URI));
+        assertEquals("תפארת ישראל סט", object.get(RDFS_LABEL));
+        assertEquals("70", object.get(JBO_POSITION));
+
+        object = json.getObject(70);
+        assertEquals("jbr:tiferetisrael-70", object.get(URI));
+        assertEquals("תפארת ישראל ע", object.get(RDFS_LABEL));
+        assertEquals("71", object.get(JBO_POSITION));
     }
 }

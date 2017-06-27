@@ -2,7 +2,7 @@ package text2json;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import text2json.parsers.NetivotOlamParser;
+import text2json.new_parsers.NetivotOlamParser;
 
 import java.io.BufferedReader;
 import java.util.Map;
@@ -61,36 +61,36 @@ public class NetivotOlamParserTest {
         object = json.getObject(23);
         assertEquals("jbr:netivotolam-2-5", object.get(URI));
         assertEquals("נתיבות עולם - נתיב העבודה ה", object.get(RDFS_LABEL));
-        assertEquals("6", object.get(JBO_POSITION));
+        assertEquals("24", object.get(JBO_POSITION));
 
         object = json.getObject(32);
         assertEquals("jbr:netivotolam-2-14", object.get(URI));
         assertEquals("נתיבות עולם - נתיב העבודה יד", object.get(RDFS_LABEL));
-        assertEquals("15", object.get(JBO_POSITION));
+        assertEquals("33", object.get(JBO_POSITION));
 
         object = json.getObject(57);
         assertEquals("jbr:netivotolam-8-2", object.get(URI));
         assertEquals("נתיבות עולם - נתיב השלום ב", object.get(RDFS_LABEL));
-        assertEquals("3", object.get(JBO_POSITION));
+        assertEquals("58", object.get(JBO_POSITION));
 
         object = json.getObject(64);
         assertEquals("jbr:netivotolam-10-3", object.get(URI));
         assertEquals("נתיבות עולם - נתיב הענוה ג", object.get(RDFS_LABEL));
-        assertEquals("4", object.get(JBO_POSITION));
+        assertEquals("65", object.get(JBO_POSITION));
 
         object = json.getObject(91);
         assertEquals("jbr:netivotolam-15-2", object.get(URI));
         assertEquals("נתיבות עולם - נתיב הפּרישות ב", object.get(RDFS_LABEL));
-        assertEquals("3", object.get(JBO_POSITION));
+        assertEquals("92", object.get(JBO_POSITION));
 
         object = json.getObject(117);
         assertEquals("jbr:netivotolam-22-1", object.get(URI));
         assertEquals("נתיבות עולם - נתיב התוכחה א", object.get(RDFS_LABEL));
-        assertEquals("2", object.get(JBO_POSITION));
+        assertEquals("118", object.get(JBO_POSITION));
 
         object = json.getObject(135);
         assertEquals("jbr:netivotolam-33-1", object.get(URI));
         assertEquals("נתיבות עולם - נתיב דרך ארץ א", object.get(RDFS_LABEL));
-        assertEquals("2", object.get(JBO_POSITION));
+        assertEquals("136", object.get(JBO_POSITION));
     }
 }
