@@ -2,9 +2,7 @@ package text2json;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import text2json.Parser;
-import text2json.SubjectsJson;
-import text2json.new_parsers.OrotParser;
+import text2json.parsers.OrotParser;
 
 import java.io.BufferedReader;
 import java.util.Map;
@@ -58,26 +56,26 @@ public class OrotParserTest {
         object = json.getObject(13);
         assertEquals("jbr:orot-1-2-6", object.get(URI));
         assertEquals("אורות - אורות מאופל - המלחמה ו", object.get(RDFS_LABEL));
-        assertEquals("6", object.get(JBO_POSITION));
+        assertEquals("14", object.get(JBO_POSITION));
 
         object = json.getObject(34);
         assertEquals("jbr:orot-1-3-17", object.get(URI));
         assertEquals("אורות - אורות מאופל - ישראל ותחיתו יז", object.get(RDFS_LABEL));
-        assertEquals("17", object.get(JBO_POSITION));
+        assertEquals("35", object.get(JBO_POSITION));
 
         object = json.getObject(41);
         assertEquals("jbr:orot-1-3-24", object.get(URI));
         assertEquals("אורות - אורות מאופל - ישראל ותחיתו כד", object.get(RDFS_LABEL));
-        assertEquals("24", object.get(JBO_POSITION));
+        assertEquals("42", object.get(JBO_POSITION));
 
         object = json.getObject(54);
         assertEquals("jbr:orot-1-4-5", object.get(URI));
         assertEquals("אורות - אורות מאופל - אורות התחיה ה", object.get(RDFS_LABEL));
-        assertEquals("5", object.get(JBO_POSITION));
+        assertEquals("55", object.get(JBO_POSITION));
 
         object = json.getObject(56);
         assertEquals("jbr:orot-1-4-7", object.get(URI));
         assertEquals("אורות - אורות מאופל - אורות התחיה ז", object.get(RDFS_LABEL));
-        assertEquals("7", object.get(JBO_POSITION));
+        assertEquals("57", object.get(JBO_POSITION));
     }
 }

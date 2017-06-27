@@ -1,4 +1,4 @@
-package text2json.new_parsers;
+package text2json.parsers;
 
 import text2json.Line;
 import text2json.LineMatcher;
@@ -7,18 +7,17 @@ import text2json.Parser;
 import java.io.IOException;
 
 import static text2json.JbsOntology.*;
-import static text2json.JbsUtils.HEB_LETTERS_INDEX;
+import static text2json.JbsUtils.*;
 
 /**
  * Created by Assaf on 08/06/2017.
  */
-public class OrChadashParser extends Parser {
+public class BeerHagolaParser extends Parser {
 
-    private int chapterNum = 0;
-    private int hakdamaNum = -1;
+    private int beerNum = -1;
 
 
-    public OrChadashParser() {
+    public BeerHagolaParser() {
         createPackagesJson();
     }
 
@@ -30,7 +29,7 @@ public class OrChadashParser extends Parser {
 
             @Override
             public boolean match(Line line) {
-                return line.beginsWith("אור חדש") && line.wordCount() <= 10;
+                return line.beginsWith("Beer Hagola") && line.wordCount() <= 10;
             }
         });
 
@@ -50,7 +49,7 @@ public class OrChadashParser extends Parser {
 
             @Override
             public boolean match(Line line) {
-                return line.beginsWith("Chapter ") && line.wordCount() <= 10;
+                return line.beginsWith("באר ") && line.wordCount() <= 10;
             }
         });
     }
@@ -60,36 +59,32 @@ public class OrChadashParser extends Parser {
         switch(type) {
             case BEGIN_SEFER:
                 packagesJsonObject().add(URI, getcorpus());
-                packagesJsonObject().add(RDFS_LABEL, "אור חדש");
+                packagesJsonObject().add(RDFS_LABEL, "באר הגולה");
                 packagesJsonObjectFlush();
                 break;
 
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
-                hakdamaNum++;
-                jsonObject().add(URI, JBR + "orchadash-0" +hakdamaNum);
-                jsonObject().add(JBO_BOOK, JBR + "orchadash");
-                jsonObject().add(JBO_POSITION, hakdamaNum+1);
-                if (hakdamaNum ==00)
-                    jsonObject().add(RDFS_LABEL,"אור חדש - הקדמה א");
-                if (hakdamaNum ==01)
-                    jsonObject().add(RDFS_LABEL,"אור חדש - הקדמה ב");
+                beerNum++;
+                jsonObject().add(URI, getUri());
+                jsonObject().add(JBO_BOOK, JBR + "beerhagola");
+                jsonObject().add(JBO_POSITION, beerNum+1);
+                jsonObject().add(RDFS_LABEL,"באר הגולה - הקדמה");
                 break;
 
 
             case BEGIN_PEREK:
                 packagesJsonObjectFlush();
                 jsonObjectFlush();
-                chapterNum++;
-                String chapterName =HEB_LETTERS_INDEX[chapterNum-1];
+                beerNum++;
+                String beerName = "באר " + HEB_LETTERS_INDEX[beerNum-1];
                 jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_POSITION, chapterNum+2);
-                jsonObject().add(JBO_BOOK, JBR + "orchadash");
-                String rdfs = "אור חדש " + chapterName;
+                jsonObject().add(JBO_BOOK,JBR + "beerhagola");
+                jsonObject().add(JBO_POSITION, beerNum+1);
+                String rdfs = "באר הגולה - " + beerName;
                 jsonObject().add(RDFS_LABEL,rdfs);
 //                packagesJsonObject().add(URI, getUri());
 //                packagesJsonObject().add(RDFS_LABEL, rdfs);
-//                packagesJsonObjectFlush();
                 break;
 
             case NO_MATCH:
@@ -100,8 +95,8 @@ public class OrChadashParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR + "orchadash-" + chapterNum ;    }
-    protected String getcorpus() { return JBR + "orchadash";    }
+        return JBR + "beerhagola-" + beerNum ;    }
+    protected String getcorpus() { return JBR + "beerhagola";    }
 
 
 }

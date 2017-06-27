@@ -2,7 +2,7 @@ package text2json;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import text2json.new_parsers.DerashotMaharalParser;
+import text2json.parsers.DerashotMaharalParser;
 
 import java.io.BufferedReader;
 import java.util.Map;

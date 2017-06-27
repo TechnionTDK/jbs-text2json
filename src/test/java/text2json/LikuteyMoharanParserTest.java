@@ -2,8 +2,7 @@ package text2json;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import text2json.SubjectsJson;
-import text2json.new_parsers.LikuteyMoharanParser;
+import text2json.parsers.LikuteyMoharanParser;
 
 import java.io.BufferedReader;
 import java.util.Map;

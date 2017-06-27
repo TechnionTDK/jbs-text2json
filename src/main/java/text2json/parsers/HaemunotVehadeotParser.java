@@ -1,4 +1,4 @@
-package text2json.new_parsers;
+package text2json.parsers;
 
 import text2json.Line;
 import text2json.LineMatcher;
@@ -19,7 +19,7 @@ public class HaemunotVehadeotParser extends Parser {
     protected static final String BEGIN_HAKDAMA = "begin_hakdama";
 
 
-    private int maamarNum = 0;
+    private int maamarNum = 0,position=0;
     private int perekNum = 0;
     private String maamarName ="";
     private String perekName = "";
@@ -67,7 +67,7 @@ public class HaemunotVehadeotParser extends Parser {
 
             @Override
             public boolean match(Line line) {
-                return line.beginsWith("פתיחה ") && line.wordCount() <= 10;
+                return line.beginsWith("פתיחה") && line.wordCount() <= 10;
             }
         });
 
@@ -94,10 +94,11 @@ public class HaemunotVehadeotParser extends Parser {
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 perekNum=0;
-                jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_POSITION, "0");
-                jsonObject().add(JBO_BOOK, JBR + "haemunotvehadeot");
-                jsonObject().add(RDFS_LABEL,"האמונות והדעות - הקדמה");
+//                position++;
+//                jsonObject().add(URI, getUri());
+//                jsonObject().add(JBO_POSITION, position);
+//                jsonObject().add(JBO_BOOK, JBR + "haemunotvehadeot");
+//                jsonObject().add(RDFS_LABEL,"האמונות והדעות - הקדמה");
                 packagesJsonObject().add(URI, "haemunotvehadeot - hakdama");
                 packagesJsonObject().add(RDFS_LABEL,"האמונות והדעות - הקדמה");
                 packagesJsonObjectFlush();
@@ -119,10 +120,10 @@ public class HaemunotVehadeotParser extends Parser {
             case BEGIN_PATIAH:
                 jsonObjectFlush();
                 perekNum=0;
+                position++;
                 jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_POSITION, perekNum);
+                jsonObject().add(JBO_POSITION, position);
                 jsonObject().add(JBO_BOOK, JBR + "haemunotvehadeot");
-                jsonObject().addToArray(JBO_WITHIN, getcorpus());
                 jsonObject().addToArray(JBO_WITHIN, maamarName);
                 String rdfs = "האמונות והדעות - פתיחה";
                 jsonObject().add(RDFS_LABEL,rdfs);
@@ -133,10 +134,11 @@ public class HaemunotVehadeotParser extends Parser {
                     case (1): // in hakdam's chapters
                         jsonObjectFlush();
                         perekNum++;
+                        position++;
                         perekName = HEB_LETTERS_INDEX[perekNum - 1];
                         jsonObject().add(URI, getUri());
                         jsonObject().add(JBO_BOOK, JBR + "haemunotvehadeot");
-                        jsonObject().add(JBO_POSITION, perekNum);
+                        jsonObject().add(JBO_POSITION, position);
                         jsonObject().addToArray(JBO_WITHIN, "האמונות והדעות - הקדמה");
                         String rdfs0 = "האמונות והדעות - הקדמה "  + perekName;
                         jsonObject().add(RDFS_LABEL,rdfs0);
@@ -145,10 +147,11 @@ public class HaemunotVehadeotParser extends Parser {
                     case (0): // in regular maamar chapters
                         jsonObjectFlush();
                         perekNum++;
+                        position++;
                         perekName = HEB_LETTERS_INDEX[perekNum - 1];
                         jsonObject().add(URI, getUri());
                         jsonObject().add(JBO_BOOK, JBR + "haemunotvehadeot");
-                        jsonObject().add(JBO_POSITION, perekNum);
+                        jsonObject().add(JBO_POSITION, position);
                         jsonObject().addToArray(JBO_WITHIN, maamarName);
                         String rdfs1 = "האמונות והדעות - " + maamarName + " " + perekName;
                         jsonObject().add(RDFS_LABEL,rdfs1);

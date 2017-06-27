@@ -1,4 +1,4 @@
-package text2json.new_parsers;
+package text2json.parsers;
 
 import text2json.Line;
 import text2json.LineMatcher;
@@ -17,7 +17,7 @@ public class OrotParser extends Parser {
     protected static final String BEGIN_MAAMAR = "begin_maamar";
     protected static final String BEGIN_SUB_MAAMAR = "begin_sub_maamar";
 
-    private int maamarNum = 0;
+    private int maamarNum = 0,position =0;
     private int subMaamarNum = 0;
     private int perekNum = 0;
     private String maamarName ="";
@@ -115,9 +115,10 @@ public class OrotParser extends Parser {
                     case (1): // has submaamar so each chapters are numbered
                         jsonObjectFlush();
                         perekNum++;
+                        position++;
                         String hebperek = HEB_LETTERS_INDEX[perekNum - 1];
                         jsonObject().add(URI, getUri());
-                        jsonObject().add(JBO_POSITION, perekNum);
+                        jsonObject().add(JBO_POSITION, position);
                         jsonObject().add(JBO_BOOK, JBR + "orot");
                         jsonObject().addToArray(JBO_WITHIN, JBR + "orot-" + maamarNum);
                         jsonObject().addToArray(JBO_WITHIN, JBR + "orot-" + maamarNum +"-" + subMaamarNum);
@@ -128,9 +129,10 @@ public class OrotParser extends Parser {
                     case (0): // no submaamar so each chapter has a unique name
                         jsonObjectFlush();
                         perekNum++;
+                        position++;
                         perekName  = getPerekName (line.getLine());
                         jsonObject().add(URI, getUri());
-                        jsonObject().add(JBO_POSITION, perekNum);
+                        jsonObject().add(JBO_POSITION, position);
                         jsonObject().add(JBO_BOOK, JBR + "orot");
                         jsonObject().addToArray(JBO_WITHIN, JBR + "orot-" + maamarNum);
                         jsonObject().addToArray(JBO_WITHIN, JBR + "orot-" + maamarNum +"-" + subMaamarNum);

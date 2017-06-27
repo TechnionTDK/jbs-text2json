@@ -1,4 +1,4 @@
-package text2json.new_parsers;
+package text2json.parsers;
 
 import text2json.Line;
 import text2json.LineMatcher;
@@ -12,13 +12,13 @@ import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 /**
  * Created by Assaf on 08/06/2017.
  */
-public class GevurotHashemParser extends Parser {
+public class OrChadashParser extends Parser {
 
     private int chapterNum = 0;
-    private int hakdamaNum = 0;
+    private int hakdamaNum = -1;
 
 
-    public GevurotHashemParser() {
+    public OrChadashParser() {
         createPackagesJson();
     }
 
@@ -30,7 +30,7 @@ public class GevurotHashemParser extends Parser {
 
             @Override
             public boolean match(Line line) {
-                return line.beginsWith("גבורות השם") && line.wordCount() <= 10;
+                return line.beginsWith("אור חדש") && line.wordCount() <= 10;
             }
         });
 
@@ -60,22 +60,20 @@ public class GevurotHashemParser extends Parser {
         switch(type) {
             case BEGIN_SEFER:
                 packagesJsonObject().add(URI, getcorpus());
-                packagesJsonObject().add(RDFS_LABEL, "גבורות השם");
+                packagesJsonObject().add(RDFS_LABEL, "אור חדש");
                 packagesJsonObjectFlush();
                 break;
 
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 hakdamaNum++;
-                jsonObject().add(URI, JBR + "gevurothashem-0-" + (hakdamaNum-1));
-                jsonObject().add(JBO_BOOK, JBR + "gevurothashem");
-                jsonObject().add(JBO_POSITION, hakdamaNum);
-                if (hakdamaNum ==1)
-                    jsonObject().add(RDFS_LABEL,"גבורות השם - הקדמה א");
-                if (hakdamaNum ==2)
-                    jsonObject().add(RDFS_LABEL,"גבורות השם - הקדמה ב");
-                if (hakdamaNum ==3)
-                    jsonObject().add(RDFS_LABEL,"גבורות השם - הקדמה ג");
+                jsonObject().add(URI, JBR + "orchadash-0" +hakdamaNum);
+                jsonObject().add(JBO_BOOK, JBR + "orchadash");
+                jsonObject().add(JBO_POSITION, hakdamaNum+1);
+                if (hakdamaNum ==00)
+                    jsonObject().add(RDFS_LABEL,"אור חדש - הקדמה א");
+                if (hakdamaNum ==01)
+                    jsonObject().add(RDFS_LABEL,"אור חדש - הקדמה ב");
                 break;
 
 
@@ -83,11 +81,11 @@ public class GevurotHashemParser extends Parser {
                 packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
-                String chapterName = HEB_LETTERS_INDEX[chapterNum-1];
+                String chapterName =HEB_LETTERS_INDEX[chapterNum-1];
                 jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_POSITION, chapterNum+3);
-                jsonObject().add(JBO_BOOK, JBR + "gevurothashem");
-                String rdfs = "גבורות השם " + chapterName;
+                jsonObject().add(JBO_POSITION, chapterNum+2);
+                jsonObject().add(JBO_BOOK, JBR + "orchadash");
+                String rdfs = "אור חדש " + chapterName;
                 jsonObject().add(RDFS_LABEL,rdfs);
 //                packagesJsonObject().add(URI, getUri());
 //                packagesJsonObject().add(RDFS_LABEL, rdfs);
@@ -96,15 +94,14 @@ public class GevurotHashemParser extends Parser {
 
             case NO_MATCH:
                 jsonObject().append(JBO_TEXT, line.getLine());
-
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return JBR + "gevurothashem-" + chapterNum ;    }
-    protected String getcorpus() { return JBR + "gevurothashem";    }
+        return JBR + "orchadash-" + chapterNum ;    }
+    protected String getcorpus() { return JBR + "orchadash";    }
 
 
 }

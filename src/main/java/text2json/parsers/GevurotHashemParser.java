@@ -1,4 +1,4 @@
-package text2json.new_parsers;
+package text2json.parsers;
 
 import text2json.Line;
 import text2json.LineMatcher;
@@ -7,17 +7,18 @@ import text2json.Parser;
 import java.io.IOException;
 
 import static text2json.JbsOntology.*;
-import static text2json.JbsUtils.*;
+import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 
 /**
  * Created by Assaf on 08/06/2017.
  */
-public class BeerHagolaParser extends Parser {
+public class GevurotHashemParser extends Parser {
 
-    private int beerNum = -1;
+    private int chapterNum = 0;
+    private int hakdamaNum = 0;
 
 
-    public BeerHagolaParser() {
+    public GevurotHashemParser() {
         createPackagesJson();
     }
 
@@ -29,7 +30,7 @@ public class BeerHagolaParser extends Parser {
 
             @Override
             public boolean match(Line line) {
-                return line.beginsWith("Beer Hagola") && line.wordCount() <= 10;
+                return line.beginsWith("גבורות השם") && line.wordCount() <= 10;
             }
         });
 
@@ -49,7 +50,7 @@ public class BeerHagolaParser extends Parser {
 
             @Override
             public boolean match(Line line) {
-                return line.beginsWith("באר ") && line.wordCount() <= 10;
+                return line.beginsWith("Chapter ") && line.wordCount() <= 10;
             }
         });
     }
@@ -59,44 +60,51 @@ public class BeerHagolaParser extends Parser {
         switch(type) {
             case BEGIN_SEFER:
                 packagesJsonObject().add(URI, getcorpus());
-                packagesJsonObject().add(RDFS_LABEL, "באר הגולה");
+                packagesJsonObject().add(RDFS_LABEL, "גבורות השם");
                 packagesJsonObjectFlush();
                 break;
 
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
-                beerNum++;
-                jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_BOOK, JBR + "beerhagola");
-                jsonObject().add(JBO_POSITION, beerNum+1);
-                jsonObject().add(RDFS_LABEL,"באר הגולה - הקדמה");
+                hakdamaNum++;
+                jsonObject().add(URI, JBR + "gevurothashem-0-" + (hakdamaNum-1));
+                jsonObject().add(JBO_BOOK, JBR + "gevurothashem");
+                jsonObject().add(JBO_POSITION, hakdamaNum);
+                if (hakdamaNum ==1)
+                    jsonObject().add(RDFS_LABEL,"גבורות השם - הקדמה א");
+                if (hakdamaNum ==2)
+                    jsonObject().add(RDFS_LABEL,"גבורות השם - הקדמה ב");
+                if (hakdamaNum ==3)
+                    jsonObject().add(RDFS_LABEL,"גבורות השם - הקדמה ג");
                 break;
 
 
             case BEGIN_PEREK:
                 packagesJsonObjectFlush();
                 jsonObjectFlush();
-                beerNum++;
-                String beerName = "באר " + HEB_LETTERS_INDEX[beerNum-1];
+                chapterNum++;
+                String chapterName = HEB_LETTERS_INDEX[chapterNum-1];
                 jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_BOOK,JBR + "beerhagola");
-                jsonObject().add(JBO_POSITION, beerNum+1);
-                String rdfs = "באר הגולה - " + beerName;
+                jsonObject().add(JBO_POSITION, chapterNum+3);
+                jsonObject().add(JBO_BOOK, JBR + "gevurothashem");
+                String rdfs = "גבורות השם " + chapterName;
                 jsonObject().add(RDFS_LABEL,rdfs);
 //                packagesJsonObject().add(URI, getUri());
 //                packagesJsonObject().add(RDFS_LABEL, rdfs);
+//                packagesJsonObjectFlush();
                 break;
 
             case NO_MATCH:
                 jsonObject().append(JBO_TEXT, line.getLine());
+
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return JBR + "beerhagola-" + beerNum ;    }
-    protected String getcorpus() { return JBR + "beerhagola";    }
+        return JBR + "gevurothashem-" + chapterNum ;    }
+    protected String getcorpus() { return JBR + "gevurothashem";    }
 
 
 }

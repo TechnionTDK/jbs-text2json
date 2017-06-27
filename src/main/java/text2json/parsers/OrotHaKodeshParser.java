@@ -1,4 +1,4 @@
-package text2json.new_parsers;
+package text2json.parsers;
 
 import text2json.Line;
 import text2json.LineMatcher;
@@ -15,7 +15,7 @@ import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 public class OrotHaKodeshParser extends Parser {
 
     protected static final String BEGIN_TEACHING = "begin_teaching";
-    private int teachingNum = 0;
+    private int teachingNum = 0,position=0;
     private int sectionNum = 0;
     private String nativName = "";
 
@@ -62,7 +62,7 @@ public class OrotHaKodeshParser extends Parser {
         switch(type) {
             case BEGIN_SEFER:
                 packagesJsonObject().add(URI, getcorpus());
-                packagesJsonObject().add(RDFS_LABEL, "אורות הקודש ");
+                packagesJsonObject().add(RDFS_LABEL, "אורות הקודש");
                 packagesJsonObjectFlush();
                 break;
 
@@ -79,8 +79,9 @@ public class OrotHaKodeshParser extends Parser {
             case BEGIN_TEACHING:
                 jsonObjectFlush();
                 teachingNum++;
+                position++;
                 jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_POSITION, teachingNum);
+                jsonObject().add(JBO_POSITION, position);
                 jsonObject().add(JBO_BOOK, JBR + "orothakodesh");
                 jsonObject().addToArray(JBO_WITHIN,JBR + "orothakodesh-" + sectionNum);
                 String rdfs = "אורות הקודש" + " " + HEB_LETTERS_INDEX[sectionNum-1] + " " + HEB_LETTERS_INDEX[teachingNum-1];

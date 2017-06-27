@@ -1,4 +1,4 @@
-package text2json.new_parsers;
+package text2json.parsers;
 import text2json.Line;
 import text2json.LineMatcher;
 import text2json.Parser;
@@ -12,7 +12,7 @@ import static text2json.JbsUtils.*;
  */
 public class SefatEmetParser extends Parser {
 
-    private int parashaNum = 0;
+    private int parashaNum = 0,position=0;
     private int seferNum = 0;
     private int seifNum = 0;
 
@@ -92,11 +92,12 @@ public class SefatEmetParser extends Parser {
             case BEGIN_SAIF:
                 jsonObjectFlush();
                 seifNum++;
+                position++;
                 String parashaName1 = PARASHOT_HE[parashaNum-1];
                 String seifName = HEB_LETTERS_INDEX[seifNum-1];
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_EXPLAINS,parashaName1);
-                jsonObject().add(JBO_POSITION, seifNum);
+                jsonObject().add(JBO_POSITION, position);
                 jsonObject().add(JBO_BOOK, JBR + "sefatemet");
                 jsonObject().addToArray(JBO_WITHIN, JBR + "tanach-sefatemet-" + seferNum);
                 jsonObject().addToArray(JBO_WITHIN, JBR + "tanach-sefatemet-" + seferNum +"-" + parashaNum);
