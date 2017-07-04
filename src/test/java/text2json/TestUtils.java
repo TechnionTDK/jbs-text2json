@@ -13,12 +13,17 @@ import java.io.FileReader;
  */
 public class TestUtils {
     private static final String TEXT_DIR = "/jbs-raw/";
-    private static final String JSON_DIR = "/json/";
+    private static final String JSON_DIR = "json/";
 
     public static BufferedReader getText(String s) throws FileNotFoundException {
         return new BufferedReader(getFileReader(TEXT_DIR + s));
     }
 
+    public static void createOutputFolderIfNotExists(String name) {
+        File folder = new File(JSON_DIR + name);
+        if (!folder.exists())
+            folder.mkdir();
+    }
 
     public static int countMtches(String str, String findStr){
         int lastIndex = 0;

@@ -5,13 +5,14 @@ import org.junit.Test;
 import text2json.parsers.OrotParser;
 
 import java.io.BufferedReader;
+import java.io.File;
+
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static text2json.JbsOntology.*;
-import static text2json.TestUtils.getJson;
-import static text2json.TestUtils.getText;
+import static text2json.TestUtils.*;
 
 /**
  * Created by Assaf on 08/06/2017.
@@ -24,17 +25,10 @@ public class OrotParserTest {
     public static void beforeClass() throws Exception {
         Parser parser = new OrotParser();
         BufferedReader reader = getText("orot/orot.txt");
+        createOutputFolderIfNotExists("orot/");
         parser.parse(reader, "json/orot/orot.json");
         json = getJson("json/orot/orot.json");
     }
-
-    @Test
-    //test the correctness with sampling a few values
-    public void test() {
-        System.out.println("bla bla");
-        System.out.println();
-    }
-
 
     @Test
     public void testTotalNumberOfObjects() {
