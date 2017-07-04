@@ -10,8 +10,7 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static text2json.JbsOntology.*;
-import static text2json.TestUtils.getJson;
-import static text2json.TestUtils.getText;
+import static text2json.TestUtils.*;
 
 /**
  * Created by Assaf on 08/06/2017.
@@ -24,17 +23,10 @@ public class ChovotHalevavotParserTest {
     public static void beforeClass() throws Exception {
         Parser parser = new ChovotHalevavotParser();
         BufferedReader reader = getText("chovothalevavot/chovothalevavot.txt");
+        createOutputFolderIfNotExists("chovothalevavot");
         parser.parse(reader, "json/chovothalevavot/chovothalevavot.json");
         json = getJson("json/chovothalevavot/chovothalevavot.json");
     }
-
-    @Test
-    //test the correctness with sampling a few values
-    public void test() {
-        System.out.println("bla bla");
-        System.out.println();
-    }
-
 
     @Test
     public void testTotalNumberOfObjects() {
@@ -50,6 +42,7 @@ public class ChovotHalevavotParserTest {
         object = json.getObject(0);
         assertEquals("jbr:chovothalevavot-0-0", object.get(URI));
         assertEquals("1", object.get(JBO_POSITION));
+        assertEquals("jbr:book-chovothalevavot", object.get(JBO_BOOK));
         assertEquals("חובות הלבבות - הקדמת המחבר", object.get(RDFS_LABEL));
 
         object = json.getObject(5);

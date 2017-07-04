@@ -10,8 +10,7 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static text2json.JbsOntology.*;
-import static text2json.TestUtils.getJson;
-import static text2json.TestUtils.getText;
+import static text2json.TestUtils.*;
 
 /**
  * Created by Assaf on 08/06/2017.
@@ -24,6 +23,7 @@ public class NetivotOlamParserTest {
     public static void beforeClass() throws Exception {
         Parser parser = new NetivotOlamParser();
         BufferedReader reader = getText("netivotolam/netivotolam.txt");
+        createOutputFolderIfNotExists("netivotolam");
         parser.parse(reader, "json/netivotolam/netivotolam.json");
         json = getJson("json/netivotolam/netivotolam.json");
     }
@@ -51,17 +51,19 @@ public class NetivotOlamParserTest {
         assertEquals("jbr:netivotolam-0-0", object.get(URI));
         assertEquals("1", object.get(JBO_POSITION));
         assertEquals("נתיבות עולם - הקדמה", object.get(RDFS_LABEL));
-
+        assertEquals("jbr:book-netivotolam", object.get(JBO_BOOK));
 
         object = json.getObject(3);
         assertEquals("jbr:netivotolam-1-3", object.get(URI));
         assertEquals("נתיבות עולם - נתיב התורה ג", object.get(RDFS_LABEL));
         assertEquals("4", object.get(JBO_POSITION));
+        assertEquals("jbr:book-netivotolam", object.get(JBO_BOOK));
 
         object = json.getObject(23);
         assertEquals("jbr:netivotolam-2-5", object.get(URI));
         assertEquals("נתיבות עולם - נתיב העבודה ה", object.get(RDFS_LABEL));
         assertEquals("24", object.get(JBO_POSITION));
+        assertEquals("jbr:book-netivotolam", object.get(JBO_BOOK));
 
         object = json.getObject(32);
         assertEquals("jbr:netivotolam-2-14", object.get(URI));
@@ -77,6 +79,7 @@ public class NetivotOlamParserTest {
         assertEquals("jbr:netivotolam-10-3", object.get(URI));
         assertEquals("נתיבות עולם - נתיב הענוה ג", object.get(RDFS_LABEL));
         assertEquals("65", object.get(JBO_POSITION));
+        assertEquals("jbr:book-netivotolam", object.get(JBO_BOOK));
 
         object = json.getObject(91);
         assertEquals("jbr:netivotolam-15-2", object.get(URI));
@@ -92,5 +95,6 @@ public class NetivotOlamParserTest {
         assertEquals("jbr:netivotolam-33-1", object.get(URI));
         assertEquals("נתיבות עולם - נתיב דרך ארץ א", object.get(RDFS_LABEL));
         assertEquals("136", object.get(JBO_POSITION));
+        assertEquals("jbr:book-netivotolam", object.get(JBO_BOOK));
     }
 }

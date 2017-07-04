@@ -68,16 +68,18 @@ public class NetivotOlamParser extends Parser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_SEFER:
-                packagesJsonObject().add(URI, getcorpus());
-                packagesJsonObject().add(RDFS_LABEL, "נתיבות עולם");
-                packagesJsonObjectFlush();
+                // No need to create an object for the entire book anymore!
+                // It is created outside text2json
+//                packagesJsonObject().add(URI, getcorpus());
+//                packagesJsonObject().add(RDFS_LABEL, "נתיבות עולם");
+//                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 position++;
                 jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_BOOK, JBR + "netivotolam");
+                jsonObject().add(JBO_BOOK, JBR_BOOK + "netivotolam");
                 jsonObject().add(JBO_POSITION, position);
                 jsonObject().add(RDFS_LABEL,"נתיבות עולם - הקדמה");
 
@@ -88,7 +90,7 @@ public class NetivotOlamParser extends Parser {
                 perekNum=0;
                 nativNum++;
                 nativName = line.getLine();
-                packagesJsonObject().add(JBO_BOOK, JBR + "netivotolam");
+                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "netivotolam");
                 packagesJsonObject().add(URI, JBR + "netivotolam-" + nativNum);
                 packagesJsonObject().add(JBO_POSITION, nativNum);
                 packagesJsonObject().add(RDFS_LABEL, nativName);
@@ -102,7 +104,7 @@ public class NetivotOlamParser extends Parser {
                 String perekName = HEB_LETTERS_INDEX[perekNum-1];
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_POSITION, position);
-                jsonObject().add(JBO_BOOK, JBR + "netivotolam");
+                jsonObject().add(JBO_BOOK, JBR_BOOK + "netivotolam");
                 jsonObject().addToArray(JBO_WITHIN, JBR + "netivotolam-" + nativNum);
                 String rdfs = "נתיבות עולם - " + nativName +" " + perekName;
                 jsonObject().add(RDFS_LABEL,rdfs);

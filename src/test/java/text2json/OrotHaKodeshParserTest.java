@@ -10,8 +10,7 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static text2json.JbsOntology.*;
-import static text2json.TestUtils.getJson;
-import static text2json.TestUtils.getText;
+import static text2json.TestUtils.*;
 
 /**
  * Created by Assaf on 08/06/2017.
@@ -24,17 +23,10 @@ public class OrotHaKodeshParserTest {
     public static void beforeClass() throws Exception {
         Parser parser = new OrotHaKodeshParser();
         BufferedReader reader = getText("orothakodesh/orothakodesh.txt");
+        createOutputFolderIfNotExists("orothakodesh");
         parser.parse(reader, "json/orothakodesh/orothakodesh.json");
         json = getJson("json/orothakodesh/orothakodesh.json");
     }
-
-    @Test
-    //test the correctness with sampling a few values
-    public void test() {
-        System.out.println("bla bla");
-        System.out.println();
-    }
-
 
     @Test
     public void testTotalNumberOfObjects() {

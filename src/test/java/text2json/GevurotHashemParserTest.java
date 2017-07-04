@@ -10,8 +10,7 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static text2json.JbsOntology.*;
-import static text2json.TestUtils.getJson;
-import static text2json.TestUtils.getText;
+import static text2json.TestUtils.*;
 
 /**
  * Created by Assaf on 08/06/2017.
@@ -24,17 +23,10 @@ public class GevurotHashemParserTest {
     public static void beforeClass() throws Exception {
         Parser parser = new GevurotHashemParser();
         BufferedReader reader = getText("gevurothashem/gevurothashem.txt");
+        createOutputFolderIfNotExists("gevurothashem");
         parser.parse(reader, "json/gevurothashem/gevurothashem.json");
         json = getJson("json/gevurothashem/gevurothashem.json");
     }
-
-    @Test
-    //test the correctness with sampling a few values
-    public void test() {
-        System.out.println("bla bla");
-        System.out.println();
-    }
-
 
     @Test
     public void testTotalNumberOfObjects() {
@@ -51,12 +43,13 @@ public class GevurotHashemParserTest {
         assertEquals("jbr:gevurothashem-0-0", object.get(URI));
         assertEquals("1", object.get(JBO_POSITION));
         assertEquals("גבורות השם - הקדמה א", object.get(RDFS_LABEL));
-
+        assertEquals("jbr:book-gevurothashem", object.get(JBO_BOOK));
 
         object = json.getObject(13);
         assertEquals("jbr:gevurothashem-11", object.get(URI));
         assertEquals("גבורות השם יא", object.get(RDFS_LABEL));
         assertEquals("14", object.get(JBO_POSITION));
+        assertEquals("jbr:book-gevurothashem", object.get(JBO_BOOK));
 
         object = json.getObject(34);
         assertEquals("jbr:gevurothashem-32", object.get(URI));
@@ -72,10 +65,12 @@ public class GevurotHashemParserTest {
         assertEquals("jbr:gevurothashem-52", object.get(URI));
         assertEquals("גבורות השם נב", object.get(RDFS_LABEL));
         assertEquals("55", object.get(JBO_POSITION));
+        assertEquals("jbr:book-gevurothashem", object.get(JBO_BOOK));
 
         object = json.getObject(56);
         assertEquals("jbr:gevurothashem-54", object.get(URI));
         assertEquals("גבורות השם נד", object.get(RDFS_LABEL));
         assertEquals("57", object.get(JBO_POSITION));
+        assertEquals("jbr:book-gevurothashem", object.get(JBO_BOOK));
     }
 }

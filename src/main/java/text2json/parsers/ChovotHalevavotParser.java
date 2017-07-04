@@ -86,9 +86,11 @@ public class ChovotHalevavotParser extends Parser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_SEFER:
-                packagesJsonObject().add(URI, getcorpus());
-                packagesJsonObject().add(RDFS_LABEL, "חובות הלבבות");
-                packagesJsonObjectFlush();
+                // No need to create an object for the entire book anymore!
+                // It is created outside text2json
+//                packagesJsonObject().add(URI, getcorpus());
+//                packagesJsonObject().add(RDFS_LABEL, "חובות הלבבות");
+//                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_FIRST_HAKDAMA:
@@ -98,6 +100,7 @@ public class ChovotHalevavotParser extends Parser {
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_POSITION, position);
                 jsonObject().add(RDFS_LABEL,"חובות הלבבות - הקדמת המחבר");
+                jsonObject().add(JBO_BOOK, JBR_BOOK + "chovothalevavot");
                 packagesJsonObject().add(URI, "chovothalevavot - hakdamat hamehaber");
                 packagesJsonObject().add(RDFS_LABEL,"חובות הלבבות - הקדמת המחבר");
                 packagesJsonObjectFlush();
@@ -120,7 +123,7 @@ public class ChovotHalevavotParser extends Parser {
                 position++;
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_POSITION, position);
-                jsonObject().add(JBO_BOOK, JBR + "chovothalevavot");
+                jsonObject().add(JBO_BOOK, JBR_BOOK + "chovothalevavot");
                 jsonObject().addToArray(JBO_WITHIN, shaarName);
                 String rdfs = "חובות הלבבות - " + shaarName + "הקדמה";
                 jsonObject().add(RDFS_LABEL,rdfs);
@@ -132,7 +135,7 @@ public class ChovotHalevavotParser extends Parser {
                 position++;
                 perekName = HEB_LETTERS_INDEX[perekNum - 1];
                 jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_BOOK, JBR + "chovothalevavot");
+                jsonObject().add(JBO_BOOK, JBR_BOOK + "chovothalevavot");
                 jsonObject().add(JBO_POSITION, position);
                 jsonObject().addToArray(JBO_WITHIN, shaarName);
                 String rdfs1 = "חובות הלבבות - " + shaarName + " - " + perekName;

@@ -74,9 +74,11 @@ public class LikuteyMoharanParser extends Parser{
     protected void onLineMatch(String type, Line line) throws IOException {
         switch (type) {
             case BEGIN_SEFER:
-                packagesJsonObject().add(URI, "jbr:likuteymoharan");
-                packagesJsonObject().add(RDFS_LABEL, "ליקוטי מוהר''ן");
-                packagesJsonObjectFlush();
+                // No need to create an object for the entire book anymore!
+                // It is created outside text2json
+//                packagesJsonObject().add(URI, "jbr:likuteymoharan");
+//                packagesJsonObject().add(RDFS_LABEL, "ליקוטי מוהר''ן");
+//                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_CHELEK:
@@ -88,6 +90,7 @@ public class LikuteyMoharanParser extends Parser{
                 packagesJsonObject().add(URI, "jbr:likuteymoharan-" + chelekNum);
                 packagesJsonObject().add(RDFS_LABEL, "ליקוטי מוהר''ן - חלק " + chelekHebIdx);
                 packagesJsonObject().add(JBO_POSITION, chelekNum);
+                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "likuteymoharan");
                 packagesJsonObjectFlush();
                 break;
 
@@ -100,7 +103,7 @@ public class LikuteyMoharanParser extends Parser{
                 saifHebIdx = line.getFirstWord();
                 saifTitle = line.extract(" - ", " ");
                 jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_BOOK, JBR + "likuteymoharan");
+                jsonObject().add(JBO_BOOK, JBR_BOOK + "likuteymoharan");
                 jsonObject().addToArray(JBO_WITHIN, "jbr:likuteymoharan-" + chelekNum);
                 jsonObject().add(JBO_POSITION, positionInSefer);
                 jsonObject().add(RDFS_LABEL, "ליקוטי מוהר''ן " + chelekHebIdx + " " + saifHebIdx);

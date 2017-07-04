@@ -10,8 +10,7 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static text2json.JbsOntology.*;
-import static text2json.TestUtils.getJson;
-import static text2json.TestUtils.getText;
+import static text2json.TestUtils.*;
 
 /**
  * Created by Assaf on 08/06/2017.
@@ -24,15 +23,9 @@ public class OrChadashParserTest {
     public static void beforeClass() throws Exception {
         Parser parser = new OrChadashParser();
         BufferedReader reader = getText("orchadash/orchadash.txt");
+        createOutputFolderIfNotExists("orchadash");
         parser.parse(reader, "json/orchadash/orchadash.json");
         json = getJson("json/orchadash/orchadash.json");
-    }
-
-    @Test
-    //test the correctness with sampling a few values
-    public void test() {
-        System.out.println("bla bla");
-        System.out.println();
     }
 
 
@@ -51,32 +44,38 @@ public class OrChadashParserTest {
         assertEquals("jbr:orchadash-00", object.get(URI));
         assertEquals("1", object.get(JBO_POSITION));
         assertEquals("אור חדש - הקדמה א", object.get(RDFS_LABEL));
+        assertEquals("jbr:book-orchadash", object.get(JBO_BOOK));
 
 
         object = json.getObject(2);
         assertEquals("jbr:orchadash-1", object.get(URI));
         assertEquals("אור חדש א", object.get(RDFS_LABEL));
         assertEquals("3", object.get(JBO_POSITION));
+        assertEquals("jbr:book-orchadash", object.get(JBO_BOOK));
+
 
         object = json.getObject(5);
         assertEquals("jbr:orchadash-4", object.get(URI));
         assertEquals("אור חדש ד", object.get(RDFS_LABEL));
         assertEquals("6", object.get(JBO_POSITION));
+        assertEquals("jbr:book-orchadash", object.get(JBO_BOOK));
 
         object = json.getObject(6);
         assertEquals("jbr:orchadash-5", object.get(URI));
         assertEquals("אור חדש ה", object.get(RDFS_LABEL));
         assertEquals("7", object.get(JBO_POSITION));
+        assertEquals("jbr:book-orchadash", object.get(JBO_BOOK));
 
         object = json.getObject(9);
         assertEquals("jbr:orchadash-8", object.get(URI));
         assertEquals("אור חדש ח", object.get(RDFS_LABEL));
         assertEquals("10", object.get(JBO_POSITION));
+        assertEquals("jbr:book-orchadash", object.get(JBO_BOOK));
 
         object = json.getObject(11);
         assertEquals("jbr:orchadash-10", object.get(URI));
         assertEquals("אור חדש י", object.get(RDFS_LABEL));
         assertEquals("12", object.get(JBO_POSITION));
-
+        assertEquals("jbr:book-orchadash", object.get(JBO_BOOK));
     }
 }

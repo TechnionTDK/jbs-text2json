@@ -50,9 +50,11 @@ public class MidbarShurParser extends Parser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_SEFER:
-                packagesJsonObject().add(URI, getcorpus());
-                packagesJsonObject().add(RDFS_LABEL, "אור חדש");
-                packagesJsonObjectFlush();
+                // No need to create an object for the entire book anymore!
+                // It is created manually, outside text2json
+//                packagesJsonObject().add(URI, getcorpus());
+//                packagesJsonObject().add(RDFS_LABEL, "אור חדש");
+//                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_PEREK:
@@ -61,7 +63,7 @@ public class MidbarShurParser extends Parser {
                 chapterNum++;
                 String chapterName = "דרוש " + HEB_LETTERS_INDEX[chapterNum-1];
                 jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_BOOK, JBR + "midbarshur");
+                jsonObject().add(JBO_BOOK, JBR_BOOK + "midbarshur");
                 jsonObject().add(JBO_POSITION, chapterNum);
                 String rdfs = "מדבר שור - " + chapterName;
                 jsonObject().add(RDFS_LABEL,rdfs);

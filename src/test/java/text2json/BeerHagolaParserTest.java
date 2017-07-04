@@ -10,8 +10,7 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static text2json.JbsOntology.*;
-import static text2json.TestUtils.getJson;
-import static text2json.TestUtils.getText;
+import static text2json.TestUtils.*;
 
 /**
  * Created by Assaf on 08/06/2017.
@@ -24,17 +23,10 @@ public class BeerHagolaParserTest {
     public static void beforeClass() throws Exception {
         Parser parser = new BeerHagolaParser();
         BufferedReader reader = getText("beerhagola/beerhagola.txt");
+        createOutputFolderIfNotExists("beerhagola");
         parser.parse(reader, "json/beerhagola/beerhagola.json");
         json = getJson("json/beerhagola/beerhagola.json");
     }
-
-    @Test
-    //test the correctness with sampling a few values
-    public void test() {
-        System.out.println("bla bla");
-        System.out.println();
-    }
-
 
     @Test
     public void testTotalNumberOfObjects() {
@@ -51,16 +43,19 @@ public class BeerHagolaParserTest {
         assertEquals("jbr:beerhagola-0", object.get(URI));
         assertEquals("1", object.get(JBO_POSITION));
         assertEquals("באר הגולה - הקדמה", object.get(RDFS_LABEL));
+        assertEquals("jbr:book-beerhagola", object.get(JBO_BOOK));
 
 
         object = json.getObject(6);
         assertEquals("jbr:beerhagola-6", object.get(URI));
         assertEquals("באר הגולה - באר ו", object.get(RDFS_LABEL));
         assertEquals("7", object.get(JBO_POSITION));
+        assertEquals("jbr:book-beerhagola", object.get(JBO_BOOK));
 
         object = json.getObject(2);
         assertEquals("jbr:beerhagola-2", object.get(URI));
         assertEquals("באר הגולה - באר ב", object.get(RDFS_LABEL));
         assertEquals("3", object.get(JBO_POSITION));
+        assertEquals("jbr:book-beerhagola", object.get(JBO_BOOK));
     }
 }

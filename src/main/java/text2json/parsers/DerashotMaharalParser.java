@@ -58,9 +58,11 @@ public class DerashotMaharalParser extends Parser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_SEFER:
-                packagesJsonObject().add(URI, getcorpus());
-                packagesJsonObject().add(RDFS_LABEL, "דרשות מהר\"ל");
-                packagesJsonObjectFlush();
+                // No need to create an object for the entire book anymore!
+                // It is created outside text2json
+//                packagesJsonObject().add(URI, getcorpus());
+//                packagesJsonObject().add(RDFS_LABEL, "דרשות מהר\"ל");
+//                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_HAKDAMA:
@@ -80,7 +82,7 @@ public class DerashotMaharalParser extends Parser {
                 String chapterName = line.getLine();
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_POSITION, chapterNum+1);
-                jsonObject().add(JBO_BOOK, JBR + "derashotmaharal");
+                jsonObject().add(JBO_BOOK, JBR_BOOK + "derashotmaharal");
                 String rdfs = "דרשות מהר\"ל - " + chapterName;
                 jsonObject().add(RDFS_LABEL,rdfs);
 //                packagesJsonObject().add(URI, getUri());

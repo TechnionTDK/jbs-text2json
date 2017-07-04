@@ -49,9 +49,11 @@ public class NetzachIsraelParser extends Parser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_SEFER:
-                packagesJsonObject().add(URI, getcorpus());
-                packagesJsonObject().add(RDFS_LABEL, "נצח ישראל");
-                packagesJsonObjectFlush();
+                // No need to create an object for the entire book anymore!
+                // It is created outside text2json
+//                packagesJsonObject().add(URI, getcorpus());
+//                packagesJsonObject().add(RDFS_LABEL, "נצח ישראל");
+//                packagesJsonObjectFlush();
                 break;
 
 
@@ -64,7 +66,7 @@ public class NetzachIsraelParser extends Parser {
                     String chapterName = HEB_LETTERS_INDEX[chapterNum - 1];
                     jsonObject().add(URI, getUri());
                     jsonObject().add(JBO_POSITION, chapterNum+1);
-                    jsonObject().add(JBO_BOOK, JBR + "netzachisrael");
+                    jsonObject().add(JBO_BOOK, JBR_BOOK + "netzachisrael");
                     String rdfs = "נצח ישראל " + chapterName;
                     jsonObject().add(RDFS_LABEL, rdfs);
                     //                packagesJsonObject().add(URI, getUri());
@@ -74,7 +76,7 @@ public class NetzachIsraelParser extends Parser {
                 else{
                     jsonObject().add(URI, getUri());
                     jsonObject().add(JBO_POSITION, chapterNum+1);
-                    jsonObject().add(JBO_BOOK, JBR + "netzachisrael");
+                    jsonObject().add(JBO_BOOK, JBR_BOOK + "netzachisrael");
                     String rdfs = "נצח ישראל הקדמה";
                     jsonObject().add(RDFS_LABEL, rdfs);
                 }

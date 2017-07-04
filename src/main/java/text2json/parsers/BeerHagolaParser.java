@@ -58,16 +58,18 @@ public class BeerHagolaParser extends Parser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_SEFER:
-                packagesJsonObject().add(URI, getcorpus());
-                packagesJsonObject().add(RDFS_LABEL, "באר הגולה");
-                packagesJsonObjectFlush();
+                // No need to create an object for the entire book anymore!
+                // It is created outside text2json
+//                packagesJsonObject().add(URI, getcorpus());
+//                packagesJsonObject().add(RDFS_LABEL, "באר הגולה");
+//                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 beerNum++;
                 jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_BOOK, JBR + "beerhagola");
+                jsonObject().add(JBO_BOOK, JBR_BOOK + "beerhagola");
                 jsonObject().add(JBO_POSITION, beerNum+1);
                 jsonObject().add(RDFS_LABEL,"באר הגולה - הקדמה");
                 break;
@@ -79,7 +81,7 @@ public class BeerHagolaParser extends Parser {
                 beerNum++;
                 String beerName = "באר " + HEB_LETTERS_INDEX[beerNum-1];
                 jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_BOOK,JBR + "beerhagola");
+                jsonObject().add(JBO_BOOK,JBR_BOOK + "beerhagola");
                 jsonObject().add(JBO_POSITION, beerNum+1);
                 String rdfs = "באר הגולה - " + beerName;
                 jsonObject().add(RDFS_LABEL,rdfs);

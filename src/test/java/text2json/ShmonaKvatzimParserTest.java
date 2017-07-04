@@ -3,7 +3,7 @@ package text2json;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import text2json.parsers.ShmonaKvatzimParser;
+import text2json.parsers.ShemonaKevatzimParser;
 import static text2json.JbsOntology.*;
 import static text2json.TestUtils.*;
 
@@ -18,8 +18,9 @@ public class ShmonaKvatzimParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new ShmonaKvatzimParser();
+        Parser parser = new ShemonaKevatzimParser();
         BufferedReader reader = getText("shmonakvatzim/shmonakvatzim.txt");
+        createOutputFolderIfNotExists("shmonakvatzim");
         parser.parse(reader, "json/shmonakvatzim/shmonakvatzim.json");
         json = getJson("json/shmonakvatzim/shmonakvatzim.json");
     }
@@ -35,32 +36,33 @@ public class ShmonaKvatzimParserTest {
         // test first object
         //Map<String, String> o = (Map<String, String>) json.subjects.get(0);
         Map<String, String> o = json.getObject(0);
-        assertEquals("jbr:shmonakvatzim-1-1", o.get(URI));
+        assertEquals("jbr:shemonakevatzim-1-1", o.get(URI));
         String text = "חיים אנו עם הציורים הרוחניים שבהשאיפה של נשמת האומה. בכל מקום שהניצוצות של אור הללו גנוזים הם שם, הננו מקושרים בקשר של נשמה של חיים, של כל הוייתנו, אליו. בין שיהיה מקום זה מקום ממשי, מדת ארץ, בין שיהיו מעשים שאלו הציורים כמוסים ביסודם, בין שיהיו מחשבות ורעיונות מאיזה מין שיהיו.";
         assertEquals(text, o.get(JBO_TEXT));
         assertEquals("שמונה קבצים 1 1", o.get(RDFS_LABEL));
+        assertEquals("jbr:book-shemonakevatzim", o.get(JBO_BOOK));
 
         // test last object
         o = json.getObject(json.subjects.size()-1);
-        assertEquals("jbr:shmonakvatzim-8-260", o.get(URI));
+        assertEquals("jbr:shemonakevatzim-8-260", o.get(URI));
         text = "ואם הנשמה בחביונה היא חדורה צמאון אלהי, וחשיפות היושר הטהור היא עריגתה הקבועה, מי הוא זה יכול לעצור בפניה, ולהטות אותה מאורח שטפה הרענן.";
         assertEquals(text, o.get(JBO_TEXT));
 
         // test last object of kovetz 1
         o = json.getObject(902);
-        assertEquals("jbr:shmonakvatzim-1-903", o.get(URI));
+        assertEquals("jbr:shemonakevatzim-1-903", o.get(URI));
         assertTrue(o.get(JBO_TEXT).startsWith("בינה הוא האידיאל העליון"));
 
         // test last object of kovetz 2
         o = json.getObject(1263);
-        assertEquals("jbr:shmonakvatzim-2-361", o.get(URI));
+        assertEquals("jbr:shemonakevatzim-2-361", o.get(URI));
         assertTrue(o.get(JBO_TEXT).startsWith("הנשמה ההולכת ומאירה"));
 
 
         // test last object of kovetz 3
         // note: kovetz 3 is missing saif chet
         o = json.getObject(1630);
-        assertEquals("jbr:shmonakvatzim-3-367", o.get(URI));
+        assertEquals("jbr:shemonakevatzim-3-367", o.get(URI));
         assertTrue(o.get(JBO_TEXT).startsWith("המחשבות של הצדיקים"));
 
     }

@@ -21,36 +21,29 @@ public class LikuteyMoharanParserTest {
 
     @BeforeClass
     public static void setup() throws Exception {
-        System.out.println("Creating json for likutey moharan");
         LikuteyMoharanParser parser = new LikuteyMoharanParser();
-        BufferedReader reader = getText("/likuteymoharan/likuteymoharan.txt");
-        parser.parse(reader, "../../jbs-text/likuteymoharan/likuteymoharan.json");
-        json = getJson("../../jbs-text/likuteymoharan/likuteymoharan.json");
-        packageJson = getJson("../../jbs-text/likuteymoharan/likuteymoharan-packages.json");
-        System.out.println("");
+        BufferedReader reader = getText("likuteymoharan/likuteymoharan.txt");
+        createOutputFolderIfNotExists("likuteymoharan");
+        parser.parse(reader, "json/likuteymoharan/likuteymoharan.json");
+        json = getJson("json/likuteymoharan/likuteymoharan.json");
+        packageJson = getJson("json/likuteymoharan/likuteymoharan-packages.json");
     }
 
     @Test
     public void testNumOfSaifim(){
-        System.out.println("testNumOfSaifim:");
         assertNotNull(json);
-        int numOfSaifim= (286 - 3) + (125-1);
+        int numOfSaifim= (286-3) + (125-1);
         assertEquals(numOfSaifim, json.subjects.size());
-        System.out.println("Success! :)");
     }
 
     @Test
     public void testNumOfObjectsInPackage(){
-        System.out.println("testNumOfObjectsInPackage:");
         assertNotNull(packageJson);
-        //int numOfSaifim= (286 - 3) + (125-1);
-        assertEquals(3, packageJson.subjects.size());
-        System.out.println("Success! :)");
+        assertEquals(2, packageJson.subjects.size());
     }
 
     @Test
     public void testSpecificObjects(){
-        System.out.print("testSpecificObjects: ");
         Map<String, String> object;
         String text;
 
@@ -71,6 +64,8 @@ public class LikuteyMoharanParserTest {
                 "גלא - הוא היצר הרע: דמטבע לספינתא - הוא החן והחשיבות, לשון ספון וחשוב, כי היצר הרע רוצה להטביע ולהשפיל, חס ושלום, בחינת החן והחשיבות של ישראל, בחינת מלכות דקדשה: ומתחזי כי צוציתא דנורא חורתא ברישא - כי מתחלה היצר הרע מתלבש עצמו במצוות ומטעה את האדם כאלו מסיתו לעשות מצוה. וזהו בחינת צוציתא דנורא חורתא - אש לבנה, אף על פי כן מלאך מזיק הוא. ומחינן ליה באלותא דחקיק עלה אהיה וכו', הינו שעקר הכנעתו של היצר הרע הוא על ידי התורה, שהיא כלה שמותיו של הקדוש ברוך הוא. והתורה היא בחינת ואו (עיין זוהר פקודי דרכ\"ו). כי הלוחות, ארכן וי\"ו ורחבן וי\"ו (בבא בתרא יד.). וזהו בחינת אלותא, דהינו מקלות דחקיק עלה אהיה וכו', הינו שמות, בחינת התורה, שהיא בחינת וי\"ו, והוי\"ו הוא צורת מקל, והיא כלה שמותיו של השם יתברך, הינו שהתורה הקדושה היא מכניע את היצר הרע שרוצה לעשות את האדם משגע ממש, חס ושלום. כי בעל עברה הוא משגע, כמו שאמרו רבותינו, זכרונם לברכה (סוטה ג.): 'אין אדם עובר עברה אלא אם כן נכנס בו רוח שטות'. וכמו שהמשגעים צריכים להכותם ולשום עליהם שמות, כמו כן ממש התורה שעוסקין הוא בחינת מקלות ושמות, שבזה מכין ומכניעין את היצר הרע ומגרשין מן האדם את השגעון והרוח שטות שנכנס בו, בחינת 'ומחינן ליה באלותא, דחקיק עליה שמות' וכו', כנ\"ל (עיין מ\"ר קדושים תחלת פ' כ\"ה: ):\n" +
                 "וזהו: \"אשרי תמימי דרך\". אשרי - לשון הסתכלות. תמימי דרך - בחינת (בראשית כ\"ה): \"יעקב איש תם\"; שהוא בחינת השכל כנ\"ל. הינו לזכות להסתכל על השכל שיש בכל דבר, שהוא בחינת \"יעקב איש תם\" - זה זוכין על ידי התורה: וזהו: ההולכים בתורת ה'. כי על ידי שלומד תורה בכח, על ידי זה נותן כח למלכות דקדשה בחינת נו\"ן, לקבל מן השכל, שהוא בחינת חי\"ת, ואזי נעשה חן ונתקבלים דבריו כנ\"ל, ואזי נתעלה החן והחשיבות של ישראל, וכל התפלות והבקשות נתקבלים:";
         assertEquals(text, object.get(JBO_TEXT));
+        assertEquals("jbr:book-likuteymoharan", object.get(JBO_BOOK));
+
 
         //chelek 1 saif 284
         object = json.getObject(283-3);
@@ -105,59 +100,25 @@ public class LikuteyMoharanParserTest {
         assertEquals("מענין אמירת תהלים", object.get(JBO_NAME));
         text = "מענין אמירת תהלים דבר עם אחד ואמר לו, שעקר אמירת תהלים לומר כל מזמורי תהלים על עצמו, למצא את עצמו בתוך כל מזמור ומזמור. ושאל אותו זכרונו לברכה: איך, ופרש לו רבנו, זכרונו לברכה, קצת, כי כל המלחמות שבקש דוד המלך, עליו השלום, שיצילהו השם יתברך מהם - הכל צריכין לפרש לעצמו על מלחמת היצר הרע וחילותיו, וכיוצא בזה בשאר המזמורים (וכמבאר מזה לעיל בסימן קא). ושאל אותו: איך יפרש לעצמו מהפסוקים, שדוד המלך, עליו השלום, משבח את עצמו, כגון: \"שמרה נפשי כי חסיד אני\" (תהלים פ\"ו), וכיוצא בזה. השיב לו: גם זה צריכין לפרש על עצמו, כי צריכין לדון את עצמו לכף זכות, ולמצא בעצמו איזה זכות ונקדה טובה, אשר בבחינת הנקדה טובה הזאת הוא בחינת חסיד, וכיוצא. ואמר לו רבנו, זכרונו לברכה: הלא אצל יהושפט כתיב (דברי הימים ב יז): \"ויגבה לבו בדרכי ה'\", שבדרכי ה' ועבודתו יתברך הגביה לבו קצת. עוד אמר לו רבנו, זכרונו לברכה: הלא בבקר אנו אומרים בתחלה: 'מה אנו מה חיינו' וכו', ואנו מקטינים עצמנו מאד, ואחר כך אנו אומרים: 'אבל אנחנו עמך בני בריתך' וכו', שאחר כך אנו מחזקים עצמנו ומרימים את עצמנו, ואנו מספרים את גדלתנו ומתפארים, שאנחנו עמו בני בריתו זרע אברהם יצחק ויעקב וכו', כי כך צריכין להתנהג בעבודת השם כנ\"ל. ועין מזה ספר הראשון בסימן רפ\"ב, על פסוק: \"אזמרה לאלקי בעודי\":";
         assertEquals(text, object.get(JBO_TEXT));
-
-        System.out.println("Success! :)");
     }
 
     @Test
     public void testSpecificPackageObjects() {
-        System.out.print("testSpecificPackageObjects: ");
         Map<String, String> object;
 
-        //sefer
-        object = packageJson.getObject(0);
-        assertEquals("jbr:likuteymoharan",object.get(URI));
-        assertEquals("ליקוטי מוהר''ן",object.get(RDFS_LABEL));
-
         //chelek 1
-        object = packageJson.getObject(1);
+        object = packageJson.getObject(0);
         assertEquals("jbr:likuteymoharan-1",object.get(URI));
         assertEquals("ליקוטי מוהר''ן - חלק א",object.get(RDFS_LABEL));
         assertEquals("1", object.get(JBO_POSITION));
+        assertEquals("jbr:book-likuteymoharan", object.get(JBO_BOOK));
 
         //chelek 2
-        object = packageJson.getObject(2);
+        object = packageJson.getObject(1);
         assertEquals("jbr:likuteymoharan-2",object.get(URI));
         assertEquals("ליקוטי מוהר''ן - חלק ב",object.get(RDFS_LABEL));
         assertEquals("2", object.get(JBO_POSITION));
-
-        /* saifim packages removed
-        //chelek 1 saif 2
-        object = packageJson.getObject(2);
-        assertEquals("jbr:likuteymoharan-1-2",object.get(URI));
-        assertEquals("אמר אל הכהנים",object.get(RDFS_LABEL));
-        assertEquals("2", object.get(JBO_POSITION));
-
-        //chelek 1 saif 281
-        object = packageJson.getObject(278);
-        assertEquals("jbr:likuteymoharan-1-281",object.get(URI));
-        assertEquals("אם ישב עצמו על הספר יכול לראות חדשות ונפלאות",object.get(RDFS_LABEL));
-        assertEquals("278", object.get(JBO_POSITION));
-
-        //chelek 2 saif 1
-        object = packageJson.getObject(285);
-        assertEquals("jbr:likuteymoharan-2-1",object.get(URI));
-        assertEquals("תקעו בחדש שופר בכסא ליום חגנו",object.get(RDFS_LABEL));
-        assertEquals("284", object.get(JBO_POSITION));
-
-        //chelek 2 saif 124
-        object = packageJson.getObject(packageJson.subjects.size()-2);
-        assertEquals("jbr:likuteymoharan-2-124",object.get(URI));
-        assertEquals("לפעמים מגיע לאדם הרהור תשובה",object.get(RDFS_LABEL));
-        assertEquals("406", object.get(JBO_POSITION));
-        */
-
-        System.out.println("Success! :)");
+        assertEquals("jbr:book-likuteymoharan", object.get(JBO_BOOK));
     }
 
 }

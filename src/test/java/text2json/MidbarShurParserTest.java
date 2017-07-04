@@ -10,8 +10,7 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static text2json.JbsOntology.*;
-import static text2json.TestUtils.getJson;
-import static text2json.TestUtils.getText;
+import static text2json.TestUtils.*;
 
 /**
  * Created by Assaf on 08/06/2017.
@@ -24,6 +23,7 @@ public class MidbarShurParserTest {
     public static void beforeClass() throws Exception {
         Parser parser = new MidbarShurParser();
         BufferedReader reader = getText("midbarshur/midbarshur.txt");
+        createOutputFolderIfNotExists("midbarshur");
         parser.parse(reader, "json/midbarshur/midbarshur.json");
         json = getJson("json/midbarshur/midbarshur.json");
     }

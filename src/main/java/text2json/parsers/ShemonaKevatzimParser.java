@@ -10,7 +10,7 @@ import static text2json.JbsOntology.*;
 /**
  * Created by omishali on 17/01/2017.
  */
-public class ShmonaKvatzimParser extends Parser {
+public class ShemonaKevatzimParser extends Parser {
     private static final String BEGIN_KOVETZ = "begin_kovetz";
     private static final String BEGIN_SAIF = "begin_saif";
 
@@ -58,11 +58,11 @@ public class ShmonaKvatzimParser extends Parser {
                 jsonObjectFlush();
                 saifNum++;
                 jsonObject().add(URI, getUri());
-
+                jsonObject().add(RDFS_LABEL, "שמונה קבצים " + kovetzNum + " " + saifNum);
+                jsonObject().add(JBO_BOOK, JBR_BOOK + "shemonakevatzim");
                 break;
             case NO_MATCH:
                 jsonObject().append(JBO_TEXT, line.getLine());
-                jsonObject().add(RDFS_LABEL, "שמונה קבצים " + kovetzNum + " " + saifNum);
                 break;
         }
 
@@ -70,6 +70,6 @@ public class ShmonaKvatzimParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR + "shmonakvatzim-" + kovetzNum + "-" + saifNum;
+        return JBR + "shemonakevatzim-" + kovetzNum + "-" + saifNum;
     }
 }

@@ -71,16 +71,18 @@ public class DerechChaimParser extends Parser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_SEFER:
-                packagesJsonObject().add(URI, getcorpus());
-                packagesJsonObject().add(RDFS_LABEL, "דרך חיים ");
-                packagesJsonObjectFlush();
+                // No need to create an object for the entire book anymore!
+                // It is created outside text2json
+//                packagesJsonObject().add(URI, getcorpus());
+//                packagesJsonObject().add(RDFS_LABEL, "דרך חיים ");
+//                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 position++;
                 jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_BOOK,JBR + "derechchaim");
+                jsonObject().add(JBO_BOOK,JBR_BOOK + "derechchaim");
                 jsonObject().add(JBO_POSITION, position);
                 jsonObject().add(RDFS_LABEL,"דרך חיים - הקדמה");
 
@@ -102,7 +104,7 @@ public class DerechChaimParser extends Parser {
                 position++;
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_POSITION, position);
-                jsonObject().add(JBO_BOOK,JBR + "derechchaim");
+                jsonObject().add(JBO_BOOK,JBR_BOOK + "derechchaim");
                 jsonObject().add(JBO_EXPLAINS, "jbr:mishna-4-9-" + perekNum+"-"+mishnaNum);
                 jsonObject().addToArray(JBO_WITHIN, JBR + "derechchaim-" +  perekNum);
 

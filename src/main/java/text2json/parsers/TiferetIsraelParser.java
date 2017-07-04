@@ -58,9 +58,11 @@ public class TiferetIsraelParser extends Parser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_SEFER:
-                packagesJsonObject().add(URI, getcorpus());
-                packagesJsonObject().add(RDFS_LABEL, "תפארת ישראל");
-                packagesJsonObjectFlush();
+                // No need to create an object for the entire book anymore!
+                // It is created outside text2json
+//                packagesJsonObject().add(URI, getcorpus());
+//                packagesJsonObject().add(RDFS_LABEL, "תפארת ישראל");
+//                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_HAKDAMA:
@@ -69,7 +71,7 @@ public class TiferetIsraelParser extends Parser {
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_POSITION, chapterNum+1);
                 jsonObject().add(RDFS_LABEL,"תפארת ישראל - הקדמה");
-
+                jsonObject().add(JBO_BOOK, JBR_BOOK + "tiferetisrael");
                 break;
 
 
@@ -80,7 +82,7 @@ public class TiferetIsraelParser extends Parser {
                 String chapterName =HEB_LETTERS_INDEX[chapterNum-1];
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_POSITION, chapterNum+1);
-                jsonObject().add(JBO_BOOK, JBR + "tiferetisrael");
+                jsonObject().add(JBO_BOOK, JBR_BOOK + "tiferetisrael");
                 String rdfs = "תפארת ישראל " + chapterName;
                 jsonObject().add(RDFS_LABEL,rdfs);
 //                packagesJsonObject().add(URI, getUri());

@@ -59,16 +59,18 @@ public class OrChadashParser extends Parser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_SEFER:
-                packagesJsonObject().add(URI, getcorpus());
-                packagesJsonObject().add(RDFS_LABEL, "אור חדש");
-                packagesJsonObjectFlush();
+                // No need to create an object for the entire book anymore!
+                // It is created outside text2json
+//                packagesJsonObject().add(URI, getcorpus());
+//                packagesJsonObject().add(RDFS_LABEL, "אור חדש");
+//                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 hakdamaNum++;
                 jsonObject().add(URI, JBR + "orchadash-0" +hakdamaNum);
-                jsonObject().add(JBO_BOOK, JBR + "orchadash");
+                jsonObject().add(JBO_BOOK, JBR_BOOK + "orchadash");
                 jsonObject().add(JBO_POSITION, hakdamaNum+1);
                 if (hakdamaNum ==00)
                     jsonObject().add(RDFS_LABEL,"אור חדש - הקדמה א");
@@ -84,7 +86,7 @@ public class OrChadashParser extends Parser {
                 String chapterName =HEB_LETTERS_INDEX[chapterNum-1];
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_POSITION, chapterNum+2);
-                jsonObject().add(JBO_BOOK, JBR + "orchadash");
+                jsonObject().add(JBO_BOOK, JBR_BOOK + "orchadash");
                 String rdfs = "אור חדש " + chapterName;
                 jsonObject().add(RDFS_LABEL,rdfs);
 //                packagesJsonObject().add(URI, getUri());

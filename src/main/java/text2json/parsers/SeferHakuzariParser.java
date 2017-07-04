@@ -68,16 +68,9 @@ public class SeferHakuzariParser extends Parser {
                 if (maamarNum != 1){
                     CreateObject();
                 }
-                if (maamarNum == 1){
-                    // adding sefer object in packages json
-                    packagesJsonObject().add(URI, "jbr:seferhakuzari");
-                    packagesJsonObject().addToArray(JBO_WITHIN, "jbr:seferhakuzari");
-                    packagesJsonObject().add(RDFS_LABEL, "הכוזרי");
-                    packagesJsonObjectFlush();
-                }
                 // adding maamar object in packages json
                 packagesJsonObject().add(URI, "jbr:seferhakuzari-" + maamarNum);
-                packagesJsonObject().addToArray(JBO_WITHIN, "jbr:seferhakuzari");
+                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "seferhakuzari");
                 packagesJsonObject().add(RDFS_LABEL, "הכוזרי " + short_maamar);
                 packagesJsonObject().addToArray(JBO_WITHIN, "jbr:seferhakuzari-" + maamarNum);
                 packagesJsonObjectFlush();
@@ -113,7 +106,7 @@ public class SeferHakuzariParser extends Parser {
         jsonObject().add(URI, getUri());
         jsonObject().add(JBO_TEXT, stripVowels(seif));
         jsonObject().add(JBO_TEXT_NIKUD, seif);
-        jsonObject().addToArray(JBO_WITHIN, "jbr:seferhakuzari");
+        jsonObject().add(JBO_BOOK, JBR_BOOK + "seferhakuzari");
         jsonObject().add(JBO_POSITION, seifNum);
         jsonObject().add(RDFS_LABEL, "הכוזרי " + short_maamar + " " + short_seif);
         jsonObject().addToArray(JBO_WITHIN, "jbr:seferhakuzari-" + maamarNum);
