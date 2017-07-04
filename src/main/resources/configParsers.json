@@ -71,5 +71,14 @@
     "output": "gevurothashem"},
   {"parser":"text2json.parsers.DerechChaimParser",
     "input": "derechchaim",
-    "output": "derechchaim"}
+    "output": "derechchaim"},
+  {"parser":"text2json.parsers.SefatEmetParser",
+    "input": "sefatemet",
+    "output": "sefatemet"},
+  {"parser":"text2json.parsers.MoreNevochimParser",
+    "input": "morenevochim",
+    "output": "morenevochim"},
+  {"parser":"text2json.parsers.HaemunotVehadeotParser",
+    "input": "haemunotvehadeot",
+    "output": "haemunotvehadeot"}
 ]}

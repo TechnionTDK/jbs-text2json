@@ -98,9 +98,11 @@ public class MoreNevochimParser extends Parser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_SEFER:
-                packagesJsonObject().add(URI, getcorpus());
-                packagesJsonObject().add(RDFS_LABEL, "מורה נבוכים");
-                packagesJsonObjectFlush();
+                // No need to create an object for the entire book anymore!
+                // It is created outside text2json
+//                packagesJsonObject().add(URI, getcorpus());
+//                packagesJsonObject().add(RDFS_LABEL, "מורה נבוכים");
+//                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_WRITERS_HAKDAMA:
@@ -121,7 +123,7 @@ public class MoreNevochimParser extends Parser {
                 position++;
                 ptihaName = line.getLine();
                 jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_BOOK, JBR + "morenevochim");
+                jsonObject().add(JBO_BOOK, JBR_BOOK + "morenevochim");
                 jsonObject().add(JBO_POSITION, position);
                 jsonObject().add(RDFS_LABEL,"מורה נבוכים הקדמות המתרגמים " + ptihaName);
                 packagesJsonObject().add(URI, "morenevochim " + partNum + " " + perekNum);
@@ -134,7 +136,7 @@ public class MoreNevochimParser extends Parser {
                 perekNum=1;
                 partNum++;
                 packagesJsonObject().add(URI, "morenevochim - " + partNum);
-                packagesJsonObject().add(JBO_BOOK, JBR + "morenevochim");
+                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "morenevochim");
                 packagesJsonObject().add(RDFS_LABEL,"מורה נבוכים " + HEB_LETTERS_INDEX[partNum - 1] );
                 packagesJsonObjectFlush();
                 break;
@@ -146,7 +148,7 @@ public class MoreNevochimParser extends Parser {
                 position++;
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_POSITION, position);
-                jsonObject().add(JBO_BOOK, JBR + "morenevochim");
+                jsonObject().add(JBO_BOOK, JBR_BOOK + "morenevochim");
                 jsonObject().addToArray(JBO_WITHIN,JBR + "morenevochim-" + partNum);
                 String rdfs = "מורה נבוכים - חלק " + HEB_LETTERS_INDEX[partNum - 1] + " הקדמה";
                 jsonObject().add(RDFS_LABEL,rdfs);
@@ -159,7 +161,7 @@ public class MoreNevochimParser extends Parser {
                 perekName = HEB_LETTERS_INDEX[perekNum - 1];
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_POSITION, position);
-                jsonObject().add(JBO_BOOK, JBR + "morenevochim");
+                jsonObject().add(JBO_BOOK, JBR_BOOK + "morenevochim");
                 jsonObject().addToArray(JBO_WITHIN, JBR + "morenevochim-" + partNum);
                 String rdfs1 = "מורה נבוכים " + HEB_LETTERS_INDEX[partNum - 1] + " "  + perekName;
                 jsonObject().add(RDFS_LABEL,rdfs1);

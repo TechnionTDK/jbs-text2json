@@ -46,26 +46,29 @@ public class MesilatYesharimParser extends Parser {
             case BEGIN_HAKDAMA:
                 jsonObject().add(URI, getUri());
                 jsonObject().add(RDFS_LABEL, line.getLine());
-                jsonObject().addToArray(JBO_WITHIN, JBR + "mesilatyesharim");
+                jsonObject().add(JBO_POSITION, perekNum);
+                jsonObject().add(JBO_BOOK, JBR_BOOK + "mesilatyesharim");
                 break;
             case BEGIN_PEREK:
                 jsonObjectFlush();
                 perekNum++;
                 jsonObject().add(URI, getUri());
+                jsonObject().add(JBO_BOOK, JBR_BOOK + "mesilatyesharim");
+                jsonObject().add(JBO_POSITION, perekNum);
                 if(perekNum <= 20) {
                     jsonObject().add(RDFS_LABEL, line.extract(" - ", " "));
                 }
                 else {
                     jsonObject().add(RDFS_LABEL, line.extract(" – ", " "));
                 }
-                jsonObject().addToArray(JBO_WITHIN, JBR + "mesilatyesharim");
                 break;
             case BEGIN_HATIMA:
                 jsonObjectFlush();
                 perekNum++;
                 jsonObject().add(URI, getUri());
+                jsonObject().add(JBO_BOOK, JBR_BOOK + "mesilatyesharim");
+                jsonObject().add(JBO_POSITION, perekNum);
                 jsonObject().add(RDFS_LABEL, line.getLine());
-                jsonObject().addToArray(JBO_WITHIN, JBR + "mesilatyesharim");
                 break;
             case NO_MATCH:
                 jsonObject().append(JBO_TEXT, line.getLine());

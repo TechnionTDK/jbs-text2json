@@ -67,9 +67,11 @@ public class SefatEmetParser extends Parser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_PERUSH:
-                packagesJsonObject().add(URI, getcorpus());
-                packagesJsonObject().add(RDFS_LABEL, "שפת אמת");
-                packagesJsonObjectFlush();
+                // No need to create an object for the entire book anymore!
+                // It is created outside text2json
+//                packagesJsonObject().add(URI, getcorpus());
+//                packagesJsonObject().add(RDFS_LABEL, "שפת אמת");
+//                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_SEFER:
@@ -98,7 +100,7 @@ public class SefatEmetParser extends Parser {
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_EXPLAINS,parashaName1);
                 jsonObject().add(JBO_POSITION, position);
-                jsonObject().add(JBO_BOOK, JBR + "sefatemet");
+                jsonObject().add(JBO_BOOK, JBR_BOOK + "sefatemet");
                 jsonObject().addToArray(JBO_WITHIN, JBR + "tanach-sefatemet-" + seferNum);
                 jsonObject().addToArray(JBO_WITHIN, JBR + "tanach-sefatemet-" + seferNum +"-" + parashaNum);
                 String rdfs = "שפת אמת" + " " + parashaName1 + " " + seifName;

@@ -86,9 +86,11 @@ public class HaemunotVehadeotParser extends Parser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_SEFER:
-                packagesJsonObject().add(URI, getcorpus());
-                packagesJsonObject().add(RDFS_LABEL, "האמונות והדעות");
-                packagesJsonObjectFlush();
+                // No need to create an object for the entire book anymore!
+                // It is created outside text2json
+//                packagesJsonObject().add(URI, getcorpus());
+//                packagesJsonObject().add(RDFS_LABEL, "האמונות והדעות");
+//                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_HAKDAMA:
@@ -123,7 +125,7 @@ public class HaemunotVehadeotParser extends Parser {
                 position++;
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_POSITION, position);
-                jsonObject().add(JBO_BOOK, JBR + "haemunotvehadeot");
+                jsonObject().add(JBO_BOOK, JBR_BOOK + "haemunotvehadeot");
                 jsonObject().addToArray(JBO_WITHIN, maamarName);
                 String rdfs = "האמונות והדעות - פתיחה";
                 jsonObject().add(RDFS_LABEL,rdfs);
@@ -137,7 +139,7 @@ public class HaemunotVehadeotParser extends Parser {
                         position++;
                         perekName = HEB_LETTERS_INDEX[perekNum - 1];
                         jsonObject().add(URI, getUri());
-                        jsonObject().add(JBO_BOOK, JBR + "haemunotvehadeot");
+                        jsonObject().add(JBO_BOOK, JBR_BOOK + "haemunotvehadeot");
                         jsonObject().add(JBO_POSITION, position);
                         jsonObject().addToArray(JBO_WITHIN, "האמונות והדעות - הקדמה");
                         String rdfs0 = "האמונות והדעות - הקדמה "  + perekName;
@@ -150,7 +152,7 @@ public class HaemunotVehadeotParser extends Parser {
                         position++;
                         perekName = HEB_LETTERS_INDEX[perekNum - 1];
                         jsonObject().add(URI, getUri());
-                        jsonObject().add(JBO_BOOK, JBR + "haemunotvehadeot");
+                        jsonObject().add(JBO_BOOK, JBR_BOOK + "haemunotvehadeot");
                         jsonObject().add(JBO_POSITION, position);
                         jsonObject().addToArray(JBO_WITHIN, maamarName);
                         String rdfs1 = "האמונות והדעות - " + maamarName + " " + perekName;
