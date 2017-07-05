@@ -115,7 +115,10 @@ public class MefareshParser extends Parser {
                 jsonObject().append(JBO_TEXT, format(line.getLine()));
                 jsonObject().add(RDFS_LABEL, MEFARSHIM_HE[mefareshId] + " " + bookTitle + " " + perekLetter + " " + pasukLetter);
                 jsonObject().add(JBO_NAME, MEFARSHIM_HE[mefareshId]);
-                jsonObject().addToArray(JBO_WITHIN, "jbr:tanach-" + bookNum);
+                if(MEFARSHIM_EN[mefareshId].startsWith("malbim"))
+                    jsonObject().add(JBO_BOOK, JBR_BOOK + "malbim"); // put all malbims under the same book
+                else
+                    jsonObject().add(JBO_BOOK, JBR_BOOK + MEFARSHIM_EN[mefareshId]);
                 if (bookNum <= 5) {
                     jsonObject().addToArray(JBO_WITHIN, "jbr:parasha-" + parashaNum);
                 }

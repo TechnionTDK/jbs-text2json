@@ -8,8 +8,7 @@ import java.io.BufferedReader;
 import java.util.Map;
 import static text2json.JbsOntology.*;
 import static org.junit.Assert.*;
-import static text2json.TestUtils.getJson;
-import static text2json.TestUtils.getText;
+import static text2json.TestUtils.*;
 
 /**
  * Created by omishali.
@@ -25,8 +24,9 @@ public class MefareshParserTest {
         for (int bookNum = NUM_OF_FIRST_BOOK; bookNum <= NUM_OF_LAST_BOOK; bookNum++) {
             MefareshParser parser = new MefareshParser();
             BufferedReader reader = getText("/tanach/tanach-" + bookNum + ".txt");
-            parser.parse(reader, "json/tanach/tanachMefarshim-" + bookNum + ".json");
-            subjectJsons[bookNum] = getJson("json/tanach/tanachMefarshim-" + bookNum + ".json");
+            createOutputFolderIfNotExists("tanachMefarshim");
+            parser.parse(reader, "json/tanachMefarshim/tanachMefarshim-" + bookNum + ".json");
+            subjectJsons[bookNum] = getJson("json/tanachMefarshim/tanachMefarshim-" + bookNum + ".json");
         }
     }
 
@@ -35,6 +35,7 @@ public class MefareshParserTest {
         Map<String, String> object;
         object = subjectJsons[4].getObjectByText("הוקשה אל המפרשים מאחר שפני המנורה היינו הנר האמצעי");
         assertEquals("jbr:tanach-keliyekar-4-8-2", object.get(URI));
+        assertBookProperty("keliyekar", object.get(JBO_BOOK));
 
         // now we check that the object contains also text belonging to the last line.
         assertTrue(object.get(JBO_TEXT).contains("והוא ענין נכון וברור וזה סמיכות העלאת הנרות"));
@@ -45,6 +46,7 @@ public class MefareshParserTest {
         Map<String, String> object;
         object = subjectJsons[4].getObjectByText("למה נסמכה פרשת המנורה לפרשת הנשיאים, לפי שכשראה אהרן חנוכת הנשיאים חלשה אז דעתו");
         assertEquals("jbr:tanach-rashi-4-8-2", object.get(URI));
+        assertBookProperty("rashi", object.get(JBO_BOOK));
     }
 
     @Test
@@ -53,6 +55,7 @@ public class MefareshParserTest {
         object = subjectJsons[4].getObject(0);
         assertEquals("jbr:tanach-onkelos-4-1-1", object.get(URI));
         assertEquals("אונקלוס  וּמַלִיל יְיָ עִם משֶׁה בְּמַדְבְּרָא דְסִינַי בְּמַשְׁכַּן זִמְנָא בְּחַד לְיַרְחָא תִנְיָנָא בְּשַׁתָּא תִנְיֵתָא לְמִפַּקְהוֹן מֵאַרְעָא דְמִצְרַיִם לְמֵימָר:", object.get(JBO_TEXT));
+        assertBookProperty("onkelos", object.get(JBO_BOOK));
     }
 
     @Test
@@ -60,7 +63,7 @@ public class MefareshParserTest {
         Map<String, String> object;
         object = subjectJsons[4].getObject(1);
         assertEquals("jbr:tanach-yonatan-4-1-1", object.get(URI));
-        //assertEquals("אונקלוס  וּמַלִיל יְיָ עִם משֶׁה בְּמַדְבְּרָא דְסִינַי בְּמַשְׁכַּן זִמְנָא בְּחַד לְיַרְחָא תִנְיָנָא בְּשַׁתָּא תִנְיֵתָא לְמִפַּקְהוֹן מֵאַרְעָא דְמִצְרַיִם לְמֵימָר:", object.get(JBO_TEXT));
+        assertBookProperty("yonatan", object.get(JBO_BOOK));
     }
 
     @Test
@@ -76,6 +79,7 @@ public class MefareshParserTest {
         Map<String, String> object;
         object = subjectJsons[4].getObject(5);
         assertEquals("jbr:tanach-ramban-4-1-1", object.get(URI));
+        assertBookProperty("ramban", object.get(JBO_BOOK));
     }
 
     @Test
@@ -83,6 +87,7 @@ public class MefareshParserTest {
         Map<String, String> object;
         object = subjectJsons[4].getObject(subjectJsons[4].subjects.size() -1);
         assertEquals("jbr:tanach-ibnezra-4-36-13", object.get(URI));
+        assertBookProperty("ibnezra", object.get(JBO_BOOK));
     }
 
     @Test
@@ -97,6 +102,7 @@ public class MefareshParserTest {
         Map<String, String> object;
         object = subjectJsons[27].getObject(1);
         assertEquals("jbr:tanach-metzudatdavid-27-1-1", object.get(URI));
+        assertBookProperty("metzudatdavid", object.get(JBO_BOOK));
     }
 
     @Test
@@ -104,6 +110,7 @@ public class MefareshParserTest {
         Map<String, String> object;
         object = subjectJsons[27].getObject(2);
         assertEquals("jbr:tanach-metzudattzion-27-1-1", object.get(URI));
+        assertBookProperty("metzudattzion", object.get(JBO_BOOK));
     }
 
     @Test
@@ -111,6 +118,7 @@ public class MefareshParserTest {
         Map<String, String> object;
         object = subjectJsons[27].getObject(3);
         assertEquals("jbr:tanach-malbiminyan-27-1-1", object.get(URI));
+        assertBookProperty("malbim", object.get(JBO_BOOK));
     }
 
     @Test
@@ -118,6 +126,7 @@ public class MefareshParserTest {
         Map<String, String> object;
         object = subjectJsons[27].getObjectByText("שם לאום מציין תמיד את האומה מצד הדת");
         assertEquals("jbr:tanach-malbimmilot-27-2-1", object.get(URI));
+        assertBookProperty("malbim", object.get(JBO_BOOK));
     }
 
     @Test
