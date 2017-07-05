@@ -78,7 +78,7 @@ public class SeferHamitzvotParser extends Parser {
                 mitzvaNum++;
                 jsonObject().add(URI, getUri());
                 jsonObject().add(RDFS_LABEL, SEFER_HAMITZVOT + " " + mitzvaType + " " + line.getLine());
-                jsonObject().addToArray(JBO_WITHIN, JBR + "seferhamitzvot");
+                jsonObject().add(JBO_BOOK, JBR_BOOK + "seferhamitzvot");
                 break;
             case NO_MATCH:
                 jsonObject().append(JBO_TEXT, line.getLine());

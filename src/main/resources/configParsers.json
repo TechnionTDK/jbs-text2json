@@ -80,5 +80,8 @@
     "output": "morenevochim"},
   {"parser":"text2json.parsers.HaemunotVehadeotParser",
     "input": "haemunotvehadeot",
-    "output": "haemunotvehadeot"}
+    "output": "haemunotvehadeot"},
+  {"parser":"text2json.parsers.DerashotHaranParser",
+    "input": "derashotharan",
+    "output": "derashotharan"}
 ]}

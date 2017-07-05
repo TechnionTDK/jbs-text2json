@@ -31,7 +31,8 @@ public class MishneTorahParserTest {
         for (int i = 0; i < NUM_OF_BOOKS; i++) {
             int bookNum = i + 1;
             MishneTorahParser parser = new MishneTorahParser();
-            BufferedReader reader = getText("/mishnetorah/mishnetorah-" + bookNum + ".txt");
+            BufferedReader reader = getText("mishnetorah/mishnetorah-" + bookNum + ".txt");
+            createOutputFolderIfNotExists("mishnetorah");
             parser.parse(reader, "json/mishnetorah/mishnetorah-" + bookNum + ".json");
             json[i] = getJson("json/mishnetorah/mishnetorah-" + bookNum + ".json");
             packagesJson[i] = getJson("json/mishnetorah/mishnetorah-" + bookNum + "-packages.json");
@@ -48,7 +49,7 @@ public class MishneTorahParserTest {
     }
 
     @Test
-    public void testNumberofHalachot() {
+    public void testNumberOfHalachot() {
         // sefer Hamada
         assertEquals(halachotNum[0] + 45 + 309 + 198 + 49, json[0].subjects.size()); // perush, kesefmishne, lechemmishne + raabad
     }
@@ -57,15 +58,15 @@ public class MishneTorahParserTest {
     public void testFirstObject() {
         Map<String, String> o = json[0].getObject(0);
         assertEquals("jbr:mishnetorah-1-1-1-1", o.get(URI));
-        //assertEquals("jbr:mishnetorah-1", o.get(JBO_SEFER));
-        //assertEquals("jbr:mishnetorah-1-1-1", o.get(JBO_PEREK));
         assertEquals("הלכות יסודי התורה א א", o.get(RDFS_LABEL));
+        assertBookProperty("mishnetorah", o.get(JBO_BOOK));
     }
 
     @Test
     public void testPerushWithTwoLines() {
-        Map<String, String> o = json[0].getObject("jbr:mishnetorah-perush-1-1-1-1");
+        Map<String, String> o = json[0].getObject("jbr:mishnetorah-perushperush-1-1-1-1");
         assertTrue(o.get(JBO_TEXT).contains("קראו ספר המדע לפי שכלל בו המצוות התלויות במחשבה ובמדע ובדעות")); // text from first line
         assertTrue(o.get(JBO_TEXT).contains("כשתתבונן ארבע מלות")); // text from second line
+        assertBookProperty("perushperush", o.get(JBO_BOOK));
     }
 }

@@ -98,7 +98,7 @@ public class SefatEmetParser extends Parser {
                 String parashaName1 = PARASHOT_HE[parashaNum-1];
                 String seifName = HEB_LETTERS_INDEX[seifNum-1];
                 jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_EXPLAINS,parashaName1);
+                jsonObject().add(JBO_INTERPRETS,parashaName1);
                 jsonObject().add(JBO_POSITION, position);
                 jsonObject().add(JBO_BOOK, JBR_BOOK + "sefatemet");
                 jsonObject().addToArray(JBO_WITHIN, JBR + "tanach-sefatemet-" + seferNum);

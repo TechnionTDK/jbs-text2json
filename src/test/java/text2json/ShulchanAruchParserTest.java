@@ -77,7 +77,7 @@ public class ShulchanAruchParserTest {
         //perush
         object = json[1].getObject(1);
         assertEquals("jbr:shulchanaruch-baerheytev-1-1-1", object.get(URI));
-        assertEquals("jbr:shulchanaruch-1-1-1", object.get(JBO_EXPLAINS));
+        assertEquals("jbr:shulchanaruch-1-1-1", object.get(JBO_INTERPRETS));
         //assertEquals("jbr:shulchanaruch-baerheytev", object.get(JBO_SEFER));
         //assertEquals("shulchanaruch-1", object.get(JBO_CHELEK));
         //assertEquals("jbr:shulchanaruch-halachot-1-1", object.get(JBO_HALACHOT));
@@ -105,7 +105,7 @@ public class ShulchanAruchParserTest {
         //perush
         object = json[1].getObject(21);
         assertEquals("jbr:shulchanaruch-baerheytev-1-2-3", object.get(URI));
-        assertEquals("jbr:shulchanaruch-1-2-3", object.get(JBO_EXPLAINS));
+        assertEquals("jbr:shulchanaruch-1-2-3", object.get(JBO_INTERPRETS));
         //assertEquals("jbr:shulchanaruch-baerheytev", object.get(JBO_SEFER));
         //assertEquals("shulchanaruch-1", object.get(JBO_CHELEK));
         //assertEquals("jbr:shulchanaruch-halachot-1-1", object.get(JBO_HALACHOT));
@@ -148,7 +148,7 @@ public class ShulchanAruchParserTest {
         //perush
         object = json[2].getObject(325);
         assertEquals("jbr:shulchanaruch-baerheytev-2-29-1", object.get(URI));
-        assertEquals("jbr:shulchanaruch-2-29-1", object.get(JBO_EXPLAINS));
+        assertEquals("jbr:shulchanaruch-2-29-1", object.get(JBO_INTERPRETS));
         //assertEquals("jbr:shulchanaruch-baerheytev", object.get(JBO_SEFER));
         //assertEquals("shulchanaruch-2", object.get(JBO_CHELEK));
         //assertEquals("jbr:shulchanaruch-halachot-2-2", object.get(JBO_HALACHOT));
@@ -176,7 +176,7 @@ public class ShulchanAruchParserTest {
         //perush
         object = json[2].getObject(json[2].subjects.size()-3);
         assertEquals("jbr:shulchanaruch-baerheytev-2-403-9", object.get(URI));
-        assertEquals("jbr:shulchanaruch-2-403-9", object.get(JBO_EXPLAINS));
+        assertEquals("jbr:shulchanaruch-2-403-9", object.get(JBO_INTERPRETS));
         //assertEquals("jbr:shulchanaruch-baerheytev", object.get(JBO_SEFER));
         //assertEquals("shulchanaruch-2", object.get(JBO_CHELEK));
         //assertEquals("jbr:shulchanaruch-halachot-2-60", object.get(JBO_HALACHOT));
@@ -204,7 +204,7 @@ public class ShulchanAruchParserTest {
         //perush
         object = json[3].getObject(10);
         assertEquals("jbr:shulchanaruch-baerheytev-3-1-6", object.get(URI));
-        assertEquals("jbr:shulchanaruch-3-1-6", object.get(JBO_EXPLAINS));
+        assertEquals("jbr:shulchanaruch-3-1-6", object.get(JBO_INTERPRETS));
         //assertEquals("jbr:shulchanaruch-baerheytev", object.get(JBO_SEFER));
         //assertEquals("shulchanaruch-3", object.get(JBO_CHELEK));
         //assertEquals("jbr:shulchanaruch-halachot-3-1", object.get(JBO_HALACHOT));
@@ -232,7 +232,7 @@ public class ShulchanAruchParserTest {
         //perush
         object = json[3].getObject(json[3].subjects.size()-34);
         assertEquals("jbr:shulchanaruch-baerheytev-3-177-4", object.get(URI));
-        assertEquals("jbr:shulchanaruch-3-177-4", object.get(JBO_EXPLAINS));
+        assertEquals("jbr:shulchanaruch-3-177-4", object.get(JBO_INTERPRETS));
         //assertEquals("jbr:shulchanaruch-baerheytev", object.get(JBO_SEFER));
         //assertEquals("shulchanaruch-3", object.get(JBO_CHELEK));
         //assertEquals("jbr:shulchanaruch-halachot-3-8", object.get(JBO_HALACHOT));
@@ -260,7 +260,7 @@ public class ShulchanAruchParserTest {
         //perush
         object = json[4].getObject(11);
         assertEquals("jbr:shulchanaruch-baerheytev-4-1-6", object.get(URI));
-        assertEquals("jbr:shulchanaruch-4-1-6", object.get(JBO_EXPLAINS));
+        assertEquals("jbr:shulchanaruch-4-1-6", object.get(JBO_INTERPRETS));
         //assertEquals("jbr:shulchanaruch-baerheytev", object.get(JBO_SEFER));
         //assertEquals("shulchanaruch-4", object.get(JBO_CHELEK));
         //assertEquals("jbr:shulchanaruch-halachot-4-1", object.get(JBO_HALACHOT));
@@ -288,7 +288,7 @@ public class ShulchanAruchParserTest {
         //perush
         object = json[4].getObject(json[4].subjects.size()-22);
         assertEquals("jbr:shulchanaruch-baerheytev-4-425-3", object.get(URI));
-        assertEquals("jbr:shulchanaruch-4-425-3", object.get(JBO_EXPLAINS));
+        assertEquals("jbr:shulchanaruch-4-425-3", object.get(JBO_INTERPRETS));
         //assertEquals("jbr:shulchanaruch-baerheytev", object.get(JBO_SEFER));
         //assertEquals("shulchanaruch-4", object.get(JBO_CHELEK));
         //assertEquals("jbr:shulchanaruch-halachot-4-41", object.get(JBO_HALACHOT));

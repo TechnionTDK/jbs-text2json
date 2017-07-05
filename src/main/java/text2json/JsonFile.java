@@ -16,6 +16,7 @@ public class JsonFile {
     protected JsonFile(String filename){
         try{
             jsonWriter = new JsonWriter(new FileWriter(filename));
+            jsonWriter.setIndent("  ");
         }
         catch(IOException e) {
             System.out.println(e.getMessage());

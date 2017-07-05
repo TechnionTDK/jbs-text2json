@@ -16,7 +16,7 @@ public class MishneTorahParser extends Parser {
     private static final String BEGIN_HILCHOT = "begin_hilchot";
     private static final String BEGIN_HALACHA = "begin_halacha";
     private static final String[] MEFARSHIM_HEB = {"פירוש", "כסף משנה", "לחם משנה", "ההראב\"ד", "מגיד משנה", "מהר\"ל נ' חביב"};
-    private static final String[] MEFARSHIM_EN = {"perush", "kesefmishne", "lechemmishne", "raabad", "magidmishne", "maharalchaviv"};
+    private static final String[] MEFARSHIM_EN = {"perushperush", "kesefmishne", "lechemmishne", "raabad", "magidmishne", "maharalchaviv"};
     private static final String[] SEFARIM = {"המדע", "אהבה", "זמנים", "נשים", "קדושה", "הפלאה", "זרעים",
                                             "עבודה", "קרבנות", "טהרה", "נזיקין", "קנין", "משפטים", "שופטים"};
 
@@ -102,6 +102,7 @@ public class MishneTorahParser extends Parser {
                 packagesJsonObject().add(URI, getSeferURI());
                 packagesJsonObject().add(RDFS_LABEL, line.getLine());
                 packagesJsonObject().add(JBO_POSITION, seferNum);
+                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "mishnetorah");
                 packagesJsonObjectFlush();
                 break;
             case BEGIN_HILCHOT:
@@ -111,6 +112,7 @@ public class MishneTorahParser extends Parser {
                 packagesJsonObject().add(URI, getHilchotURI());
                 packagesJsonObject().add(RDFS_LABEL, line.getLine());
                 packagesJsonObject().add(JBO_POSITION, hilchotNum);
+                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "mishnetorah");
                 packagesJsonObjectFlush();
                 break;
             case BEGIN_PEREK:
@@ -120,6 +122,7 @@ public class MishneTorahParser extends Parser {
                 packagesJsonObject().add(URI, getPerekURI());
                 packagesJsonObject().add(RDFS_LABEL, line.getLine());
                 packagesJsonObject().add(JBO_POSITION, perekNum);
+                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "mishnetorah");
                 packagesJsonObjectFlush();
                 break;
             case BEGIN_HALACHA:
@@ -131,6 +134,7 @@ public class MishneTorahParser extends Parser {
                 jsonObject().add(JBO_TEXT, stripVowels(line.getLine()));
                 jsonObject().addToArray(JBO_WITHIN, getSeferURI());
                 jsonObject().addToArray(JBO_WITHIN, getPerekURI());
+                jsonObject().add(JBO_BOOK, JBR_BOOK + "mishnetorah");
                 jsonObject().add(RDFS_LABEL, getHalachaLabel());
                 break;
             case BEGIN_PERUSH:
@@ -139,12 +143,13 @@ public class MishneTorahParser extends Parser {
                 jsonObject().add(URI, getPerushURI(line));
                 jsonObject().add(JBO_POSITION, perushNum);
                 jsonObject().add(JBO_TEXT, line.getLine());
-                jsonObject().add(JBO_EXPLAINS, getHalachaURI());
+                jsonObject().add(JBO_INTERPRETS, getHalachaURI());
                 jsonObject().addToArray(JBO_WITHIN, getSeferURI());
                 jsonObject().addToArray(JBO_WITHIN, getPerekURI());
+                jsonObject().add(JBO_BOOK, JBR_BOOK + getMefareshName(line));
                 break;
             case NO_MATCH:
-                if (jsonObject().hasKey(JBO_EXPLAINS))
+                if (jsonObject().hasKey(JBO_INTERPRETS))
                     jsonObject().append(JBO_TEXT, line.getLine());
 //                else
 //                    System.out.println(line.getLine());
@@ -192,6 +197,16 @@ public class MishneTorahParser extends Parser {
 
         return JBR + "mishnetorah-" + MEFARSHIM_EN[i] + "-" + seferNum + "-" +
                         hilchotNum + "-" + perekNum + "-" + halachaNum;
+    }
+
+    private String getMefareshName(Line line) {
+        int i = 0;
+        String mefaresh;
+        for (; i < MEFARSHIM_HEB.length; i++)
+            if (line.beginsWith(MEFARSHIM_HEB[i]))
+                break;
+
+        return MEFARSHIM_EN[i];
     }
 
     @Override

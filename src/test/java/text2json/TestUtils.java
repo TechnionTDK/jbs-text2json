@@ -8,6 +8,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
+import static org.junit.Assert.assertEquals;
+import static text2json.JbsOntology.*;
+
 /**
  * Created by omishali on 26/12/2016.
  */
@@ -63,6 +66,10 @@ public class TestUtils {
                 { newString = newString + rawString.charAt(j); }
         }
         return(newString);
+    }
+
+    protected static void assertBookProperty(String bookId, String propValue) {
+        assertEquals(JBR_BOOK + bookId, propValue);
     }
 
 }

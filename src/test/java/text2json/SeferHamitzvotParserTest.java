@@ -9,8 +9,7 @@ import java.util.Map;
 
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertNotNull;
-import static text2json.TestUtils.getJson;
-import static text2json.TestUtils.getText;
+import static text2json.TestUtils.*;
 import static text2json.JbsOntology.*;
 
 /**
@@ -23,6 +22,7 @@ public class SeferHamitzvotParserTest {
     public static void beforeClass() throws Exception {
         Parser parser = new SeferHamitzvotParser();
         BufferedReader reader = getText("seferhamitzvot/seferhamitzvot.txt");
+        createOutputFolderIfNotExists("seferhamitzvot");
         parser.parse(reader, "json/seferhamitzvot/seferhamitzvot.json");
         json = getJson("json/seferhamitzvot/seferhamitzvot.json");
     }
@@ -39,14 +39,14 @@ public class SeferHamitzvotParserTest {
         Map<String, String> o = json.getObject(0);
         assertEquals("jbr:seferhamitzvot-3-1", o.get(URI));
         assertEquals("ספר המצוות עשה מצוה א.", o.get(RDFS_LABEL));
-        //assertEquals("jbr:seferhamitzvot", o.get(JBO_SEFER));
         assertTrue(o.get(JBO_TEXT).startsWith("היא הצווי אשר צונו בהאמנת"));
+        assertBookProperty("seferhamitzvot", o.get(JBO_BOOK));
 
         // test last object
         o = json.getObject(612);
         assertEquals("jbr:seferhamitzvot-4-365", o.get(URI));
         assertEquals("ספר המצוות לא תעשה מצוה שסה:", o.get(RDFS_LABEL));
-        //assertEquals("jbr:seferhamitzvot", o.get(JBO_SEFER));
         assertTrue(o.get(JBO_TEXT).startsWith("הזהיר המלך מהרבות ממון מיוחד לעצמו"));
+        assertBookProperty("seferhamitzvot", o.get(JBO_BOOK));
     }
 }

@@ -12,7 +12,7 @@ public class JbsOntology {
     public static String JBO_NAME = "jbo:name";
     public static String JBO_POSITION_IN_PEREK = "jbo:positionInPerek";
     public static String JBO_POSITION = "jbo:position";
-    public static String JBO_EXPLAINS = "jbo:explains";
+    public static String JBO_INTERPRETS = "jbo:interprets";
     public static String JBO_POSITION_IN_PARASHA = "jbo:positionInParasha";
     public static String RDFS_LABEL = "rdfs:label";
     public static String JBO_POSITION_IN_SIMAN = "jbo:positionInSiman";

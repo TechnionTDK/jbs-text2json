@@ -174,7 +174,7 @@ public class ShulchanAruchParser extends Parser {
                 else{
                     jsonObject().add(URI, getPerushUri());
                 }
-                jsonObject().add(JBO_EXPLAINS, getUri());
+                jsonObject().add(JBO_INTERPRETS, getUri());
                 jsonObject().addToArray(JBO_WITHIN, "jbr:shulchanaruch-baerheytev");
                 jsonObject().addToArray(JBO_WITHIN, getHalachotUri());
                 jsonObject().addToArray(JBO_WITHIN, "shulchanaruch-" + chelekNum);

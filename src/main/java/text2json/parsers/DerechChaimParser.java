@@ -105,7 +105,7 @@ public class DerechChaimParser extends Parser {
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_POSITION, position);
                 jsonObject().add(JBO_BOOK,JBR_BOOK + "derechchaim");
-                jsonObject().add(JBO_EXPLAINS, "jbr:mishna-4-9-" + perekNum+"-"+mishnaNum);
+                jsonObject().add(JBO_INTERPRETS, "jbr:mishna-4-9-" + perekNum+"-"+mishnaNum);
                 jsonObject().addToArray(JBO_WITHIN, JBR + "derechchaim-" +  perekNum);
 
                 String rdfs = "דרך חיים " + HEB_LETTERS_INDEX[perekNum-1] + " " + HEB_LETTERS_INDEX[mishnaNum-1];

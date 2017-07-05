@@ -174,7 +174,7 @@ public class TalmudBavliParser extends Parser {
                 jsonObject().addToArray(JBO_WITHIN, getPerekUri());
                 jsonObject().add(RDFS_LABEL, mefarshimHeb[mefareshIdx] + " " + masechetTitle + " " + dafTitle + " " + amudTitle);
                 jsonObject().add(JBO_POSITION, positionInMasechet);
-                jsonObject().add(JBO_EXPLAINS, getUri());
+                jsonObject().add(JBO_INTERPRETS, getUri());
                 jsonObject().append(JBO_TEXT, line.getLine());
                 //jsonObjectFlush();
                 break;

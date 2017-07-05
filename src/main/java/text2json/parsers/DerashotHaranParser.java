@@ -43,9 +43,11 @@ public class DerashotHaranParser extends Parser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_SEFER:
-                packagesJsonObject().add(URI, getBookUri());
-                packagesJsonObject().add(RDFS_LABEL, "דרשות הר\"ן");
-                packagesJsonObjectFlush();
+                // No need to create an object for the entire book anymore!
+                // It is created outside text2json
+//                packagesJsonObject().add(URI, getBookUri());
+//                packagesJsonObject().add(RDFS_LABEL, "דרשות הר\"ן");
+//                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_PEREK:
@@ -69,6 +71,6 @@ public class DerashotHaranParser extends Parser {
         return JBR + "derashotharan-" + perekNum;
     }
     protected String getBookUri() {
-        return JBR + "derashotharan";
+        return JBR_BOOK + "derashotharan";
     }
 }

@@ -120,7 +120,7 @@ public class MefareshParser extends Parser {
                     jsonObject().addToArray(JBO_WITHIN, "jbr:parasha-" + parashaNum);
                 }
                 jsonObject().addToArray(JBO_WITHIN, "jbr:tanach-" + bookNum + "-" + perekNum);
-                jsonObject().add(JBO_EXPLAINS, "jbr:tanach-" + bookNum + "-" + perekNum + "-" + pasukNum);
+                jsonObject().add(JBO_INTERPRETS, "jbr:tanach-" + bookNum + "-" + perekNum + "-" + pasukNum);
                 jsonObject().add(JBO_POSITION_IN_PEREK, Integer.toString(positionInPerek));
                 if (bookNum <=5) {
                     jsonObject().add(JBO_POSITION_IN_PARASHA, Integer.toString(positionInParasha));
