@@ -17,6 +17,10 @@ public class SubjectsJson {
         return (Map<String, String>) subjects.get(num);
     }
 
+    public Map<String, Object> getComplexObject(int num) {
+        return (Map<String, Object>) subjects.get(num);
+    }
+
     /**
      * Note: o(N) complexitiy, prefer to get objects from the beginning of the file
      * @param uri

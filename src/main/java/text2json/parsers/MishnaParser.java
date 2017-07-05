@@ -9,6 +9,7 @@ import static text2json.JbsOntology.*;
 
 /**
  * Created by shilonoa on 3/16/2017.
+ * REQUIRES MAJOR REFACTORING!!!
  */
 public class MishnaParser extends Parser {
     private static final String BEGIN_PASUK = "begin_pasuk";
@@ -88,7 +89,7 @@ public class MishnaParser extends Parser {
                 return BEGIN_PERUSH;
             }
             public boolean match(Line line) {
-                return line.endsWith(MefarshimHe, ".");
+                return line.beginsWith(MefarshimHe, "");
             }
         });
 
@@ -101,10 +102,10 @@ public class MishnaParser extends Parser {
 
     }
 
-    protected int get_mefareshId(Line line){
+    protected int getMefareshId(Line line){
         String baseLine = line.getLine();
         for(int i=0; i < MefarshimHe.length; i++){
-            if (baseLine.endsWith(": (" + MefarshimHe[i] + ")" + ".")) return i;
+            if (baseLine.startsWith(MefarshimHe[i])) return i;
         }
         return -1;
     }
@@ -125,21 +126,17 @@ public class MishnaParser extends Parser {
                 getSederNum(masechetHE);
 
                 if (first_masechet){
-                    // adding sefer object in packages json
-                    packagesJsonObject().add(URI, "jbr:mishna");
-                    packagesJsonObject().add(RDFS_LABEL, "משנה");
-                    packagesJsonObjectFlush();
                     // adding seder object in packages json
                     packagesJsonObject().add(URI, "jbr:mishna-" + sederNum);
                     packagesJsonObject().add(RDFS_LABEL, "סדר " + sederName);
-                    packagesJsonObject().addToArray(JBO_WITHIN, "jbr:mishna");
+                    packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "mishna");
                     packagesJsonObject().add(JBO_POSITION, sederNum);
                     packagesJsonObjectFlush();
                 }
                 // adding masechet object in packages json
                 packagesJsonObject().add(URI, getMasechetUri());
                 packagesJsonObject().add(RDFS_LABEL, line.getLine());
-                packagesJsonObject().addToArray(JBO_WITHIN, "jbr:mishna");
+                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "mishna");
                 packagesJsonObject().addToArray(JBO_WITHIN, "jbr:mishna-" + sederNum);
                 packagesJsonObject().add(JBO_POSITION, masechetNum);
                 packagesJsonObjectFlush();
@@ -153,7 +150,7 @@ public class MishnaParser extends Parser {
                 packagesJsonObject().add(RDFS_LABEL, "משנה " + masechetHE + " " +  line.getLine());
                 packagesJsonObject().addToArray(JBO_WITHIN, "jbr:mishna-" + sederNum);
                 packagesJsonObject().addToArray(JBO_WITHIN, "jbr:mishna-" + sederNum + "-" + masechetNum);
-                packagesJsonObject().addToArray(JBO_WITHIN, "jbr:mishna");
+                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "mishna");
                 packagesJsonObject().add(JBO_POSITION, perekNum);
                 packagesJsonObjectFlush();
                 break;
@@ -178,9 +175,9 @@ public class MishnaParser extends Parser {
                 break;
             case BEGIN_PERUSH:
                 new_mishna = false;
-                mefareshId = get_mefareshId(line);
+                mefareshId = getMefareshId(line);
                 mefaresh = MefarshimEn[mefareshId];
-                perush = line.extract(" ", ": (" + MefarshimHe[mefareshId] + ")");
+                perush = line.getLine();
 
                 if (begining_of_long_perush != null) {
                     perush = begining_of_long_perush + " " + perush;
@@ -192,7 +189,7 @@ public class MishnaParser extends Parser {
                 jsonObject().add(JBO_TEXT_NIKUD, perush);
                 jsonObject().add(RDFS_LABEL, MefarshimHe[mefareshId] + " משנה " + masechetHE + " " + perekLetter + " " + mishnaLetter);
                 jsonObject().add(JBO_NAME, MefarshimHe[mefareshId]);
-                jsonObject().addToArray(JBO_WITHIN, "jbr:mishna");
+                jsonObject().add(JBO_BOOK, JBR_BOOK + MefarshimEn[mefareshId]);
                 jsonObject().addToArray(JBO_WITHIN, "jbr:mishna-" + sederNum);
                 jsonObject().addToArray(JBO_WITHIN, "jbr:mishna-" + sederNum + "-" + masechetNum);
                 jsonObject().addToArray(JBO_WITHIN, "jbr:mishna-" + sederNum + "-" + masechetNum + "-" + perekNum);
@@ -218,7 +215,7 @@ public class MishnaParser extends Parser {
                 jsonObject().add(JBO_TEXT, stripVowels(pasuk));
                 jsonObject().add(JBO_TEXT_NIKUD, pasuk);
                 jsonObject().add(RDFS_LABEL, "משנה " + masechetHE + " " + perekLetter + " " + mishnaLetter);
-                jsonObject().addToArray(JBO_WITHIN, "jbr:mishna");
+                jsonObject().add(JBO_BOOK, JBR_BOOK + "mishna");
                 jsonObject().addToArray(JBO_WITHIN, "jbr:mishna-" + sederNum);
                 jsonObject().addToArray(JBO_WITHIN, "jbr:mishna-" + sederNum + "-" + masechetNum);
                 jsonObject().addToArray(JBO_WITHIN, "jbr:mishna-" + sederNum + "-" + masechetNum + "-" + perekNum);

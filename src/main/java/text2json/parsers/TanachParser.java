@@ -4,6 +4,8 @@ import text2json.Line;
 import text2json.LineMatcher;
 import text2json.Parser;
 import static text2json.JbsOntology.*;
+import static text2json.JbsUtils.*;
+
 import java.io.IOException;
 
 /**
@@ -11,16 +13,19 @@ import java.io.IOException;
  */
 public class TanachParser extends Parser {
     private static final String BEGIN_PASUK = "begin_pasuk";
+    private static final int PSUKIM_FOR_BOOK[] = {0, 1533, 1210, 859, 1288, 956, 658, 618, 811, 695, 817,
+            719, 1291, 1364, 1273, 197, 73, 146, 21, 48, 105, 47, 56, 53, 38, 211,
+            55, 2527, 915, 1070, 117, 85, 154, 222, 167, 357, 280, 405, 943, 822};
 
     private int bookNum = 0;
     private String bookName;
+    private String bookNameEn;
     private int perekNum = 0;
     private String perekTitle;
     private int pasukNum = 0;
     private int parashaNum = 0;
     private String pasukTitle;
-    private int positionInParasha;
-    private int positionInPerek = 0;
+    private int position;
 
     public TanachParser() {
         createPackagesJson();
@@ -73,28 +78,26 @@ public class TanachParser extends Parser {
             case BEGIN_SEFER:
                 bookName = line.extract("ספר", " ");
                 bookNum = getBookNum(bookName);
-                // adding sefer triples in packages json
-                packagesJsonObject().add(URI, getBookUri());
-                packagesJsonObject().add(RDFS_LABEL, line.getLine());
-                packagesJsonObject().add(JBO_POSITION, bookNum);
-                packagesJsonObjectFlush();
+                bookNameEn = SEFARIM_TANACH_EN[bookNum-1];
+                position = initPositionForBook(bookNum);
+               // No need to create an object for the entire book anymore!
+                // It is created outside text2json
                 break;
 
             case BEGIN_PARASHA: // we assume bookNum is initialized
                 jsonObjectFlush();
-                positionInParasha = 0;
                 parashaNum++;
                 // adding parasha triples in packages json
                 packagesJsonObject().add(URI, getParashaUri());
                 packagesJsonObject().add(RDFS_LABEL, line.getLine());
                 packagesJsonObject().add(JBO_POSITION, getFixedParashaPosition());
+                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + bookNameEn);
                 packagesJsonObjectFlush();
                 break;
 
             case BEGIN_PEREK:
                 jsonObjectFlush();
                 perekNum++;
-                positionInPerek = 0;
                 pasukNum = 0;
                 perekTitle = line.extract("פרק-", " ");
 
@@ -102,14 +105,13 @@ public class TanachParser extends Parser {
                 packagesJsonObject().add(URI, getPerekUri());
                 packagesJsonObject().add(RDFS_LABEL, line.getLine().replace('-', ' '));
                 packagesJsonObject().add(JBO_POSITION, perekNum);
-                packagesJsonObject().addToArray(JBO_WITHIN, "jbr:tanach-"+bookNum);
+                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + bookNameEn);
                 packagesJsonObjectFlush();
                 break;
 
             case BEGIN_PASUK:
                 jsonObjectFlush();
-                positionInParasha++;
-                positionInPerek++;
+                position++;
                 pasukNum++;
                 pasukTitle = line.extract("{", "}");
                 jsonObject().add(URI, getUri());
@@ -118,11 +120,12 @@ public class TanachParser extends Parser {
                 jsonObject().add(JBO_TEXT, stripVowels(line.extract("}", end)));
                 jsonObject().add(JBO_TEXT_NIKUD, line.extract("}", end));
                 jsonObject().add(RDFS_LABEL, bookName + " " + perekTitle + " " + pasukTitle);
-                jsonObject().addToArray(JBO_WITHIN, "jbr:tanach-" + bookNum);
-                jsonObject().add(JBO_POSITION_IN_PEREK, positionInPerek);
+                jsonObject().addToArray(JBO_BOOK, JBR_BOOK + bookNameEn);
+                jsonObject().addToArray(JBO_BOOK, JBR_BOOK + "tanach");
+                jsonObject().add(JBO_POSITION, position);
                 if(bookNum <= 5) {
                     jsonObject().addToArray(JBO_WITHIN, getParashaUri());
-                    jsonObject().add(JBO_POSITION_IN_PARASHA, positionInParasha);
+                    jsonObject().addToArray(JBO_BOOK, JBR_BOOK + "torah");
                 }
                 jsonObjectFlush();
                 break;
@@ -134,6 +137,14 @@ public class TanachParser extends Parser {
             case NO_MATCH:
                 break;
         }
+    }
+
+    private int initPositionForBook(int bookNum) {
+        int pos = 0;
+        for (int i=0; i<bookNum;i++)
+            pos+=PSUKIM_FOR_BOOK[i];
+
+        return pos;
     }
 
     private String getParashaUri() {
@@ -148,12 +159,8 @@ public class TanachParser extends Parser {
 
 
     private int getBookNum(String bookTitle) {
-        String bookNames[] = {"בראשית", "שמות", "ויקרא", "במדבר", "דברים", "יהושע", "שופטים", "שמואל א", "שמואל ב",
-                "מלכים א","מלכים ב", "ישעיה","ירמיה","יחזקאל","הושע","יואל","עמוס","עובדיה","יונה","מיכה","נחום",
-                "חבקוק","צפניה","חגי","זכריה","מלאכי", "תהילים", "משלי", "איוב", "שיר השירים", "רות", "איכה", "קהלת",
-                "אסתר", "דניאל", "עזרא", "נחמיה", "דברי הימים א", "דברי הימים ב"};
         for (int i = 0; i < 39; i++){
-            if(bookTitle.equals(bookNames[i]))
+            if(bookTitle.equals(SEFARIM_TANACH_HE[i]))
                 return i+1;
         }
         return -1;

@@ -45,17 +45,6 @@ public class Line {
     public boolean endsWith(String s) {
         return line.endsWith(s);
     }
-    /**
-     * Whether the line begins with one of the elements in arr
-     * @param arr
-     * @return
-     */
-    public boolean endsWith(String[] stringArr, String suffix) {
-        for(String s : stringArr){
-            if (getLine().endsWith(": (" + s + ")" + suffix)) return true;
-        }
-        return false;
-    }
 
     public boolean endsWith(String[] stringArr) {
         for(String s : stringArr){
