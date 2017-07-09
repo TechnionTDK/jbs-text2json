@@ -89,18 +89,14 @@ public class ShulchanAruchParser extends Parser {
                 chelekTitle = line.extract("שולחן ערוך - "," (מ)");
                 chelekNum = getSeferNum(chelekTitle);
                 positionInChelek = 0;
-                //add sefer to package json
-                packagesJsonObject().add(URI, "jbr:shulchanaruch");
-                packagesJsonObject().add(RDFS_LABEL, "שלחן ערוך");
-                packagesJsonObjectFlush();
-                //add sefer with perush to package json
-                packagesJsonObject().add(URI, "jbr:shulchanaruch-baerheytev");
-                packagesJsonObject().add(RDFS_LABEL, "שלחן ערוך באר היטב");
-                packagesJsonObjectFlush();
+                // No need to create an object for the entire book anymore!
+                // It is created outside text2json
+
                 //add chelek to package json
                 packagesJsonObject().add(URI, getChelekUri());
                 packagesJsonObject().add(RDFS_LABEL, "שלחן ערוך - " + chelekTitle);
                 packagesJsonObject().add(JBO_POSITION, chelekNum);
+                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "shulchanaruch");
                 packagesJsonObjectFlush();
                 break;
 
@@ -110,7 +106,8 @@ public class ShulchanAruchParser extends Parser {
                 //add halachot to package json
                 packagesJsonObject().add(URI, getHalachotUri());
                 packagesJsonObject().add(RDFS_LABEL, halachotTitle);
-                packagesJsonObject().addToArray(JBO_WITHIN, "shulchanaruch-" + chelekNum);
+                packagesJsonObject().addToArray(JBO_WITHIN, getChelekUri());
+                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "shulchanaruch");
                 packagesJsonObject().add(JBO_POSITION, halachotNum);
                 packagesJsonObjectFlush();
                 break;
@@ -132,14 +129,16 @@ public class ShulchanAruchParser extends Parser {
                 if(simanHebIdx.equals("רצז (א)")) {
                     packagesJsonObject().add(URI, "jbr:shulchanaruch-" + chelekNum + "-197_1-" + saifNum);
                     packagesJsonObject().add(RDFS_LABEL, simanTitle);
-                    packagesJsonObject().addToArray(JBO_WITHIN, "shulchanaruch-" + chelekNum);
+                    packagesJsonObject().addToArray(JBO_WITHIN, getChelekUri());
+                    packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "shulchanaruch");
                     packagesJsonObject().add(JBO_POSITION, "197_1");
                 }
                 else {
                     packagesJsonObject().add(URI, getSimanUri());
                     packagesJsonObject().add(RDFS_LABEL, simanTitle);
-                    packagesJsonObject().addToArray(JBO_WITHIN, "shulchanaruch-" + chelekNum);
+                    packagesJsonObject().addToArray(JBO_WITHIN, getChelekUri());
                     packagesJsonObject().add(JBO_POSITION, simanNum);
+                    packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "shulchanaruch");
                 }
                 packagesJsonObjectFlush();
                 break;
@@ -155,10 +154,10 @@ public class ShulchanAruchParser extends Parser {
                 else{
                     jsonObject().add(URI, getUri());
                 }
-                jsonObject().addToArray(JBO_WITHIN, "jbr:shulchanaruch");
                 jsonObject().addToArray(JBO_WITHIN, getHalachotUri());
-                jsonObject().addToArray(JBO_WITHIN, "shulchanaruch-" + chelekNum);
+                jsonObject().addToArray(JBO_WITHIN, getChelekUri());
                 jsonObject().addToArray(JBO_WITHIN, getSimanUri());
+                jsonObject().add(JBO_BOOK, JBR_BOOK + "shulchanaruch");
                 jsonObject().add(JBO_POSITION_IN_SIMAN, saifNum);
                 jsonObject().add(JBO_POSITION, positionInChelek);
                 jsonObject().add(RDFS_LABEL, chelekTitle + " " + halachotTitle + " " + simanHebIdx + " " + saifHebIdx);
@@ -175,13 +174,13 @@ public class ShulchanAruchParser extends Parser {
                     jsonObject().add(URI, getPerushUri());
                 }
                 jsonObject().add(JBO_INTERPRETS, getUri());
-                jsonObject().addToArray(JBO_WITHIN, "jbr:shulchanaruch-baerheytev");
+                jsonObject().add(JBO_BOOK, JBR_BOOK + "baerheytev");
                 jsonObject().addToArray(JBO_WITHIN, getHalachotUri());
-                jsonObject().addToArray(JBO_WITHIN, "shulchanaruch-" + chelekNum);
+                jsonObject().addToArray(JBO_WITHIN, getChelekUri());
                 jsonObject().addToArray(JBO_WITHIN, getSimanUri());
                 jsonObject().add(JBO_POSITION_IN_SIMAN, saifNum);
                 jsonObject().add(JBO_POSITION, positionInChelek);
-                jsonObject().add(RDFS_LABEL, "פירוש " + chelekTitle + " " + halachotTitle + " " + simanHebIdx + " " + saifHebIdx);
+                jsonObject().add(RDFS_LABEL, "באר היטב " + chelekTitle + " " + halachotTitle + " " + simanHebIdx + " " + saifHebIdx);
                 jsonObject().add(JBO_TEXT, line.extract("באר היטב " , " "));
                 jsonObjectFlush();
                 break;

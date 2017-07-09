@@ -26,6 +26,7 @@ public class TalmudBavliParser extends Parser {
     private String amudTitle;
     private int positionInMasechet = 0;
     private String mefarshim[] = {"rashi", "tosafot", "rashbam", "ran"};
+    private String mefarshimBooks[] = {"rashibavli", "tosafotbavli", "rashbambavli", "ranbavli"};
     private String mefarshimHeb[] = {"רש\"י", "תוספות","רשב\"ם", "ר\"נ"};
 
     public TalmudBavliParser() { createPackagesJson(); }
@@ -103,6 +104,7 @@ public class TalmudBavliParser extends Parser {
                 packagesJsonObject().add(URI, getMasechetUri());
                 packagesJsonObject().add(RDFS_LABEL, "מסכת " + masechetTitle);
                 packagesJsonObject().add(JBO_POSITION, masechetNum);
+                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "talmudbavli");
                 packagesJsonObjectFlush();
                 break;
 
@@ -116,6 +118,7 @@ public class TalmudBavliParser extends Parser {
                 packagesJsonObject().add(URI, getPerekUri());
                 packagesJsonObject().add(RDFS_LABEL, perekTitle);
                 packagesJsonObject().add(JBO_POSITION, perekNum);
+                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "talmudbavli");
                 packagesJsonObjectFlush();
                 break;
 
@@ -135,7 +138,7 @@ public class TalmudBavliParser extends Parser {
                 jsonObject().addToArray(JBO_WITHIN, getPerekUri());
                 jsonObject().add(RDFS_LABEL, "מסכת " + masechetTitle + " " + dafTitle + " " + amudTitle);
                 jsonObject().add(JBO_POSITION, positionInMasechet);
-
+                jsonObject().add(JBO_BOOK, JBR_BOOK + "talmudbavli");
                 /* no need for amud package
                 if(amudTitle.equals("א") || (masechetNum == 36 && dafNum == 25)) {
                     // adding daf triplets to packages json
@@ -155,6 +158,7 @@ public class TalmudBavliParser extends Parser {
                     jsonObject().add(RDFS_LABEL, masechetTitle + " " + dafTitle + " " + amudTitle);
                     jsonObject().add(JBO_POSITION, positionInMasechet);
                     jsonObject().append(JBO_TEXT, line.getLine());
+                    jsonObject().add(JBO_BOOK, JBR_BOOK + "talmudbavli");
                 }
                 else {
                     jsonObject().append(JBO_TEXT, line.getLine());
@@ -176,6 +180,7 @@ public class TalmudBavliParser extends Parser {
                 jsonObject().add(JBO_POSITION, positionInMasechet);
                 jsonObject().add(JBO_INTERPRETS, getUri());
                 jsonObject().append(JBO_TEXT, line.getLine());
+                jsonObject().add(JBO_BOOK, JBR_BOOK + getMefareshBook(mefareshIdx));
                 //jsonObjectFlush();
                 break;
 
@@ -207,6 +212,9 @@ public class TalmudBavliParser extends Parser {
     protected String getMasechetUri() { return "jbr:bavli-" + masechetNum; }
     private String getMefareshUri(int mefareshIdx) {
         return "jbr:bavli-" + mefarshim[mefareshIdx] + "-" + masechetNum + "-" + dafNum + "-" + amudNum;
+    }
+    private String getMefareshBook(int index) {
+        return mefarshimBooks[index];
     }
     private String getDafUri() {return "jbr:bavli-" + masechetNum + "-" + dafNum; }
     private String getPerekUri() { return "jbr:bavli-perek-" + masechetNum + "-" + perekNum; }

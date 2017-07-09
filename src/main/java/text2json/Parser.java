@@ -21,6 +21,7 @@ public abstract class Parser {
 
     private JsonObject defaultJsonObject;
     private JsonFile defaultJsonFile;
+    private int lineNumber = 0;
 
     /** another json output file, used to hold info about
         non-textual elements that serve as containers (packages)
@@ -80,22 +81,18 @@ public abstract class Parser {
             packagesJsonFile.createMainObject();
         }
 
-        int lineNum = 0;
+        lineNumber = 0;
         String line;
         while((line = reader.readLine()) != null) {
             Line l = new Line(line);
-            lineNum++;
-            //System.out.println("lineNum = " + lineNum);
+            lineNumber++;
             if(l.getLine().equals("\n")){ continue;}
             if(l.getLine().equals("")){ continue;}
 
-            //System.out.println("    line = " + l.getLine());
             // checks whether there is a match
             // and trigger onLineMatch appropriately.
             for (LineMatcher matcher : matchers) {
                 if (matcher.match(l)) {
-                    //System.out.println("  matched " + l.getLine());
-                    //System.out.println("  matcherType = " + matcher.type());
                     onLineMatch(matcher.type(), l);
                     l.lineMatched();
                     continue;
@@ -141,5 +138,9 @@ public abstract class Parser {
             text = text.replace("(" + mefaresh + ")", "");
 
         return text.trim();
+    }
+
+    protected int getLineNumber() {
+        return lineNumber;
     }
 }

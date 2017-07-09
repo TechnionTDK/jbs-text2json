@@ -27,6 +27,8 @@ public class LomdimLessonParser extends Parser {
     private static final String VALUE_MATERIALS = "materials";
     private static final String VALUE_SORT = "sort";
 
+    private String title;
+
     @Override
     protected void registerMatchers() {
         registerMatcher(new LineMatcher() {
@@ -146,10 +148,15 @@ public class LomdimLessonParser extends Parser {
             case NO_MATCH: // content line
                 if(jsonObject().hasTuple(KEY_TYPE, "title")) {
                     jsonObject().add(KEY_CONTENT, line.getLine());
+                    title = line.getLine();
                     return;
                 }
-                if(jsonObject().hasTuple(KEY_TYPE, VALUE_GUIDELINES)
-                        || jsonObject().hasTuple(KEY_TYPE, VALUE_MATERIALS)) {
+                if(jsonObject().hasTuple(KEY_TYPE, VALUE_GUIDELINES)) {
+                    jsonObject().addToArray(KEY_CONTENT, line.getLine());
+                    return;
+                }
+                if(jsonObject().hasTuple(KEY_TYPE, VALUE_MATERIALS)) {
+                    assertMaterialsContent(line.getLine());
                     jsonObject().addToArray(KEY_CONTENT, line.getLine());
                     return;
                 }
@@ -161,6 +168,15 @@ public class LomdimLessonParser extends Parser {
                 return;
         }
 
+    }
+
+    private void assertMaterialsContent(String line) {
+        if (!line.contains("@@@"))
+            error("No @@@ separator in material element");
+    }
+
+    private void error(String message) {
+        throw new RuntimeException("Lesson " + title + ": " + message + " (Line " + getLineNumber() + ")");
     }
 
     @Override
