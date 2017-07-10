@@ -101,7 +101,6 @@ public class MidrashRabaParser extends Parser {
                 bookNum = getBookNum(bookName);
                 // adding sefer object in packages json
                 packagesJsonObject().add(URI, JBR_SECTION + "tanach-midrashraba-"+ bookNum);
-                packagesJsonObject().add(JBO_TEXT, line.getLine());
                 packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "midrashraba");
                 packagesJsonObject().add(RDFS_LABEL, "מדרש רבה " + bookName);
                 packagesJsonObjectFlush();
@@ -132,7 +131,6 @@ public class MidrashRabaParser extends Parser {
                 //getSeifPositionInParasha = 0;
                 // adding parasha object in packages json
                 packagesJsonObject().add(URI, JBR_SECTION + "tanach-midrashraba-"+ bookNum +"-"+parashaNum);
-                packagesJsonObject().add(JBO_TEXT, line.getLine());
                 packagesJsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "tanach-midrashraba-"+ bookNum);
                 packagesJsonObject().add(RDFS_LABEL, "מדרש רבה " + bookName + " " + parashaName);
                 packagesJsonObject().add(JBO_BOOK, "midrashraba");
