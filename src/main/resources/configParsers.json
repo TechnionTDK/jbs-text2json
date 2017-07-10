@@ -9,7 +9,7 @@
   {"parser":"text2json.parsers.TanachParser",
     "input": "tanach",
     "output": "tanach"},
-  {"parser":"text2json.parsers.MefareshParser",
+  {"parser":"text2json.parsers.TanachMefarshimParser",
     "input": "tanach",
     "output": "tanachMefarshim"},
   {"parser":"text2json.parsers.SeferHamitzvotParser",

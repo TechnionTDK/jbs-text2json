@@ -76,9 +76,6 @@ public class LikuteyMoharanParser extends Parser{
             case BEGIN_SEFER:
                 // No need to create an object for the entire book anymore!
                 // It is created outside text2json
-//                packagesJsonObject().add(URI, "jbr:likuteymoharan");
-//                packagesJsonObject().add(RDFS_LABEL, "ליקוטי מוהר''ן");
-//                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_CHELEK:
@@ -87,7 +84,7 @@ public class LikuteyMoharanParser extends Parser{
                 chelekNum++;
                 chelekHebIdx = line.extract("ליקוטי מוהר''ן - חלק ", " ");
                 //add chelek to package json
-                packagesJsonObject().add(URI, "jbr:likuteymoharan-" + chelekNum);
+                packagesJsonObject().add(URI, JBR_SECTION + "likuteymoharan-" + chelekNum);
                 packagesJsonObject().add(RDFS_LABEL, "ליקוטי מוהר''ן - חלק " + chelekHebIdx);
                 packagesJsonObject().add(JBO_POSITION, chelekNum);
                 packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "likuteymoharan");
@@ -104,7 +101,7 @@ public class LikuteyMoharanParser extends Parser{
                 saifTitle = line.extract(" - ", " ");
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_BOOK, JBR_BOOK + "likuteymoharan");
-                jsonObject().addToArray(JBO_WITHIN, "jbr:likuteymoharan-" + chelekNum);
+                jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "likuteymoharan-" + chelekNum);
                 jsonObject().add(JBO_POSITION, positionInSefer);
                 jsonObject().add(RDFS_LABEL, "ליקוטי מוהר''ן " + chelekHebIdx + " " + saifHebIdx);
                 jsonObject().add(JBO_NAME, saifTitle);
@@ -122,7 +119,7 @@ public class LikuteyMoharanParser extends Parser{
 
     @Override
     protected String getUri() {
-        return "jbr:likuteymoharan-" + chelekNum + "-" + saifNum;
+        return JBR_TEXT + "likuteymoharan-" + chelekNum + "-" + saifNum;
     }
 
 }

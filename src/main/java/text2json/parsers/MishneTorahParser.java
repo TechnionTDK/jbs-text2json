@@ -151,8 +151,6 @@ public class MishneTorahParser extends Parser {
             case NO_MATCH:
                 if (jsonObject().hasKey(JBO_INTERPRETS))
                     jsonObject().append(JBO_TEXT, line.getLine());
-//                else
-//                    System.out.println(line.getLine());
                 break;
         }
     }
@@ -174,7 +172,7 @@ public class MishneTorahParser extends Parser {
     }
 
     private String getSeferURI() {
-        return JBR + "mishnetorah-" + seferNum;
+        return JBR_SECTION + "mishnetorah-" + seferNum;
     }
 
     private String getHilchotURI() {
@@ -186,7 +184,7 @@ public class MishneTorahParser extends Parser {
     }
 
     private String getHalachaURI() {
-        return getPerekURI() + "-" + halachaNum;
+        return JBR_TEXT + "mishnetorah-" + seferNum + "-" + hilchotNum + "-" + perekNum + "-" + halachaNum;
     }
     private String getPerushURI(Line line) {
         int i = 0;
@@ -195,7 +193,7 @@ public class MishneTorahParser extends Parser {
             if (line.beginsWith(MEFARSHIM_HEB[i]))
                 break;
 
-        return JBR + "mishnetorah-" + MEFARSHIM_EN[i] + "-" + seferNum + "-" +
+        return JBR_TEXT + "mishnetorah-" + MEFARSHIM_EN[i] + "-" + seferNum + "-" +
                         hilchotNum + "-" + perekNum + "-" + halachaNum;
     }
 

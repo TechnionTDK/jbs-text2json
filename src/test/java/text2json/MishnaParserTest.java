@@ -37,14 +37,14 @@ public class MishnaParserTest {
     public void testSpecificObjects() {
         Map<String, String> o;
 
-        o = json[0].getObject("jbr:mishna-bartanura-1-1-2-2");
+        o = json[0].getObject(JBR_TEXT + "mishna-bartanura-1-1-2-2");
         assertTrue(o.get(JBO_TEXT).contains("ויאמר אינו נוהג אלא ביום"));
         assertBookProperty("bartanura", o.get(JBO_BOOK));
 
-        o = json[0].getObject("jbr:mishna-1-1-2-2");
+        o = json[0].getObject(JBR_TEXT + "mishna-1-1-2-2");
         assertBookProperty("mishna", o.get(JBO_BOOK));
 
-        o = json[0].getObject("jbr:mishna-yomtov-1-1-2-2");
+        o = json[0].getObject(JBR_TEXT + "mishna-yomtov-1-1-2-2");
         assertBookProperty("yomtov", o.get(JBO_BOOK));
     }
 

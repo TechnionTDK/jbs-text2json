@@ -40,20 +40,20 @@ public class BeerHagolaParserTest {
 
 
         object = json.getObject(0);
-        assertEquals("jbr:beerhagola-0", object.get(URI));
+        assertEquals(JBR_TEXT + "beerhagola-0", object.get(URI));
         assertEquals("1", object.get(JBO_POSITION));
         assertEquals("באר הגולה - הקדמה", object.get(RDFS_LABEL));
         assertEquals("jbr:book-beerhagola", object.get(JBO_BOOK));
 
 
         object = json.getObject(6);
-        assertEquals("jbr:beerhagola-6", object.get(URI));
+        assertEquals(JBR_TEXT + "beerhagola-6", object.get(URI));
         assertEquals("באר הגולה - באר ו", object.get(RDFS_LABEL));
         assertEquals("7", object.get(JBO_POSITION));
         assertEquals("jbr:book-beerhagola", object.get(JBO_BOOK));
 
         object = json.getObject(2);
-        assertEquals("jbr:beerhagola-2", object.get(URI));
+        assertEquals(JBR_TEXT + "beerhagola-2", object.get(URI));
         assertEquals("באר הגולה - באר ב", object.get(RDFS_LABEL));
         assertEquals("3", object.get(JBO_POSITION));
         assertEquals("jbr:book-beerhagola", object.get(JBO_BOOK));

@@ -29,14 +29,6 @@ public class MidbarShurParserTest {
     }
 
     @Test
-    //test the correctness with sampling a few values
-    public void test() {
-        System.out.println("bla bla");
-        System.out.println();
-    }
-
-
-    @Test
     public void testTotalNumberOfObjects() {
         assertNotNull(json);
         assertEquals(38, json.subjects.size());
@@ -46,36 +38,40 @@ public class MidbarShurParserTest {
     public void testSpecificPackageObjects() {
         Map<String, String> object;
 
-
         object = json.getObject(0);
-        assertEquals("jbr:midbarshur-1", object.get(URI));
+        assertEquals(JBR_TEXT + "midbarshur-1", object.get(URI));
         assertEquals("1", object.get(JBO_POSITION));
         assertEquals("מדבר שור - דרוש א", object.get(RDFS_LABEL));
-
+        assertBookProperty("midbarshur", object.get(JBO_BOOK));
 
         object = json.getObject(3);
-        assertEquals("jbr:midbarshur-4", object.get(URI));
+        assertEquals(JBR_TEXT + "midbarshur-4", object.get(URI));
         assertEquals("מדבר שור - דרוש ד", object.get(RDFS_LABEL));
         assertEquals("4", object.get(JBO_POSITION));
+        assertBookProperty("midbarshur", object.get(JBO_BOOK));
 
         object = json.getObject(18);
-        assertEquals("jbr:midbarshur-19", object.get(URI));
+        assertEquals(JBR_TEXT + "midbarshur-19", object.get(URI));
         assertEquals("מדבר שור - דרוש יט", object.get(RDFS_LABEL));
         assertEquals("19", object.get(JBO_POSITION));
+        assertBookProperty("midbarshur", object.get(JBO_BOOK));
 
         object = json.getObject(19);
-        assertEquals("jbr:midbarshur-20", object.get(URI));
+        assertEquals(JBR_TEXT + "midbarshur-20", object.get(URI));
         assertEquals("מדבר שור - דרוש כ", object.get(RDFS_LABEL));
         assertEquals("20", object.get(JBO_POSITION));
+        assertBookProperty("midbarshur", object.get(JBO_BOOK));
 
         object = json.getObject(28);
-        assertEquals("jbr:midbarshur-29", object.get(URI));
+        assertEquals(JBR_TEXT + "midbarshur-29", object.get(URI));
         assertEquals("מדבר שור - דרוש כט", object.get(RDFS_LABEL));
         assertEquals("29", object.get(JBO_POSITION));
+        assertBookProperty("midbarshur", object.get(JBO_BOOK));
 
         object = json.getObject(37);
-        assertEquals("jbr:midbarshur-38", object.get(URI));
+        assertEquals(JBR_TEXT + "midbarshur-38", object.get(URI));
         assertEquals("מדבר שור - דרוש לח", object.get(RDFS_LABEL));
         assertEquals("38", object.get(JBO_POSITION));
+        assertBookProperty("midbarshur", object.get(JBO_BOOK));
     }
 }

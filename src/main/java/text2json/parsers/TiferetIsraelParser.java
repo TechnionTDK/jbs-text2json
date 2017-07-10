@@ -60,9 +60,6 @@ public class TiferetIsraelParser extends Parser {
             case BEGIN_SEFER:
                 // No need to create an object for the entire book anymore!
                 // It is created outside text2json
-//                packagesJsonObject().add(URI, getcorpus());
-//                packagesJsonObject().add(RDFS_LABEL, "תפארת ישראל");
-//                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_HAKDAMA:
@@ -85,9 +82,6 @@ public class TiferetIsraelParser extends Parser {
                 jsonObject().add(JBO_BOOK, JBR_BOOK + "tiferetisrael");
                 String rdfs = "תפארת ישראל " + chapterName;
                 jsonObject().add(RDFS_LABEL,rdfs);
-//                packagesJsonObject().add(URI, getUri());
-//                packagesJsonObject().add(RDFS_LABEL, rdfs);
-//                packagesJsonObjectFlush();
                 break;
 
             case NO_MATCH:
@@ -98,8 +92,5 @@ public class TiferetIsraelParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR + "tiferetisrael-" + chapterNum ;    }
-    protected String getcorpus() { return JBR + "tiferetisrael";    }
-
-
+        return JBR_TEXT + "tiferetisrael-" + chapterNum ;    }
 }

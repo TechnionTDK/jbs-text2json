@@ -35,9 +35,9 @@ public class SeferHakuzariParserTest {
         Map<String, String> object;
 
         object = json.getObject(0);
-        assertEquals("jbr:seferhakuzari-1-1", object.get(URI));
+        assertEquals(JBR_TEXT + "seferhakuzari-1-1", object.get(URI));
         assertEquals("1", object.get(JBO_POSITION));
         assertEquals("הכוזרי א א", object.get(RDFS_LABEL));
-        assertEquals("jbr:book-seferhakuzari", object.get(JBO_BOOK));
+        assertBookProperty("seferhakuzari", object.get(JBO_BOOK));
     }
 }

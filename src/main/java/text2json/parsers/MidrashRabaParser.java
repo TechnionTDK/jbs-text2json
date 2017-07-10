@@ -15,17 +15,17 @@ import static text2json.JbsUtils.HEB_LETTERS_INDEX;
  */
 public class MidrashRabaParser extends Parser {
     private static final String MULTIPLE_LINE_SAIF = "multipul_line_saif";
-    int BookNum = 0;
-    String BookName = null;
+    int bookNum = 0;
+    String bookName = null;
     String SederName = null;
     int sederNum = 0;
-    String ParashaName = null;
+    String parashaName = null;
     int parashaNum = 0;
     String SeifLetter = null;
     int seifPosition = 0;
     int getSeifPositionInParasha = 0;
     String seif = null;
-    Boolean Long_Seif = false;
+    Boolean longSeif = false;
 
     public MidrashRabaParser() {
         createPackagesJson();
@@ -88,7 +88,7 @@ public class MidrashRabaParser extends Parser {
 
             @Override
             public boolean match(Line line) {
-                return ((!(line.beginsWith(HEB_LETTERS_INDEX, " "))) && Long_Seif);
+                return ((!(line.beginsWith(HEB_LETTERS_INDEX, " "))) && longSeif);
             }
         });
     }
@@ -97,60 +97,61 @@ public class MidrashRabaParser extends Parser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_SEFER:
-                BookName = line.extract("מדרש רבה - ", " ");
-                BookNum = getBookNum(BookName);
+                bookName = line.extract("מדרש רבה - ", " ");
+                bookNum = getBookNum(bookName);
                 // adding sefer object in packages json
-                packagesJsonObject().add(URI, "jbr:tanach-midrashraba-"+BookNum);
+                packagesJsonObject().add(URI, JBR_SECTION + "tanach-midrashraba-"+ bookNum);
                 packagesJsonObject().add(JBO_TEXT, line.getLine());
-                packagesJsonObject().addToArray(JBO_WITHIN, "jbr:tanach-midrashraba-"+BookNum);
-                packagesJsonObject().add(RDFS_LABEL, "מדרש רבה " + BookName);
+                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "midrashraba");
+                packagesJsonObject().add(RDFS_LABEL, "מדרש רבה " + bookName);
                 packagesJsonObjectFlush();
                 break;
             case BEGIN_SEDER:
                 if (sederNum!=0 && seif!=null){
-                    CreateObject();
-                    Long_Seif = false;
+                    createObject();
+                    longSeif = false;
                 }
                 SederName = line.extract("סדר ", " ");
                 sederNum++;
                 break;
             case BEGIN_PARASHA:
-                if ((parashaNum!=0 && seif!=null) || (ParashaName == "פתיחתא דחכימי" && seif!=null) ||
-                        (ParashaName == "פתיחתא דרות רבה" && seif!=null) || (ParashaName == "פתיחתא דאסתר רבא" && seif!=null)){
-                    CreateObject();
+                if ((parashaNum!=0 && seif!=null) || (parashaName == "פתיחתא דחכימי" && seif!=null) ||
+                        (parashaName == "פתיחתא דרות רבה" && seif!=null) || (parashaName == "פתיחתא דאסתר רבא" && seif!=null)){
+                    createObject();
                     seif = null;
-                    Long_Seif = false;
+                    longSeif = false;
                 }
-                ParashaName = line.extract("פרשה ", " ");
+                parashaName = line.extract("פרשה ", " ");
                 parashaNum++;
                 if ((line.getLine().contains("פתיחתא דחכימי")) || (line.getLine().contains("פתיחתא דרות רבה")) ||
                         (line.getLine().contains("פתיחתא דאסתר רבא"))){
                     parashaNum = 0;
-                    ParashaName = "פתיחתא דחכימי";
+                    parashaName = "פתיחתא דחכימי";
                 }
                 seifPosition = 0;
                 //getSeifPositionInParasha = 0;
                 // adding parasha object in packages json
-                packagesJsonObject().add(URI, "jbr:tanach-midrashraba-"+BookNum+"-"+parashaNum);
+                packagesJsonObject().add(URI, JBR_SECTION + "tanach-midrashraba-"+ bookNum +"-"+parashaNum);
                 packagesJsonObject().add(JBO_TEXT, line.getLine());
-                packagesJsonObject().addToArray(JBO_WITHIN, "jbr:tanach-midrashraba-"+BookNum);
-                packagesJsonObject().add(RDFS_LABEL, "מדרש רבה " + BookName + " " + ParashaName );
+                packagesJsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "tanach-midrashraba-"+ bookNum);
+                packagesJsonObject().add(RDFS_LABEL, "מדרש רבה " + bookName + " " + parashaName);
+                packagesJsonObject().add(JBO_BOOK, "midrashraba");
                 packagesJsonObject().add(JBO_POSITION, parashaNum);
                 packagesJsonObjectFlush();
                 break;
             case BEGIN_SAIF:
                 if((seifPosition != 0)&& (seif!=null)) {
-                    CreateObject();
+                    createObject();
                 }
                 SeifLetter = line.getFirstWord();
                 seif = line.extract(SeifLetter+" ", " ");
-                Long_Seif = true;
+                longSeif = true;
                 seifPosition = getSeifNum(SeifLetter);
-                EndOfFile(line);
+                endOfFile(line);
                 break;
             case MULTIPLE_LINE_SAIF:
                 seif = seif + " " + line.getLine();
-                EndOfFile(line);
+                endOfFile(line);
                 break;
             case NO_MATCH:
                 break;
@@ -178,78 +179,79 @@ public class MidrashRabaParser extends Parser {
         return -1;
     }
 
-    protected void  CreateObject() throws IOException{
+    protected void createObject() throws IOException{
         jsonObjectFlush();
         jsonObject().add(URI, getUri());
         jsonObject().add(JBO_TEXT, stripVowels(seif));
         jsonObject().add(JBO_TEXT_NIKUD, seif);
-        jsonObject().addToArray(JBO_WITHIN, "jbr:tanach-midrashraba-"+ BookNum);
-        jsonObject().add(JBO_WITHIN, "jbr:tanach-midrashraba-"+ BookNum + "-" + parashaNum);
+        jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "tanach-midrashraba-"+ bookNum);
+        jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "tanach-midrashraba-"+ bookNum + "-" + parashaNum);
+        jsonObject().add(JBO_BOOK, JBR_BOOK + "midrashraba");
         jsonObject().add(JBO_POSITION, seifPosition);
-        if (BookNum<=5) {
-            jsonObject().add(RDFS_LABEL, "מדרש רבה " + SederName + " " + ParashaName + " " + SeifLetter);
+        if (bookNum <=5) {
+            jsonObject().add(RDFS_LABEL, "מדרש רבה " + SederName + " " + parashaName + " " + SeifLetter);
         }
         else{
-            jsonObject().add(RDFS_LABEL, "מדרש רבה " + BookName + " " + ParashaName + " " + SeifLetter);
+            jsonObject().add(RDFS_LABEL, "מדרש רבה " + bookName + " " + parashaName + " " + SeifLetter);
         }
         return;
     }
 
     @Override
     protected String getUri() {
-        return "jbr:tanach-midrashraba-"+ BookNum + "-" + parashaNum + "-" + seifPosition;
+        return JBR_TEXT + "tanach-midrashraba-"+ bookNum + "-" + parashaNum + "-" + seifPosition;
     }
 
-    protected void EndOfFile(Line line) throws IOException{
-        switch (BookNum){
+    protected void endOfFile(Line line) throws IOException{
+        switch (bookNum){
             case 1:
                 if ((parashaNum==100) && (seifPosition==13) && (stripVowels(line.getLine()).endsWith("ימצא בה תודה וקול זמרה."))){
-                    CreateObject();
+                    createObject();
                 }
                 break;
             case 2:
                 if ((parashaNum==52) && (seifPosition==5) && (stripVowels(line.getLine()).endsWith("ימצא בה תודה וקול זמרה."))){
-                    CreateObject();
+                    createObject();
                 }
                 break;
             case 3:
                 if ((parashaNum==37) && (seifPosition==4) && (stripVowels(line.getLine()).endsWith("כי לעולם חסדו."))){
-                    CreateObject();
+                    createObject();
                 }
                 break;
             case 4:
                 if ((parashaNum==23) && (seifPosition==14) && (stripVowels(line.getLine()).endsWith("ששון ושמחה ישיגו ונסו יגון ואנחה."))){
-                    CreateObject();
+                    createObject();
                 }
                 break;
             case 5:
                 if ((parashaNum==11) && (seifPosition==9) && (stripVowels(line.getLine()).endsWith("ברוך ה' לעולם אמן ואמן."))){
-                    CreateObject();
+                    createObject();
                 }
                 break;
             case 30:
                 if ((parashaNum==8) && (seifPosition==1) && (stripVowels(line.getLine()).endsWith("יהי רצון במהרה בימינו אמן."))){
-                    CreateObject();
+                    createObject();
                 }
                 break;
             case 31:
                 if ((parashaNum==8) && (seifPosition==1) && (stripVowels(line.getLine()).endsWith("מצאתי דוד עבדי."))){
-                    CreateObject();
+                    createObject();
                 }
                 break;
             case 32:
                 if ((parashaNum==5) && (seifPosition==22) && (stripVowels(line.getLine()).endsWith("דכעיס סופיה לאיתרציא."))){
-                    CreateObject();
+                    createObject();
                 }
                 break;
             case 33:
                 if ((parashaNum==12) && (seifPosition==1) && (stripVowels(line.getLine()).endsWith("שאני בת רב חסדא דקים ליה בחסדה בגוה [אם טוב ואם רע]."))){
-                    CreateObject();
+                    createObject();
                 }
                 break;
             case 34:
                 if ((parashaNum==10) && (seifPosition==14) && (stripVowels(line.getLine()).endsWith("נשלם מדרש אסתר"))){
-                    CreateObject();
+                    createObject();
                 }
                 break;
 

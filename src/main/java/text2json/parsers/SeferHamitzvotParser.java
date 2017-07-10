@@ -89,6 +89,6 @@ public class SeferHamitzvotParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR + "seferhamitzvot-" + sectionNum + "-" + mitzvaNum;
+        return JBR_TEXT + "seferhamitzvot-" + sectionNum + "-" + mitzvaNum;
     }
 }

@@ -70,6 +70,6 @@ public class ShemonaKevatzimParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR + "shemonakevatzim-" + kovetzNum + "-" + saifNum;
+        return JBR_TEXT + "shemonakevatzim-" + kovetzNum + "-" + saifNum;
     }
 }

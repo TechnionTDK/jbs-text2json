@@ -60,9 +60,6 @@ public class BeerHagolaParser extends Parser {
             case BEGIN_SEFER:
                 // No need to create an object for the entire book anymore!
                 // It is created outside text2json
-//                packagesJsonObject().add(URI, getcorpus());
-//                packagesJsonObject().add(RDFS_LABEL, "באר הגולה");
-//                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_HAKDAMA:
@@ -85,8 +82,6 @@ public class BeerHagolaParser extends Parser {
                 jsonObject().add(JBO_POSITION, beerNum+1);
                 String rdfs = "באר הגולה - " + beerName;
                 jsonObject().add(RDFS_LABEL,rdfs);
-//                packagesJsonObject().add(URI, getUri());
-//                packagesJsonObject().add(RDFS_LABEL, rdfs);
                 break;
 
             case NO_MATCH:
@@ -97,7 +92,7 @@ public class BeerHagolaParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR + "beerhagola-" + beerNum ;    }
+        return JBR_TEXT + "beerhagola-" + beerNum ;    }
     protected String getcorpus() { return JBR + "beerhagola";    }
 
 

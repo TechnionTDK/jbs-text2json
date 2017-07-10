@@ -63,9 +63,6 @@ public class OrotHaKodeshParser extends Parser {
             case BEGIN_SEFER:
                 // No need to create an object for the entire book anymore!
                 // It is created manually, outside text2json
-//                packagesJsonObject().add(URI, getcorpus());
-//                packagesJsonObject().add(RDFS_LABEL, "אורות הקודש");
-//                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_PEREK:
@@ -73,7 +70,7 @@ public class OrotHaKodeshParser extends Parser {
                 teachingNum=0;
                 sectionNum++;
                 packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "orothakodesh");
-                packagesJsonObject().add(URI,JBR + "orothakodesh-" + sectionNum);
+                packagesJsonObject().add(URI,JBR_SECTION + "orothakodesh-" + sectionNum);
                 packagesJsonObject().add(RDFS_LABEL,"אורות הקודש" + " " + HEB_LETTERS_INDEX[sectionNum-1]);
                 packagesJsonObjectFlush();
                 break;
@@ -85,13 +82,9 @@ public class OrotHaKodeshParser extends Parser {
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_POSITION, position);
                 jsonObject().add(JBO_BOOK, JBR_BOOK + "orothakodesh");
-                jsonObject().addToArray(JBO_WITHIN,JBR + "orothakodesh-" + sectionNum);
+                jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "orothakodesh-" + sectionNum);
                 String rdfs = "אורות הקודש" + " " + HEB_LETTERS_INDEX[sectionNum-1] + " " + HEB_LETTERS_INDEX[teachingNum-1];
                 jsonObject().add(RDFS_LABEL,rdfs);
-//                packagesJsonObject().add(URI, getUri());
-//                packagesJsonObject().add(RDFS_LABEL, rdfs);
-//                packagesJsonObjectFlush();
-
                 break;
 
             case NO_MATCH:
@@ -102,8 +95,5 @@ public class OrotHaKodeshParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR + "orothakodesh-" + sectionNum + "-"+ teachingNum;    }
-    protected String getcorpus() { return JBR + "orothakodesh";    }
-
-
+        return JBR_TEXT + "orothakodesh-" + sectionNum + "-"+ teachingNum;    }
 }

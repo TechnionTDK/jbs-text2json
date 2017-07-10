@@ -14,8 +14,6 @@ import static text2json.JbsOntology.*;
 public class DerashotMaharalParser extends Parser {
 
     private int chapterNum = -1;
-    private int hakdamaNum = 0;
-
 
     public DerashotMaharalParser() {
         createPackagesJson();
@@ -60,20 +58,10 @@ public class DerashotMaharalParser extends Parser {
             case BEGIN_SEFER:
                 // No need to create an object for the entire book anymore!
                 // It is created outside text2json
-//                packagesJsonObject().add(URI, getcorpus());
-//                packagesJsonObject().add(RDFS_LABEL, "דרשות מהר\"ל");
-//                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
-//                hakdamaNum++;
-//                jsonObject().add(URI, getUri());
-//                jsonObject().add(JBO_BOOK, JBR + "derashotmaharal");
-//                jsonObject().add(JBO_POSITION, hakdamaNum);
-//                jsonObject().add(RDFS_LABEL,"דרשות מהר\"ל - הקדמה ");
-
-
 
             case BEGIN_PEREK:
                 packagesJsonObjectFlush();
@@ -85,9 +73,6 @@ public class DerashotMaharalParser extends Parser {
                 jsonObject().add(JBO_BOOK, JBR_BOOK + "derashotmaharal");
                 String rdfs = "דרשות מהר\"ל - " + chapterName;
                 jsonObject().add(RDFS_LABEL,rdfs);
-//                packagesJsonObject().add(URI, getUri());
-//                packagesJsonObject().add(RDFS_LABEL, rdfs);
-//                packagesJsonObjectFlush();
                 break;
 
             case NO_MATCH:
@@ -98,8 +83,6 @@ public class DerashotMaharalParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR + "derashotmaharal-" + chapterNum ;    }
-    protected String getcorpus() { return JBR + "derashotmaharal";    }
-
+        return JBR_TEXT + "derashotmaharal-" + chapterNum ;    }
 
 }

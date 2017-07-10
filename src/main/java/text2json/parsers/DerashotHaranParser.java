@@ -12,10 +12,6 @@ import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 public class DerashotHaranParser extends Parser {
     private int perekNum = 0;
 
-    public DerashotHaranParser() {
-        createPackagesJson();
-    }
-
     @Override
     protected void registerMatchers() {
         registerMatcher(new LineMatcher() {
@@ -45,9 +41,6 @@ public class DerashotHaranParser extends Parser {
             case BEGIN_SEFER:
                 // No need to create an object for the entire book anymore!
                 // It is created outside text2json
-//                packagesJsonObject().add(URI, getBookUri());
-//                packagesJsonObject().add(RDFS_LABEL, "דרשות הר\"ן");
-//                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_PEREK:
@@ -68,7 +61,7 @@ public class DerashotHaranParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR + "derashotharan-" + perekNum;
+        return JBR_TEXT + "derashotharan-" + perekNum;
     }
     protected String getBookUri() {
         return JBR_BOOK + "derashotharan";

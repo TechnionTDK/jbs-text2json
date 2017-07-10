@@ -15,7 +15,6 @@ import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 public class ChovotHalevavotParser extends Parser {
 
     protected static final String BEGIN_SHAAR = "begin_gate";
-    protected static final String BEGIN_PATIAH = "begin_ptiha";
     protected static final String BEGIN_HAKDAMA = "begin_hakdama";
     protected static final String BEGIN_FIRST_HAKDAMA = "begin_hakdama1";
 
@@ -88,9 +87,6 @@ public class ChovotHalevavotParser extends Parser {
             case BEGIN_SEFER:
                 // No need to create an object for the entire book anymore!
                 // It is created outside text2json
-//                packagesJsonObject().add(URI, getcorpus());
-//                packagesJsonObject().add(RDFS_LABEL, "חובות הלבבות");
-//                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_FIRST_HAKDAMA:
@@ -101,7 +97,7 @@ public class ChovotHalevavotParser extends Parser {
                 jsonObject().add(JBO_POSITION, position);
                 jsonObject().add(RDFS_LABEL,"חובות הלבבות - הקדמת המחבר");
                 jsonObject().add(JBO_BOOK, JBR_BOOK + "chovothalevavot");
-                packagesJsonObject().add(URI, "chovothalevavot - hakdamat hamehaber");
+                packagesJsonObject().add(URI, JBR_SECTION + "chovothalevavot - hakdamat hamehaber");
                 packagesJsonObject().add(RDFS_LABEL,"חובות הלבבות - הקדמת המחבר");
                 packagesJsonObjectFlush();
                 break;
@@ -111,7 +107,7 @@ public class ChovotHalevavotParser extends Parser {
                 perekNum=0;
                 shaarName = line.getLine();
                 shaarNum++;
-                packagesJsonObject().add(URI, "chovothalevavot - " + shaarNum);
+                packagesJsonObject().add(URI, JBR_SECTION + "chovothalevavot - " + shaarNum);
                 packagesJsonObject().add(RDFS_LABEL,"חובות הלבבות - " + shaarName );
                 packagesJsonObjectFlush();
                 break;
@@ -140,9 +136,6 @@ public class ChovotHalevavotParser extends Parser {
                 jsonObject().addToArray(JBO_WITHIN, shaarName);
                 String rdfs1 = "חובות הלבבות - " + shaarName + " - " + perekName;
                 jsonObject().add(RDFS_LABEL,rdfs1);
-//                packagesJsonObject().add(URI, "chovothalevavot - " + shaarNum + " - " + perekNum);
-//                packagesJsonObject().add(RDFS_LABEL,"חובות הלבבות - " + shaarName + " - " + perekName );
-//                packagesJsonObjectFlush();
                 break;
 
             case NO_MATCH:
@@ -153,7 +146,7 @@ public class ChovotHalevavotParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR + "chovothalevavot-" + shaarNum + "-" + perekNum;   }
+        return JBR_TEXT + "chovothalevavot-" + shaarNum + "-" + perekNum;   }
     protected String getcorpus() { return JBR + "chovothalevavot";    }
 
 }

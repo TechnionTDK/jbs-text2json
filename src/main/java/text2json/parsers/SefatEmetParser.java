@@ -69,24 +69,18 @@ public class SefatEmetParser extends Parser {
             case BEGIN_PERUSH:
                 // No need to create an object for the entire book anymore!
                 // It is created outside text2json
-//                packagesJsonObject().add(URI, getcorpus());
-//                packagesJsonObject().add(RDFS_LABEL, "שפת אמת");
-//                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_SEFER:
                 jsonObjectFlush();
                 seferNum++;
-//                packagesJsonObject().add(URI, JBR + "tanach-sefatemet-" + seferNum);
-//                packagesJsonObject().add(RDFS_LABEL, "שפת אמת");
-//                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_PARASHA:
                 jsonObjectFlush();
                 seifNum=0;
                 parashaNum++;
-                packagesJsonObject().add(URI, JBR + "tanach-sefatemet-" + seferNum +"-" + parashaNum);
+                packagesJsonObject().add(URI, JBR_SECTION + "tanach-sefatemet-" + seferNum +"-" + parashaNum);
                 packagesJsonObject().add(RDFS_LABEL,  "שפת אמת " + PARASHOT_HE[parashaNum-1]);
                 packagesJsonObjectFlush();
                 break;
@@ -98,11 +92,11 @@ public class SefatEmetParser extends Parser {
                 String parashaName1 = PARASHOT_HE[parashaNum-1];
                 String seifName = HEB_LETTERS_INDEX[seifNum-1];
                 jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_INTERPRETS,parashaName1);
+                jsonObject().add(JBO_INTERPRETS, parashaName1);
                 jsonObject().add(JBO_POSITION, position);
                 jsonObject().add(JBO_BOOK, JBR_BOOK + "sefatemet");
-                jsonObject().addToArray(JBO_WITHIN, JBR + "tanach-sefatemet-" + seferNum);
-                jsonObject().addToArray(JBO_WITHIN, JBR + "tanach-sefatemet-" + seferNum +"-" + parashaNum);
+                jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "tanach-sefatemet-" + seferNum);
+                jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "tanach-sefatemet-" + seferNum +"-" + parashaNum);
                 String rdfs = "שפת אמת" + " " + parashaName1 + " " + seifName;
                 jsonObject().add(RDFS_LABEL,rdfs);
 
@@ -116,8 +110,5 @@ public class SefatEmetParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR + "tanach-sefatemet-" + seferNum +"-" + parashaNum + "-"+ seifNum;    }
-    protected String getcorpus() { return JBR + "sefatemet";    }
-
-
+        return JBR_TEXT + "tanach-sefatemet-" + seferNum +"-" + parashaNum + "-"+ seifNum;    }
 }

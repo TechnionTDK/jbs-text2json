@@ -148,13 +148,10 @@ public class TanachParser extends Parser {
     }
 
     private String getParashaUri() {
-        return JBR + "tanach-parasha-" + getFixedParashaPosition();
-    }
-    private String getBookUri() {
-        return JBR + "tanach-" + bookNum;
+        return JBR_SECTION + "tanach-parasha-" + getFixedParashaPosition();
     }
     private String getPerekUri() {
-        return JBR + "tanach-" + bookNum + "-" + perekNum;
+        return JBR_SECTION + "tanach-" + bookNum + "-" + perekNum;
     }
 
 
@@ -185,6 +182,6 @@ public class TanachParser extends Parser {
 
     @Override
     protected String getUri() {
-        return "jbr:tanach-" + bookNum + "-" + perekNum + "-" + pasukNum;
+        return JBR_TEXT + "tanach-" + bookNum + "-" + perekNum + "-" + pasukNum;
     }
 }

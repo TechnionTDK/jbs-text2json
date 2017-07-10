@@ -41,40 +41,39 @@ public class NetzachIsraelParserTest {
 
 
         object = json.getObject(0);
-        assertEquals("jbr:netzachisrael-0", object.get(URI));
+        assertEquals(JBR_TEXT + "netzachisrael-0", object.get(URI));
         assertEquals("1", object.get(JBO_POSITION));
         assertEquals("נצח ישראל הקדמה", object.get(RDFS_LABEL));
-        assertEquals("jbr:book-netzachisrael", object.get(JBO_BOOK));
-
+        assertBookProperty("netzachisrael", object.get(JBO_BOOK));
 
         object = json.getObject(3);
-        assertEquals("jbr:netzachisrael-3", object.get(URI));
+        assertEquals(JBR_TEXT + "netzachisrael-3", object.get(URI));
         assertEquals("נצח ישראל ג", object.get(RDFS_LABEL));
         assertEquals("4", object.get(JBO_POSITION));
-        assertEquals("jbr:book-netzachisrael", object.get(JBO_BOOK));
+        assertBookProperty("netzachisrael", object.get(JBO_BOOK));
 
         object = json.getObject(23);
-        assertEquals("jbr:netzachisrael-23", object.get(URI));
+        assertEquals(JBR_TEXT + "netzachisrael-23", object.get(URI));
         assertEquals("נצח ישראל כג", object.get(RDFS_LABEL));
         assertEquals("24", object.get(JBO_POSITION));
-        assertEquals("jbr:book-netzachisrael", object.get(JBO_BOOK));
+        assertBookProperty("netzachisrael", object.get(JBO_BOOK));
 
         object = json.getObject(32);
-        assertEquals("jbr:netzachisrael-32", object.get(URI));
+        assertEquals(JBR_TEXT + "netzachisrael-32", object.get(URI));
         assertEquals("נצח ישראל לב", object.get(RDFS_LABEL));
         assertEquals("33", object.get(JBO_POSITION));
-        assertEquals("jbr:book-netzachisrael", object.get(JBO_BOOK));
+        assertBookProperty("netzachisrael", object.get(JBO_BOOK));
 
         object = json.getObject(57);
-        assertEquals("jbr:netzachisrael-57", object.get(URI));
+        assertEquals(JBR_TEXT + "netzachisrael-57", object.get(URI));
         assertEquals("נצח ישראל נז", object.get(RDFS_LABEL));
         assertEquals("58", object.get(JBO_POSITION));
-        assertEquals("jbr:book-netzachisrael", object.get(JBO_BOOK));
+        assertBookProperty("netzachisrael", object.get(JBO_BOOK));
 
         object = json.getObject(63);
-        assertEquals("jbr:netzachisrael-63", object.get(URI));
+        assertEquals(JBR_TEXT + "netzachisrael-63", object.get(URI));
         assertEquals("נצח ישראל סג", object.get(RDFS_LABEL));
         assertEquals("64", object.get(JBO_POSITION));
-        assertEquals("jbr:book-netzachisrael", object.get(JBO_BOOK));
+        assertBookProperty("netzachisrael", object.get(JBO_BOOK));
     }
 }

@@ -88,20 +88,12 @@ public class HaemunotVehadeotParser extends Parser {
             case BEGIN_SEFER:
                 // No need to create an object for the entire book anymore!
                 // It is created outside text2json
-//                packagesJsonObject().add(URI, getcorpus());
-//                packagesJsonObject().add(RDFS_LABEL, "האמונות והדעות");
-//                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 perekNum=0;
-//                position++;
-//                jsonObject().add(URI, getUri());
-//                jsonObject().add(JBO_POSITION, position);
-//                jsonObject().add(JBO_BOOK, JBR + "haemunotvehadeot");
-//                jsonObject().add(RDFS_LABEL,"האמונות והדעות - הקדמה");
-                packagesJsonObject().add(URI, "haemunotvehadeot - hakdama");
+                packagesJsonObject().add(URI, JBR_SECTION + "haemunotvehadeot - hakdama");
                 packagesJsonObject().add(RDFS_LABEL,"האמונות והדעות - הקדמה");
                 packagesJsonObjectFlush();
                 hakdamaBool=1;
@@ -112,7 +104,7 @@ public class HaemunotVehadeotParser extends Parser {
                 perekNum=0;
                 maamarName = line.getLine();
                 maamarNum++;
-                packagesJsonObject().add(URI, "haemunotvehadeot - " + maamarNum);
+                packagesJsonObject().add(URI, JBR_SECTION + "haemunotvehadeot - " + maamarNum);
                 packagesJsonObject().add(RDFS_LABEL,"האמונות והדעות - " + maamarName );
                 packagesJsonObjectFlush();
                 hakdamaBool=0;
@@ -157,9 +149,6 @@ public class HaemunotVehadeotParser extends Parser {
                         jsonObject().addToArray(JBO_WITHIN, maamarName);
                         String rdfs1 = "האמונות והדעות - " + maamarName + " " + perekName;
                         jsonObject().add(RDFS_LABEL,rdfs1);
-//                        packagesJsonObject().add(URI, "haemunotvehadeot - " + maamarNum + " - " + perekNum);
-//                        packagesJsonObject().add(RDFS_LABEL,"האמונות והדעות - " + maamarName + " - " + perekName );
-//                        packagesJsonObjectFlush();
                         break;
                 }
 
@@ -173,7 +162,5 @@ public class HaemunotVehadeotParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR + "haemunotvehadeot-" + maamarNum + "-" + perekNum;   }
-    protected String getcorpus() { return JBR + "haemunotvehadeot";    }
-
+        return JBR_TEXT + "haemunotvehadeot-" + maamarNum + "-" + perekNum;   }
 }

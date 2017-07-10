@@ -51,9 +51,6 @@ public class NetzachIsraelParser extends Parser {
             case BEGIN_SEFER:
                 // No need to create an object for the entire book anymore!
                 // It is created outside text2json
-//                packagesJsonObject().add(URI, getcorpus());
-//                packagesJsonObject().add(RDFS_LABEL, "נצח ישראל");
-//                packagesJsonObjectFlush();
                 break;
 
 
@@ -69,9 +66,6 @@ public class NetzachIsraelParser extends Parser {
                     jsonObject().add(JBO_BOOK, JBR_BOOK + "netzachisrael");
                     String rdfs = "נצח ישראל " + chapterName;
                     jsonObject().add(RDFS_LABEL, rdfs);
-                    //                packagesJsonObject().add(URI, getUri());
-                    //                packagesJsonObject().add(RDFS_LABEL, rdfs);
-//                    packagesJsonObjectFlush();
                 }
                 else{
                     jsonObject().add(URI, getUri());
@@ -93,8 +87,5 @@ public class NetzachIsraelParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR + "netzachisrael-" + chapterNum ;    }
-    protected String getcorpus() { return JBR + "netzachisrael";    }
-
-
+        return JBR_TEXT + "netzachisrael-" + chapterNum ;    }
 }

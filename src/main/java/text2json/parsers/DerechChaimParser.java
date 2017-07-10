@@ -73,9 +73,6 @@ public class DerechChaimParser extends Parser {
             case BEGIN_SEFER:
                 // No need to create an object for the entire book anymore!
                 // It is created outside text2json
-//                packagesJsonObject().add(URI, getcorpus());
-//                packagesJsonObject().add(RDFS_LABEL, "דרך חיים ");
-//                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_HAKDAMA:
@@ -92,7 +89,7 @@ public class DerechChaimParser extends Parser {
                 jsonObjectFlush();
                 mishnaNum=0;
                 perekNum++;
-                packagesJsonObject().add(URI, JBR + "derechchaim-" + perekNum);
+                packagesJsonObject().add(URI, JBR_SECTION + "derechchaim-" + perekNum);
                 String rdfs1 = "דרך חיים " + HEB_LETTERS_INDEX[perekNum-1];
                 packagesJsonObject().add(RDFS_LABEL, rdfs1);
                 packagesJsonObjectFlush();
@@ -105,14 +102,11 @@ public class DerechChaimParser extends Parser {
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_POSITION, position);
                 jsonObject().add(JBO_BOOK,JBR_BOOK + "derechchaim");
-                jsonObject().add(JBO_INTERPRETS, "jbr:mishna-4-9-" + perekNum+"-"+mishnaNum);
-                jsonObject().addToArray(JBO_WITHIN, JBR + "derechchaim-" +  perekNum);
+                jsonObject().add(JBO_INTERPRETS, JBR_TEXT + "mishna-4-9-" + perekNum+"-"+mishnaNum);
+                jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "derechchaim-" +  perekNum);
 
                 String rdfs = "דרך חיים " + HEB_LETTERS_INDEX[perekNum-1] + " " + HEB_LETTERS_INDEX[mishnaNum-1];
                 jsonObject().add(RDFS_LABEL,rdfs);
-//                packagesJsonObject().add(URI, getUri());
-//                packagesJsonObject().add(RDFS_LABEL, rdfs);
-//                packagesJsonObjectFlush();
 
                 break;
 
@@ -124,8 +118,5 @@ public class DerechChaimParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR + "derechchaim-" + perekNum + "-"+ mishnaNum;    }
-    protected String getcorpus() { return JBR + "derechchaim";    }
-
-
+        return JBR_TEXT + "derechchaim-" + perekNum + "-"+ mishnaNum;    }
 }

@@ -61,15 +61,12 @@ public class GevurotHashemParser extends Parser {
             case BEGIN_SEFER:
                 // No need to create an object for the entire book anymore!
                 // It is created outside text2json
-//                packagesJsonObject().add(URI, getcorpus());
-//                packagesJsonObject().add(RDFS_LABEL, "גבורות השם");
-//                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 hakdamaNum++;
-                jsonObject().add(URI, JBR + "gevurothashem-0-" + (hakdamaNum-1));
+                jsonObject().add(URI, JBR_TEXT + "gevurothashem-0-" + (hakdamaNum-1));
                 jsonObject().add(JBO_BOOK, JBR_BOOK + "gevurothashem");
                 jsonObject().add(JBO_POSITION, hakdamaNum);
                 if (hakdamaNum ==1)
@@ -91,9 +88,6 @@ public class GevurotHashemParser extends Parser {
                 jsonObject().add(JBO_BOOK, JBR_BOOK + "gevurothashem");
                 String rdfs = "גבורות השם " + chapterName;
                 jsonObject().add(RDFS_LABEL,rdfs);
-//                packagesJsonObject().add(URI, getUri());
-//                packagesJsonObject().add(RDFS_LABEL, rdfs);
-//                packagesJsonObjectFlush();
                 break;
 
             case NO_MATCH:
@@ -105,8 +99,6 @@ public class GevurotHashemParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR + "gevurothashem-" + chapterNum ;    }
-    protected String getcorpus() { return JBR + "gevurothashem";    }
-
+        return JBR_TEXT + "gevurothashem-" + chapterNum ;    }
 
 }

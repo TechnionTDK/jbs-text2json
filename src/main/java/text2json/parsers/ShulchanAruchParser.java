@@ -127,7 +127,7 @@ public class ShulchanAruchParser extends Parser {
                 saifNum = 0;
                 //add siman to package json
                 if(simanHebIdx.equals("רצז (א)")) {
-                    packagesJsonObject().add(URI, "jbr:shulchanaruch-" + chelekNum + "-197_1-" + saifNum);
+                    packagesJsonObject().add(URI, JBR_SECTION + "shulchanaruch-" + chelekNum + "-197_1-" + saifNum);
                     packagesJsonObject().add(RDFS_LABEL, simanTitle);
                     packagesJsonObject().addToArray(JBO_WITHIN, getChelekUri());
                     packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "shulchanaruch");
@@ -149,7 +149,7 @@ public class ShulchanAruchParser extends Parser {
                 saifHebIdx = line.getFirstWord();
                 saifText = line.extract(saifHebIdx + " ", " ");
                 if(simanHebIdx.equals("רצז (א)")) {
-                    jsonObject().add(URI, "jbr:shulchanaruch-" + chelekNum + "-197_1-" + saifNum);
+                    jsonObject().add(URI, JBR_TEXT + "shulchanaruch-" + chelekNum + "-197_1-" + saifNum);
                 }
                 else{
                     jsonObject().add(URI, getUri());
@@ -168,7 +168,7 @@ public class ShulchanAruchParser extends Parser {
 
             case BEGIN_PERUSH:
                 if(simanHebIdx.equals("רצז (א)")) {
-                    jsonObject().add(URI, "jbr:shulchanaruch-baerheytev-" +  chelekNum + "-197_7-" + saifNum);
+                    jsonObject().add(URI, JBR_TEXT + "shulchanaruch-baerheytev-" +  chelekNum + "-197_7-" + saifNum);
                 }
                 else{
                     jsonObject().add(URI, getPerushUri());
@@ -193,19 +193,19 @@ public class ShulchanAruchParser extends Parser {
 
     @Override
     protected String getUri() {
-        return "jbr:shulchanaruch-" + chelekNum + "-" + simanNum + "-" + saifNum;
+        return JBR_TEXT + "shulchanaruch-" + chelekNum + "-" + simanNum + "-" + saifNum;
     }
     private String getPerushUri() {
-        return "jbr:shulchanaruch-baerheytev-" +  chelekNum + "-" + simanNum + "-" + saifNum;
+        return JBR_TEXT + "shulchanaruch-baerheytev-" +  chelekNum + "-" + simanNum + "-" + saifNum;
     }
     private String getChelekUri(){
-        return "jbr:shulchanaruch-" + chelekNum;
+        return JBR_SECTION + "shulchanaruch-" + chelekNum;
     }
     private String getHalachotUri(){
-        return "jbr:shulchanaruch-halachot-" + chelekNum + "-" + halachotNum;
+        return JBR_SECTION + "shulchanaruch-halachot-" + chelekNum + "-" + halachotNum;
     }
     private String getSimanUri(){
-        return "jbr:shulchanaruch-" + chelekNum + "-" + simanNum;
+        return JBR_SECTION + "shulchanaruch-" + chelekNum + "-" + simanNum;
     }
 
 

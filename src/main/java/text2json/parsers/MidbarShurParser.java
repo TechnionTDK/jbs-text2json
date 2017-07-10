@@ -52,9 +52,6 @@ public class MidbarShurParser extends Parser {
             case BEGIN_SEFER:
                 // No need to create an object for the entire book anymore!
                 // It is created manually, outside text2json
-//                packagesJsonObject().add(URI, getcorpus());
-//                packagesJsonObject().add(RDFS_LABEL, "אור חדש");
-//                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_PEREK:
@@ -67,9 +64,6 @@ public class MidbarShurParser extends Parser {
                 jsonObject().add(JBO_POSITION, chapterNum);
                 String rdfs = "מדבר שור - " + chapterName;
                 jsonObject().add(RDFS_LABEL,rdfs);
-//                packagesJsonObject().add(URI, getUri());
-//                packagesJsonObject().add(RDFS_LABEL, rdfs);
-//                packagesJsonObjectFlush();
                 break;
 
             case NO_MATCH:
@@ -80,8 +74,5 @@ public class MidbarShurParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR + "midbarshur-" + chapterNum ;    }
-    protected String getcorpus() { return JBR + "midbarshur";    }
-
-
+        return JBR_TEXT + "midbarshur-" + chapterNum ;    }
 }

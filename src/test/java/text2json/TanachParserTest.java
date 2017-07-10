@@ -56,7 +56,7 @@ public class TanachParserTest {
         Map<String, Object> object;
         //1-1-1
         object = json[1].getComplexObject(0);
-        assertEquals("jbr:tanach-1-1-1", object.get(URI));
+        assertEquals(JBR_TEXT + "tanach-1-1-1", object.get(URI));
         String textNikud = "בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָרֶץ";
         String text = stripVowels(textNikud);
         assertEquals(text, object.get(JBO_TEXT));
@@ -64,31 +64,31 @@ public class TanachParserTest {
         assertEquals("בראשית א א", object.get(RDFS_LABEL));
         assertEquals("1", object.get(JBO_POSITION));
         List<String> books = (List<String>) object.get(JBO_BOOK);
-        assertTrue(books.contains("jbr:book-tanach"));
-        assertTrue(books.contains("jbr:book-torah"));
-        assertTrue(books.contains("jbr:book-bereshit"));
+        assertTrue(books.contains(JBR_BOOK + "tanach"));
+        assertTrue(books.contains(JBR_BOOK + "torah"));
+        assertTrue(books.contains(JBR_BOOK + "bereshit"));
 
         //2-1-1
         object = json[2].getComplexObject(0);
-        assertEquals("jbr:tanach-2-1-1", object.get(URI));
+        assertEquals(JBR_TEXT + "tanach-2-1-1", object.get(URI));
         assertEquals("1534", object.get(JBO_POSITION));
         books = (List<String>) object.get(JBO_BOOK);
-        assertTrue(books.contains("jbr:book-tanach"));
-        assertTrue(books.contains("jbr:book-torah"));
-        assertTrue(books.contains("jbr:book-shemot"));
+        assertTrue(books.contains(JBR_BOOK + "tanach"));
+        assertTrue(books.contains(JBR_BOOK + "torah"));
+        assertTrue(books.contains(JBR_BOOK + "shemot"));
 
         //3-1-1
         object = json[3].getComplexObject(0);
-        assertEquals("jbr:tanach-3-1-1", object.get(URI));
+        assertEquals(JBR_TEXT + "tanach-3-1-1", object.get(URI));
         assertEquals("2744", object.get(JBO_POSITION));
         books = (List<String>) object.get(JBO_BOOK);
-        assertTrue(books.contains("jbr:book-tanach"));
-        assertTrue(books.contains("jbr:book-torah"));
-        assertTrue(books.contains("jbr:book-vayikra"));
+        assertTrue(books.contains(JBR_BOOK + "tanach"));
+        assertTrue(books.contains(JBR_BOOK + "torah"));
+        assertTrue(books.contains(JBR_BOOK + "vayikra"));
 
         //1-50-26
         object = json[1].getComplexObject(json[1].subjects.size()-1);
-        assertEquals("jbr:tanach-1-50-26", object.get(URI));
+        assertEquals(JBR_TEXT + "tanach-1-50-26", object.get(URI));
         textNikud = "וַיָּמָת יוֹסֵף בֶּן מֵאָה וָעֶשֶׂר שָׁנִים וַיַּחַנְטוּ אֹתוֹ וַיִּישֶׂם בָּאָרוֹן בְּמִצְרָיִם";
         text = TestUtils.stripVowels(textNikud);
         assertEquals(text, object.get(JBO_TEXT));
@@ -97,29 +97,29 @@ public class TanachParserTest {
 
         //5-4-10
         object = json[5].getComplexObject(121);
-        assertEquals("jbr:tanach-5-4-10", object.get(URI));
+        assertEquals(JBR_TEXT + "tanach-5-4-10", object.get(URI));
         textNikud = "יוֹם אֲשֶׁר עָמַדְתָּ לִפְנֵי יְהֹוָה אֱלֹהֶיךָ בְּחֹרֵב בֶּאֱמֹר יְהֹוָה אֵלַי הַקְהֶל לִי אֶת הָעָם וְאַשְׁמִעֵם אֶת דְּבָרָי אֲשֶׁר יִלְמְדוּן לְיִרְאָה אֹתִי כָּל הַיָּמִים אֲשֶׁר הֵם חַיִּים עַל הָאֲדָמָה וְאֶת בְּנֵיהֶם יְלַמֵּדוּן";
         text = stripVowels(textNikud);
         assertEquals(text, object.get(JBO_TEXT));
         assertEquals(textNikud, object.get(JBO_TEXT_NIKUD));
         assertEquals("דברים ד י", object.get(RDFS_LABEL));
         books = (List<String>) object.get(JBO_BOOK);
-        assertTrue(books.contains("jbr:book-tanach"));
-        assertTrue(books.contains("jbr:book-torah"));
-        assertTrue(books.contains("jbr:book-devarim"));
+        assertTrue(books.contains(JBR_BOOK + "tanach"));
+        assertTrue(books.contains(JBR_BOOK + "torah"));
+        assertTrue(books.contains(JBR_BOOK + "devarim"));
 
         //6-2-17
         object = json[6].getComplexObject(34);
-        assertEquals("jbr:tanach-6-2-17", object.get(URI));
+        assertEquals(JBR_TEXT + "tanach-6-2-17", object.get(URI));
         textNikud = "וַיֹּאמְרוּ אֵלֶיהָ הָאֲנָשִׁים נְקִיִּם אֲנַחְנוּ מִשְּׁבֻעָתֵךְ הַזֶּה אֲשֶׁר הִשְׁבַּעְתָּנוּ";
         text = stripVowels(textNikud);
         assertEquals(text, object.get(JBO_TEXT));
         assertEquals(textNikud, object.get(JBO_TEXT_NIKUD));
         assertEquals("יהושע ב יז", object.get(RDFS_LABEL));
         books = (List<String>) object.get(JBO_BOOK);
-        assertTrue(books.contains("jbr:book-tanach"));
-        assertTrue(!books.contains("jbr:book-torah"));
-        assertTrue(books.contains("jbr:book-yehoshua"));
+        assertTrue(books.contains(JBR_BOOK + "tanach"));
+        assertTrue(!books.contains(JBR_BOOK + "torah"));
+        assertTrue(books.contains(JBR_BOOK + "yehoshua"));
     }
 
     @Test

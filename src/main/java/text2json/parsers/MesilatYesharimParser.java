@@ -78,7 +78,7 @@ public class MesilatYesharimParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR + "mesilatyesharim" + "-" + perekNum;
+        return JBR_TEXT + "mesilatyesharim" + "-" + perekNum;
     }
 
 }

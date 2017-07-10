@@ -61,15 +61,12 @@ public class OrChadashParser extends Parser {
             case BEGIN_SEFER:
                 // No need to create an object for the entire book anymore!
                 // It is created outside text2json
-//                packagesJsonObject().add(URI, getcorpus());
-//                packagesJsonObject().add(RDFS_LABEL, "אור חדש");
-//                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 hakdamaNum++;
-                jsonObject().add(URI, JBR + "orchadash-0" +hakdamaNum);
+                jsonObject().add(URI, JBR_TEXT + "orchadash-0" +hakdamaNum);
                 jsonObject().add(JBO_BOOK, JBR_BOOK + "orchadash");
                 jsonObject().add(JBO_POSITION, hakdamaNum+1);
                 if (hakdamaNum ==00)
@@ -89,9 +86,6 @@ public class OrChadashParser extends Parser {
                 jsonObject().add(JBO_BOOK, JBR_BOOK + "orchadash");
                 String rdfs = "אור חדש " + chapterName;
                 jsonObject().add(RDFS_LABEL,rdfs);
-//                packagesJsonObject().add(URI, getUri());
-//                packagesJsonObject().add(RDFS_LABEL, rdfs);
-//                packagesJsonObjectFlush();
                 break;
 
             case NO_MATCH:
@@ -102,8 +96,5 @@ public class OrChadashParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR + "orchadash-" + chapterNum ;    }
-    protected String getcorpus() { return JBR + "orchadash";    }
-
-
+        return JBR_TEXT + "orchadash-" + chapterNum ;    }
 }

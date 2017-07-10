@@ -207,15 +207,14 @@ public class TalmudBavliParser extends Parser {
 
     @Override
     protected String getUri() {
-        return "jbr:bavli-" + masechetNum + "-" + dafNum + "-" + amudNum;
+        return JBR_TEXT + "bavli-" + masechetNum + "-" + dafNum + "-" + amudNum;
     }
-    protected String getMasechetUri() { return "jbr:bavli-" + masechetNum; }
+    protected String getMasechetUri() { return JBR_SECTION + "bavli-" + masechetNum; }
     private String getMefareshUri(int mefareshIdx) {
-        return "jbr:bavli-" + mefarshim[mefareshIdx] + "-" + masechetNum + "-" + dafNum + "-" + amudNum;
+        return JBR_TEXT + "bavli-" + mefarshim[mefareshIdx] + "-" + masechetNum + "-" + dafNum + "-" + amudNum;
     }
     private String getMefareshBook(int index) {
         return mefarshimBooks[index];
     }
-    private String getDafUri() {return "jbr:bavli-" + masechetNum + "-" + dafNum; }
-    private String getPerekUri() { return "jbr:bavli-perek-" + masechetNum + "-" + perekNum; }
+    private String getPerekUri() { return JBR_SECTION + "bavli-perek-" + masechetNum + "-" + perekNum; }
 }

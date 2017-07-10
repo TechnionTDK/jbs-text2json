@@ -8,7 +8,7 @@ import static text2json.JbsOntology.*;
 import static text2json.JbsUtils.*;
 
 
-public class MefareshParser extends Parser {
+public class TanachMefarshimParser extends Parser {
     String[] MEFARSHIM_EN = {"rashi", "ramban", "orhachaim", "ibnezra", "baalhaturim", "onkelos", "sforno", "keliyekar",
             "daatzkenim", "metzudatdavid", "metzudattzion", "malbiminyan", "malbimmilot", "ralbag", "malbim", "yonatan", "sifteychachamim"};
     private static final String BEGIN_PARASHA = "begin_parasha";
@@ -120,10 +120,10 @@ public class MefareshParser extends Parser {
                 else
                     jsonObject().add(JBO_BOOK, JBR_BOOK + MEFARSHIM_EN[mefareshId]);
                 if (bookNum <= 5) {
-                    jsonObject().addToArray(JBO_WITHIN, "jbr:parasha-" + parashaNum);
+                    jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "tanach-parasha-" + parashaNum);
                 }
-                jsonObject().addToArray(JBO_WITHIN, "jbr:tanach-" + bookNum + "-" + perekNum);
-                jsonObject().add(JBO_INTERPRETS, "jbr:tanach-" + bookNum + "-" + perekNum + "-" + pasukNum);
+                jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "tanach-" + bookNum + "-" + perekNum);
+                jsonObject().add(JBO_INTERPRETS, JBR_TEXT + "tanach-" + bookNum + "-" + perekNum + "-" + pasukNum);
                 jsonObject().add(JBO_POSITION_IN_PEREK, Integer.toString(positionInPerek));
                 if (bookNum <=5) {
                     jsonObject().add(JBO_POSITION_IN_PARASHA, Integer.toString(positionInParasha));
@@ -149,6 +149,6 @@ public class MefareshParser extends Parser {
     }
         @Override
     protected String getUri() {
-        return "jbr:tanach-" + mefaresh + "-" + bookNum + "-" + perekNum + "-" + pasukNum;
+        return JBR_TEXT + "tanach-" + mefaresh + "-" + bookNum + "-" + perekNum + "-" + pasukNum;
     }
 }

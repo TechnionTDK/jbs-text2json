@@ -70,9 +70,6 @@ public class NetivotOlamParser extends Parser {
             case BEGIN_SEFER:
                 // No need to create an object for the entire book anymore!
                 // It is created outside text2json
-//                packagesJsonObject().add(URI, getcorpus());
-//                packagesJsonObject().add(RDFS_LABEL, "נתיבות עולם");
-//                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_HAKDAMA:
@@ -91,7 +88,7 @@ public class NetivotOlamParser extends Parser {
                 nativNum++;
                 nativName = line.getLine();
                 packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "netivotolam");
-                packagesJsonObject().add(URI, JBR + "netivotolam-" + nativNum);
+                packagesJsonObject().add(URI, JBR_SECTION + "netivotolam-" + nativNum);
                 packagesJsonObject().add(JBO_POSITION, nativNum);
                 packagesJsonObject().add(RDFS_LABEL, nativName);
                 packagesJsonObjectFlush();
@@ -105,12 +102,9 @@ public class NetivotOlamParser extends Parser {
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_POSITION, position);
                 jsonObject().add(JBO_BOOK, JBR_BOOK + "netivotolam");
-                jsonObject().addToArray(JBO_WITHIN, JBR + "netivotolam-" + nativNum);
+                jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "netivotolam-" + nativNum);
                 String rdfs = "נתיבות עולם - " + nativName +" " + perekName;
                 jsonObject().add(RDFS_LABEL,rdfs);
-//                packagesJsonObject().add(URI, getUri());
-//                packagesJsonObject().add(RDFS_LABEL, rdfs);
-//                packagesJsonObjectFlush();
 
                 break;
 
@@ -122,8 +116,5 @@ public class NetivotOlamParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR + "netivotolam-" + nativNum + "-"+ perekNum;    }
-    protected String getcorpus() { return JBR + "netivotolam";    }
-
-
+        return JBR_TEXT + "netivotolam-" + nativNum + "-"+ perekNum;    }
 }

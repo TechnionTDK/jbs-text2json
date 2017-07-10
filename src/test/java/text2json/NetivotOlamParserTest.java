@@ -46,55 +46,54 @@ public class NetivotOlamParserTest {
     public void testSpecificPackageObjects() {
         Map<String, String> object;
 
-
         object = json.getObject(0);
-        assertEquals("jbr:netivotolam-0-0", object.get(URI));
+        assertEquals(JBR_TEXT + "netivotolam-0-0", object.get(URI));
         assertEquals("1", object.get(JBO_POSITION));
         assertEquals("נתיבות עולם - הקדמה", object.get(RDFS_LABEL));
-        assertEquals("jbr:book-netivotolam", object.get(JBO_BOOK));
+        assertBookProperty("netivotolam", object.get(JBO_BOOK));
 
         object = json.getObject(3);
-        assertEquals("jbr:netivotolam-1-3", object.get(URI));
+        assertEquals(JBR_TEXT + "netivotolam-1-3", object.get(URI));
         assertEquals("נתיבות עולם - נתיב התורה ג", object.get(RDFS_LABEL));
         assertEquals("4", object.get(JBO_POSITION));
-        assertEquals("jbr:book-netivotolam", object.get(JBO_BOOK));
+        assertBookProperty("netivotolam", object.get(JBO_BOOK));
 
         object = json.getObject(23);
-        assertEquals("jbr:netivotolam-2-5", object.get(URI));
+        assertEquals(JBR_TEXT + "netivotolam-2-5", object.get(URI));
         assertEquals("נתיבות עולם - נתיב העבודה ה", object.get(RDFS_LABEL));
         assertEquals("24", object.get(JBO_POSITION));
-        assertEquals("jbr:book-netivotolam", object.get(JBO_BOOK));
+        assertBookProperty("netivotolam", object.get(JBO_BOOK));
 
         object = json.getObject(32);
-        assertEquals("jbr:netivotolam-2-14", object.get(URI));
+        assertEquals(JBR_TEXT + "netivotolam-2-14", object.get(URI));
         assertEquals("נתיבות עולם - נתיב העבודה יד", object.get(RDFS_LABEL));
         assertEquals("33", object.get(JBO_POSITION));
 
         object = json.getObject(57);
-        assertEquals("jbr:netivotolam-8-2", object.get(URI));
+        assertEquals(JBR_TEXT + "netivotolam-8-2", object.get(URI));
         assertEquals("נתיבות עולם - נתיב השלום ב", object.get(RDFS_LABEL));
         assertEquals("58", object.get(JBO_POSITION));
 
         object = json.getObject(64);
-        assertEquals("jbr:netivotolam-10-3", object.get(URI));
+        assertEquals(JBR_TEXT + "netivotolam-10-3", object.get(URI));
         assertEquals("נתיבות עולם - נתיב הענוה ג", object.get(RDFS_LABEL));
         assertEquals("65", object.get(JBO_POSITION));
-        assertEquals("jbr:book-netivotolam", object.get(JBO_BOOK));
+        assertBookProperty("netivotolam", object.get(JBO_BOOK));
 
         object = json.getObject(91);
-        assertEquals("jbr:netivotolam-15-2", object.get(URI));
+        assertEquals(JBR_TEXT + "netivotolam-15-2", object.get(URI));
         assertEquals("נתיבות עולם - נתיב הפּרישות ב", object.get(RDFS_LABEL));
         assertEquals("92", object.get(JBO_POSITION));
 
         object = json.getObject(117);
-        assertEquals("jbr:netivotolam-22-1", object.get(URI));
+        assertEquals(JBR_TEXT + "netivotolam-22-1", object.get(URI));
         assertEquals("נתיבות עולם - נתיב התוכחה א", object.get(RDFS_LABEL));
         assertEquals("118", object.get(JBO_POSITION));
 
         object = json.getObject(135);
-        assertEquals("jbr:netivotolam-33-1", object.get(URI));
+        assertEquals(JBR_TEXT + "netivotolam-33-1", object.get(URI));
         assertEquals("נתיבות עולם - נתיב דרך ארץ א", object.get(RDFS_LABEL));
         assertEquals("136", object.get(JBO_POSITION));
-        assertEquals("jbr:book-netivotolam", object.get(JBO_BOOK));
+        assertBookProperty("netivotolam", object.get(JBO_BOOK));
     }
 }

@@ -24,8 +24,8 @@ public class MesilatYesharimParserTest {
         MesilatYesharimParser parser = new MesilatYesharimParser();
         BufferedReader reader = getText("mesilatyesharim/mesilatyesharim.txt");
         createOutputFolderIfNotExists("mesilatyesharim");
-        parser.parse(reader, "json/mesilatyesharim.json");
-        json = getJson("json/mesilatyesharim.json");
+        parser.parse(reader, "json/mesilatyesharim/mesilatyesharim.json");
+        json = getJson("json/mesilatyesharim/mesilatyesharim.json");
     }
     @Test
     public void testTotalNumberOfObjects() {
@@ -39,21 +39,21 @@ public class MesilatYesharimParserTest {
 
 
         object = json.getObject(0);
-        assertEquals("jbr:mesilatyesharim-0", object.get(URI));
+        assertEquals(JBR_TEXT + "mesilatyesharim-0", object.get(URI));
         assertEquals("0", object.get(JBO_POSITION));
         assertEquals("הקדמת הרב המחבר זצ\"ל", object.get(RDFS_LABEL));
-        assertEquals("jbr:book-mesilatyesharim", object.get(JBO_BOOK));
+        assertBookProperty("mesilatyesharim", object.get(JBO_BOOK));
 
         object = json.getObject(1);
-        assertEquals("jbr:mesilatyesharim-1", object.get(URI));
+        assertEquals(JBR_TEXT + "mesilatyesharim-1", object.get(URI));
         assertEquals("1", object.get(JBO_POSITION));
         assertEquals("בביאור כלל חובת האדם בעולמו", object.get(RDFS_LABEL));
-        assertEquals("jbr:book-mesilatyesharim", object.get(JBO_BOOK));
+        assertBookProperty("mesilatyesharim", object.get(JBO_BOOK));
 
         object = json.getObject(27);
-        assertEquals("jbr:mesilatyesharim-27", object.get(URI));
+        assertEquals(JBR_TEXT + "mesilatyesharim-27", object.get(URI));
         assertEquals("27", object.get(JBO_POSITION));
         assertEquals("חתימה", object.get(RDFS_LABEL));
-        assertEquals("jbr:book-mesilatyesharim", object.get(JBO_BOOK));
+        assertBookProperty("mesilatyesharim", object.get(JBO_BOOK));
     }
-    }
+}

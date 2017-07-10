@@ -69,10 +69,10 @@ public class SeferHakuzariParser extends Parser {
                     CreateObject();
                 }
                 // adding maamar object in packages json
-                packagesJsonObject().add(URI, "jbr:seferhakuzari-" + maamarNum);
+                packagesJsonObject().add(URI, JBR_SECTION + "seferhakuzari-" + maamarNum);
                 packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "seferhakuzari");
                 packagesJsonObject().add(RDFS_LABEL, "הכוזרי " + short_maamar);
-                packagesJsonObject().addToArray(JBO_WITHIN, "jbr:seferhakuzari-" + maamarNum);
+                packagesJsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "seferhakuzari-" + maamarNum);
                 packagesJsonObjectFlush();
                 seifNum = 0;
                 break;
@@ -98,7 +98,7 @@ public class SeferHakuzariParser extends Parser {
     }
 
     protected String getUri() {
-        return "jbr:seferhakuzari-" + maamarNum + "-" + seifNum;
+        return JBR_TEXT + "seferhakuzari-" + maamarNum + "-" + seifNum;
     }
 
     protected void CreateObject() throws IOException{
@@ -109,7 +109,7 @@ public class SeferHakuzariParser extends Parser {
         jsonObject().add(JBO_BOOK, JBR_BOOK + "seferhakuzari");
         jsonObject().add(JBO_POSITION, seifNum);
         jsonObject().add(RDFS_LABEL, "הכוזרי " + short_maamar + " " + short_seif);
-        jsonObject().addToArray(JBO_WITHIN, "jbr:seferhakuzari-" + maamarNum);
+        jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "seferhakuzari-" + maamarNum);
         jsonObjectFlush();
     }
 }

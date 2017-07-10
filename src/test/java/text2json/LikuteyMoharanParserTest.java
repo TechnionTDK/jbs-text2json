@@ -49,9 +49,7 @@ public class LikuteyMoharanParserTest {
 
         //chelek 1 saif 1
         object = json.getObject(0);
-        assertEquals("jbr:likuteymoharan-1-1", object.get(URI));
-        //assertEquals("jbr:likuteymoharan", object.get(JBO_SEFER));
-        //assertEquals("jbr:likuteymoharan-1", object.get(JBO_CHELEK));
+        assertEquals(JBR_TEXT + "likuteymoharan-1-1", object.get(URI));
         assertEquals("1", object.get(JBO_POSITION));
         assertEquals("ליקוטי מוהר''ן א א", object.get(RDFS_LABEL));
         assertEquals("אשרי תמימי דרך", object.get(JBO_NAME));
@@ -64,14 +62,13 @@ public class LikuteyMoharanParserTest {
                 "גלא - הוא היצר הרע: דמטבע לספינתא - הוא החן והחשיבות, לשון ספון וחשוב, כי היצר הרע רוצה להטביע ולהשפיל, חס ושלום, בחינת החן והחשיבות של ישראל, בחינת מלכות דקדשה: ומתחזי כי צוציתא דנורא חורתא ברישא - כי מתחלה היצר הרע מתלבש עצמו במצוות ומטעה את האדם כאלו מסיתו לעשות מצוה. וזהו בחינת צוציתא דנורא חורתא - אש לבנה, אף על פי כן מלאך מזיק הוא. ומחינן ליה באלותא דחקיק עלה אהיה וכו', הינו שעקר הכנעתו של היצר הרע הוא על ידי התורה, שהיא כלה שמותיו של הקדוש ברוך הוא. והתורה היא בחינת ואו (עיין זוהר פקודי דרכ\"ו). כי הלוחות, ארכן וי\"ו ורחבן וי\"ו (בבא בתרא יד.). וזהו בחינת אלותא, דהינו מקלות דחקיק עלה אהיה וכו', הינו שמות, בחינת התורה, שהיא בחינת וי\"ו, והוי\"ו הוא צורת מקל, והיא כלה שמותיו של השם יתברך, הינו שהתורה הקדושה היא מכניע את היצר הרע שרוצה לעשות את האדם משגע ממש, חס ושלום. כי בעל עברה הוא משגע, כמו שאמרו רבותינו, זכרונם לברכה (סוטה ג.): 'אין אדם עובר עברה אלא אם כן נכנס בו רוח שטות'. וכמו שהמשגעים צריכים להכותם ולשום עליהם שמות, כמו כן ממש התורה שעוסקין הוא בחינת מקלות ושמות, שבזה מכין ומכניעין את היצר הרע ומגרשין מן האדם את השגעון והרוח שטות שנכנס בו, בחינת 'ומחינן ליה באלותא, דחקיק עליה שמות' וכו', כנ\"ל (עיין מ\"ר קדושים תחלת פ' כ\"ה: ):\n" +
                 "וזהו: \"אשרי תמימי דרך\". אשרי - לשון הסתכלות. תמימי דרך - בחינת (בראשית כ\"ה): \"יעקב איש תם\"; שהוא בחינת השכל כנ\"ל. הינו לזכות להסתכל על השכל שיש בכל דבר, שהוא בחינת \"יעקב איש תם\" - זה זוכין על ידי התורה: וזהו: ההולכים בתורת ה'. כי על ידי שלומד תורה בכח, על ידי זה נותן כח למלכות דקדשה בחינת נו\"ן, לקבל מן השכל, שהוא בחינת חי\"ת, ואזי נעשה חן ונתקבלים דבריו כנ\"ל, ואזי נתעלה החן והחשיבות של ישראל, וכל התפלות והבקשות נתקבלים:";
         assertEquals(text, object.get(JBO_TEXT));
-        assertEquals("jbr:book-likuteymoharan", object.get(JBO_BOOK));
-
+        assertBookProperty("likuteymoharan", object.get(JBO_BOOK));
 
         //chelek 1 saif 284
         object = json.getObject(283-3);
-        assertEquals("jbr:likuteymoharan-1-284", object.get(URI));
-        //assertEquals("jbr:likuteymoharan", object.get(JBO_SEFER));
-        //assertEquals("jbr:likuteymoharan-1", object.get(JBO_CHELEK));
+        assertEquals(JBR_TEXT + "likuteymoharan-1-284", object.get(URI));
+        //assertEquals(JBR_TEXT + "likuteymoharan", object.get(JBO_SEFER));
+        //assertEquals(JBR_TEXT + "likuteymoharan-1", object.get(JBO_CHELEK));
         assertEquals("281", object.get(JBO_POSITION));
         assertEquals("ליקוטי מוהר''ן א רפד", object.get(RDFS_LABEL));
         assertEquals("הוכיח את אחד שאמר לו, שאין לו פנאי ללמד", object.get(JBO_NAME));
@@ -80,9 +77,7 @@ public class LikuteyMoharanParserTest {
 
         //chelek 2 saif 6
         object = json.getObject(283+5);
-        assertEquals("jbr:likuteymoharan-2-6", object.get(URI));
-        //assertEquals("jbr:likuteymoharan", object.get(JBO_SEFER));
-        //assertEquals("jbr:likuteymoharan-2", object.get(JBO_CHELEK));
+        assertEquals(JBR_TEXT + "likuteymoharan-2-6", object.get(URI));
         assertEquals("289", object.get(JBO_POSITION));
         assertEquals("ליקוטי מוהר''ן ב ו", object.get(RDFS_LABEL));
         assertEquals("על ידי זעה טובה, על ידי זה נעשה שמחה", object.get(JBO_NAME));
@@ -92,9 +87,7 @@ public class LikuteyMoharanParserTest {
 
         //chelek 2 saif 125
         object = json.getObject(json.subjects.size()-1);
-        assertEquals("jbr:likuteymoharan-2-125", object.get(URI));
-        //assertEquals("jbr:likuteymoharan", object.get(JBO_SEFER));
-        //assertEquals("jbr:likuteymoharan-2", object.get(JBO_CHELEK));
+        assertEquals(JBR_TEXT + "likuteymoharan-2-125", object.get(URI));
         assertEquals("407", object.get(JBO_POSITION));
         assertEquals("ליקוטי מוהר''ן ב קכה", object.get(RDFS_LABEL));
         assertEquals("מענין אמירת תהלים", object.get(JBO_NAME));
@@ -108,17 +101,17 @@ public class LikuteyMoharanParserTest {
 
         //chelek 1
         object = packageJson.getObject(0);
-        assertEquals("jbr:likuteymoharan-1",object.get(URI));
+        assertEquals(JBR_SECTION + "likuteymoharan-1",object.get(URI));
         assertEquals("ליקוטי מוהר''ן - חלק א",object.get(RDFS_LABEL));
         assertEquals("1", object.get(JBO_POSITION));
-        assertEquals("jbr:book-likuteymoharan", object.get(JBO_BOOK));
+        assertBookProperty("likuteymoharan", object.get(JBO_BOOK));
 
         //chelek 2
         object = packageJson.getObject(1);
-        assertEquals("jbr:likuteymoharan-2",object.get(URI));
+        assertEquals(JBR_SECTION + "likuteymoharan-2",object.get(URI));
         assertEquals("ליקוטי מוהר''ן - חלק ב",object.get(RDFS_LABEL));
         assertEquals("2", object.get(JBO_POSITION));
-        assertEquals("jbr:book-likuteymoharan", object.get(JBO_BOOK));
+        assertBookProperty("likuteymoharan", object.get(JBO_BOOK));
     }
 
 }
