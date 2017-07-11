@@ -37,7 +37,6 @@ public class TiferetIsraelParserTest {
     public void testSpecificObjects() {
         Map<String, String> object;
 
-
         object = json.getObject(0);
         assertEquals(JBR_TEXT + "tiferetisrael-0", object.get(URI));
         assertEquals("1", object.get(JBO_POSITION));
