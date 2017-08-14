@@ -7,6 +7,7 @@ public class JbsOntology {
     public static String URI = "uri";
     public static String JBR = "jbr:";
     public static String JBR_BOOK = "jbr:book-";
+    public static String JBR_BOOK_TANACH = "jbr:book-tanach-";
     public static String JBR_TEXT = "jbr:text-";
     public static String JBR_SECTION = "jbr:section-";
     public static String JBO_TEXT = "jbo:text";

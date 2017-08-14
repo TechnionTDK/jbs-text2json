@@ -21,7 +21,6 @@ public class TanachParserTest {
     static SubjectsJson[] json = new SubjectsJson[NUM_OF_BOOKS + 1];
     static SubjectsJson[] packagesJson = new SubjectsJson[NUM_OF_BOOKS + 1];
 
-
     @BeforeClass
     public static void setup() throws Exception {
         for (int bookNum = NUM_OF_FIRST_BOOK; bookNum <= NUM_OF_LAST_BOOK; bookNum++) {
@@ -63,28 +62,22 @@ public class TanachParserTest {
         assertEquals(textNikud, object.get(JBO_TEXT_NIKUD));
         assertEquals("בראשית א א", object.get(RDFS_LABEL));
         assertEquals("1", object.get(JBO_POSITION));
-        List<String> books = (List<String>) object.get(JBO_BOOK);
-        assertTrue(books.contains(JBR_BOOK + "tanach"));
-        assertTrue(books.contains(JBR_BOOK + "torah"));
-        assertTrue(books.contains(JBR_BOOK + "bereshit"));
+        String book = (String) object.get(JBO_BOOK);
+        assertEquals(book, JBR_BOOK_TANACH + "bereshit");
 
         //2-1-1
         object = json[2].getComplexObject(0);
         assertEquals(JBR_TEXT + "tanach-2-1-1", object.get(URI));
         assertEquals("1534", object.get(JBO_POSITION));
-        books = (List<String>) object.get(JBO_BOOK);
-        assertTrue(books.contains(JBR_BOOK + "tanach"));
-        assertTrue(books.contains(JBR_BOOK + "torah"));
-        assertTrue(books.contains(JBR_BOOK + "shemot"));
+        book = (String) object.get(JBO_BOOK);
+        assertEquals(book, JBR_BOOK_TANACH + "shemot");
 
         //3-1-1
         object = json[3].getComplexObject(0);
         assertEquals(JBR_TEXT + "tanach-3-1-1", object.get(URI));
         assertEquals("2744", object.get(JBO_POSITION));
-        books = (List<String>) object.get(JBO_BOOK);
-        assertTrue(books.contains(JBR_BOOK + "tanach"));
-        assertTrue(books.contains(JBR_BOOK + "torah"));
-        assertTrue(books.contains(JBR_BOOK + "vayikra"));
+        book = (String) object.get(JBO_BOOK);
+        assertEquals(book, JBR_BOOK_TANACH + "vayikra");
 
         //1-50-26
         object = json[1].getComplexObject(json[1].subjects.size()-1);
@@ -103,10 +96,8 @@ public class TanachParserTest {
         assertEquals(text, object.get(JBO_TEXT));
         assertEquals(textNikud, object.get(JBO_TEXT_NIKUD));
         assertEquals("דברים ד י", object.get(RDFS_LABEL));
-        books = (List<String>) object.get(JBO_BOOK);
-        assertTrue(books.contains(JBR_BOOK + "tanach"));
-        assertTrue(books.contains(JBR_BOOK + "torah"));
-        assertTrue(books.contains(JBR_BOOK + "devarim"));
+        book = (String) object.get(JBO_BOOK);
+        assertEquals(book, JBR_BOOK_TANACH + "devarim");
 
         //6-2-17
         object = json[6].getComplexObject(34);
@@ -116,10 +107,8 @@ public class TanachParserTest {
         assertEquals(text, object.get(JBO_TEXT));
         assertEquals(textNikud, object.get(JBO_TEXT_NIKUD));
         assertEquals("יהושע ב יז", object.get(RDFS_LABEL));
-        books = (List<String>) object.get(JBO_BOOK);
-        assertTrue(books.contains(JBR_BOOK + "tanach"));
-        assertTrue(!books.contains(JBR_BOOK + "torah"));
-        assertTrue(books.contains(JBR_BOOK + "yehoshua"));
+        book = (String) object.get(JBO_BOOK);
+        assertEquals(book, JBR_BOOK_TANACH + "yehoshua");
     }
 
     @Test

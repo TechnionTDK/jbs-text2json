@@ -105,7 +105,7 @@ public class TanachParser extends Parser {
                 packagesJsonObject().add(URI, getPerekUri());
                 packagesJsonObject().add(RDFS_LABEL, line.getLine().replace('-', ' '));
                 packagesJsonObject().add(JBO_POSITION, perekNum);
-                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + bookNameEn);
+                packagesJsonObject().add(JBO_BOOK, JBR_BOOK_TANACH + bookNameEn);
                 packagesJsonObjectFlush();
                 break;
 
@@ -120,12 +120,12 @@ public class TanachParser extends Parser {
                 jsonObject().add(JBO_TEXT, stripVowels(line.extract("}", end)));
                 jsonObject().add(JBO_TEXT_NIKUD, line.extract("}", end));
                 jsonObject().add(RDFS_LABEL, bookName + " " + perekTitle + " " + pasukTitle);
-                jsonObject().addToArray(JBO_BOOK, JBR_BOOK + bookNameEn);
-                jsonObject().addToArray(JBO_BOOK, JBR_BOOK + "tanach");
+                jsonObject().add(JBO_BOOK, JBR_BOOK_TANACH + bookNameEn);
+                //jsonObject().addToArray(JBO_BOOK, JBR_BOOK + "tanach");
                 jsonObject().add(JBO_POSITION, position);
                 if(bookNum <= 5) {
                     jsonObject().addToArray(JBO_WITHIN, getParashaUri());
-                    jsonObject().addToArray(JBO_BOOK, JBR_BOOK + "torah");
+                    //jsonObject().addToArray(JBO_BOOK, JBR_BOOK + "torah");
                 }
                 jsonObjectFlush();
                 break;
