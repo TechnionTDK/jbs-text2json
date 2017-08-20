@@ -1,5 +1,6 @@
 package text2json.parsers;
 
+import text2json.JbsParser;
 import text2json.Line;
 import text2json.LineMatcher;
 import text2json.Parser;
@@ -12,7 +13,7 @@ import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 /**
  * Created by Assaf on 08/06/2017.
  */
-public class OrChadashParser extends Parser {
+public class OrChadashParser extends JbsParser {
 
     private int chapterNum = 0;
     private int hakdamaNum = -1;
@@ -67,8 +68,8 @@ public class OrChadashParser extends Parser {
                 jsonObjectFlush();
                 hakdamaNum++;
                 jsonObject().add(URI, JBR_TEXT + "orchadash-0" +hakdamaNum);
-                jsonObject().add(JBO_BOOK, JBR_BOOK + "orchadash");
-                jsonObject().add(JBO_POSITION, hakdamaNum+1);
+                addBook("orchadash");
+                addPosition(hakdamaNum+1);
                 if (hakdamaNum ==00)
                     jsonObject().add(RDFS_LABEL,"אור חדש - הקדמה א");
                 if (hakdamaNum ==01)
@@ -82,8 +83,8 @@ public class OrChadashParser extends Parser {
                 chapterNum++;
                 String chapterName =HEB_LETTERS_INDEX[chapterNum-1];
                 jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_POSITION, chapterNum+2);
-                jsonObject().add(JBO_BOOK, JBR_BOOK + "orchadash");
+                addPosition(chapterNum+2);
+                addBook("orchadash");
                 String rdfs = "אור חדש " + chapterName;
                 jsonObject().add(RDFS_LABEL,rdfs);
                 break;

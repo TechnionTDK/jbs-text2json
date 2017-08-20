@@ -75,6 +75,10 @@ public class NetivotOlamParserTest {
         assertEquals("58", object.get(JBO_POSITION));
 
         object = json.getObject(64);
+        //assertTextUriProperty(object, "netivotolam-10-3");
+        //assertPositionProperty(object, "65");
+        //assertLabelProperty(object, "נתיבות עולם - נתיב הענוה ג");
+        //assertBookProperty(object, "netivotolam");
         assertEquals(JBR_TEXT + "netivotolam-10-3", object.get(URI));
         assertEquals("נתיבות עולם - נתיב הענוה ג", object.get(RDFS_LABEL));
         assertEquals("65", object.get(JBO_POSITION));
