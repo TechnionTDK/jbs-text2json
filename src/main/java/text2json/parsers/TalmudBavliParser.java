@@ -25,7 +25,7 @@ public class TalmudBavliParser extends Parser {
     private String dafTitle;
     private String amudTitle;
     private int positionInMasechet = 0;
-    private String mefarshim[] = {"rashi", "tosafot", "rashbam", "ran"};
+    private String mefarshim[] = {"rashi", "tosafot", "rashbam", "ranbavli"};
     private String mefarshimBooks[] = {"rashibavli", "tosafotbavli", "rashbambavli", "ranbavli"};
     private String mefarshimHeb[] = {"רש\"י", "תוספות","רשב\"ם", "ר\"נ"};
 

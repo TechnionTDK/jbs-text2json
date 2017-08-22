@@ -9,8 +9,8 @@ import static text2json.JbsUtils.*;
 
 
 public class TanachMefarshimParser extends Parser {
-    String[] MEFARSHIM_EN = {"rashi", "ramban", "orhachaim", "ibnezra", "baalhaturim", "onkelos", "sforno", "keliyekar",
-            "daatzkenim", "metzudatdavid", "metzudattzion", "malbiminyan", "malbimmilot", "ralbag", "malbim", "yonatan", "sifteychachamim"};
+    String[] MEFARSHIM_EN = {"rashi", "ramban", "orhachayim", "ibnezra", "baalhaturim", "onkelos", "seforno", "keliyekar",
+            "daatzekenim", "metzudatdavid", "metzudattzion", "malbiminyan", "malbimmilot", "ralbag", "malbim", "yonatan", "sifteychachamim"};
     private static final String BEGIN_PARASHA = "begin_parasha";
     private static final String BEGIN_PEREK = "begin_perek";
     private static final String BEGIN_PERUSH = "begin_perush";
