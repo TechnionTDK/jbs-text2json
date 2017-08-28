@@ -7,8 +7,6 @@ import text2json.parsers.SeferHakuzariParser;
 import java.io.BufferedReader;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-import static text2json.JbsOntology.*;
 import static text2json.TestUtils.*;
 
 /**
@@ -32,9 +30,9 @@ public class SeferHakuzariParserTest {
         Map<String, String> object;
 
         object = json.getObject(0);
-        assertEquals(JBR_TEXT + "seferhakuzari-1-1", object.get(URI));
-        assertEquals("1", object.get(JBO_POSITION));
-        assertEquals("הכוזרי א א", object.get(RDFS_LABEL));
-        assertBookProperty("seferhakuzari", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "seferhakuzari-1-1");
+        assertPositionProperty(object ,"1");
+        assertLabelProperty( object ,"הכוזרי א א");
+        assertBookProperty(object,"seferhakuzari");
     }
 }

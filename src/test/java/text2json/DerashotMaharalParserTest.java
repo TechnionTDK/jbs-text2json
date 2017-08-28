@@ -9,7 +9,6 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static text2json.JbsOntology.*;
 import static text2json.TestUtils.*;
 
 /**
@@ -41,32 +40,32 @@ public class DerashotMaharalParserTest {
 
 
         object = json.getObject(0);
-        assertEquals(JBR_TEXT + "derashotmaharal-0", object.get(URI));
-        assertEquals("1", object.get(JBO_POSITION));
-        assertEquals("דרשות מהר\"ל - הקדמה לדרוש על התורה", object.get(RDFS_LABEL));
-        assertEquals("jbr:book-derashotmaharal", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "derashotmaharal-0");
+        assertPositionProperty(object ,"1");
+        assertLabelProperty( object ,"דרשות מהר\"ל - הקדמה לדרוש על התורה");
+        assertBookProperty( object,"derashotmaharal");
 
         object = json.getObject(1);
-        assertEquals(JBR_TEXT + "derashotmaharal-1", object.get(URI));
-        assertEquals("דרשות מהר\"ל - דרוש על התורה", object.get(RDFS_LABEL));
-        assertEquals("2", object.get(JBO_POSITION));
-        assertEquals("jbr:book-derashotmaharal", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "derashotmaharal-1");
+        assertLabelProperty( object ,"דרשות מהר\"ל - דרוש על התורה");
+        assertPositionProperty(object ,"2");
+        assertBookProperty( object,"derashotmaharal");
 
         object = json.getObject(2);
-        assertEquals(JBR_TEXT + "derashotmaharal-2", object.get(URI));
-        assertEquals("דרשות מהר\"ל - דרוש על המצות", object.get(RDFS_LABEL));
-        assertEquals("3", object.get(JBO_POSITION));
-        assertEquals("jbr:book-derashotmaharal", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "derashotmaharal-2");
+        assertLabelProperty( object ,"דרשות מהר\"ל - דרוש על המצות");
+        assertPositionProperty(object ,"3");
+        assertBookProperty( object,"derashotmaharal");
 
         object = json.getObject(3);
-        assertEquals(JBR_TEXT + "derashotmaharal-3", object.get(URI));
-        assertEquals("דרשות מהר\"ל - דרוש לשבת תשובה", object.get(RDFS_LABEL));
-        assertEquals("4", object.get(JBO_POSITION));
+        assertTextUriProperty(object, "derashotmaharal-3");
+        assertLabelProperty( object ,"דרשות מהר\"ל - דרוש לשבת תשובה");
+        assertPositionProperty(object ,"4");
 
         object = json.getObject(4);
-        assertEquals(JBR_TEXT + "derashotmaharal-4", object.get(URI));
-        assertEquals("דרשות מהר\"ל - דרוש לשבת הגדול", object.get(RDFS_LABEL));
-        assertEquals("5", object.get(JBO_POSITION));
-        assertEquals("jbr:book-derashotmaharal", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "derashotmaharal-4");
+        assertLabelProperty( object ,"דרשות מהר\"ל - דרוש לשבת הגדול");
+        assertPositionProperty(object ,"5");
+        assertBookProperty( object,"derashotmaharal");
     }
 }

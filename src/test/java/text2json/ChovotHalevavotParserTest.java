@@ -9,7 +9,6 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static text2json.JbsOntology.*;
 import static text2json.TestUtils.*;
 
 /**
@@ -41,45 +40,45 @@ public class ChovotHalevavotParserTest {
 
 
         object = json.getObject(0);
-        assertEquals(JBR_TEXT + "chovothalevavot-0-0", object.get(URI));
-        assertEquals("1", object.get(JBO_POSITION));
-        assertEquals("jbr:book-chovothalevavot", object.get(JBO_BOOK));
-        assertEquals("חובות הלבבות - הקדמת המחבר", object.get(RDFS_LABEL));
+        assertTextUriProperty(object, "chovothalevavot-0-0");
+        assertPositionProperty(object ,"1");
+        assertBookProperty( object,"chovothalevavot");
+        assertLabelProperty( object ,"חובות הלבבות - הקדמת המחבר");
 
         object = json.getObject(5);
-        assertEquals(JBR_TEXT + "chovothalevavot-1-4", object.get(URI));
-        assertEquals("חובות הלבבות - שער ראשון - שער ייחוד - ד", object.get(RDFS_LABEL));
-        assertEquals("6", object.get(JBO_POSITION));
+        assertTextUriProperty(object, "chovothalevavot-1-4");
+        assertLabelProperty( object ,"חובות הלבבות - שער ראשון - שער ייחוד - ד");
+        assertPositionProperty(object ,"6");
 
 
         object = json.getObject(13);
-        assertEquals(JBR_TEXT + "chovothalevavot-2-1", object.get(URI));
-        assertEquals("חובות הלבבות - שער שני - שער הבחינה - א", object.get(RDFS_LABEL));
-        assertEquals("14", object.get(JBO_POSITION));
+        assertTextUriProperty(object, "chovothalevavot-2-1");
+        assertLabelProperty( object ,"חובות הלבבות - שער שני - שער הבחינה - א");
+        assertPositionProperty(object ,"14");
 
         object = json.getObject(34);
-        assertEquals(JBR_TEXT + "chovothalevavot-4-4", object.get(URI));
-        assertEquals("חובות הלבבות - שער רביעי - שער הביטחון - ד", object.get(RDFS_LABEL));
-        assertEquals("35", object.get(JBO_POSITION));
+        assertTextUriProperty(object, "chovothalevavot-4-4");
+        assertLabelProperty( object ,"חובות הלבבות - שער רביעי - שער הביטחון - ד");
+        assertPositionProperty(object ,"35");
 
         object = json.getObject(54);
-        assertEquals(JBR_TEXT + "chovothalevavot-6-9", object.get(URI));
-        assertEquals("חובות הלבבות - שער שישי - שער הכניעה - ט", object.get(RDFS_LABEL));
-        assertEquals("55", object.get(JBO_POSITION));
+        assertTextUriProperty(object, "chovothalevavot-6-9");
+        assertLabelProperty( object ,"חובות הלבבות - שער שישי - שער הכניעה - ט");
+        assertPositionProperty(object ,"55");
 
         object = json.getObject(71);
-        assertEquals(JBR_TEXT + "chovothalevavot-8-4", object.get(URI));
-        assertEquals("חובות הלבבות - שער שמיני - שער חשבון הנפש - ד", object.get(RDFS_LABEL));
-        assertEquals("72", object.get(JBO_POSITION));
+        assertTextUriProperty(object, "chovothalevavot-8-4");
+        assertLabelProperty( object ,"חובות הלבבות - שער שמיני - שער חשבון הנפש - ד");
+        assertPositionProperty(object ,"72");
 
         object = json.getObject(84);
-        assertEquals(JBR_TEXT + "chovothalevavot-10-2", object.get(URI));
-        assertEquals("חובות הלבבות - שער עשירי - שער אהבת ה' - ב", object.get(RDFS_LABEL));
-        assertEquals("85", object.get(JBO_POSITION));
+        assertTextUriProperty(object, "chovothalevavot-10-2");
+        assertLabelProperty( object ,"חובות הלבבות - שער עשירי - שער אהבת ה' - ב");
+        assertPositionProperty(object ,"85");
 
         object = json.getObject(89);
-        assertEquals(JBR_TEXT + "chovothalevavot-10-7", object.get(URI));
-        assertEquals("חובות הלבבות - שער עשירי - שער אהבת ה' - ז", object.get(RDFS_LABEL));
-        assertEquals("90", object.get(JBO_POSITION));
+        assertTextUriProperty(object, "chovothalevavot-10-7");
+        assertLabelProperty( object ,"חובות הלבבות - שער עשירי - שער אהבת ה' - ז");
+        assertPositionProperty(object ,"90");
     }
 }

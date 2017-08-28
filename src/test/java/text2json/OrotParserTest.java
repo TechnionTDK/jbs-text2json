@@ -9,7 +9,6 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static text2json.JbsOntology.*;
 import static text2json.TestUtils.*;
 
 /**
@@ -41,38 +40,38 @@ public class OrotParserTest {
 
 
         object = json.getObject(0);
-        assertEquals(JBR_TEXT + "orot-1-1-1", object.get(URI));
-        assertEquals("1", object.get(JBO_POSITION));
-        assertEquals("אורות - אורות מאופל - ארץ ישראל א", object.get(RDFS_LABEL));
-        assertBookProperty("orot", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "orot-1-1-1");
+        assertPositionProperty(object ,"1");
+        assertLabelProperty( object ,"אורות - אורות מאופל - ארץ ישראל א");
+        assertBookProperty(object,"orot");
 
         object = json.getObject(13);
-        assertEquals(JBR_TEXT + "orot-1-2-6", object.get(URI));
-        assertEquals("אורות - אורות מאופל - המלחמה ו", object.get(RDFS_LABEL));
-        assertEquals("14", object.get(JBO_POSITION));
-        assertBookProperty("orot", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "orot-1-2-6");
+        assertLabelProperty( object ,"אורות - אורות מאופל - המלחמה ו");
+        assertPositionProperty(object ,"14");
+        assertBookProperty(object,"orot");
 
         object = json.getObject(34);
-        assertEquals(JBR_TEXT + "orot-1-3-17", object.get(URI));
-        assertEquals("אורות - אורות מאופל - ישראל ותחיתו יז", object.get(RDFS_LABEL));
-        assertEquals("35", object.get(JBO_POSITION));
-        assertBookProperty("orot", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "orot-1-3-17");
+        assertLabelProperty( object ,"אורות - אורות מאופל - ישראל ותחיתו יז");
+        assertPositionProperty(object ,"35");
+        assertBookProperty(object,"orot");
 
         object = json.getObject(41);
-        assertEquals(JBR_TEXT + "orot-1-3-24", object.get(URI));
-        assertEquals("אורות - אורות מאופל - ישראל ותחיתו כד", object.get(RDFS_LABEL));
-        assertEquals("42", object.get(JBO_POSITION));
-        assertBookProperty("orot", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "orot-1-3-24");
+        assertLabelProperty( object ,"אורות - אורות מאופל - ישראל ותחיתו כד");
+        assertPositionProperty(object ,"42");
+        assertBookProperty(object,"orot");
 
         object = json.getObject(54);
-        assertEquals(JBR_TEXT + "orot-1-4-5", object.get(URI));
-        assertEquals("אורות - אורות מאופל - אורות התחיה ה", object.get(RDFS_LABEL));
-        assertEquals("55", object.get(JBO_POSITION));
+        assertTextUriProperty(object, "orot-1-4-5");
+        assertLabelProperty( object ,"אורות - אורות מאופל - אורות התחיה ה");
+        assertPositionProperty(object ,"55");
 
         object = json.getObject(56);
-        assertEquals(JBR_TEXT + "orot-1-4-7", object.get(URI));
-        assertEquals("אורות - אורות מאופל - אורות התחיה ז", object.get(RDFS_LABEL));
-        assertEquals("57", object.get(JBO_POSITION));
-        assertBookProperty("orot", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "orot-1-4-7");
+        assertLabelProperty( object ,"אורות - אורות מאופל - אורות התחיה ז");
+        assertPositionProperty(object ,"57");
+        assertBookProperty(object,"orot");
     }
 }

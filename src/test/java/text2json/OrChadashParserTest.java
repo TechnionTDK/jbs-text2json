@@ -9,7 +9,6 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static text2json.JbsOntology.*;
 import static text2json.TestUtils.*;
 
 /**
@@ -42,39 +41,39 @@ public class OrChadashParserTest {
 
 
         object = json.getObject(0);
-        assertEquals(JBR_TEXT + "orchadash-00", object.get(URI));
-        assertEquals("1", object.get(JBO_POSITION));
-        assertEquals("אור חדש - הקדמה א", object.get(RDFS_LABEL));
-        assertBookProperty("orchadash", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "orchadash-00");
+        assertPositionProperty(object ,"1");
+        assertLabelProperty( object ,"אור חדש - הקדמה א");
+        assertBookProperty(object,"orchadash");
 
         object = json.getObject(2);
-        assertEquals(JBR_TEXT + "orchadash-1", object.get(URI));
-        assertEquals("אור חדש א", object.get(RDFS_LABEL));
-        assertEquals("3", object.get(JBO_POSITION));
-        assertBookProperty("orchadash", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "orchadash-1");
+        assertLabelProperty( object ,"אור חדש א");
+        assertPositionProperty(object ,"3");
+        assertBookProperty(object,"orchadash");
 
         object = json.getObject(5);
-        assertEquals(JBR_TEXT + "orchadash-4", object.get(URI));
-        assertEquals("אור חדש ד", object.get(RDFS_LABEL));
-        assertEquals("6", object.get(JBO_POSITION));
-        assertBookProperty("orchadash", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "orchadash-4");
+        assertLabelProperty( object ,"אור חדש ד");
+        assertPositionProperty(object ,"6");
+        assertBookProperty(object,"orchadash");
 
         object = json.getObject(6);
-        assertEquals(JBR_TEXT + "orchadash-5", object.get(URI));
-        assertEquals("אור חדש ה", object.get(RDFS_LABEL));
-        assertEquals("7", object.get(JBO_POSITION));
-        assertBookProperty("orchadash", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "orchadash-5");
+        assertLabelProperty( object ,"אור חדש ה");
+        assertPositionProperty(object ,"7");
+        assertBookProperty(object,"orchadash");
 
         object = json.getObject(9);
-        assertEquals(JBR_TEXT + "orchadash-8", object.get(URI));
-        assertEquals("אור חדש ח", object.get(RDFS_LABEL));
-        assertEquals("10", object.get(JBO_POSITION));
-        assertBookProperty("orchadash", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "orchadash-8");
+        assertLabelProperty( object ,"אור חדש ח");
+        assertPositionProperty(object ,"10");
+        assertBookProperty(object,"orchadash");
 
         object = json.getObject(11);
-        assertEquals(JBR_TEXT + "orchadash-10", object.get(URI));
-        assertEquals("אור חדש י", object.get(RDFS_LABEL));
-        assertEquals("12", object.get(JBO_POSITION));
-        assertBookProperty("orchadash", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "orchadash-10");
+        assertLabelProperty( object ,"אור חדש י");
+        assertPositionProperty(object ,"12");
+        assertBookProperty(object,"orchadash");
     }
 }

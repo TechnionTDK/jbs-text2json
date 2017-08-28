@@ -59,7 +59,7 @@ public class MishneTorahParserTest {
         Map<String, String> o = json[0].getObject(0);
         assertEquals(JBR_TEXT + "mishnetorah-1-1-1-1", o.get(URI));
         assertEquals("הלכות יסודי התורה א א", o.get(RDFS_LABEL));
-        assertBookProperty("mishnetorah", o.get(JBO_BOOK));
+        assertBookProperty(o,"mishnetorah");
     }
 
     @Test
@@ -67,6 +67,6 @@ public class MishneTorahParserTest {
         Map<String, String> o = json[0].getObject(JBR_TEXT + "mishnetorah-perushperush-1-1-1-1");
         assertTrue(o.get(JBO_TEXT).contains("קראו ספר המדע לפי שכלל בו המצוות התלויות במחשבה ובמדע ובדעות")); // text from first line
         assertTrue(o.get(JBO_TEXT).contains("כשתתבונן ארבע מלות")); // text from second line
-        assertBookProperty("perushperush", o.get(JBO_BOOK));
+        assertBookProperty(o,"perushperush");
     }
 }

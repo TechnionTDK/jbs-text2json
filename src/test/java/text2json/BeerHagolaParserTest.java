@@ -9,7 +9,6 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static text2json.JbsOntology.*;
 import static text2json.TestUtils.*;
 
 /**
@@ -41,22 +40,22 @@ public class BeerHagolaParserTest {
 
 
         object = json.getObject(0);
-        assertEquals(JBR_TEXT + "beerhagola-0", object.get(URI));
-        assertEquals("1", object.get(JBO_POSITION));
-        assertEquals("באר הגולה - הקדמה", object.get(RDFS_LABEL));
-        assertEquals("jbr:book-beerhagola", object.get(JBO_BOOK));
+        assertTextUriProperty(object,"beerhagola-0");
+        assertPositionProperty(object ,"1");
+        assertLabelProperty( object ,"באר הגולה - הקדמה");
+        assertBookProperty( object,"beerhagola");
 
 
         object = json.getObject(6);
-        assertEquals(JBR_TEXT + "beerhagola-6", object.get(URI));
-        assertEquals("באר הגולה - באר ו", object.get(RDFS_LABEL));
-        assertEquals("7", object.get(JBO_POSITION));
-        assertEquals("jbr:book-beerhagola", object.get(JBO_BOOK));
+        assertTextUriProperty(object,"beerhagola-6");
+        assertLabelProperty( object ,"באר הגולה - באר ו");
+        assertPositionProperty(object ,"7");
+        assertBookProperty( object,"beerhagola");
 
         object = json.getObject(2);
-        assertEquals(JBR_TEXT + "beerhagola-2", object.get(URI));
-        assertEquals("באר הגולה - באר ב", object.get(RDFS_LABEL));
-        assertEquals("3", object.get(JBO_POSITION));
-        assertEquals("jbr:book-beerhagola", object.get(JBO_BOOK));
+        assertTextUriProperty(object,"beerhagola-2");
+        assertLabelProperty( object ,"באר הגולה - באר ב");
+        assertPositionProperty(object ,"3");
+        assertBookProperty( object,"beerhagola");
     }
 }

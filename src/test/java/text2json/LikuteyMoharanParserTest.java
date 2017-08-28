@@ -49,8 +49,8 @@ public class LikuteyMoharanParserTest {
 
         //chelek 1 saif 1
         object = json.getObject(0);
-        assertEquals(JBR_TEXT + "likuteymoharan-1-1", object.get(URI));
-        assertEquals("1", object.get(JBO_POSITION));
+        assertTextUriProperty(object, "likuteymoharan-1-1");
+        assertPositionProperty(object ,"1");
         assertEquals("ליקוטי מוהר''ן א א", object.get(RDFS_LABEL));
         assertEquals("אשרי תמימי דרך", object.get(JBO_NAME));
         text = "אשרי תמימי דרך ההולכים בתורת ה' (תהלים קי\"ט):\n" +
@@ -62,14 +62,14 @@ public class LikuteyMoharanParserTest {
                 "גלא - הוא היצר הרע: דמטבע לספינתא - הוא החן והחשיבות, לשון ספון וחשוב, כי היצר הרע רוצה להטביע ולהשפיל, חס ושלום, בחינת החן והחשיבות של ישראל, בחינת מלכות דקדשה: ומתחזי כי צוציתא דנורא חורתא ברישא - כי מתחלה היצר הרע מתלבש עצמו במצוות ומטעה את האדם כאלו מסיתו לעשות מצוה. וזהו בחינת צוציתא דנורא חורתא - אש לבנה, אף על פי כן מלאך מזיק הוא. ומחינן ליה באלותא דחקיק עלה אהיה וכו', הינו שעקר הכנעתו של היצר הרע הוא על ידי התורה, שהיא כלה שמותיו של הקדוש ברוך הוא. והתורה היא בחינת ואו (עיין זוהר פקודי דרכ\"ו). כי הלוחות, ארכן וי\"ו ורחבן וי\"ו (בבא בתרא יד.). וזהו בחינת אלותא, דהינו מקלות דחקיק עלה אהיה וכו', הינו שמות, בחינת התורה, שהיא בחינת וי\"ו, והוי\"ו הוא צורת מקל, והיא כלה שמותיו של השם יתברך, הינו שהתורה הקדושה היא מכניע את היצר הרע שרוצה לעשות את האדם משגע ממש, חס ושלום. כי בעל עברה הוא משגע, כמו שאמרו רבותינו, זכרונם לברכה (סוטה ג.): 'אין אדם עובר עברה אלא אם כן נכנס בו רוח שטות'. וכמו שהמשגעים צריכים להכותם ולשום עליהם שמות, כמו כן ממש התורה שעוסקין הוא בחינת מקלות ושמות, שבזה מכין ומכניעין את היצר הרע ומגרשין מן האדם את השגעון והרוח שטות שנכנס בו, בחינת 'ומחינן ליה באלותא, דחקיק עליה שמות' וכו', כנ\"ל (עיין מ\"ר קדושים תחלת פ' כ\"ה: ):\n" +
                 "וזהו: \"אשרי תמימי דרך\". אשרי - לשון הסתכלות. תמימי דרך - בחינת (בראשית כ\"ה): \"יעקב איש תם\"; שהוא בחינת השכל כנ\"ל. הינו לזכות להסתכל על השכל שיש בכל דבר, שהוא בחינת \"יעקב איש תם\" - זה זוכין על ידי התורה: וזהו: ההולכים בתורת ה'. כי על ידי שלומד תורה בכח, על ידי זה נותן כח למלכות דקדשה בחינת נו\"ן, לקבל מן השכל, שהוא בחינת חי\"ת, ואזי נעשה חן ונתקבלים דבריו כנ\"ל, ואזי נתעלה החן והחשיבות של ישראל, וכל התפלות והבקשות נתקבלים:";
         assertEquals(text, object.get(JBO_TEXT));
-        assertBookProperty("likuteymoharan", object.get(JBO_BOOK));
+        assertBookProperty(object,"likuteymoharan");
 
         //chelek 1 saif 284
         object = json.getObject(283-3);
-        assertEquals(JBR_TEXT + "likuteymoharan-1-284", object.get(URI));
-        //assertEquals(JBR_TEXT + "likuteymoharan", object.get(JBO_SEFER));
-        //assertEquals(JBR_TEXT + "likuteymoharan-1", object.get(JBO_CHELEK));
-        assertEquals("281", object.get(JBO_POSITION));
+        assertTextUriProperty(object, "likuteymoharan-1-284");
+        //assertTextUriProperty(object, "likuteymoharan", object.get(JBO_SEFER));
+        //assertTextUriProperty(object, "likuteymoharan-1", object.get(JBO_CHELEK));
+        assertPositionProperty(object ,"281");
         assertEquals("ליקוטי מוהר''ן א רפד", object.get(RDFS_LABEL));
         assertEquals("הוכיח את אחד שאמר לו, שאין לו פנאי ללמד", object.get(JBO_NAME));
         text = "שמעתי בשמו, שהוכיח את אחד שאמר לו, שאין לו פנאי ללמד מחמת שעוסק במשא ומתן, אמר: שאף על פי כן ראוי לו לחטף איזה זמן לעסק בתורה בכל יום. ואמר, שזהו מה שאמרו רבותינו, זכרונם לברכה, (שבת לא), ששואלין את האדם: קבעת עתים לתורה? קבע הוא לשון גזלה, כמו שכתוב (משלי כ\"ב): \"וקבע את קבעיהם נפש\"; הינו ששואלין את האדם, אם גזל מן הזמן שהוא טרוד בעסקיו, אם גזלת מהן עתים לתורה, כי צריך האדם לחטף ולגזל עתים לתורה מתוך הטרדא והעסק:";
@@ -77,8 +77,8 @@ public class LikuteyMoharanParserTest {
 
         //chelek 2 saif 6
         object = json.getObject(283+5);
-        assertEquals(JBR_TEXT + "likuteymoharan-2-6", object.get(URI));
-        assertEquals("289", object.get(JBO_POSITION));
+        assertTextUriProperty(object, "likuteymoharan-2-6");
+        assertPositionProperty(object ,"289");
         assertEquals("ליקוטי מוהר''ן ב ו", object.get(RDFS_LABEL));
         assertEquals("על ידי זעה טובה, על ידי זה נעשה שמחה", object.get(JBO_NAME));
         text = "על ידי זעה טובה (כגון כשמזיעין על ידי דבר שבקדשה), על ידי זה נעשה שמחה, בחינת (דברים ט\"ז): \"ושמחת בחגך\", בחינת שמחה של יום טוב. (ולאו דוקא יום טוב ממש, אלא כל יום שהוא בחינת טוב, נקרא יום טוב). כי השמחה - על ידי הדמים, כי העצבות - מן הטחול, וטחול היא עכירות הדמים. וכשמתגבר, חס ושלום, עכירת הדמים של הטחול, על ידי זה באין חלשות, חס ושלום, כי כשהעכירת הדמים הוא במדה בטחול, אזי אדרבא, הוא טובה מה שהטחול מקבל העכירת הדמים, כי נשארין הדמים זכים אבל כשעכירת הדמים של הטחול מתגבר, חס ושלום, נעשין חלשות, חס ושלום. והרפואה היא זעה, כי על ידי הזעה יוצא הארס, שיש בהדמים העכורים, שהם הפילו אותו למשכב, חס ושלום, ואזי נשארין הדמים זכים. ואזי זוכה לשמחה, כי עקר העצבות - על ידי הטחול, שהוא עכירת הדמים כנ\"ל, ועכשו שיוצאין עכירת הדמים על ידי זעה, נעשה שמחה וכו'. וזה אותיות זיעה - ראשי תבות: \"זה היום עשה י'י\" (תהלים קי\"ח) הינו בחינת שמחה של יום טוב, שנעשה על ידי זעה טובה כנ\"ל:\n" +
@@ -87,8 +87,8 @@ public class LikuteyMoharanParserTest {
 
         //chelek 2 saif 125
         object = json.getObject(json.subjects.size()-1);
-        assertEquals(JBR_TEXT + "likuteymoharan-2-125", object.get(URI));
-        assertEquals("407", object.get(JBO_POSITION));
+        assertTextUriProperty(object, "likuteymoharan-2-125");
+        assertPositionProperty(object ,"407");
         assertEquals("ליקוטי מוהר''ן ב קכה", object.get(RDFS_LABEL));
         assertEquals("מענין אמירת תהלים", object.get(JBO_NAME));
         text = "מענין אמירת תהלים דבר עם אחד ואמר לו, שעקר אמירת תהלים לומר כל מזמורי תהלים על עצמו, למצא את עצמו בתוך כל מזמור ומזמור. ושאל אותו זכרונו לברכה: איך, ופרש לו רבנו, זכרונו לברכה, קצת, כי כל המלחמות שבקש דוד המלך, עליו השלום, שיצילהו השם יתברך מהם - הכל צריכין לפרש לעצמו על מלחמת היצר הרע וחילותיו, וכיוצא בזה בשאר המזמורים (וכמבאר מזה לעיל בסימן קא). ושאל אותו: איך יפרש לעצמו מהפסוקים, שדוד המלך, עליו השלום, משבח את עצמו, כגון: \"שמרה נפשי כי חסיד אני\" (תהלים פ\"ו), וכיוצא בזה. השיב לו: גם זה צריכין לפרש על עצמו, כי צריכין לדון את עצמו לכף זכות, ולמצא בעצמו איזה זכות ונקדה טובה, אשר בבחינת הנקדה טובה הזאת הוא בחינת חסיד, וכיוצא. ואמר לו רבנו, זכרונו לברכה: הלא אצל יהושפט כתיב (דברי הימים ב יז): \"ויגבה לבו בדרכי ה'\", שבדרכי ה' ועבודתו יתברך הגביה לבו קצת. עוד אמר לו רבנו, זכרונו לברכה: הלא בבקר אנו אומרים בתחלה: 'מה אנו מה חיינו' וכו', ואנו מקטינים עצמנו מאד, ואחר כך אנו אומרים: 'אבל אנחנו עמך בני בריתך' וכו', שאחר כך אנו מחזקים עצמנו ומרימים את עצמנו, ואנו מספרים את גדלתנו ומתפארים, שאנחנו עמו בני בריתו זרע אברהם יצחק ויעקב וכו', כי כך צריכין להתנהג בעבודת השם כנ\"ל. ועין מזה ספר הראשון בסימן רפ\"ב, על פסוק: \"אזמרה לאלקי בעודי\":";
@@ -103,15 +103,15 @@ public class LikuteyMoharanParserTest {
         object = packageJson.getObject(0);
         assertEquals(JBR_SECTION + "likuteymoharan-1",object.get(URI));
         assertEquals("ליקוטי מוהר''ן - חלק א",object.get(RDFS_LABEL));
-        assertEquals("1", object.get(JBO_POSITION));
-        assertBookProperty("likuteymoharan", object.get(JBO_BOOK));
+        assertPositionProperty(object ,"1");
+        assertBookProperty(object,"likuteymoharan");
 
         //chelek 2
         object = packageJson.getObject(1);
         assertEquals(JBR_SECTION + "likuteymoharan-2",object.get(URI));
         assertEquals("ליקוטי מוהר''ן - חלק ב",object.get(RDFS_LABEL));
-        assertEquals("2", object.get(JBO_POSITION));
-        assertBookProperty("likuteymoharan", object.get(JBO_BOOK));
+        assertPositionProperty(object ,"2");
+        assertBookProperty(object,"likuteymoharan");
     }
 
 }

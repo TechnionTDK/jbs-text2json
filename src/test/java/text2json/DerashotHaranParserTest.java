@@ -3,11 +3,12 @@ package text2json;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.DerashotHaranParser;
+
 import java.io.BufferedReader;
 import java.util.Map;
 
-import static org.junit.Assert.*;
-import static text2json.JbsOntology.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static text2json.TestUtils.*;
 
 /**
@@ -38,27 +39,27 @@ import static text2json.TestUtils.*;
 
 
         object = json.getObject(0);
-        assertEquals(JBR_TEXT + "derashotharan-1", object.get(URI));
-        assertEquals("1", object.get(JBO_POSITION));
-        assertEquals("דרשות הר\"ן א", object.get(RDFS_LABEL));
-        assertBookProperty("derashotharan", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "derashotharan-1");
+        assertPositionProperty(object ,"1");
+        assertLabelProperty( object ,"דרשות הר\"ן א");
+        assertBookProperty(object,"derashotharan");
 
         object = json.getObject(4);
-        assertEquals(JBR_TEXT + "derashotharan-5", object.get(URI));
-        assertEquals("דרשות הר\"ן ה", object.get(RDFS_LABEL));
-        assertEquals("5", object.get(JBO_POSITION));
-        assertBookProperty("derashotharan", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "derashotharan-5");
+        assertLabelProperty( object ,"דרשות הר\"ן ה");
+        assertPositionProperty(object ,"5");
+        assertBookProperty(object,"derashotharan");
 
         object = json.getObject(8);
-        assertEquals(JBR_TEXT + "derashotharan-9", object.get(URI));
-        assertEquals("דרשות הר\"ן ט", object.get(RDFS_LABEL));
-        assertEquals("9", object.get(JBO_POSITION));
-        assertBookProperty("derashotharan", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "derashotharan-9");
+        assertLabelProperty( object ,"דרשות הר\"ן ט");
+        assertPositionProperty(object ,"9");
+        assertBookProperty(object,"derashotharan");
 
         object = json.getObject(11);
-        assertEquals(JBR_TEXT + "derashotharan-12", object.get(URI));
-        assertEquals("דרשות הר\"ן יב", object.get(RDFS_LABEL));
-        assertEquals("12", object.get(JBO_POSITION));
-        assertBookProperty("derashotharan", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "derashotharan-12");
+        assertLabelProperty( object ,"דרשות הר\"ן יב");
+        assertPositionProperty(object ,"12");
+        assertBookProperty(object,"derashotharan");
     }
 }
