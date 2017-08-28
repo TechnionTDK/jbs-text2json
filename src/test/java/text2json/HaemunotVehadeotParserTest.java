@@ -22,6 +22,7 @@ public class HaemunotVehadeotParserTest {
     @BeforeClass
     public static void beforeClass() throws Exception {
         Parser parser = new HaemunotVehadeotParser();
+        createOutputFolderIfNotExists("haemunotvehadeot");
         BufferedReader reader = getText("haemunotvehadeot/haemunotvehadeot.txt");
         createOutputFolderIfNotExists("haemunotvehadeot");
         parser.parse(reader, "json/haemunotvehadeot/haemunotvehadeot.json");

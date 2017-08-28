@@ -3,7 +3,6 @@ package text2json.parsers;
 import text2json.JbsParser;
 import text2json.Line;
 import text2json.LineMatcher;
-import text2json.Parser;
 
 import java.io.IOException;
 
@@ -19,9 +18,9 @@ public class OrChadashParser extends JbsParser {
     private int hakdamaNum = -1;
 
 
-    public OrChadashParser() {
-        createPackagesJson();
-    }
+//    public OrChadashParser() {
+//        createPackagesJson();
+//    }
 
     @Override
     protected void registerMatchers() {
@@ -67,26 +66,26 @@ public class OrChadashParser extends JbsParser {
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 hakdamaNum++;
-                jsonObject().add(URI, JBR_TEXT + "orchadash-0" +hakdamaNum);
+                addUri( "orchadash-0" +hakdamaNum);
                 addBook("orchadash");
                 addPosition(hakdamaNum+1);
                 if (hakdamaNum ==00)
-                    jsonObject().add(RDFS_LABEL,"אור חדש - הקדמה א");
+                    addRdfs("אור חדש - הקדמה א");
                 if (hakdamaNum ==01)
-                    jsonObject().add(RDFS_LABEL,"אור חדש - הקדמה ב");
+                    addRdfs("אור חדש - הקדמה ב");
                 break;
 
 
             case BEGIN_PEREK:
-                packagesJsonObjectFlush();
+//                packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
                 String chapterName =HEB_LETTERS_INDEX[chapterNum-1];
-                jsonObject().add(URI, getUri());
+                addUri( getUri());
                 addPosition(chapterNum+2);
                 addBook("orchadash");
                 String rdfs = "אור חדש " + chapterName;
-                jsonObject().add(RDFS_LABEL,rdfs);
+                addRdfs(rdfs);
                 break;
 
             case NO_MATCH:
@@ -97,5 +96,5 @@ public class OrChadashParser extends JbsParser {
 
     @Override
     protected String getUri() {
-        return JBR_TEXT + "orchadash-" + chapterNum ;    }
+        return  "orchadash-" + chapterNum ;    }
 }

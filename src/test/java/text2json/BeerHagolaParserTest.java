@@ -22,6 +22,7 @@ public class BeerHagolaParserTest {
     @BeforeClass
     public static void beforeClass() throws Exception {
         Parser parser = new BeerHagolaParser();
+        createOutputFolderIfNotExists("beerhagola");
         BufferedReader reader = getText("beerhagola/beerhagola.txt");
         createOutputFolderIfNotExists("beerhagola");
         parser.parse(reader, "json/beerhagola/beerhagola.json");

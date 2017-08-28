@@ -22,18 +22,19 @@ public class NetivotOlamParserTest {
     @BeforeClass
     public static void beforeClass() throws Exception {
         Parser parser = new NetivotOlamParser();
+        createOutputFolderIfNotExists("netivotolam");
         BufferedReader reader = getText("netivotolam/netivotolam.txt");
         createOutputFolderIfNotExists("netivotolam");
         parser.parse(reader, "json/netivotolam/netivotolam.json");
         json = getJson("json/netivotolam/netivotolam.json");
     }
 
-    @Test
-    //test the correctness with sampling a few values
-    public void test() {
-        System.out.println("bla bla");
-        System.out.println();
-    }
+//    @Test
+//    //test the correctness with sampling a few values
+//    public void test() {
+//        System.out.println("bla bla");
+//        System.out.println();
+//    }
 
 
     @Test
@@ -47,7 +48,7 @@ public class NetivotOlamParserTest {
         Map<String, String> object;
 
         object = json.getObject(0);
-        assertEquals(JBR_TEXT + "netivotolam-0-0", object.get(URI));
+        assertEquals(JBR_TEXT + "netivotolam-0", object.get(URI));
         assertEquals("1", object.get(JBO_POSITION));
         assertEquals("נתיבות עולם - הקדמה", object.get(RDFS_LABEL));
         assertBookProperty("netivotolam", object.get(JBO_BOOK));

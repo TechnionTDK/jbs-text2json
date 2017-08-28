@@ -19,6 +19,7 @@ import static text2json.TestUtils.*;
     @BeforeClass
     public static void beforeClass() throws Exception {
         Parser parser = new DerashotHaranParser();
+        createOutputFolderIfNotExists("derashotharan");
         BufferedReader reader = getText("derashotharan/derashotharan.txt");
         createOutputFolderIfNotExists("derashotharan");
         parser.parse(reader, "json/derashotharan/derashotharan.json");

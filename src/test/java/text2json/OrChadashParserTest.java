@@ -22,6 +22,7 @@ public class OrChadashParserTest {
     @BeforeClass
     public static void beforeClass() throws Exception {
         Parser parser = new OrChadashParser();
+        createOutputFolderIfNotExists("orchadash");
         BufferedReader reader = getText("orchadash/orchadash.txt");
         createOutputFolderIfNotExists("orchadash");
         parser.parse(reader, "json/orchadash/orchadash.json");

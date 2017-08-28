@@ -21,6 +21,7 @@ public class SeferHamitzvotParserTest {
     @BeforeClass
     public static void beforeClass() throws Exception {
         Parser parser = new SeferHamitzvotParser();
+        createOutputFolderIfNotExists("seferhamitzvot");
         BufferedReader reader = getText("seferhamitzvot/seferhamitzvot.txt");
         createOutputFolderIfNotExists("seferhamitzvot");
         parser.parse(reader, "json/seferhamitzvot/seferhamitzvot.json");

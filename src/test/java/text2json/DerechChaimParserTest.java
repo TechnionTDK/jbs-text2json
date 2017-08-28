@@ -22,6 +22,7 @@ public class DerechChaimParserTest {
     @BeforeClass
     public static void beforeClass() throws Exception {
         Parser parser = new DerechChaimParser();
+        createOutputFolderIfNotExists("derechchaim");
         BufferedReader reader = getText("derechchaim/derechchaim.txt");
         createOutputFolderIfNotExists("derechchaim");
         parser.parse(reader, "json/derechchaim/derechchaim.json");

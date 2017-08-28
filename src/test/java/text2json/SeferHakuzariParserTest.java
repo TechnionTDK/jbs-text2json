@@ -1,19 +1,15 @@
 package text2json;
 
-import com.google.gson.stream.JsonReader;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import static text2json.JbsOntology.*;
-import static text2json.TestUtils.*;
 import text2json.parsers.SeferHakuzariParser;
+
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
 import java.util.Map;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static text2json.JbsOntology.*;
+import static text2json.TestUtils.*;
 
 /**
  * Created by shilonoa on 4/24/2017.
@@ -24,6 +20,7 @@ public class SeferHakuzariParserTest {
     @BeforeClass
     public static void setUp() throws Exception {
         SeferHakuzariParser parser = new SeferHakuzariParser();
+        createOutputFolderIfNotExists("seferhakuzari");
         BufferedReader reader = getText("seferhakuzari/seferhakuzari.txt");
         createOutputFolderIfNotExists("seferhakuzari");
         parser.parse(reader, "json/seferhakuzari/seferhakuzari.json");

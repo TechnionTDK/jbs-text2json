@@ -5,8 +5,6 @@ import org.junit.Test;
 import text2json.parsers.OrotParser;
 
 import java.io.BufferedReader;
-import java.io.File;
-
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -24,6 +22,7 @@ public class OrotParserTest {
     @BeforeClass
     public static void beforeClass() throws Exception {
         Parser parser = new OrotParser();
+        createOutputFolderIfNotExists("orot");
         BufferedReader reader = getText("orot/orot.txt");
         createOutputFolderIfNotExists("orot/");
         parser.parse(reader, "json/orot/orot.json");

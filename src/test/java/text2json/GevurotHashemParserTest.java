@@ -22,6 +22,7 @@ public class GevurotHashemParserTest {
     @BeforeClass
     public static void beforeClass() throws Exception {
         Parser parser = new GevurotHashemParser();
+        createOutputFolderIfNotExists("gevurothashem");
         BufferedReader reader = getText("gevurothashem/gevurothashem.txt");
         createOutputFolderIfNotExists("gevurothashem");
         parser.parse(reader, "json/gevurothashem/gevurothashem.json");

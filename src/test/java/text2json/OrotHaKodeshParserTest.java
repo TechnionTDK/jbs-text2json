@@ -22,6 +22,7 @@ public class OrotHaKodeshParserTest {
     @BeforeClass
     public static void beforeClass() throws Exception {
         Parser parser = new OrotHaKodeshParser();
+        createOutputFolderIfNotExists("orothakodesh");
         BufferedReader reader = getText("orothakodesh/orothakodesh.txt");
         createOutputFolderIfNotExists("orothakodesh");
         parser.parse(reader, "json/orothakodesh/orothakodesh.json");

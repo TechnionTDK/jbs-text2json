@@ -22,6 +22,7 @@ public class NetzachIsraelParserTest {
     @BeforeClass
     public static void beforeClass() throws Exception {
         Parser parser = new NetzachIsraelParser();
+        createOutputFolderIfNotExists("netzachisrael");
         BufferedReader reader = getText("netzachisrael/netzachisrael.txt");
         createOutputFolderIfNotExists("netzachisrael");
         parser.parse(reader, "json/netzachisrael/netzachisrael.json");

@@ -22,6 +22,7 @@ public class MoreNevochimParserTest {
     @BeforeClass
     public static void beforeClass() throws Exception {
         Parser parser = new MoreNevochimParser();
+        createOutputFolderIfNotExists("morenevochim");
         BufferedReader reader = getText("morenevochim/morenevochim.txt");
         createOutputFolderIfNotExists("morenevochim");
         parser.parse(reader, "json/morenevochim/morenevochim.json");

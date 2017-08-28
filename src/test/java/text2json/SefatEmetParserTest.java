@@ -22,6 +22,7 @@ public class SefatEmetParserTest {
     @BeforeClass
     public static void beforeClass() throws Exception {
         Parser parser = new SefatEmetParser();
+        createOutputFolderIfNotExists("sefatemet");
         BufferedReader reader = getText("sefatemet/sefatemet.txt");
         createOutputFolderIfNotExists("sefatemet");
         parser.parse(reader, "json/sefatemet/sefatemet.json");

@@ -1,14 +1,15 @@
 package text2json;
 
-import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.ShemonaKevatzimParser;
-import static text2json.JbsOntology.*;
-import static text2json.TestUtils.*;
 
 import java.io.BufferedReader;
 import java.util.Map;
+
+import static org.junit.Assert.*;
+import static text2json.JbsOntology.*;
+import static text2json.TestUtils.*;
 
 /**
  * Created by omishali on 17/01/2017.
@@ -19,6 +20,7 @@ public class ShemonaKvatzimParserTest {
     @BeforeClass
     public static void beforeClass() throws Exception {
         Parser parser = new ShemonaKevatzimParser();
+        createOutputFolderIfNotExists("shmonakvatzim");
         BufferedReader reader = getText("shmonakvatzim/shmonakvatzim.txt");
         createOutputFolderIfNotExists("shmonakvatzim");
         parser.parse(reader, "json/shmonakvatzim/shmonakvatzim.json");

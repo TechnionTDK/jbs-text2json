@@ -22,6 +22,7 @@ public class ChovotHalevavotParserTest {
     @BeforeClass
     public static void beforeClass() throws Exception {
         Parser parser = new ChovotHalevavotParser();
+        createOutputFolderIfNotExists("chovothalevavot");
         BufferedReader reader = getText("chovothalevavot/chovothalevavot.txt");
         createOutputFolderIfNotExists("chovothalevavot");
         parser.parse(reader, "json/chovothalevavot/chovothalevavot.json");

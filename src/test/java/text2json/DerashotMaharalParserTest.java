@@ -22,6 +22,7 @@ public class DerashotMaharalParserTest {
     @BeforeClass
     public static void beforeClass() throws Exception {
         Parser parser = new DerashotMaharalParser();
+        createOutputFolderIfNotExists("derashotmaharal");
         BufferedReader reader = getText("derashotmaharal/derashotmaharal.txt");
         createOutputFolderIfNotExists("derashotmaharal");
         parser.parse(reader, "json/derashotmaharal/derashotmaharal.json");

@@ -22,6 +22,7 @@ public class MidbarShurParserTest {
     @BeforeClass
     public static void beforeClass() throws Exception {
         Parser parser = new MidbarShurParser();
+        createOutputFolderIfNotExists("midbarshur");
         BufferedReader reader = getText("midbarshur/midbarshur.txt");
         createOutputFolderIfNotExists("midbarshur");
         parser.parse(reader, "json/midbarshur/midbarshur.json");

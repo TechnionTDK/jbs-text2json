@@ -21,6 +21,7 @@ public class TiferetIsraelParserTest {
     @BeforeClass
     public static void beforeClass() throws Exception {
         Parser parser = new TiferetIsraelParser();
+        createOutputFolderIfNotExists("tiferetisrael");
         BufferedReader reader = getText("tiferetisrael/tiferetisrael.txt");
         createOutputFolderIfNotExists("tiferetisrael");
         parser.parse(reader, "json/tiferetisrael/tiferetisrael.json");
