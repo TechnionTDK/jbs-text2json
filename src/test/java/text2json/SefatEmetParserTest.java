@@ -9,7 +9,6 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static text2json.JbsOntology.*;
 import static text2json.TestUtils.*;
 
 /**
@@ -22,6 +21,7 @@ public class SefatEmetParserTest {
     @BeforeClass
     public static void beforeClass() throws Exception {
         Parser parser = new SefatEmetParser();
+        createOutputFolderIfNotExists("sefatemet");
         BufferedReader reader = getText("sefatemet/sefatemet.txt");
         createOutputFolderIfNotExists("sefatemet");
         parser.parse(reader, "json/sefatemet/sefatemet.json");
@@ -40,63 +40,63 @@ public class SefatEmetParserTest {
 
         //sefer
         object = json.getObject(17);
-        assertEquals(JBR_TEXT + "tanach-sefatemet-1-1-18", object.get(URI));
-        assertEquals("18", object.get(JBO_POSITION));
-        assertBookProperty("sefatemet", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "tanach-sefatemet-1-1-18");
+        assertPositionProperty(object ,"18");
+        assertBookProperty(object,"sefatemet");
 
         object = json.getObject(68);
-        assertEquals(JBR_TEXT + "tanach-sefatemet-1-3-6", object.get(URI));
-        assertEquals("שפת אמת לך לך ו", object.get(RDFS_LABEL));
-        assertEquals("69", object.get(JBO_POSITION));
-        assertBookProperty("sefatemet", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "tanach-sefatemet-1-3-6");
+        assertLabelProperty( object ,"שפת אמת לך לך ו");
+        assertPositionProperty(object ,"69");
+        assertBookProperty(object,"sefatemet");
 
         object = json.getObject(268);
-        assertEquals(JBR_TEXT + "tanach-sefatemet-1-9-14", object.get(URI));
-        assertEquals("שפת אמת וישב יד", object.get(RDFS_LABEL));
-        assertEquals("269", object.get(JBO_POSITION));
-        assertBookProperty("sefatemet", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "tanach-sefatemet-1-9-14");
+        assertLabelProperty( object ,"שפת אמת וישב יד");
+        assertPositionProperty(object ,"269");
+        assertBookProperty(object,"sefatemet");
 
         object = json.getObject(374);
-        assertEquals(JBR_TEXT + "tanach-sefatemet-1-12-23", object.get(URI));
-        assertEquals("שפת אמת ויגש כג", object.get(RDFS_LABEL));
-        assertEquals("375", object.get(JBO_POSITION));
-        assertBookProperty("sefatemet", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "tanach-sefatemet-1-12-23");
+        assertLabelProperty( object ,"שפת אמת ויגש כג");
+        assertPositionProperty(object ,"375");
+        assertBookProperty(object,"sefatemet");
 
         object = json.getObject(560);
-        assertEquals(JBR_TEXT + "tanach-sefatemet-2-18-24", object.get(URI));
-        assertEquals("שפת אמת יתרו כד", object.get(RDFS_LABEL));
-        assertEquals("561", object.get(JBO_POSITION));
+        assertTextUriProperty(object, "tanach-sefatemet-2-18-24");
+        assertLabelProperty( object ,"שפת אמת יתרו כד");
+        assertPositionProperty(object ,"561");
 
         object = json.getObject(754);
-        assertEquals(JBR_TEXT + "tanach-sefatemet-2-25-26", object.get(URI));
-        assertEquals("שפת אמת כי תשא כו", object.get(RDFS_LABEL));
-        assertEquals("755", object.get(JBO_POSITION));
-        assertBookProperty("sefatemet", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "tanach-sefatemet-2-25-26");
+        assertLabelProperty( object ,"שפת אמת כי תשא כו");
+        assertPositionProperty(object ,"755");
+        assertBookProperty(object,"sefatemet");
 
         object = json.getObject(999);
-        assertEquals(JBR_TEXT + "tanach-sefatemet-3-37-9", object.get(URI));
-        assertEquals("שפת אמת אחרי מות ט", object.get(RDFS_LABEL));
-        assertEquals("1000", object.get(JBO_POSITION));
+        assertTextUriProperty(object, "tanach-sefatemet-3-37-9");
+        assertLabelProperty( object ,"שפת אמת אחרי מות ט");
+        assertPositionProperty(object ,"1000");
 
         object = json.getObject(1268);
-        assertEquals(JBR_TEXT + "tanach-sefatemet-4-46-28", object.get(URI));
-        assertEquals("שפת אמת שלח כח", object.get(RDFS_LABEL));
-        assertEquals("1269", object.get(JBO_POSITION));
+        assertTextUriProperty(object, "tanach-sefatemet-4-46-28");
+        assertLabelProperty( object ,"שפת אמת שלח כח");
+        assertPositionProperty(object ,"1269");
 
         object = json.getObject(1581);
-        assertEquals(JBR_TEXT + "tanach-sefatemet-5-58-17", object.get(URI));
-        assertEquals("שפת אמת כי תצא יז", object.get(RDFS_LABEL));
-        assertEquals("1582", object.get(JBO_POSITION));
+        assertTextUriProperty(object, "tanach-sefatemet-5-58-17");
+        assertLabelProperty( object ,"שפת אמת כי תצא יז");
+        assertPositionProperty(object ,"1582");
 
         object = json.getObject(1700);
-        assertEquals(JBR_TEXT + "tanach-sefatemet-5-63-27", object.get(URI));
-        assertEquals("שפת אמת ראש השנה כז", object.get(RDFS_LABEL));
-        assertEquals("1701", object.get(JBO_POSITION));
+        assertTextUriProperty(object, "tanach-sefatemet-5-63-27");
+        assertLabelProperty( object ,"שפת אמת ראש השנה כז");
+        assertPositionProperty(object ,"1701");
 
         object = json.getObject(1786);
-        assertEquals(JBR_TEXT + "tanach-sefatemet-5-68-1", object.get(URI));
-        assertEquals("שפת אמת וזאת הברכה א", object.get(RDFS_LABEL));
-        assertEquals("1787", object.get(JBO_POSITION));
-        assertBookProperty("sefatemet", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "tanach-sefatemet-5-68-1");
+        assertLabelProperty( object ,"שפת אמת וזאת הברכה א");
+        assertPositionProperty(object ,"1787");
+        assertBookProperty(object,"sefatemet");
     }
 }

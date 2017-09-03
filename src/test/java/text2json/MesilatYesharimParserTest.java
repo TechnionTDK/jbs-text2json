@@ -1,16 +1,14 @@
 package text2json;
 
-import com.google.gson.stream.JsonReader;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.MesilatYesharimParser;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.util.Map;
 
-import static org.junit.Assert.*;
-import static text2json.JbsOntology.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static text2json.TestUtils.*;
 
 /**
@@ -39,21 +37,21 @@ public class MesilatYesharimParserTest {
 
 
         object = json.getObject(0);
-        assertEquals(JBR_TEXT + "mesilatyesharim-0", object.get(URI));
-        assertEquals("0", object.get(JBO_POSITION));
-        assertEquals("הקדמת הרב המחבר זצ\"ל", object.get(RDFS_LABEL));
-        assertBookProperty("mesilatyesharim", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "mesilatyesharim-0");
+        assertPositionProperty(object ,"0");
+        assertLabelProperty( object ,"הקדמת הרב המחבר זצ\"ל");
+        assertBookProperty(object,"mesilatyesharim");
 
         object = json.getObject(1);
-        assertEquals(JBR_TEXT + "mesilatyesharim-1", object.get(URI));
-        assertEquals("1", object.get(JBO_POSITION));
-        assertEquals("בביאור כלל חובת האדם בעולמו", object.get(RDFS_LABEL));
-        assertBookProperty("mesilatyesharim", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "mesilatyesharim-1");
+        assertPositionProperty(object ,"1");
+        assertLabelProperty( object ,"בביאור כלל חובת האדם בעולמו");
+        assertBookProperty(object,"mesilatyesharim");
 
         object = json.getObject(27);
-        assertEquals(JBR_TEXT + "mesilatyesharim-27", object.get(URI));
-        assertEquals("27", object.get(JBO_POSITION));
-        assertEquals("חתימה", object.get(RDFS_LABEL));
-        assertBookProperty("mesilatyesharim", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "mesilatyesharim-27");
+        assertPositionProperty(object ,"27");
+        assertLabelProperty( object ,"חתימה");
+        assertBookProperty(object,"mesilatyesharim");
     }
 }

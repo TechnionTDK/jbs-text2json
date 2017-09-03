@@ -1,16 +1,18 @@
 package text2json.parsers;
+
+import text2json.JbsParser;
 import text2json.Line;
 import text2json.LineMatcher;
-import text2json.Parser;
+
 import java.io.IOException;
 
 import static text2json.JbsOntology.*;
-import static text2json.JbsUtils.*;
+import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 
 /**
  * Created by Assaf on 08/06/2017.
  */
-public class NetivotOlamParser extends Parser {
+public class NetivotOlamParser extends JbsParser {
 
     protected static final String BEGIN_NATIV = "begin_nativ";
     private int nativNum = 0,position=0;
@@ -75,10 +77,10 @@ public class NetivotOlamParser extends Parser {
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 position++;
-                jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_BOOK, JBR_BOOK + "netivotolam");
-                jsonObject().add(JBO_POSITION, position);
-                jsonObject().add(RDFS_LABEL,"נתיבות עולם - הקדמה");
+                addUri("netivotolam-" + perekNum);
+                addBook( "netivotolam");
+                addPosition( position);
+                addRdfs("נתיבות עולם - הקדמה");
 
                 break;
 
@@ -87,10 +89,10 @@ public class NetivotOlamParser extends Parser {
                 perekNum=0;
                 nativNum++;
                 nativName = line.getLine();
-                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "netivotolam");
-                packagesJsonObject().add(URI, JBR_SECTION + "netivotolam-" + nativNum);
-                packagesJsonObject().add(JBO_POSITION, nativNum);
-                packagesJsonObject().add(RDFS_LABEL, nativName);
+                addBook(packagesJsonObject() ,"netivotolam");
+                addPackageUri( "netivotolam-" + nativNum);
+                addPosition(packagesJsonObject(), nativNum);
+                addRdfs(packagesJsonObject(), nativName);
                 packagesJsonObjectFlush();
                 break;
 
@@ -99,12 +101,12 @@ public class NetivotOlamParser extends Parser {
                 perekNum++;
                 position++;
                 String perekName = HEB_LETTERS_INDEX[perekNum-1];
-                jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_POSITION, position);
-                jsonObject().add(JBO_BOOK, JBR_BOOK + "netivotolam");
-                jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "netivotolam-" + nativNum);
+                addUri( getUri());
+                addPosition( position);
+                addBook( "netivotolam");
+                addWithin( "netivotolam-" + nativNum);
                 String rdfs = "נתיבות עולם - " + nativName +" " + perekName;
-                jsonObject().add(RDFS_LABEL,rdfs);
+                addRdfs(rdfs);
 
                 break;
 
@@ -116,5 +118,5 @@ public class NetivotOlamParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR_TEXT + "netivotolam-" + nativNum + "-"+ perekNum;    }
+        return  "netivotolam-" + nativNum + "-"+ perekNum;    }
 }

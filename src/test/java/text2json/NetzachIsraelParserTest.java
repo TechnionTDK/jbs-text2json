@@ -9,7 +9,6 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static text2json.JbsOntology.*;
 import static text2json.TestUtils.*;
 
 /**
@@ -22,6 +21,7 @@ public class NetzachIsraelParserTest {
     @BeforeClass
     public static void beforeClass() throws Exception {
         Parser parser = new NetzachIsraelParser();
+        createOutputFolderIfNotExists("netzachisrael");
         BufferedReader reader = getText("netzachisrael/netzachisrael.txt");
         createOutputFolderIfNotExists("netzachisrael");
         parser.parse(reader, "json/netzachisrael/netzachisrael.json");
@@ -41,39 +41,39 @@ public class NetzachIsraelParserTest {
 
 
         object = json.getObject(0);
-        assertEquals(JBR_TEXT + "netzachisrael-0", object.get(URI));
-        assertEquals("1", object.get(JBO_POSITION));
-        assertEquals("נצח ישראל הקדמה", object.get(RDFS_LABEL));
-        assertBookProperty("netzachisrael", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "netzachisrael-0");
+        assertPositionProperty(object ,"1");
+        assertLabelProperty( object ,"נצח ישראל הקדמה");
+        assertBookProperty(object,"netzachisrael");
 
         object = json.getObject(3);
-        assertEquals(JBR_TEXT + "netzachisrael-3", object.get(URI));
-        assertEquals("נצח ישראל ג", object.get(RDFS_LABEL));
-        assertEquals("4", object.get(JBO_POSITION));
-        assertBookProperty("netzachisrael", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "netzachisrael-3");
+        assertLabelProperty( object ,"נצח ישראל ג");
+        assertPositionProperty(object ,"4");
+        assertBookProperty(object,"netzachisrael");
 
         object = json.getObject(23);
-        assertEquals(JBR_TEXT + "netzachisrael-23", object.get(URI));
-        assertEquals("נצח ישראל כג", object.get(RDFS_LABEL));
-        assertEquals("24", object.get(JBO_POSITION));
-        assertBookProperty("netzachisrael", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "netzachisrael-23");
+        assertLabelProperty( object ,"נצח ישראל כג");
+        assertPositionProperty(object ,"24");
+        assertBookProperty(object,"netzachisrael");
 
         object = json.getObject(32);
-        assertEquals(JBR_TEXT + "netzachisrael-32", object.get(URI));
-        assertEquals("נצח ישראל לב", object.get(RDFS_LABEL));
-        assertEquals("33", object.get(JBO_POSITION));
-        assertBookProperty("netzachisrael", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "netzachisrael-32");
+        assertLabelProperty( object ,"נצח ישראל לב");
+        assertPositionProperty(object ,"33");
+        assertBookProperty(object,"netzachisrael");
 
         object = json.getObject(57);
-        assertEquals(JBR_TEXT + "netzachisrael-57", object.get(URI));
-        assertEquals("נצח ישראל נז", object.get(RDFS_LABEL));
-        assertEquals("58", object.get(JBO_POSITION));
-        assertBookProperty("netzachisrael", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "netzachisrael-57");
+        assertLabelProperty( object ,"נצח ישראל נז");
+        assertPositionProperty(object ,"58");
+        assertBookProperty(object,"netzachisrael");
 
         object = json.getObject(63);
-        assertEquals(JBR_TEXT + "netzachisrael-63", object.get(URI));
-        assertEquals("נצח ישראל סג", object.get(RDFS_LABEL));
-        assertEquals("64", object.get(JBO_POSITION));
-        assertBookProperty("netzachisrael", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "netzachisrael-63");
+        assertLabelProperty( object ,"נצח ישראל סג");
+        assertPositionProperty(object ,"64");
+        assertBookProperty(object,"netzachisrael");
     }
 }

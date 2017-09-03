@@ -1,8 +1,8 @@
 package text2json.parsers;
 
+import text2json.JbsParser;
 import text2json.Line;
 import text2json.LineMatcher;
-import text2json.Parser;
 
 import java.io.IOException;
 
@@ -12,14 +12,14 @@ import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 /**
  * Created by Assaf on 08/06/2017.
  */
-public class NetzachIsraelParser extends Parser {
+public class NetzachIsraelParser extends JbsParser {
 
     private int chapterNum = -1, first =0;
 
 
-    public NetzachIsraelParser() {
-        createPackagesJson();
-    }
+//    public NetzachIsraelParser() {
+//        createPackagesJson();
+//    }
 
     @Override
     protected void registerMatchers() {
@@ -55,24 +55,24 @@ public class NetzachIsraelParser extends Parser {
 
 
             case BEGIN_PEREK:
-                packagesJsonObjectFlush();
+//                packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
                 first = 1;
                 if (chapterNum>0) {
                     String chapterName = HEB_LETTERS_INDEX[chapterNum - 1];
-                    jsonObject().add(URI, getUri());
-                    jsonObject().add(JBO_POSITION, chapterNum+1);
-                    jsonObject().add(JBO_BOOK, JBR_BOOK + "netzachisrael");
+                    addUri( getUri());
+                    addPosition( chapterNum+1);
+                    addBook( "netzachisrael");
                     String rdfs = "נצח ישראל " + chapterName;
-                    jsonObject().add(RDFS_LABEL, rdfs);
+                    addRdfs( rdfs);
                 }
                 else{
-                    jsonObject().add(URI, getUri());
-                    jsonObject().add(JBO_POSITION, chapterNum+1);
-                    jsonObject().add(JBO_BOOK, JBR_BOOK + "netzachisrael");
+                    addUri( getUri());
+                    addPosition( chapterNum+1);
+                    addBook( "netzachisrael");
                     String rdfs = "נצח ישראל הקדמה";
-                    jsonObject().add(RDFS_LABEL, rdfs);
+                    addRdfs( rdfs);
                 }
                 break;
 
@@ -87,5 +87,5 @@ public class NetzachIsraelParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR_TEXT + "netzachisrael-" + chapterNum ;    }
+        return  "netzachisrael-" + chapterNum ;    }
 }

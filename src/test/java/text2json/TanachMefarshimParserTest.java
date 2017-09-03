@@ -35,22 +35,22 @@ public class TanachMefarshimParserTest {
         Map<String, String> object;
         object = subjectJsons[4].getObjectByText("הוקשה אל המפרשים מאחר שפני המנורה היינו הנר האמצעי");
         assertEquals(JBR_TEXT + "tanach-keliyekar-4-8-2", object.get(URI));
-        assertBookProperty("keliyekar", object.get(JBO_BOOK));
+        assertBookProperty( object,"keliyekar");
         // now we check that the object contains also text belonging to the last line.
         assertTrue(object.get(JBO_TEXT).contains("והוא ענין נכון וברור וזה סמיכות העלאת הנרות"));
 
         object = subjectJsons[4].getObjectByText("למה נסמכה פרשת המנורה לפרשת הנשיאים, לפי שכשראה אהרן חנוכת הנשיאים חלשה אז דעתו");
         assertEquals(JBR_TEXT + "tanach-rashi-4-8-2", object.get(URI));
-        assertBookProperty("rashi", object.get(JBO_BOOK));
+        assertBookProperty( object,"rashi");
 
         object = subjectJsons[4].getObject(0);
         assertEquals(JBR_TEXT + "tanach-onkelos-4-1-1", object.get(URI));
         assertEquals("אונקלוס  וּמַלִיל יְיָ עִם משֶׁה בְּמַדְבְּרָא דְסִינַי בְּמַשְׁכַּן זִמְנָא בְּחַד לְיַרְחָא תִנְיָנָא בְּשַׁתָּא תִנְיֵתָא לְמִפַּקְהוֹן מֵאַרְעָא דְמִצְרַיִם לְמֵימָר:", object.get(JBO_TEXT));
-        assertBookProperty("onkelos", object.get(JBO_BOOK));
+        assertBookProperty( object,"onkelos");
 
         object = subjectJsons[4].getObject(1);
         assertEquals(JBR_TEXT + "tanach-yonatan-4-1-1", object.get(URI));
-        assertBookProperty("yonatan", object.get(JBO_BOOK));
+        assertBookProperty( object,"yonatan");
 
         object = subjectJsons[4].getObject(2);
         assertEquals(JBR_TEXT + "tanach-rashi-4-1-1", object.get(URI));
@@ -58,46 +58,46 @@ public class TanachMefarshimParserTest {
 
         object = subjectJsons[4].getObject(5);
         assertEquals(JBR_TEXT + "tanach-ramban-4-1-1", object.get(URI));
-        assertBookProperty("ramban", object.get(JBO_BOOK));
+        assertBookProperty( object,"ramban");
 
         object = subjectJsons[4].getObject(subjectJsons[4].subjects.size() -1);
         assertEquals(JBR_TEXT + "tanach-ibnezra-4-36-13", object.get(URI));
-        assertBookProperty("ibnezra", object.get(JBO_BOOK));
+        assertBookProperty( object,"ibnezra");
 
         object = subjectJsons[27].getObject(0);
         assertEquals(JBR_TEXT + "tanach-rashi-27-1-1", object.get(URI));
 
         object = subjectJsons[27].getObject(1);
         assertEquals(JBR_TEXT + "tanach-metzudatdavid-27-1-1", object.get(URI));
-        assertBookProperty("metzudatdavid", object.get(JBO_BOOK));
+        assertBookProperty( object,"metzudatdavid");
 
         object = subjectJsons[27].getObject(2);
         assertEquals(JBR_TEXT + "tanach-metzudattzion-27-1-1", object.get(URI));
-        assertBookProperty("metzudattzion", object.get(JBO_BOOK));
+        assertBookProperty( object,"metzudattzion");
 
         object = subjectJsons[27].getObject(3);
         assertEquals(JBR_TEXT + "tanach-malbiminyan-27-1-1", object.get(URI));
-        assertBookProperty("malbim", object.get(JBO_BOOK));
+        assertBookProperty( object,"malbim");
 
         object = subjectJsons[27].getObjectByText("שם לאום מציין תמיד את האומה מצד הדת");
         assertEquals(JBR_TEXT + "tanach-malbimmilot-27-2-1", object.get(URI));
-        assertBookProperty("malbim", object.get(JBO_BOOK));
+        assertBookProperty( object,"malbim");
 
         object = subjectJsons[11].getObject(JBR_TEXT + "tanach-malbim-11-17-29");
         assertTrue(object.get(JBO_TEXT).contains("באופן שאנשי בבל עשו את סוכות"));
-        assertBookProperty("malbim", object.get(JBO_BOOK));
+        assertBookProperty( object,"malbim");
 
         object = subjectJsons[11].getObject(JBR_TEXT + "tanach-malbim-11-17-32");
         assertTrue(object.get(JBO_TEXT).contains("וכן היו עושים הכהנים להם בבית הבמות"));
-        assertBookProperty("malbim", object.get(JBO_BOOK));
+        assertBookProperty( object,"malbim");
 
         object = subjectJsons[11].getObject(JBR_TEXT + "tanach-malbim-11-17-33");
         assertTrue(object.get(JBO_TEXT).contains("כמשפט הגוים רצה לומר ונדמו בזה"));
-        assertBookProperty("malbim", object.get(JBO_BOOK));
+        assertBookProperty( object,"malbim");
 
         object = subjectJsons[9].getObject(JBR_TEXT + "tanach-malbim-9-6-20");
         assertTrue(object.get(JBO_TEXT).contains("גם זה מגלה צדקתו שאחר שהשפיע לכל העם פנה אל ביתו"));
-        assertBookProperty("malbim", object.get(JBO_BOOK));
+        assertBookProperty( object,"malbim");
     }
 
     @Test

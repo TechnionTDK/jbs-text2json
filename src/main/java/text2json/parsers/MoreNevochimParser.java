@@ -1,8 +1,8 @@
 package text2json.parsers;
 
+import text2json.JbsParser;
 import text2json.Line;
 import text2json.LineMatcher;
-import text2json.Parser;
 
 import java.io.IOException;
 
@@ -12,7 +12,7 @@ import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 /**
  * Created by Assaf on 08/06/2017.
  */
-public class MoreNevochimParser extends Parser {
+public class MoreNevochimParser extends JbsParser {
 
     protected static final String BEGIN_PART = "begin_part";
     protected static final String BEGIN_PATIAH = "begin_ptiha";
@@ -20,7 +20,7 @@ public class MoreNevochimParser extends Parser {
     protected static final String BEGIN_WRITERS_HAKDAMA = "begin_hakdama1";
 
 
-    private int partNum = 0,position=0;
+    private int partNum = 0,position=0, packagePosition =1;
     private int perekNum = 0;
     private String ptihaName ="";
     private String perekName ="";
@@ -112,12 +112,14 @@ public class MoreNevochimParser extends Parser {
                 perekNum++;
                 position++;
                 ptihaName = line.getLine();
-                jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_BOOK, JBR_BOOK + "morenevochim");
-                jsonObject().add(JBO_POSITION, position);
-                jsonObject().add(RDFS_LABEL,"מורה נבוכים הקדמות המתרגמים " + ptihaName);
-                packagesJsonObject().add(URI, JBR_SECTION + "morenevochim " + partNum + " " + perekNum);
-                packagesJsonObject().add(RDFS_LABEL,"מורה נבוכים - הקדמות המתרגמים " + ptihaName );
+                addUri( getUri());
+                addBook( "morenevochim");
+                addPosition( position);
+                addRdfs("מורה נבוכים הקדמות המתרגמים " + ptihaName);
+                addPackageUri( "morenevochim-" + partNum +"-"+ perekNum);
+                addPosition(packagesJsonObject(),packagePosition);
+                packagePosition++;
+                addRdfs(packagesJsonObject(),"מורה נבוכים - הקדמות המתרגמים " + ptihaName );
                 packagesJsonObjectFlush();
                 break;
 
@@ -125,9 +127,11 @@ public class MoreNevochimParser extends Parser {
                 jsonObjectFlush();
                 perekNum=1;
                 partNum++;
-                packagesJsonObject().add(URI, JBR_SECTION + "morenevochim - " + partNum);
+                addPackageUri( "morenevochim-" + partNum);
                 packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "morenevochim");
-                packagesJsonObject().add(RDFS_LABEL,"מורה נבוכים " + HEB_LETTERS_INDEX[partNum - 1] );
+                addPosition(packagesJsonObject(),packagePosition);
+                packagePosition++;
+                addRdfs(packagesJsonObject(),"מורה נבוכים " + HEB_LETTERS_INDEX[partNum - 1] );
                 packagesJsonObjectFlush();
                 break;
 
@@ -136,12 +140,12 @@ public class MoreNevochimParser extends Parser {
                 jsonObjectFlush();
                 perekNum=0;
                 position++;
-                jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_POSITION, position);
-                jsonObject().add(JBO_BOOK, JBR_BOOK + "morenevochim");
-                jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "morenevochim-" + partNum);
+                addUri( getUri());
+                addPosition( position);
+                addBook( "morenevochim");
+                addWithin( "morenevochim-" + partNum);
                 String rdfs = "מורה נבוכים - חלק " + HEB_LETTERS_INDEX[partNum - 1] + " הקדמה";
-                jsonObject().add(RDFS_LABEL,rdfs);
+               addRdfs(rdfs);
                 break;
 
             case BEGIN_PEREK:
@@ -149,12 +153,12 @@ public class MoreNevochimParser extends Parser {
                 perekNum++;
                 position++;
                 perekName = HEB_LETTERS_INDEX[perekNum - 1];
-                jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_POSITION, position);
-                jsonObject().add(JBO_BOOK, JBR_BOOK + "morenevochim");
-                jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "morenevochim-" + partNum);
+                addUri( getUri());
+                addPosition( position);
+                addBook( "morenevochim");
+                addWithin( "morenevochim-" + partNum);
                 String rdfs1 = "מורה נבוכים " + HEB_LETTERS_INDEX[partNum - 1] + " "  + perekName;
-                jsonObject().add(RDFS_LABEL,rdfs1);
+                addRdfs(rdfs1);
                 break;
 
             case NO_MATCH:
@@ -165,5 +169,5 @@ public class MoreNevochimParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR_TEXT + "morenevochim-" + partNum + "-" + perekNum;   }
+        return  "morenevochim-" + partNum + "-" + perekNum;   }
 }

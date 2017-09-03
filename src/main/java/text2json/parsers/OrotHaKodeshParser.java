@@ -1,8 +1,8 @@
 package text2json.parsers;
 
+import text2json.JbsParser;
 import text2json.Line;
 import text2json.LineMatcher;
-import text2json.Parser;
 
 import java.io.IOException;
 
@@ -12,10 +12,10 @@ import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 /**
  * Created by Assaf on 08/06/2017.
  */
-public class OrotHaKodeshParser extends Parser {
+public class OrotHaKodeshParser extends JbsParser {
 
     protected static final String BEGIN_TEACHING = "begin_teaching";
-    private int teachingNum = 0,position=0;
+    private int teachingNum = 0,position=0 ,packagePosition=1;
     private int sectionNum = 0;
     private String nativName = "";
 
@@ -69,9 +69,11 @@ public class OrotHaKodeshParser extends Parser {
                 jsonObjectFlush();
                 teachingNum=0;
                 sectionNum++;
-                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "orothakodesh");
-                packagesJsonObject().add(URI,JBR_SECTION + "orothakodesh-" + sectionNum);
-                packagesJsonObject().add(RDFS_LABEL,"אורות הקודש" + " " + HEB_LETTERS_INDEX[sectionNum-1]);
+                addBook(packagesJsonObject(), "orothakodesh");
+                addPosition(packagesJsonObject(),packagePosition);
+                packagePosition++;
+                addPackageUri( "orothakodesh-" + sectionNum);
+                addRdfs(packagesJsonObject(),"אורות הקודש" + " " + HEB_LETTERS_INDEX[sectionNum-1]);
                 packagesJsonObjectFlush();
                 break;
 
@@ -79,12 +81,12 @@ public class OrotHaKodeshParser extends Parser {
                 jsonObjectFlush();
                 teachingNum++;
                 position++;
-                jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_POSITION, position);
-                jsonObject().add(JBO_BOOK, JBR_BOOK + "orothakodesh");
-                jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "orothakodesh-" + sectionNum);
+                addUri( getUri());
+                addPosition( position);
+                addBook( "orothakodesh");
+                addWithin( "orothakodesh-" + sectionNum);
                 String rdfs = "אורות הקודש" + " " + HEB_LETTERS_INDEX[sectionNum-1] + " " + HEB_LETTERS_INDEX[teachingNum-1];
-                jsonObject().add(RDFS_LABEL,rdfs);
+                addRdfs(rdfs);
                 break;
 
             case NO_MATCH:
@@ -95,5 +97,5 @@ public class OrotHaKodeshParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR_TEXT + "orothakodesh-" + sectionNum + "-"+ teachingNum;    }
+        return  "orothakodesh-" + sectionNum + "-"+ teachingNum;    }
 }

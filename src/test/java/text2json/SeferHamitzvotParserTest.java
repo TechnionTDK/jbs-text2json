@@ -21,6 +21,7 @@ public class SeferHamitzvotParserTest {
     @BeforeClass
     public static void beforeClass() throws Exception {
         Parser parser = new SeferHamitzvotParser();
+        createOutputFolderIfNotExists("seferhamitzvot");
         BufferedReader reader = getText("seferhamitzvot/seferhamitzvot.txt");
         createOutputFolderIfNotExists("seferhamitzvot");
         parser.parse(reader, "json/seferhamitzvot/seferhamitzvot.json");
@@ -37,16 +38,16 @@ public class SeferHamitzvotParserTest {
     public void testObjects() {
         // test first object
         Map<String, String> o = json.getObject(0);
-        assertEquals(JBR_TEXT + "seferhamitzvot-3-1", o.get(URI));
-        assertEquals("ספר המצוות עשה מצוה א.", o.get(RDFS_LABEL));
+        assertTextUriProperty(o, "seferhamitzvot-3-1");
+        assertLabelProperty( o ,"ספר המצוות עשה מצוה א.");
         assertTrue(o.get(JBO_TEXT).startsWith("היא הצווי אשר צונו בהאמנת"));
-        assertBookProperty("seferhamitzvot", o.get(JBO_BOOK));
+        assertBookProperty(o,"seferhamitzvot");
 
         // test last object
         o = json.getObject(612);
-        assertEquals(JBR_TEXT + "seferhamitzvot-4-365", o.get(URI));
-        assertEquals("ספר המצוות לא תעשה מצוה שסה:", o.get(RDFS_LABEL));
+        assertTextUriProperty(o, "seferhamitzvot-4-365");
+        assertLabelProperty( o ,"ספר המצוות לא תעשה מצוה שסה:");
         assertTrue(o.get(JBO_TEXT).startsWith("הזהיר המלך מהרבות ממון מיוחד לעצמו"));
-        assertBookProperty("seferhamitzvot", o.get(JBO_BOOK));
+        assertBookProperty(o,"seferhamitzvot");
     }
 }

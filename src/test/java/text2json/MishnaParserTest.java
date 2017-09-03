@@ -39,13 +39,13 @@ public class MishnaParserTest {
 
         o = json[0].getObject(JBR_TEXT + "mishna-bartanura-1-1-2-2");
         assertTrue(o.get(JBO_TEXT).contains("ויאמר אינו נוהג אלא ביום"));
-        assertBookProperty("bartanura", o.get(JBO_BOOK));
+        assertBookProperty(o,"bartanura");
 
         o = json[0].getObject(JBR_TEXT + "mishna-1-1-2-2");
-        assertBookProperty("mishna", o.get(JBO_BOOK));
+        assertBookProperty(o,"mishna");
 
         o = json[0].getObject(JBR_TEXT + "mishna-yomtov-1-1-2-2");
-        assertBookProperty("yomtov", o.get(JBO_BOOK));
+        assertBookProperty(o,"yomtov");
     }
 
 }

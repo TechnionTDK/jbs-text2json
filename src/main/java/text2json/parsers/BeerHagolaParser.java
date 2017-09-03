@@ -1,25 +1,25 @@
 package text2json.parsers;
 
+import text2json.JbsParser;
 import text2json.Line;
 import text2json.LineMatcher;
-import text2json.Parser;
 
 import java.io.IOException;
 
 import static text2json.JbsOntology.*;
-import static text2json.JbsUtils.*;
+import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 
 /**
  * Created by Assaf on 08/06/2017.
  */
-public class BeerHagolaParser extends Parser {
+public class BeerHagolaParser extends JbsParser {
 
     private int beerNum = -1;
 
 
-    public BeerHagolaParser() {
-        createPackagesJson();
-    }
+//    public BeerHagolaParser() {
+//        createPackagesJson();
+//    }
 
     @Override
     protected void registerMatchers() {
@@ -65,23 +65,23 @@ public class BeerHagolaParser extends Parser {
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 beerNum++;
-                jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_BOOK, JBR_BOOK + "beerhagola");
-                jsonObject().add(JBO_POSITION, beerNum+1);
-                jsonObject().add(RDFS_LABEL,"באר הגולה - הקדמה");
+                addUri( getUri());
+                addBook( "beerhagola");
+                addPosition( beerNum+1);
+                addRdfs("באר הגולה - הקדמה");
                 break;
 
 
             case BEGIN_PEREK:
-                packagesJsonObjectFlush();
+//                packagesJsonObjectFlush();
                 jsonObjectFlush();
                 beerNum++;
                 String beerName = "באר " + HEB_LETTERS_INDEX[beerNum-1];
-                jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_BOOK,JBR_BOOK + "beerhagola");
-                jsonObject().add(JBO_POSITION, beerNum+1);
+                addUri( getUri());
+                addBook( "beerhagola");
+                addPosition( beerNum+1);
                 String rdfs = "באר הגולה - " + beerName;
-                jsonObject().add(RDFS_LABEL,rdfs);
+                addRdfs(rdfs);
                 break;
 
             case NO_MATCH:
@@ -92,7 +92,7 @@ public class BeerHagolaParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR_TEXT + "beerhagola-" + beerNum ;    }
+        return "beerhagola-" + beerNum ;    }
     protected String getcorpus() { return JBR + "beerhagola";    }
 
 

@@ -1,23 +1,23 @@
 package text2json.parsers;
 
+import text2json.JbsParser;
 import text2json.Line;
 import text2json.LineMatcher;
-import text2json.Parser;
 
 import java.io.IOException;
 
 import static text2json.JbsOntology.*;
-import static text2json.JbsUtils.*;
+import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 
 /**
  * Created by Assaf on 08/06/2017.
  */
-public class OrotParser extends Parser {
+public class OrotParser extends JbsParser {
 
     protected static final String BEGIN_MAAMAR = "begin_maamar";
     protected static final String BEGIN_SUB_MAAMAR = "begin_sub_maamar";
 
-    private int maamarNum = 0,position =0;
+    private int maamarNum = 0,position =0,packagePosition =1;
     private int subMaamarNum = 0;
     private int perekNum = 0;
     private String maamarName ="";
@@ -86,13 +86,16 @@ public class OrotParser extends Parser {
                 perekNum=0;
                 maamarName = getMaamarName(line.getLine());
                 maamarNum++;
-                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "orot");
-                packagesJsonObject().add(URI, JBR_SECTION + "orot - maamar - "+maamarNum);
+                addBook(packagesJsonObject(), "orot");
+                addPosition(packagesJsonObject(),packagePosition);
+                packagePosition++;
+                addPackageUri( "orot-maamar-"+maamarNum);
+
                 int res = maamarName.compareTo("- אורות ישראל");
                 if (res == 0) {
                     maamarName = "אורות ישראל";
                 }
-                packagesJsonObject().add(RDFS_LABEL,"אורות - " + maamarName );
+                addRdfs(packagesJsonObject(),"אורות - " + maamarName );
                 packagesJsonObjectFlush();
                 hasSubMaamar=0;
                 break;
@@ -102,9 +105,11 @@ public class OrotParser extends Parser {
                 perekNum=0;
                 subMaamarNum++;
                 subMaamarName = getSubMaamarName (line.getLine());
-                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "orot");
-                packagesJsonObject().add(URI, JBR_SECTION + "orot - maamar - "+ maamarNum + " submaamar - " + subMaamarNum);
-                packagesJsonObject().add(RDFS_LABEL, "אורות - " + maamarName +" - " + subMaamarName);
+                addBook(packagesJsonObject(), "orot");
+                addPosition(packagesJsonObject(), packagePosition);
+                packagePosition++;
+                addPackageUri( "orot-maamar-"+ maamarNum + "-submaamar-" + subMaamarNum);
+                addRdfs(packagesJsonObject(), "אורות - " + maamarName +" - " + subMaamarName);
                 packagesJsonObjectFlush();
                 hasSubMaamar = 1;
                 break;
@@ -116,13 +121,13 @@ public class OrotParser extends Parser {
                         perekNum++;
                         position++;
                         String hebperek = HEB_LETTERS_INDEX[perekNum - 1];
-                        jsonObject().add(URI, getUri());
-                        jsonObject().add(JBO_POSITION, position);
-                        jsonObject().add(JBO_BOOK, JBR_BOOK + "orot");
-                        jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "orot-" + maamarNum);
-                        jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "orot-" + maamarNum +"-" + subMaamarNum);
+                        addUri( getUri());
+                        addPosition( position);
+                        addBook( "orot");
+                        addWithin( "orot-" + maamarNum);
+                        addWithin( "orot-" + maamarNum +"-" + subMaamarNum);
                         String rdfs = "אורות - " + maamarName + " - " + subMaamarName + " " + hebperek;
-                        jsonObject().add(RDFS_LABEL,rdfs);
+                        addRdfs(rdfs);
                         break;
 
                     case (0): // no submaamar so each chapter has a unique name
@@ -130,13 +135,13 @@ public class OrotParser extends Parser {
                         perekNum++;
                         position++;
                         perekName  = getPerekName (line.getLine());
-                        jsonObject().add(URI, getUri());
-                        jsonObject().add(JBO_POSITION, position);
-                        jsonObject().add(JBO_BOOK, JBR_BOOK + "orot");
-                        jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "orot-" + maamarNum);
-                        jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "orot-" + maamarNum +"-" + subMaamarNum);
+                        addUri( getUri());
+                        addPosition( position);
+                        addBook( "orot");
+                        addWithin( "orot-" + maamarNum);
+                        addWithin( "orot-" + maamarNum +"-" + subMaamarNum);
                         String rdfs1 = "אורות " + maamarName + " - " + perekName;
-                        jsonObject().add(RDFS_LABEL,rdfs1);
+                        addRdfs(rdfs1);
                         break;
                 }
                 break;
@@ -149,7 +154,7 @@ public class OrotParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR_TEXT + "orot-" + maamarNum +"-" + subMaamarNum + "-"+ perekNum;   }
+        return  "orot-" + maamarNum +"-" + subMaamarNum + "-"+ perekNum;   }
     protected String getMaamarName(String line){ return line.substring(line.indexOf(' ')+1);     }
     protected String getSubMaamarName(String line){ return line.substring(line.indexOf(' ')+6);     }
     protected String getPerekName(String line){ return line.substring(line.indexOf(' ')+5);     }

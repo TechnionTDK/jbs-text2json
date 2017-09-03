@@ -1,16 +1,14 @@
 package text2json;
 
-import com.google.gson.stream.JsonReader;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.MidrashRabaParser;
+
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
 import java.util.Map;
 
-import static org.junit.Assert.*;
-import static text2json.JbsOntology.*;
+import static org.junit.Assert.assertTrue;
+import static text2json.JbsOntology.JBO_TEXT;
 import static text2json.TestUtils.*;
 
 /**
@@ -38,15 +36,15 @@ public class MidrashRabaParserTest {
 
         // first object
         object = json[0].getObject(0);
-        assertEquals(JBR_TEXT + "tanach-midrashraba-1-1-1", object.get(URI));
-        assertEquals("1", object.get(JBO_POSITION));
-        assertEquals("מדרש רבה בראשית א א", object.get(RDFS_LABEL));
-        assertBookProperty("midrashraba", object.get(JBO_BOOK));
+        assertTextUriProperty( object , "tanach-midrashraba-1-1-1");
+        assertPositionProperty(object ,"1");
+        assertLabelProperty( object ,"מדרש רבה בראשית א א");
+        assertBookProperty( object,"midrashraba");
 
         // last object
         object = json[0].getObject(json[0].subjects.size()-1);
         assertTrue(object.get(JBO_TEXT).contains("ויעש לאביו אבל שבעת ימים"));
-        assertBookProperty("midrashraba", object.get(JBO_BOOK));
+        assertBookProperty( object,"midrashraba");
     }
 
 }

@@ -9,7 +9,6 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static text2json.JbsOntology.*;
 import static text2json.TestUtils.*;
 
 /**
@@ -21,6 +20,7 @@ public class TiferetIsraelParserTest {
     @BeforeClass
     public static void beforeClass() throws Exception {
         Parser parser = new TiferetIsraelParser();
+        createOutputFolderIfNotExists("tiferetisrael");
         BufferedReader reader = getText("tiferetisrael/tiferetisrael.txt");
         createOutputFolderIfNotExists("tiferetisrael");
         parser.parse(reader, "json/tiferetisrael/tiferetisrael.json");
@@ -38,47 +38,47 @@ public class TiferetIsraelParserTest {
         Map<String, String> object;
 
         object = json.getObject(0);
-        assertEquals(JBR_TEXT + "tiferetisrael-0", object.get(URI));
-        assertEquals("1", object.get(JBO_POSITION));
-        assertEquals("תפארת ישראל - הקדמה", object.get(RDFS_LABEL));
-        assertBookProperty("tiferetisrael", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "tiferetisrael-0");
+        assertPositionProperty(object ,"1");
+        assertLabelProperty( object ,"תפארת ישראל - הקדמה");
+        assertBookProperty(object,"tiferetisrael");
 
         object = json.getObject(3);
-        assertEquals(JBR_TEXT + "tiferetisrael-3", object.get(URI));
-        assertEquals("תפארת ישראל ג", object.get(RDFS_LABEL));
-        assertEquals("4", object.get(JBO_POSITION));
-        assertBookProperty("tiferetisrael", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "tiferetisrael-3");
+        assertLabelProperty( object ,"תפארת ישראל ג");
+        assertPositionProperty(object ,"4");
+        assertBookProperty(object,"tiferetisrael");
 
         object = json.getObject(23);
-        assertEquals(JBR_TEXT + "tiferetisrael-23", object.get(URI));
-        assertEquals("תפארת ישראל כג", object.get(RDFS_LABEL));
-        assertEquals("24", object.get(JBO_POSITION));
+        assertTextUriProperty(object, "tiferetisrael-23");
+        assertLabelProperty( object ,"תפארת ישראל כג");
+        assertPositionProperty(object ,"24");
 
         object = json.getObject(32);
-        assertEquals(JBR_TEXT + "tiferetisrael-32", object.get(URI));
-        assertEquals("תפארת ישראל לב", object.get(RDFS_LABEL));
-        assertEquals("33", object.get(JBO_POSITION));
-        assertBookProperty("tiferetisrael", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "tiferetisrael-32");
+        assertLabelProperty( object ,"תפארת ישראל לב");
+        assertPositionProperty(object ,"33");
+        assertBookProperty(object,"tiferetisrael");
 
         object = json.getObject(57);
-        assertEquals(JBR_TEXT + "tiferetisrael-57", object.get(URI));
-        assertEquals("תפארת ישראל נז", object.get(RDFS_LABEL));
-        assertEquals("58", object.get(JBO_POSITION));
+        assertTextUriProperty(object, "tiferetisrael-57");
+        assertLabelProperty( object ,"תפארת ישראל נז");
+        assertPositionProperty(object ,"58");
 
         object = json.getObject(64);
-        assertEquals(JBR_TEXT + "tiferetisrael-64", object.get(URI));
-        assertEquals("תפארת ישראל סד", object.get(RDFS_LABEL));
-        assertEquals("65", object.get(JBO_POSITION));
+        assertTextUriProperty(object, "tiferetisrael-64");
+        assertLabelProperty( object ,"תפארת ישראל סד");
+        assertPositionProperty(object ,"65");
 
         object = json.getObject(69);
-        assertEquals(JBR_TEXT + "tiferetisrael-69", object.get(URI));
-        assertEquals("תפארת ישראל סט", object.get(RDFS_LABEL));
-        assertEquals("70", object.get(JBO_POSITION));
+        assertTextUriProperty(object, "tiferetisrael-69");
+        assertLabelProperty( object ,"תפארת ישראל סט");
+        assertPositionProperty(object ,"70");
 
         object = json.getObject(70);
-        assertEquals(JBR_TEXT + "tiferetisrael-70", object.get(URI));
-        assertEquals("תפארת ישראל ע", object.get(RDFS_LABEL));
-        assertEquals("71", object.get(JBO_POSITION));
-        assertBookProperty("tiferetisrael", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "tiferetisrael-70");
+        assertLabelProperty( object ,"תפארת ישראל ע");
+        assertPositionProperty(object ,"71");
+        assertBookProperty(object,"tiferetisrael");
     }
 }

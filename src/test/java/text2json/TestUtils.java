@@ -1,12 +1,12 @@
 package text2json;
 
 import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static text2json.JbsOntology.*;
@@ -68,8 +68,10 @@ public class TestUtils {
         return(newString);
     }
 
-    protected static void assertBookProperty(String bookId, String propValue) {
-        assertEquals(JBR_BOOK + bookId, propValue);
-    }
+
+    protected static void assertTextUriProperty(Map<String, String> object, String uriID) { assertEquals(JBR_TEXT + uriID, object.get(URI)); }
+    protected static void assertBookProperty(Map<String, String> object, String bookId) { assertEquals(JBR_BOOK + bookId, object.get(JBO_BOOK)); }
+    protected static void assertPositionProperty(Map<String, String> object, String position) { assertEquals(position, object.get(JBO_POSITION)); }
+    protected static void assertLabelProperty(Map<String, String> object, String rdfs) {  assertEquals(rdfs, object.get(RDFS_LABEL)); }
 
 }

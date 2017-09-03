@@ -6,21 +6,19 @@ import text2json.LineMatcher;
 
 import java.io.IOException;
 
-import static text2json.JbsOntology.*;
-import static text2json.JbsUtils.HEB_LETTERS_INDEX;
-
-/**
- * Created by Assaf on 08/06/2017.
- */
-public class OrChadashParser extends JbsParser {
-
-    private int chapterNum = 0;
-    private int hakdamaNum = -1;
+import static text2json.JbsOntology.JBO_TEXT;
 
 
-//    public OrChadashParser() {
-//        createPackagesJson();
-//    }
+public class TurParser extends JbsParser {
+
+    protected static final String BEGIN_TUR = "begin_tur";
+    private int turNum = 0,position=0;
+    private int simanNum = 0;
+    private String turName = "";
+
+    public TurParser() {
+        createPackagesJson();
+    }
 
     @Override
     protected void registerMatchers() {
@@ -30,17 +28,17 @@ public class OrChadashParser extends JbsParser {
 
             @Override
             public boolean match(Line line) {
-                return line.beginsWith("אור חדש") && line.wordCount() <= 10;
+                return line.beginsWith("ארבעה טורים") && line.wordCount() <= 10;
             }
         });
 
         registerMatcher(new LineMatcher() {
             @Override
-            public String type() { return BEGIN_HAKDAMA;}
+            public String type() { return BEGIN_TUR;}
 
             @Override
             public boolean match(Line line) {
-                return line.beginsWith("הקדמה") && line.wordCount() <= 10;
+                return line.beginsWith("טור ") && line.wordCount() <= 10;
             }
         });
 
@@ -50,7 +48,7 @@ public class OrChadashParser extends JbsParser {
 
             @Override
             public boolean match(Line line) {
-                return line.beginsWith("Chapter ") && line.wordCount() <= 10;
+                return line.beginsWith("Siman") && line.wordCount() <= 10;
             }
         });
     }
@@ -63,29 +61,31 @@ public class OrChadashParser extends JbsParser {
                 // It is created outside text2json
                 break;
 
-            case BEGIN_HAKDAMA:
+
+
+            case BEGIN_TUR:
                 jsonObjectFlush();
-                hakdamaNum++;
-                addUri( "orchadash-0" +hakdamaNum);
-                addBook("orchadash");
-                addPosition(hakdamaNum+1);
-                if (hakdamaNum ==00)
-                    addRdfs("אור חדש - הקדמה א");
-                if (hakdamaNum ==01)
-                    addRdfs("אור חדש - הקדמה ב");
+                simanNum=0;
+                turNum++;
+                turName = line.getLine();
+                addBook(packagesJsonObject() ,"tur");
+                addPackageUri( "tur-" + turNum);
+                addPosition(packagesJsonObject(), turNum);
+                addRdfs(packagesJsonObject(), turName);
+                packagesJsonObjectFlush();
                 break;
 
-
             case BEGIN_PEREK:
-//                packagesJsonObjectFlush();
                 jsonObjectFlush();
-                chapterNum++;
-                String chapterName =HEB_LETTERS_INDEX[chapterNum-1];
+                simanNum++;
+                position++;
                 addUri( getUri());
-                addPosition(chapterNum+2);
-                addBook("orchadash");
-                String rdfs = "אור חדש " + chapterName;
+                addPosition( position);
+                addBook( "tur");
+                addWithin( "tur-" + turNum);
+                String rdfs = "ארבעה טורים - " + turName +" סימן " + simanNum;
                 addRdfs(rdfs);
+
                 break;
 
             case NO_MATCH:
@@ -96,5 +96,5 @@ public class OrChadashParser extends JbsParser {
 
     @Override
     protected String getUri() {
-        return  "orchadash-" + chapterNum ;    }
+        return  "tur-" + turNum + "-"+ simanNum;    }
 }

@@ -1,8 +1,8 @@
 package text2json.parsers;
 
+import text2json.JbsParser;
 import text2json.Line;
 import text2json.LineMatcher;
-import text2json.Parser;
 
 import java.io.IOException;
 
@@ -12,15 +12,15 @@ import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 /**
  * Created by Assaf on 08/06/2017.
  */
-public class GevurotHashemParser extends Parser {
+public class GevurotHashemParser extends JbsParser {
 
     private int chapterNum = 0;
     private int hakdamaNum = 0;
 
 
-    public GevurotHashemParser() {
-        createPackagesJson();
-    }
+//    public GevurotHashemParser() {
+//        createPackagesJson();
+//    }
 
     @Override
     protected void registerMatchers() {
@@ -66,28 +66,28 @@ public class GevurotHashemParser extends Parser {
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 hakdamaNum++;
-                jsonObject().add(URI, JBR_TEXT + "gevurothashem-0-" + (hakdamaNum-1));
-                jsonObject().add(JBO_BOOK, JBR_BOOK + "gevurothashem");
-                jsonObject().add(JBO_POSITION, hakdamaNum);
+                addUri( "gevurothashem-0-" + (hakdamaNum-1));
+                addBook( "gevurothashem");
+                addPosition(hakdamaNum);
                 if (hakdamaNum ==1)
-                    jsonObject().add(RDFS_LABEL,"גבורות השם - הקדמה א");
+                   addRdfs("גבורות השם - הקדמה א");
                 if (hakdamaNum ==2)
-                    jsonObject().add(RDFS_LABEL,"גבורות השם - הקדמה ב");
+                    addRdfs("גבורות השם - הקדמה ב");
                 if (hakdamaNum ==3)
-                    jsonObject().add(RDFS_LABEL,"גבורות השם - הקדמה ג");
+                    addRdfs("גבורות השם - הקדמה ג");
                 break;
 
 
             case BEGIN_PEREK:
-                packagesJsonObjectFlush();
+//                packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
                 String chapterName = HEB_LETTERS_INDEX[chapterNum-1];
-                jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_POSITION, chapterNum+3);
-                jsonObject().add(JBO_BOOK, JBR_BOOK + "gevurothashem");
+                addUri( getUri());
+                addPosition( chapterNum+3);
+                addBook( "gevurothashem");
                 String rdfs = "גבורות השם " + chapterName;
-                jsonObject().add(RDFS_LABEL,rdfs);
+                addRdfs(rdfs);
                 break;
 
             case NO_MATCH:
@@ -99,6 +99,6 @@ public class GevurotHashemParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR_TEXT + "gevurothashem-" + chapterNum ;    }
+        return "gevurothashem-" + chapterNum ;    }
 
 }

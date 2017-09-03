@@ -1,8 +1,8 @@
 package text2json.parsers;
 
+import text2json.JbsParser;
 import text2json.Line;
 import text2json.LineMatcher;
-import text2json.Parser;
 
 import java.io.IOException;
 
@@ -12,12 +12,12 @@ import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 /**
  * Created by Assaf on 08/06/2017.
  */
-public class DerechChaimParser extends Parser {
+public class DerechChaimParser extends JbsParser {
 
     protected static final String BEGIN_MISHNA = "begin_mishna";
     private int mishnaNum = 0;
     private int perekNum = 0;
-    private int position = 0;
+    private int position = 0, packagePosition =1;
     private String nativName = "";
 
     public DerechChaimParser() {
@@ -78,10 +78,10 @@ public class DerechChaimParser extends Parser {
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 position++;
-                jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_BOOK,JBR_BOOK + "derechchaim");
-                jsonObject().add(JBO_POSITION, position);
-                jsonObject().add(RDFS_LABEL,"דרך חיים - הקדמה");
+                addUri( getUri());
+                addBook( "derechchaim");
+                addPosition(position);
+                addRdfs("דרך חיים - הקדמה");
 
                 break;
 
@@ -89,9 +89,11 @@ public class DerechChaimParser extends Parser {
                 jsonObjectFlush();
                 mishnaNum=0;
                 perekNum++;
-                packagesJsonObject().add(URI, JBR_SECTION + "derechchaim-" + perekNum);
+                addPackageUri( "derechchaim-" + perekNum);
+                addPosition(packagesJsonObject(),packagePosition);
+                packagePosition++;
                 String rdfs1 = "דרך חיים " + HEB_LETTERS_INDEX[perekNum-1];
-                packagesJsonObject().add(RDFS_LABEL, rdfs1);
+                addRdfs(packagesJsonObject(), rdfs1);
                 packagesJsonObjectFlush();
                 break;
 
@@ -99,14 +101,14 @@ public class DerechChaimParser extends Parser {
                 jsonObjectFlush();
                 mishnaNum++;
                 position++;
-                jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_POSITION, position);
-                jsonObject().add(JBO_BOOK,JBR_BOOK + "derechchaim");
+                addUri( getUri());
+                addPosition(position);
+                addBook( "derechchaim");
                 jsonObject().add(JBO_INTERPRETS, JBR_TEXT + "mishna-4-9-" + perekNum+"-"+mishnaNum);
-                jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "derechchaim-" +  perekNum);
+                addWithin( "derechchaim-" +  perekNum);
 
                 String rdfs = "דרך חיים " + HEB_LETTERS_INDEX[perekNum-1] + " " + HEB_LETTERS_INDEX[mishnaNum-1];
-                jsonObject().add(RDFS_LABEL,rdfs);
+                addRdfs(rdfs);
 
                 break;
 
@@ -118,5 +120,5 @@ public class DerechChaimParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR_TEXT + "derechchaim-" + perekNum + "-"+ mishnaNum;    }
+        return  "derechchaim-" + perekNum + "-"+ mishnaNum;    }
 }

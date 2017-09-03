@@ -9,7 +9,6 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static text2json.JbsOntology.*;
 import static text2json.TestUtils.*;
 
 /**
@@ -22,6 +21,7 @@ public class GevurotHashemParserTest {
     @BeforeClass
     public static void beforeClass() throws Exception {
         Parser parser = new GevurotHashemParser();
+        createOutputFolderIfNotExists("gevurothashem");
         BufferedReader reader = getText("gevurothashem/gevurothashem.txt");
         createOutputFolderIfNotExists("gevurothashem");
         parser.parse(reader, "json/gevurothashem/gevurothashem.json");
@@ -40,37 +40,37 @@ public class GevurotHashemParserTest {
 
 
         object = json.getObject(0);
-        assertEquals(JBR_TEXT + "gevurothashem-0-0", object.get(URI));
-        assertEquals("1", object.get(JBO_POSITION));
-        assertEquals("גבורות השם - הקדמה א", object.get(RDFS_LABEL));
-        assertBookProperty("gevurothashem", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "gevurothashem-0-0");
+        assertPositionProperty(object ,"1");
+        assertLabelProperty( object ,"גבורות השם - הקדמה א");
+        assertBookProperty(object,"gevurothashem");
 
         object = json.getObject(13);
-        assertEquals(JBR_TEXT + "gevurothashem-11", object.get(URI));
-        assertEquals("גבורות השם יא", object.get(RDFS_LABEL));
-        assertEquals("14", object.get(JBO_POSITION));
-        assertBookProperty("gevurothashem", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "gevurothashem-11");
+        assertLabelProperty( object ,"גבורות השם יא");
+        assertPositionProperty(object ,"14");
+        assertBookProperty(object,"gevurothashem");
 
         object = json.getObject(34);
-        assertEquals(JBR_TEXT + "gevurothashem-32", object.get(URI));
-        assertEquals("גבורות השם לב", object.get(RDFS_LABEL));
-        assertEquals("35", object.get(JBO_POSITION));
+        assertTextUriProperty(object, "gevurothashem-32");
+        assertLabelProperty( object ,"גבורות השם לב");
+        assertPositionProperty(object ,"35");
 
         object = json.getObject(41);
-        assertEquals(JBR_TEXT + "gevurothashem-39", object.get(URI));
-        assertEquals("גבורות השם לט", object.get(RDFS_LABEL));
-        assertEquals("42", object.get(JBO_POSITION));
+        assertTextUriProperty(object, "gevurothashem-39");
+        assertLabelProperty( object ,"גבורות השם לט");
+        assertPositionProperty(object ,"42");
 
         object = json.getObject(54);
-        assertEquals(JBR_TEXT + "gevurothashem-52", object.get(URI));
-        assertEquals("גבורות השם נב", object.get(RDFS_LABEL));
-        assertEquals("55", object.get(JBO_POSITION));
-        assertBookProperty("gevurothashem", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "gevurothashem-52");
+        assertLabelProperty( object ,"גבורות השם נב");
+        assertPositionProperty(object ,"55");
+        assertBookProperty(object,"gevurothashem");
 
         object = json.getObject(56);
-        assertEquals(JBR_TEXT + "gevurothashem-54", object.get(URI));
-        assertEquals("גבורות השם נד", object.get(RDFS_LABEL));
-        assertEquals("57", object.get(JBO_POSITION));
-        assertBookProperty("gevurothashem", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "gevurothashem-54");
+        assertLabelProperty( object ,"גבורות השם נד");
+        assertPositionProperty(object ,"57");
+        assertBookProperty(object,"gevurothashem");
     }
 }

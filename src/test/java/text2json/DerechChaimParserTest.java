@@ -9,7 +9,6 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static text2json.JbsOntology.*;
 import static text2json.TestUtils.*;
 
 /**
@@ -22,6 +21,7 @@ public class DerechChaimParserTest {
     @BeforeClass
     public static void beforeClass() throws Exception {
         Parser parser = new DerechChaimParser();
+        createOutputFolderIfNotExists("derechchaim");
         BufferedReader reader = getText("derechchaim/derechchaim.txt");
         createOutputFolderIfNotExists("derechchaim");
         parser.parse(reader, "json/derechchaim/derechchaim.json");
@@ -40,44 +40,44 @@ public class DerechChaimParserTest {
 
 
         object = json.getObject(0);
-        assertEquals(JBR_TEXT + "derechchaim-0-0", object.get(URI));
-        assertEquals("1", object.get(JBO_POSITION));
-        assertEquals("דרך חיים - הקדמה", object.get(RDFS_LABEL));
-        assertEquals("jbr:book-derechchaim", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "derechchaim-0-0");
+        assertPositionProperty(object ,"1");
+        assertLabelProperty( object ,"דרך חיים - הקדמה");
+        assertBookProperty( object,"derechchaim");
 
         object = json.getObject(3);
-        assertEquals(JBR_TEXT + "derechchaim-1-3", object.get(URI));
-        assertEquals("דרך חיים א ג", object.get(RDFS_LABEL));
-        assertEquals("4", object.get(JBO_POSITION));
-        assertEquals("jbr:book-derechchaim", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "derechchaim-1-3");
+        assertLabelProperty( object ,"דרך חיים א ג");
+        assertPositionProperty(object ,"4");
+        assertBookProperty( object,"derechchaim");
 
         object = json.getObject(23);
-        assertEquals(JBR_TEXT + "derechchaim-2-5", object.get(URI));
-        assertEquals("דרך חיים ב ה", object.get(RDFS_LABEL));
-        assertEquals("24", object.get(JBO_POSITION));
-        assertEquals("jbr:book-derechchaim", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "derechchaim-2-5");
+        assertLabelProperty( object ,"דרך חיים ב ה");
+        assertPositionProperty(object ,"24");
+        assertBookProperty( object,"derechchaim");
 
         object = json.getObject(32);
-        assertEquals(JBR_TEXT + "derechchaim-2-14", object.get(URI));
-        assertEquals("דרך חיים ב יד", object.get(RDFS_LABEL));
-        assertEquals("33", object.get(JBO_POSITION));
+        assertTextUriProperty(object, "derechchaim-2-14");
+        assertLabelProperty( object ,"דרך חיים ב יד");
+        assertPositionProperty(object ,"33");
 
         object = json.getObject(57);
-        assertEquals(JBR_TEXT + "derechchaim-4-5", object.get(URI));
-        assertEquals("דרך חיים ד ה", object.get(RDFS_LABEL));
-        assertEquals("58", object.get(JBO_POSITION));
-        assertEquals("jbr:book-derechchaim", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "derechchaim-4-5");
+        assertLabelProperty( object ,"דרך חיים ד ה");
+        assertPositionProperty(object ,"58");
+        assertBookProperty( object,"derechchaim");
 
         object = json.getObject(64);
-        assertEquals(JBR_TEXT + "derechchaim-4-12", object.get(URI));
-        assertEquals("דרך חיים ד יב", object.get(RDFS_LABEL));
-        assertEquals("65", object.get(JBO_POSITION));
-        assertEquals("jbr:book-derechchaim", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "derechchaim-4-12");
+        assertLabelProperty( object ,"דרך חיים ד יב");
+        assertPositionProperty(object ,"65");
+        assertBookProperty( object,"derechchaim");
 
         object = json.getObject(83);
-        assertEquals(JBR_TEXT + "derechchaim-5-9", object.get(URI));
-        assertEquals("דרך חיים ה ט", object.get(RDFS_LABEL));
-        assertEquals("84", object.get(JBO_POSITION));
+        assertTextUriProperty(object, "derechchaim-5-9");
+        assertLabelProperty( object ,"דרך חיים ה ט");
+        assertPositionProperty(object ,"84");
 
     }
 }

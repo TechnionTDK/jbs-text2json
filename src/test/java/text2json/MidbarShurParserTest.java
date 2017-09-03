@@ -9,7 +9,6 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static text2json.JbsOntology.*;
 import static text2json.TestUtils.*;
 
 /**
@@ -22,6 +21,7 @@ public class MidbarShurParserTest {
     @BeforeClass
     public static void beforeClass() throws Exception {
         Parser parser = new MidbarShurParser();
+        createOutputFolderIfNotExists("midbarshur");
         BufferedReader reader = getText("midbarshur/midbarshur.txt");
         createOutputFolderIfNotExists("midbarshur");
         parser.parse(reader, "json/midbarshur/midbarshur.json");
@@ -39,39 +39,39 @@ public class MidbarShurParserTest {
         Map<String, String> object;
 
         object = json.getObject(0);
-        assertEquals(JBR_TEXT + "midbarshur-1", object.get(URI));
-        assertEquals("1", object.get(JBO_POSITION));
-        assertEquals("מדבר שור - דרוש א", object.get(RDFS_LABEL));
-        assertBookProperty("midbarshur", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "midbarshur-1");
+        assertPositionProperty(object ,"1");
+        assertLabelProperty( object ,"מדבר שור - דרוש א");
+        assertBookProperty(object,"midbarshur");
 
         object = json.getObject(3);
-        assertEquals(JBR_TEXT + "midbarshur-4", object.get(URI));
-        assertEquals("מדבר שור - דרוש ד", object.get(RDFS_LABEL));
-        assertEquals("4", object.get(JBO_POSITION));
-        assertBookProperty("midbarshur", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "midbarshur-4");
+        assertLabelProperty( object ,"מדבר שור - דרוש ד");
+        assertPositionProperty(object ,"4");
+        assertBookProperty(object,"midbarshur");
 
         object = json.getObject(18);
-        assertEquals(JBR_TEXT + "midbarshur-19", object.get(URI));
-        assertEquals("מדבר שור - דרוש יט", object.get(RDFS_LABEL));
-        assertEquals("19", object.get(JBO_POSITION));
-        assertBookProperty("midbarshur", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "midbarshur-19");
+        assertLabelProperty( object ,"מדבר שור - דרוש יט");
+        assertPositionProperty(object ,"19");
+        assertBookProperty(object,"midbarshur");
 
         object = json.getObject(19);
-        assertEquals(JBR_TEXT + "midbarshur-20", object.get(URI));
-        assertEquals("מדבר שור - דרוש כ", object.get(RDFS_LABEL));
-        assertEquals("20", object.get(JBO_POSITION));
-        assertBookProperty("midbarshur", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "midbarshur-20");
+        assertLabelProperty( object ,"מדבר שור - דרוש כ");
+        assertPositionProperty(object ,"20");
+        assertBookProperty(object,"midbarshur");
 
         object = json.getObject(28);
-        assertEquals(JBR_TEXT + "midbarshur-29", object.get(URI));
-        assertEquals("מדבר שור - דרוש כט", object.get(RDFS_LABEL));
-        assertEquals("29", object.get(JBO_POSITION));
-        assertBookProperty("midbarshur", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "midbarshur-29");
+        assertLabelProperty( object ,"מדבר שור - דרוש כט");
+        assertPositionProperty(object ,"29");
+        assertBookProperty(object,"midbarshur");
 
         object = json.getObject(37);
-        assertEquals(JBR_TEXT + "midbarshur-38", object.get(URI));
-        assertEquals("מדבר שור - דרוש לח", object.get(RDFS_LABEL));
-        assertEquals("38", object.get(JBO_POSITION));
-        assertBookProperty("midbarshur", object.get(JBO_BOOK));
+        assertTextUriProperty(object, "midbarshur-38");
+        assertLabelProperty( object ,"מדבר שור - דרוש לח");
+        assertPositionProperty(object ,"38");
+        assertBookProperty(object,"midbarshur");
     }
 }

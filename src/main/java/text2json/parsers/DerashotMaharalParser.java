@@ -1,8 +1,8 @@
 package text2json.parsers;
 
+import text2json.JbsParser;
 import text2json.Line;
 import text2json.LineMatcher;
-import text2json.Parser;
 
 import java.io.IOException;
 
@@ -11,13 +11,13 @@ import static text2json.JbsOntology.*;
 /**
  * Created by Assaf on 08/06/2017.
  */
-public class DerashotMaharalParser extends Parser {
+public class DerashotMaharalParser extends JbsParser {
 
     private int chapterNum = -1;
 
-    public DerashotMaharalParser() {
-        createPackagesJson();
-    }
+//    public DerashotMaharalParser() {
+//        createPackagesJson();
+//    }
 
     @Override
     protected void registerMatchers() {
@@ -64,15 +64,15 @@ public class DerashotMaharalParser extends Parser {
                 jsonObjectFlush();
 
             case BEGIN_PEREK:
-                packagesJsonObjectFlush();
+//                packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
                 String chapterName = line.getLine();
-                jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_POSITION, chapterNum+1);
-                jsonObject().add(JBO_BOOK, JBR_BOOK + "derashotmaharal");
+                addUri( getUri());
+                addPosition( chapterNum+1);
+                addBook( "derashotmaharal");
                 String rdfs = "דרשות מהר\"ל - " + chapterName;
-                jsonObject().add(RDFS_LABEL,rdfs);
+                addRdfs(rdfs);
                 break;
 
             case NO_MATCH:
@@ -83,6 +83,6 @@ public class DerashotMaharalParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR_TEXT + "derashotmaharal-" + chapterNum ;    }
+        return  "derashotmaharal-" + chapterNum ;    }
 
 }
