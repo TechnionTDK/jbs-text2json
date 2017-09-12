@@ -24,7 +24,8 @@ public class LomdimLessonParserTest {
     public static void beforeClass() throws Exception {
         Parser parser = new LomdimLessonParser();
         String[] filesToParse = new String[]{"lesson_test1",
-                "lesson_teshuva1", "lesson_teshuva2", "lesson_rashi_ki_tetze"};
+                "lesson_teshuva1", "lesson_teshuva2", "lesson_teshuva3", "lesson_teshuva4", "lesson_rashi_ki_tetze",
+                "lesson_rashi_ki_tavo", "lesson_shofar1"};
         json = new SubjectsJson[filesToParse.length];
         createOutputFolderIfNotExists("lomdim");
         for (int i=0; i<filesToParse.length; i++) {
