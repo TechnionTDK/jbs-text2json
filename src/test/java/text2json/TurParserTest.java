@@ -49,74 +49,74 @@ public class TurParserTest {
         object = json.getObject(0);
         assertTextUriProperty(object, "tur-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"ארבעה טורים - טור אורח חיים סימן 1");
+        assertLabelProperty( object ,"ארבעה טורים טור אורח חיים סימן 1");
         assertBookProperty(object,"tur");
 
         object = json.getObject(13);
         assertTextUriProperty(object, "tur-1-14");
-        assertLabelProperty( object ,"ארבעה טורים - טור אורח חיים סימן 14");
+        assertLabelProperty( object ,"ארבעה טורים טור אורח חיים סימן 14");
         assertPositionProperty(object ,"14");
         assertBookProperty(object,"tur");
 
         object = json.getObject(599);
         assertTextUriProperty(object, "tur-1-600");
-        assertLabelProperty( object ,"ארבעה טורים - טור אורח חיים סימן 600");
+        assertLabelProperty( object ,"ארבעה טורים טור אורח חיים סימן 600");
         assertPositionProperty(object ,"600");
         assertBookProperty(object,"tur");
 
         object = json.getObject(696);
         assertTextUriProperty(object, "tur-1-697");
-        assertLabelProperty( object ,"ארבעה טורים - טור אורח חיים סימן 697");
+        assertLabelProperty( object ,"ארבעה טורים טור אורח חיים סימן 697");
         assertPositionProperty(object ,"697");
 
         object = json.getObject(697);
         assertTextUriProperty(object, "tur-2-1");
-        assertLabelProperty( object ,"ארבעה טורים - טור יורה דעה סימן 1");
+        assertLabelProperty( object ,"ארבעה טורים טור יורה דעה סימן 1");
         assertPositionProperty(object ,"698");
 
         object = json.getObject(897);
         assertTextUriProperty(object, "tur-2-201");
-        assertLabelProperty( object ,"ארבעה טורים - טור יורה דעה סימן 201");
+        assertLabelProperty( object ,"ארבעה טורים טור יורה דעה סימן 201");
         assertPositionProperty(object ,"898");
         assertBookProperty(object,"tur");
 
         object = json.getObject(1099);
         assertTextUriProperty(object, "tur-2-403");
-        assertLabelProperty( object ,"ארבעה טורים - טור יורה דעה סימן 403");
+        assertLabelProperty( object ,"ארבעה טורים טור יורה דעה סימן 403");
         assertPositionProperty(object ,"1100");
 
         object = json.getObject(1100);
         assertTextUriProperty(object, "tur-3-1");
-        assertLabelProperty( object ,"ארבעה טורים - טור אבן העזר סימן 1");
+        assertLabelProperty( object ,"ארבעה טורים טור אבן העזר סימן 1");
         assertPositionProperty(object ,"1101");
 
         object = json.getObject(1200);
         assertTextUriProperty(object, "tur-3-101");
-        assertLabelProperty( object ,"ארבעה טורים - טור אבן העזר סימן 101");
+        assertLabelProperty( object ,"ארבעה טורים טור אבן העזר סימן 101");
         assertPositionProperty(object ,"1201");
         assertBookProperty(object,"tur");
 
         object = json.getObject(1277);
         assertTextUriProperty(object, "tur-3-178");
-        assertLabelProperty( object ,"ארבעה טורים - טור אבן העזר סימן 178");
+        assertLabelProperty( object ,"ארבעה טורים טור אבן העזר סימן 178");
         assertPositionProperty(object ,"1278");
         assertBookProperty(object,"tur");
 
         object = json.getObject(1278);
         assertTextUriProperty(object, "tur-4-1");
-        assertLabelProperty( object ,"ארבעה טורים - טור חושן משפט סימן 1");
+        assertLabelProperty( object ,"ארבעה טורים טור חושן משפט סימן 1");
         assertPositionProperty(object ,"1279");
         assertBookProperty(object,"tur");
 
         object = json.getObject(1478);
         assertTextUriProperty(object, "tur-4-201");
-        assertLabelProperty( object ,"ארבעה טורים - טור חושן משפט סימן 201");
+        assertLabelProperty( object ,"ארבעה טורים טור חושן משפט סימן 201");
         assertPositionProperty(object ,"1479");
         assertBookProperty(object,"tur");
 
         object = json.getObject(1703);
         assertTextUriProperty(object, "tur-4-426");
-        assertLabelProperty( object ,"ארבעה טורים - טור חושן משפט סימן 426");
+        assertLabelProperty( object ,"ארבעה טורים טור חושן משפט סימן 426");
         assertPositionProperty(object ,"1704");
         assertBookProperty(object,"tur");
 

@@ -87,7 +87,7 @@ public class DarcheiMosheParser extends JbsParser {
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
                 addPackageUri( "darcheimoshe-"+turNum);
-                addRdfs(packagesJsonObject(),"דרכי משה - " + turName );
+                addRdfs(packagesJsonObject(),"דרכי משה " + turName );
                 packagesJsonObjectFlush();
 //                System.out.println("counter: "+ counter);
                 break;
@@ -100,7 +100,7 @@ public class DarcheiMosheParser extends JbsParser {
 //                addPosition(packagesJsonObject(), packagePosition);
 //                packagePosition++;
 //                addPackageUri( "darcheimoshe-"+ turNum + "-" + seifNum);
-//                String rdfs = "דרכי משה - " + turName + " סעיף " + seifNum;
+//                String rdfs = "דרכי משה " + turName + " סעיף " + seifNum;
 //                addRdfs(packagesJsonObject(), rdfs);
                 packagesJsonObjectFlush();
 
@@ -115,7 +115,7 @@ public class DarcheiMosheParser extends JbsParser {
                 addBook( "darcheimoshe");
                 addWithin( "darcheimoshe-" + turNum);
                 addWithin( "darcheimoshe-" + turNum +"-" + simanNum);
-                String rdfs1 = "דרכי משה - " + turName  + " סימן " + simanNum + " סעיף " + seifNum;
+                String rdfs1 = "דרכי משה " + turName  + " סימן " + simanNum + " סעיף " + seifNum;
                 addRdfs(rdfs1);
                 packagesJsonObjectFlush();
 //                counter++;

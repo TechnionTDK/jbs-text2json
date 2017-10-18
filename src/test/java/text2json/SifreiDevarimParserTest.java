@@ -42,36 +42,36 @@ public class SifreiDevarimParserTest {
         object = json.getObject(0);
         assertTextUriProperty(object, "sifreidevarim-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"ספרי דברים - פסקה 1");
+        assertLabelProperty( object ,"ספרי דברים פסקה 1");
         assertBookProperty(object,"sifreidevarim");
 
         object = json.getObject(67);
         assertTextUriProperty(object, "sifreidevarim-68");
-        assertLabelProperty( object ,"ספרי דברים - פסקה 68");
+        assertLabelProperty( object ,"ספרי דברים פסקה 68");
         assertPositionProperty(object ,"68");
         assertBookProperty(object,"sifreidevarim");
 
         object = json.getObject(101);
         assertTextUriProperty(object, "sifreidevarim-102");
-        assertLabelProperty( object ,"ספרי דברים - פסקה 102");
+        assertLabelProperty( object ,"ספרי דברים פסקה 102");
         assertPositionProperty(object ,"102");
         assertBookProperty(object,"sifreidevarim");
 
         object = json.getObject(198);
         assertTextUriProperty(object, "sifreidevarim-199");
-        assertLabelProperty( object ,"ספרי דברים - פסקה 199");
+        assertLabelProperty( object ,"ספרי דברים פסקה 199");
         assertPositionProperty(object ,"199");
         assertBookProperty(object,"sifreidevarim");
 
         object = json.getObject(278);
         assertTextUriProperty(object, "sifreidevarim-279");
-        assertLabelProperty( object ,"ספרי דברים - פסקה 279");
+        assertLabelProperty( object ,"ספרי דברים פסקה 279");
         assertPositionProperty(object ,"279");
         assertBookProperty(object,"sifreidevarim");
 
         object = json.getObject(356);
         assertTextUriProperty(object, "sifreidevarim-357");
-        assertLabelProperty( object ,"ספרי דברים - פסקה 357");
+        assertLabelProperty( object ,"ספרי דברים פסקה 357");
         assertPositionProperty(object ,"357");
         assertBookProperty(object,"sifreidevarim");
     }

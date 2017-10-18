@@ -49,54 +49,54 @@ public class NetivotOlamParserTest {
         object = json.getObject(0);
         assertTextUriProperty(object, "netivotolam-0");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"נתיבות עולם - הקדמה");
+        assertLabelProperty( object ,"נתיבות עולם הקדמה");
         assertBookProperty(object,"netivotolam");
 
         object = json.getObject(3);
         assertTextUriProperty(object, "netivotolam-1-3");
-        assertLabelProperty( object ,"נתיבות עולם - נתיב התורה ג");
+        assertLabelProperty( object ,"נתיבות עולם נתיב התורה ג");
         assertPositionProperty(object ,"4");
         assertBookProperty(object,"netivotolam");
 
         object = json.getObject(23);
         assertTextUriProperty(object, "netivotolam-2-5");
-        assertLabelProperty( object ,"נתיבות עולם - נתיב העבודה ה");
+        assertLabelProperty( object ,"נתיבות עולם נתיב העבודה ה");
         assertPositionProperty(object ,"24");
         assertBookProperty(object,"netivotolam");
 
         object = json.getObject(32);
         assertTextUriProperty(object, "netivotolam-2-14");
-        assertLabelProperty( object ,"נתיבות עולם - נתיב העבודה יד");
+        assertLabelProperty( object ,"נתיבות עולם נתיב העבודה יד");
         assertPositionProperty(object ,"33");
 
         object = json.getObject(57);
         assertTextUriProperty(object, "netivotolam-8-2");
-        assertLabelProperty( object ,"נתיבות עולם - נתיב השלום ב");
+        assertLabelProperty( object ,"נתיבות עולם נתיב השלום ב");
         assertPositionProperty(object ,"58");
 
         object = json.getObject(64);
         //assertTextUriProperty(object, "netivotolam-10-3");
         //assertPositionProperty(object, "65");
-        //assertLabelProperty(object, "נתיבות עולם - נתיב הענוה ג");
+        //assertLabelProperty(object, "נתיבות עולם נתיב הענוה ג");
         //assertBookProperty(object,object, "netivotolam");
         assertTextUriProperty(object, "netivotolam-10-3");
-        assertLabelProperty( object ,"נתיבות עולם - נתיב הענוה ג");
+        assertLabelProperty( object ,"נתיבות עולם נתיב הענוה ג");
         assertPositionProperty(object ,"65");
         assertBookProperty(object,"netivotolam");
 
         object = json.getObject(91);
         assertTextUriProperty(object, "netivotolam-15-2");
-        assertLabelProperty( object ,"נתיבות עולם - נתיב הפּרישות ב");
+        assertLabelProperty( object ,"נתיבות עולם נתיב הפּרישות ב");
         assertPositionProperty(object ,"92");
 
         object = json.getObject(117);
         assertTextUriProperty(object, "netivotolam-22-1");
-        assertLabelProperty( object ,"נתיבות עולם - נתיב התוכחה א");
+        assertLabelProperty( object ,"נתיבות עולם נתיב התוכחה א");
         assertPositionProperty(object ,"118");
 
         object = json.getObject(135);
         assertTextUriProperty(object, "netivotolam-33-1");
-        assertLabelProperty( object ,"נתיבות עולם - נתיב דרך ארץ א");
+        assertLabelProperty( object ,"נתיבות עולם נתיב דרך ארץ א");
         assertPositionProperty(object ,"136");
         assertBookProperty(object,"netivotolam");
     }

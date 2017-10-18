@@ -42,7 +42,7 @@ public class GevurotHashemParserTest {
         object = json.getObject(0);
         assertTextUriProperty(object, "gevurothashem-0-0");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"גבורות השם - הקדמה א");
+        assertLabelProperty( object ,"גבורות השם הקדמה א");
         assertBookProperty(object,"gevurothashem");
 
         object = json.getObject(13);

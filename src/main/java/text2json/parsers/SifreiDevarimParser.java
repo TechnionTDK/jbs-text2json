@@ -61,7 +61,7 @@ public class SifreiDevarimParser extends JbsParser {
                 addUri( getUri());
                 addBook( "sifreidevarim");
                 addPosition(chapterNum);
-                String rdfs = "ספרי דברים - " + chapterName;
+                String rdfs = "ספרי דברים " + chapterName;
                 addRdfs(rdfs);
                 break;
 

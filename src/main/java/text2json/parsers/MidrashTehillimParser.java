@@ -61,7 +61,7 @@ public class MidrashTehillimParser extends JbsParser {
                 addUri( getUri());
                 addBook( "mdrashtehillim");
                 addPosition(chapterNum);
-                String rdfs = "מדרש תהילים - " + chapterName;
+                String rdfs = "מדרש תהילים " + chapterName;
                 addRdfs(rdfs);
                 break;
 

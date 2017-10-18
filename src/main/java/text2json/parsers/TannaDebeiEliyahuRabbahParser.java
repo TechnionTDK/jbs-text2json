@@ -61,7 +61,7 @@ public class TannaDebeiEliyahuRabbahParser extends JbsParser {
                 addUri( getUri());
                 addBook( "tannadebeieliyahurabbah");
                 addPosition(chapterNum);
-                String rdfs = "תנא דבי אליהו רבה - " + chapterName;
+                String rdfs = "תנא דבי אליהו רבה " + chapterName;
                 addRdfs(rdfs);
                 break;
 

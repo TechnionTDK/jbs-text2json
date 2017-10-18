@@ -92,7 +92,7 @@ public class OtzarMidrashimParser extends JbsParser {
                 addPackageUri("otzarmidrashim-" + midrashNum);
                 addPosition(packagesJsonObject(), packagePosition);
                 packagePosition++;
-                label2 = line.getLine();
+                label2 = line.getLine().replace(" - "," ");
                 addRdfs(packagesJsonObject(), "אוצר מדרשים " + label2);
 
 

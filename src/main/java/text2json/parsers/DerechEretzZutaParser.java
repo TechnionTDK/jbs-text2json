@@ -62,7 +62,7 @@ public class DerechEretzZutaParser extends JbsParser {
                 addUri( getUri());
                 addBook( "derecheretzzuta");
                 addPosition(chapterNum);
-                String rdfs = "דרך ארץ זוטא - " + chapterName;
+                String rdfs = "דרך ארץ זוטא " + chapterName;
                 addRdfs(rdfs);
                 break;
 

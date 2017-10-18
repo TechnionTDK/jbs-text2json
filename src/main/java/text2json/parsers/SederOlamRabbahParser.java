@@ -77,7 +77,7 @@ public class SederOlamRabbahParser extends JbsParser {
                 addUri( getUri());
                 addBook( "sederolamrabbah");
                 addPosition(chapterNum);
-                String rdfs = "סדר עולם רבה - " + chapterName;
+                String rdfs = "סדר עולם רבה " + chapterName;
                 addRdfs(rdfs);
                 break;
 

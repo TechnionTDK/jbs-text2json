@@ -14,10 +14,11 @@ import static text2json.JbsUtils.HEB_LETTERS_INDEX;
  */
 public class EinYaakovParser extends JbsParser {
 
-    protected static final String BEGIN_TEACHING = "begin_teaching";
-    private int teachingNum = 0,position=0 ,packagePosition=1;
-    private int sectionNum = 0;
-    private String nativName = "";
+    protected static final String BEGIN_MASECHET = "begin_masechet";
+    protected static final String BEGIN_PEREK2 = "begin_perek2";
+    private int  masechetNum = 0,position=0 ,packagePosition=1;
+    private int perekNum = 0;
+    private String label1 = "",label2 = "";
 
     public EinYaakovParser() {
         createPackagesJson();
@@ -31,7 +32,7 @@ public class EinYaakovParser extends JbsParser {
 
             @Override
             public boolean match(Line line) {
-                return line.beginsWith("עין יעקוב") && line.wordCount() <= 10;
+                return line.beginsWith("עין יעקב") && line.wordCount() <= 10;
             }
         });
 
@@ -42,17 +43,28 @@ public class EinYaakovParser extends JbsParser {
 
             @Override
             public boolean match(Line line) {
-                return line.beginsWith("Section ") && line.wordCount() <= 10;
+                return line.beginsWith("heb ") && line.wordCount() <= 10;
             }
         });
 
         registerMatcher(new LineMatcher() {
             @Override
-            public String type() { return BEGIN_TEACHING;}
+            public String type() { return BEGIN_PEREK2;}
 
             @Override
             public boolean match(Line line) {
-                return line.beginsWith("Teaching") && line.wordCount() <= 10;
+                return line.beginsWith("Chapter ") && line.wordCount() <= 10;
+            }
+        });
+
+
+        registerMatcher(new LineMatcher() {
+            @Override
+            public String type() { return BEGIN_MASECHET;}
+
+            @Override
+            public boolean match(Line line) {
+                return line.beginsWith("מסכת ") && line.wordCount() <= 10;
             }
         });
     }
@@ -65,27 +77,30 @@ public class EinYaakovParser extends JbsParser {
                 // It is created manually, outside text2json
                 break;
 
-            case BEGIN_PEREK:
+            case BEGIN_MASECHET:
                 jsonObjectFlush();
-                teachingNum=0;
-                sectionNum++;
-                addBook(packagesJsonObject(), "orothakodesh");
+                perekNum=0;
+                masechetNum++;
+                addBook(packagesJsonObject(), "einyaakov");
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
-                addPackageUri( "orothakodesh-" + sectionNum);
-                addRdfs(packagesJsonObject(),"אורות הקודש" + " " + HEB_LETTERS_INDEX[sectionNum-1]);
+                label1=line.getLine();
+                addPackageUri( "einyaakov-" + masechetNum);
+                addRdfs(packagesJsonObject(),"עין יעקב " + label1);
                 packagesJsonObjectFlush();
                 break;
 
-            case BEGIN_TEACHING:
+            case BEGIN_PEREK:
                 jsonObjectFlush();
-                teachingNum++;
+                perekNum++;
                 position++;
                 addUri( getUri());
                 addPosition( position);
-                addBook( "orothakodesh");
-                addWithin( "orothakodesh-" + sectionNum);
-                String rdfs = "אורות הקודש" + " " + HEB_LETTERS_INDEX[sectionNum-1] + " " + HEB_LETTERS_INDEX[teachingNum-1];
+                addBook( "einyaakov");
+                addWithin( "einyaakov");
+                addWithin( "einyaakov-" + masechetNum);
+                label2 = line.getLine().replace("heb","מסכת");
+                String rdfs = "עין יעקב " + label2;
                 addRdfs(rdfs);
                 break;
 
@@ -97,5 +112,5 @@ public class EinYaakovParser extends JbsParser {
 
     @Override
     protected String getUri() {
-        return  "orothakodesh-" + sectionNum + "-"+ teachingNum;    }
+        return  "einyaakov-" + masechetNum + "-"+  perekNum;    }
 }

@@ -42,51 +42,51 @@ public class TannaDeBeiEliyahuZutaParserTest {
         object = json.getObject(0);
         assertTextUriProperty(object, "tannadebeieliyahuzuta-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"תנא דבי אליהו זוטא חלק א - סדר אליהו זוטא פרק 1");
+        assertLabelProperty( object ,"תנא דבי אליהו זוטא חלק א סדר אליהו זוטא פרק 1");
         assertBookProperty(object,"tannadebeieliyahuzuta");
 
         object = json.getObject(4);
         assertTextUriProperty(object, "tannadebeieliyahuzuta-1-5");
-        assertLabelProperty( object ,"תנא דבי אליהו זוטא חלק א - סדר אליהו זוטא פרק 5");
+        assertLabelProperty( object ,"תנא דבי אליהו זוטא חלק א סדר אליהו זוטא פרק 5");
         assertPositionProperty(object ,"5");
         assertBookProperty(object,"tannadebeieliyahuzuta");
 
         object = json.getObject(7);
         assertTextUriProperty(object, "tannadebeieliyahuzuta-1-8");
-        assertLabelProperty( object ,"תנא דבי אליהו זוטא חלק א - סדר אליהו זוטא פרק 8");
+        assertLabelProperty( object ,"תנא דבי אליהו זוטא חלק א סדר אליהו זוטא פרק 8");
         assertPositionProperty(object ,"8");
         assertBookProperty(object,"tannadebeieliyahuzuta");
 
         object = json.getObject(9);
         assertTextUriProperty(object, "tannadebeieliyahuzuta-1-10");
-        assertLabelProperty( object ,"תנא דבי אליהו זוטא חלק א - סדר אליהו זוטא פרק 10");
+        assertLabelProperty( object ,"תנא דבי אליהו זוטא חלק א סדר אליהו זוטא פרק 10");
         assertPositionProperty(object ,"10");
         assertBookProperty(object,"tannadebeieliyahuzuta");
 
         object = json.getObject(11);
         assertTextUriProperty(object, "tannadebeieliyahuzuta-1-12");
-        assertLabelProperty( object ,"תנא דבי אליהו זוטא חלק א - סדר אליהו זוטא פרק 12");
+        assertLabelProperty( object ,"תנא דבי אליהו זוטא חלק א סדר אליהו זוטא פרק 12");
         assertPositionProperty(object ,"12");
         assertBookProperty(object,"tannadebeieliyahuzuta");
 
 
         object = json.getObject(15);
         assertTextUriProperty(object, "tannadebeieliyahuzuta-2-0");
-        assertLabelProperty( object ,"תנא דבי אליהו זוטא חלק ב - נספחים לסדר אליהו זוטא הקדמה");
+        assertLabelProperty( object ,"תנא דבי אליהו זוטא חלק ב נספחים לסדר אליהו זוטא הקדמה");
         assertPositionProperty(object ,"16");
         assertBookProperty(object,"tannadebeieliyahuzuta");
 
 
         object = json.getObject(18);
         assertTextUriProperty(object, "tannadebeieliyahuzuta-2-4");
-        assertLabelProperty( object ,"תנא דבי אליהו זוטא חלק ב - נספחים לסדר אליהו זוטא פרקי דר' אליעזר");
+        assertLabelProperty( object ,"תנא דבי אליהו זוטא חלק ב נספחים לסדר אליהו זוטא פרקי דר' אליעזר");
         assertPositionProperty(object ,"19");
         assertBookProperty(object,"tannadebeieliyahuzuta");
 
 
         object = json.getObject(21);
         assertTextUriProperty(object, "tannadebeieliyahuzuta-3-3");
-        assertLabelProperty( object ,"תנא דבי אליהו זוטא חלק ג - הירידות פרק ג'");
+        assertLabelProperty( object ,"תנא דבי אליהו זוטא חלק ג הירידות פרק ג'");
         assertPositionProperty(object ,"22");
         assertBookProperty(object,"tannadebeieliyahuzuta");
 

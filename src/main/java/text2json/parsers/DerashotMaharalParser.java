@@ -71,7 +71,7 @@ public class DerashotMaharalParser extends JbsParser {
                 addUri( getUri());
                 addPosition( chapterNum+1);
                 addBook( "derashotmaharal");
-                String rdfs = "דרשות מהר\"ל - " + chapterName;
+                String rdfs = "דרשות מהר\"ל " + chapterName;
                 addRdfs(rdfs);
                 break;
 

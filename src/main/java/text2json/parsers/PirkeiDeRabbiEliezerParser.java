@@ -61,7 +61,7 @@ public class PirkeiDeRabbiEliezerParser extends JbsParser {
                 addUri( getUri());
                 addBook( "pirkeiderabbieliezer");
                 addPosition(chapterNum);
-                String rdfs = "פרקי דרבי אליעזר - " + chapterName;
+                String rdfs = "פרקי דרבי אליעזר " + chapterName;
                 addRdfs(rdfs);
                 break;
 

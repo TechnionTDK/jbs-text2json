@@ -63,7 +63,7 @@ public class TalmudYerushalmiParser extends JbsParser {
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
                 addPackageUri( "yerushalmi-"+masechetNum);
-                addRdfs(packagesJsonObject(),"תלמוד ירושלמי - מסכת " + masechetName );
+                addRdfs(packagesJsonObject(),"תלמוד ירושלמי מסכת " + masechetName );
                 packagesJsonObjectFlush();
                 break;
 
@@ -84,9 +84,9 @@ public class TalmudYerushalmiParser extends JbsParser {
                 addWithin( "yerushalmi-" + masechetNum +"-" + dafNum);
                 String rdfs1 ="";
                 if(subDafNum==1)
-                    rdfs1 = "תלמוד ירושלמי - מסכת " + masechetName  + " דף " + dafNum + "א";
+                    rdfs1 = "תלמוד ירושלמי מסכת " + masechetName  + " דף " + dafNum + "א";
                 else
-                    rdfs1 = "תלמוד ירושלמי - מסכת " + masechetName  + " דף " + dafNum + "ב";
+                    rdfs1 = "תלמוד ירושלמי מסכת " + masechetName  + " דף " + dafNum + "ב";
                 addRdfs(rdfs1);
 
                 break;

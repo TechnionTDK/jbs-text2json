@@ -70,11 +70,11 @@ public class GevurotHashemParser extends JbsParser {
                 addBook( "gevurothashem");
                 addPosition(hakdamaNum);
                 if (hakdamaNum ==1)
-                   addRdfs("גבורות השם - הקדמה א");
+                   addRdfs("גבורות השם הקדמה א");
                 if (hakdamaNum ==2)
-                    addRdfs("גבורות השם - הקדמה ב");
+                    addRdfs("גבורות השם הקדמה ב");
                 if (hakdamaNum ==3)
-                    addRdfs("גבורות השם - הקדמה ג");
+                    addRdfs("גבורות השם הקדמה ג");
                 break;
 
 

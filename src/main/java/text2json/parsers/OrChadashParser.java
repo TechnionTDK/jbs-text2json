@@ -70,9 +70,9 @@ public class OrChadashParser extends JbsParser {
                 addBook("orchadash");
                 addPosition(hakdamaNum+1);
                 if (hakdamaNum ==00)
-                    addRdfs("אור חדש - הקדמה א");
+                    addRdfs("אור חדש הקדמה א");
                 if (hakdamaNum ==01)
-                    addRdfs("אור חדש - הקדמה ב");
+                    addRdfs("אור חדש הקדמה ב");
                 break;
 
 

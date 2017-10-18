@@ -87,7 +87,7 @@ public class BeitYosefParser extends JbsParser {
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
                 addPackageUri( "beityosef-"+turNum);
-                addRdfs(packagesJsonObject(),"בית יוסף - " + turName );
+                addRdfs(packagesJsonObject(),"בית יוסף " + turName );
                 packagesJsonObjectFlush();
                 break;
 
@@ -99,7 +99,7 @@ public class BeitYosefParser extends JbsParser {
 //                addPosition(packagesJsonObject(), packagePosition);
 //                packagePosition++;
 //                addPackageUri( "beityosef-"+ turNum + "-" + seifNum);
-//                String rdfs = "בית יוסף - " + turName + " סעיף " + seifNum;
+//                String rdfs = "בית יוסף " + turName + " סעיף " + seifNum;
 //                addRdfs(packagesJsonObject(), rdfs);
                 packagesJsonObjectFlush();
 
@@ -114,7 +114,7 @@ public class BeitYosefParser extends JbsParser {
                 addBook( "beityosef");
                 addWithin( "beityosef-" + turNum);
                 addWithin( "beityosef-" + turNum +"-" + simanNum);
-                String rdfs1 = "בית יוסף - " + turName  + " סימן " + simanNum + " סעיף " + seifNum;
+                String rdfs1 = "בית יוסף " + turName  + " סימן " + simanNum + " סעיף " + seifNum;
                 addRdfs(rdfs1);
                 packagesJsonObjectFlush();
 

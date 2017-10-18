@@ -61,7 +61,7 @@ public class YalkutShimonionNachParser extends JbsParser {
                 addUri( getUri());
                 addBook( "yalkutshimonionnach");
                 addPosition(chapterNum);
-                String rdfs = "ילקוט שמעוני על נך - " + chapterName;
+                String rdfs = "ילקוט שמעוני על נך " + chapterName;
                 addRdfs(rdfs);
                 break;
 

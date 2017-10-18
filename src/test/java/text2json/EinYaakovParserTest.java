@@ -31,7 +31,7 @@ public class EinYaakovParserTest {
     @Test
     public void testTotalNumberOfObjects() {
         assertNotNull(json);
-        assertEquals(366, json.subjects.size());
+        assertEquals(349, json.subjects.size());
     }
 
     @Test
@@ -41,43 +41,43 @@ public class EinYaakovParserTest {
         object = json.getObject(0);
         assertTextUriProperty(object, "einyaakov-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"עין יעקב - ברכות פרק א מאימתי קורין");
+        assertLabelProperty( object ,"עין יעקב מסכת ברכות פרק א מאימתי קורין");
         assertBookProperty(object,"einyaakov");
 
         object = json.getObject(42);
         assertTextUriProperty(object, "einyaakov-3-10");
-        assertLabelProperty( object ,"עין יעקב - עירובין פרק י המוצא תפילין");
+        assertLabelProperty( object ,"עין יעקב מסכת עירובין פרק י המוצא תפילין");
         assertPositionProperty(object ,"43");
         assertBookProperty(object,"einyaakov");
 
         object = json.getObject(98);
-        assertTextUriProperty(object, "einyaakov-11-6");
-        assertLabelProperty( object ,"עין יעקב - יבמות פרק ו");
+        assertTextUriProperty(object, "einyaakov-11-10");
+        assertLabelProperty( object ,"עין יעקב מסכת יבמות פרק י");
         assertPositionProperty(object ,"99");
         assertBookProperty(object,"einyaakov");
 
         object = json.getObject(150);
-        assertTextUriProperty(object, "einyaakov-15-9");
-        assertLabelProperty( object ,"עין יעקב - גיטין פרק ט");
+        assertTextUriProperty(object, "einyaakov-16-5");
+        assertLabelProperty( object ,"עין יעקב מסכת סוטה פרק ה");
         assertPositionProperty(object ,"151");
         assertBookProperty(object,"einyaakov");
 
         object = json.getObject(201);
-        assertTextUriProperty(object, "einyaakov-18-8");
-        assertLabelProperty( object ,"עין יעקב - סנהדרין פרק ח");
+        assertTextUriProperty(object, "einyaakov-19-2");
+        assertLabelProperty( object ,"עין יעקב מסכת מכות פרק ב");
         assertPositionProperty(object ,"202");
         assertBookProperty(object,"einyaakov");
 
         object = json.getObject(303);
-        assertTextUriProperty(object, "einyaakov-30-3");
-        assertLabelProperty( object ,"עין יעקב - מעילה פרק ג");
+        assertTextUriProperty(object, "einyaakov-33-2");
+        assertLabelProperty( object ,"עין יעקב מסכת כלים פרק ב");
         assertPositionProperty(object ,"304");
         assertBookProperty(object,"einyaakov");
 
-        object = json.getObject(365);
+        object = json.getObject(348);
         assertTextUriProperty(object, "einyaakov-38-1");
-        assertLabelProperty( object ,"עין יעקב - מידות פרק ב");
-        assertPositionProperty(object ,"366");
+        assertLabelProperty( object ,"עין יעקב מסכת מידות פרק ב");
+        assertPositionProperty(object ,"349");
         assertBookProperty(object,"einyaakov");
     }
 }

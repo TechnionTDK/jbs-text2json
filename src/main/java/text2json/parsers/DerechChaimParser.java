@@ -81,7 +81,7 @@ public class DerechChaimParser extends JbsParser {
                 addUri( getUri());
                 addBook( "derechchaim");
                 addPosition(position);
-                addRdfs("דרך חיים - הקדמה");
+                addRdfs("דרך חיים הקדמה");
 
                 break;
 

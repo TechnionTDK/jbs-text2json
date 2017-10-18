@@ -80,7 +80,7 @@ public class NetivotOlamParser extends JbsParser {
                 addUri("netivotolam-" + perekNum);
                 addBook( "netivotolam");
                 addPosition( position);
-                addRdfs("נתיבות עולם - הקדמה");
+                addRdfs("נתיבות עולם הקדמה");
 
                 break;
 
@@ -105,7 +105,7 @@ public class NetivotOlamParser extends JbsParser {
                 addPosition( position);
                 addBook( "netivotolam");
                 addWithin( "netivotolam-" + nativNum);
-                String rdfs = "נתיבות עולם - " + nativName +" " + perekName;
+                String rdfs = "נתיבות עולם " + nativName +" " + perekName;
                 addRdfs(rdfs);
 
                 break;

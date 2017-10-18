@@ -68,7 +68,7 @@ public class BeerHagolaParser extends JbsParser {
                 addUri( getUri());
                 addBook( "beerhagola");
                 addPosition( beerNum+1);
-                addRdfs("באר הגולה - הקדמה");
+                addRdfs("באר הגולה הקדמה");
                 break;
 
 
@@ -80,7 +80,7 @@ public class BeerHagolaParser extends JbsParser {
                 addUri( getUri());
                 addBook( "beerhagola");
                 addPosition( beerNum+1);
-                String rdfs = "באר הגולה - " + beerName;
+                String rdfs = "באר הגולה " + beerName;
                 addRdfs(rdfs);
                 break;
 

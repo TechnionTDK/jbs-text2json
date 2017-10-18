@@ -61,7 +61,7 @@ public class PesiktaRabbatiParser extends JbsParser {
                 addUri( getUri());
                 addBook( "pesiktarabbati");
                 addPosition(chapterNum);
-                String rdfs = "פיסקתא רבתי - " + chapterName;
+                String rdfs = "פסיקתא רבתי " + chapterName;
                 addRdfs(rdfs);
                 break;
 

@@ -127,7 +127,7 @@ public class TannaDeBeiEliyahuZutaParser extends JbsParser {
                 addPackageUri("tannadebeieliyahuzuta-" + partNum);
                 addPosition(packagesJsonObject(), packagePosition);
                 packagePosition++;
-                label2 = line.getLine();
+                label2 = line.getLine().replace(" - ", " ");
                 addRdfs(packagesJsonObject(), "תנא דבי אליהו זוטא " + label2);
                 break;
 
@@ -179,7 +179,7 @@ public class TannaDeBeiEliyahuZutaParser extends JbsParser {
                 addWithin("tannadebeieliyahuzuta-" + partNum);
                 addPosition(position);
                 position++;
-                label1 = line.getLine();
+                label1 = line.getLine().replace(" - "," ");
                 addRdfs("תנא דבי אליהו זוטא " + label2 + " " + label1);
                 packagesJsonObjectFlush();
                 break;
@@ -193,7 +193,7 @@ public class TannaDeBeiEliyahuZutaParser extends JbsParser {
                 addWithin("tannadebeieliyahuzuta-" + partNum);
                 addPosition(position);
                 position++;
-                label1 = line.getLine();
+                label1 = line.getLine().replace(" - ", " ");
                 addRdfs("תנא דבי אליהו זוטא " + label2 + " " + label1);
                 packagesJsonObjectFlush();
                 break;

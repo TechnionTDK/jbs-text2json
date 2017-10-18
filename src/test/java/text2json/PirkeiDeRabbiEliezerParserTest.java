@@ -42,36 +42,36 @@ public class PirkeiDeRabbiEliezerParserTest {
         object = json.getObject(0);
         assertTextUriProperty(object, "pirkeiderabbieliezer-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"פרקי דרבי אליעזר - פרק 1");
+        assertLabelProperty( object ,"פרקי דרבי אליעזר פרק 1");
         assertBookProperty(object,"pirkeiderabbieliezer");
 
         object = json.getObject(5);
         assertTextUriProperty(object, "pirkeiderabbieliezer-6");
-        assertLabelProperty( object ,"פרקי דרבי אליעזר - פרק 6");
+        assertLabelProperty( object ,"פרקי דרבי אליעזר פרק 6");
         assertPositionProperty(object ,"6");
         assertBookProperty(object,"pirkeiderabbieliezer");
 
         object = json.getObject(13);
         assertTextUriProperty(object, "pirkeiderabbieliezer-14");
-        assertLabelProperty( object ,"פרקי דרבי אליעזר - פרק 14");
+        assertLabelProperty( object ,"פרקי דרבי אליעזר פרק 14");
         assertPositionProperty(object ,"14");
         assertBookProperty(object,"pirkeiderabbieliezer");
 
         object = json.getObject(21);
         assertTextUriProperty(object, "pirkeiderabbieliezer-22");
-        assertLabelProperty( object ,"פרקי דרבי אליעזר - פרק 22");
+        assertLabelProperty( object ,"פרקי דרבי אליעזר פרק 22");
         assertPositionProperty(object ,"22");
         assertBookProperty(object,"pirkeiderabbieliezer");
 
         object = json.getObject(32);
         assertTextUriProperty(object, "pirkeiderabbieliezer-33");
-        assertLabelProperty( object ,"פרקי דרבי אליעזר - פרק 33");
+        assertLabelProperty( object ,"פרקי דרבי אליעזר פרק 33");
         assertPositionProperty(object ,"33");
         assertBookProperty(object,"pirkeiderabbieliezer");
 
         object = json.getObject(53);
         assertTextUriProperty(object, "pirkeiderabbieliezer-54");
-        assertLabelProperty( object ,"פרקי דרבי אליעזר - פרק 54");
+        assertLabelProperty( object ,"פרקי דרבי אליעזר פרק 54");
         assertPositionProperty(object ,"54");
         assertBookProperty(object,"pirkeiderabbieliezer");
     }

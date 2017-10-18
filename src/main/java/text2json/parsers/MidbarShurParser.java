@@ -62,7 +62,7 @@ public class MidbarShurParser extends JbsParser {
                 addUri( getUri());
                 addBook( "midbarshur");
                 addPosition(chapterNum);
-                String rdfs = "מדבר שור - " + chapterName;
+                String rdfs = "מדבר שור " + chapterName;
                 addRdfs(rdfs);
                 break;
 

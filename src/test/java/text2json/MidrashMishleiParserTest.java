@@ -42,36 +42,36 @@ public class MidrashMishleiParserTest {
         object = json.getObject(0);
         assertTextUriProperty(object, "midrashmishlei-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"מדרש משלי - פרק 1");
+        assertLabelProperty( object ,"מדרש משלי פרק 1");
         assertBookProperty(object,"midrashmishlei");
 
         object = json.getObject(3);
         assertTextUriProperty(object, "midrashmishlei-4");
-        assertLabelProperty( object ,"מדרש משלי - פרק 4");
+        assertLabelProperty( object ,"מדרש משלי פרק 4");
         assertPositionProperty(object ,"4");
         assertBookProperty(object,"midrashmishlei");
 
         object = json.getObject(18);
         assertTextUriProperty(object, "midrashmishlei-19");
-        assertLabelProperty( object ,"מדרש משלי - פרק 19");
+        assertLabelProperty( object ,"מדרש משלי פרק 19");
         assertPositionProperty(object ,"19");
         assertBookProperty(object,"midrashmishlei");
 
         object = json.getObject(19);
         assertTextUriProperty(object, "midrashmishlei-20");
-        assertLabelProperty( object ,"מדרש משלי - פרק 20");
+        assertLabelProperty( object ,"מדרש משלי פרק 20");
         assertPositionProperty(object ,"20");
         assertBookProperty(object,"midrashmishlei");
 
         object = json.getObject(28);
         assertTextUriProperty(object, "midrashmishlei-29");
-        assertLabelProperty( object ,"מדרש משלי - פרק 29");
+        assertLabelProperty( object ,"מדרש משלי פרק 29");
         assertPositionProperty(object ,"29");
         assertBookProperty(object,"midrashmishlei");
 
         object = json.getObject(30);
         assertTextUriProperty(object, "midrashmishlei-31");
-        assertLabelProperty( object ,"מדרש משלי - פרק 31");
+        assertLabelProperty( object ,"מדרש משלי פרק 31");
         assertPositionProperty(object ,"31");
         assertBookProperty(object,"midrashmishlei");
     }

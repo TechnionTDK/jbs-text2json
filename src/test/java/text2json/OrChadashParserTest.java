@@ -43,7 +43,7 @@ public class OrChadashParserTest {
         object = json.getObject(0);
         assertTextUriProperty(object, "orchadash-00");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"אור חדש - הקדמה א");
+        assertLabelProperty( object ,"אור חדש הקדמה א");
         assertBookProperty(object,"orchadash");
 
         object = json.getObject(2);

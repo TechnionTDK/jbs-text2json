@@ -42,7 +42,7 @@ public class DerechChaimParserTest {
         object = json.getObject(0);
         assertTextUriProperty(object, "derechchaim-0-0");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"דרך חיים - הקדמה");
+        assertLabelProperty( object ,"דרך חיים הקדמה");
         assertBookProperty( object,"derechchaim");
 
         object = json.getObject(3);

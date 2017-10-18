@@ -61,7 +61,7 @@ public class SifreiBamidbarParser extends JbsParser {
                 addUri( getUri());
                 addBook( "sifreibamidbar");
                 addPosition(chapterNum);
-                String rdfs = "ספרי במדבר - " + chapterName;
+                String rdfs = "ספרי במדבר " + chapterName;
                 addRdfs(rdfs);
                 break;
 
