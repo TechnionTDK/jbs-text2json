@@ -81,7 +81,6 @@ public class TalmudYerushalmiParser extends JbsParser {
                 addPosition( position);
                 addBook( "yerushalmi");
                 addWithin( "yerushalmi-" + masechetNum);
-                addWithin( "yerushalmi-" + masechetNum +"-" + dafNum);
                 String rdfs1 ="";
                 if(subDafNum==1)
                     rdfs1 = "תלמוד ירושלמי מסכת " + masechetName  + " דף " + dafNum + "א";

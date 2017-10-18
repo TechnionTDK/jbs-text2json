@@ -103,7 +103,6 @@ public class EinYaakovGlickEditionParser extends JbsParser {
                 perekNum++;
                 addBook("einyaakovglickedition");
                 addUri(getUri());
-                addWithin("einyaakovglickedition");
                 addWithin("einyaakovglickedition-" + tractateNum);
                 addPosition(position);
                 position++;

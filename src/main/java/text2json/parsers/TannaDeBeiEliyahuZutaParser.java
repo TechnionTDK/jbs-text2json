@@ -136,7 +136,6 @@ public class TannaDeBeiEliyahuZutaParser extends JbsParser {
                 perekNum++;
                 addBook("tannadebeieliyahuzuta");
                 addUri(getUri());
-                addWithin("tannadebeieliyahuzuta");
                 addWithin("tannadebeieliyahuzuta-" + partNum);
                 addPosition(position);
                 position++;
@@ -149,7 +148,6 @@ public class TannaDeBeiEliyahuZutaParser extends JbsParser {
                 addBook("tannadebeieliyahuzuta");
                 addUri("tannadebeieliyahuzuta-" + partNum + "-" + perekNum);
                 perekNum++;
-                addWithin("tannadebeieliyahuzuta");
                 addWithin("tannadebeieliyahuzuta-" + partNum);
                 addPosition(position);
                 position++;
@@ -162,7 +160,6 @@ public class TannaDeBeiEliyahuZutaParser extends JbsParser {
                 perekNum++;
                 addBook("tannadebeieliyahuzuta");
                 addUri("tannadebeieliyahuzuta-" + partNum + "-" + perekNum);
-                addWithin("tannadebeieliyahuzuta");
                 addWithin("tannadebeieliyahuzuta-" + partNum);
                 addPosition(position);
                 position++;
@@ -175,7 +172,6 @@ public class TannaDeBeiEliyahuZutaParser extends JbsParser {
                 perekNum++;
                 addBook("tannadebeieliyahuzuta");
                 addUri("tannadebeieliyahuzuta-" + partNum + "-" + perekNum);
-                addWithin("tannadebeieliyahuzuta");
                 addWithin("tannadebeieliyahuzuta-" + partNum);
                 addPosition(position);
                 position++;
@@ -189,7 +185,6 @@ public class TannaDeBeiEliyahuZutaParser extends JbsParser {
                 perekNum++;
                 addBook("tannadebeieliyahuzuta");
                 addUri("tannadebeieliyahuzuta-" + partNum + "-" + perekNum);
-                addWithin("tannadebeieliyahuzuta");
                 addWithin("tannadebeieliyahuzuta-" + partNum);
                 addPosition(position);
                 position++;

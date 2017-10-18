@@ -31,7 +31,7 @@ public class EinYaakovGlickEditionParserTest {
     @Test
     public void testTotalNumberOfObjects() {
         assertNotNull(json);
-        assertEquals(256, json.subjects.size());
+        assertEquals(252, json.subjects.size());
     }
 
     @Test

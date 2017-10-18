@@ -89,7 +89,7 @@ public class OrotParser extends JbsParser {
                 addBook(packagesJsonObject(), "orot");
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
-                addPackageUri( "orot-maamar-"+maamarNum);
+                addPackageUri( "orot-"+maamarNum);
 
                 int res = maamarName.compareTo("- אורות ישראל");
                 if (res == 0) {
@@ -108,8 +108,8 @@ public class OrotParser extends JbsParser {
                 addBook(packagesJsonObject(), "orot");
                 addPosition(packagesJsonObject(), packagePosition);
                 packagePosition++;
-                addPackageUri( "orot-maamar-"+ maamarNum + "-submaamar-" + subMaamarNum);
-                addRdfs(packagesJsonObject(), "אורות - " + maamarName +" - " + subMaamarName);
+                addPackageUri( "orot-"+ maamarNum + "-" + subMaamarNum);
+                addRdfs(packagesJsonObject(), "אורות " + maamarName +" " + subMaamarName);
                 packagesJsonObjectFlush();
                 hasSubMaamar = 1;
                 break;
@@ -126,7 +126,7 @@ public class OrotParser extends JbsParser {
                         addBook( "orot");
                         addWithin( "orot-" + maamarNum);
                         addWithin( "orot-" + maamarNum +"-" + subMaamarNum);
-                        String rdfs = "אורות - " + maamarName + " - " + subMaamarName + " " + hebperek;
+                        String rdfs = "אורות " + maamarName + " " + subMaamarName + " " + hebperek;
                         addRdfs(rdfs);
                         break;
 
@@ -140,7 +140,7 @@ public class OrotParser extends JbsParser {
                         addBook( "orot");
                         addWithin( "orot-" + maamarNum);
                         addWithin( "orot-" + maamarNum +"-" + subMaamarNum);
-                        String rdfs1 = "אורות " + maamarName + " - " + perekName;
+                        String rdfs1 = "אורות " + maamarName + " " + perekName;
                         addRdfs(rdfs1);
                         break;
                 }

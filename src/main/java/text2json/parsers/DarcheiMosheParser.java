@@ -96,12 +96,12 @@ public class DarcheiMosheParser extends JbsParser {
                 jsonObjectFlush();
                 seifNum=0;
                 simanNum++;
-//                addBook(packagesJsonObject(), "darcheimoshe");
-//                addPosition(packagesJsonObject(), packagePosition);
-//                packagePosition++;
-//                addPackageUri( "darcheimoshe-"+ turNum + "-" + seifNum);
-//                String rdfs = "דרכי משה " + turName + " סעיף " + seifNum;
-//                addRdfs(packagesJsonObject(), rdfs);
+                addBook(packagesJsonObject(), "darcheimoshe");
+                addPosition(packagesJsonObject(), packagePosition);
+                packagePosition++;
+                addPackageUri( "darcheimoshe-"+ turNum + "-" + simanNum);
+                String rdfs = "דרכי משה " + turName + " סימן " + simanNum;
+                addRdfs(packagesJsonObject(), rdfs);
                 packagesJsonObjectFlush();
 
                 break;

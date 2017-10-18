@@ -103,7 +103,6 @@ public class OtzarMidrashimParser extends JbsParser {
                 perekNum++;
                 addBook("otzarmidrashim");
                 addUri(getUri());
-                addWithin("otzarmidrashim");
                 addWithin("otzarmidrashim-" + midrashNum);
                 addPosition(position);
                 position++;
@@ -116,7 +115,6 @@ public class OtzarMidrashimParser extends JbsParser {
                 addBook("otzarmidrashim");
                 addUri("otzarmidrashim-" + midrashNum + "-" + perekNum);
                 perekNum++;
-                addWithin("otzarmidrashim");
                 addWithin("otzarmidrashim-" + midrashNum);
                 addPosition(position);
                 position++;

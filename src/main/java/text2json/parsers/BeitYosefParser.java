@@ -95,12 +95,12 @@ public class BeitYosefParser extends JbsParser {
                 jsonObjectFlush();
                 seifNum=0;
                 simanNum++;
-//                addBook(packagesJsonObject(), "beityosef");
-//                addPosition(packagesJsonObject(), packagePosition);
-//                packagePosition++;
-//                addPackageUri( "beityosef-"+ turNum + "-" + seifNum);
-//                String rdfs = "בית יוסף " + turName + " סעיף " + seifNum;
-//                addRdfs(packagesJsonObject(), rdfs);
+                addBook(packagesJsonObject(), "beityosef");
+                addPosition(packagesJsonObject(), packagePosition);
+                packagePosition++;
+                addPackageUri( "beityosef-"+ turNum + "-" + simanNum);
+                String rdfs = "בית יוסף " + turName + " " + simanNum;
+                addRdfs(packagesJsonObject(), rdfs);
                 packagesJsonObjectFlush();
 
                 break;

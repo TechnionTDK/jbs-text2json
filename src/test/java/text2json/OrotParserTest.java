@@ -42,35 +42,35 @@ public class OrotParserTest {
         object = json.getObject(0);
         assertTextUriProperty(object, "orot-1-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"אורות - אורות מאופל - ארץ ישראל א");
+        assertLabelProperty( object ,"אורות אורות מאופל ארץ ישראל א");
         assertBookProperty(object,"orot");
 
         object = json.getObject(13);
         assertTextUriProperty(object, "orot-1-2-6");
-        assertLabelProperty( object ,"אורות - אורות מאופל - המלחמה ו");
+        assertLabelProperty( object ,"אורות אורות מאופל המלחמה ו");
         assertPositionProperty(object ,"14");
         assertBookProperty(object,"orot");
 
         object = json.getObject(34);
         assertTextUriProperty(object, "orot-1-3-17");
-        assertLabelProperty( object ,"אורות - אורות מאופל - ישראל ותחיתו יז");
+        assertLabelProperty( object ,"אורות אורות מאופל ישראל ותחיתו יז");
         assertPositionProperty(object ,"35");
         assertBookProperty(object,"orot");
 
         object = json.getObject(41);
         assertTextUriProperty(object, "orot-1-3-24");
-        assertLabelProperty( object ,"אורות - אורות מאופל - ישראל ותחיתו כד");
+        assertLabelProperty( object ,"אורות אורות מאופל ישראל ותחיתו כד");
         assertPositionProperty(object ,"42");
         assertBookProperty(object,"orot");
 
         object = json.getObject(54);
         assertTextUriProperty(object, "orot-1-4-5");
-        assertLabelProperty( object ,"אורות - אורות מאופל - אורות התחיה ה");
+        assertLabelProperty( object ,"אורות אורות מאופל אורות התחיה ה");
         assertPositionProperty(object ,"55");
 
         object = json.getObject(56);
         assertTextUriProperty(object, "orot-1-4-7");
-        assertLabelProperty( object ,"אורות - אורות מאופל - אורות התחיה ז");
+        assertLabelProperty( object ,"אורות אורות מאופל אורות התחיה ז");
         assertPositionProperty(object ,"57");
         assertBookProperty(object,"orot");
     }

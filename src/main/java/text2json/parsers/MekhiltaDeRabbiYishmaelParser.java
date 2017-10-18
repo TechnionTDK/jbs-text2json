@@ -85,7 +85,6 @@ public class MekhiltaDeRabbiYishmaelParser extends JbsParser {
                 pasukNum++;
                 addBook("mekhiltaderabbiyishmael");
                 addUri(getUri());
-                addWithin("mekhiltaderabbiyishmael");
                 addWithin("mekhiltaderabbiyishmael-" + pasukNum);
                 addPosition(position);
                 position++;

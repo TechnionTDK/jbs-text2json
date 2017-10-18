@@ -79,8 +79,6 @@ public class MekhiltaDeRabbiShimonBarYochaiParser extends JbsParser {
                 perekNum++;
                 addBook("mekhiltaderabbishimonbaryochai");
                 addUri(getUri());
-                addWithin("mekhiltaderabbishimonbaryochai");
-                addWithin("mekhiltaderabbishimonbaryochai-" + partNum);
                 addPosition(position);
                 position++;
                 addRdfs("מכילתא דרבי שמעון בר יוחאי חלק " + HEB_LETTERS_INDEX[partNum-1] + " פרק " + HEB_LETTERS_INDEX[perekNum-1]);

@@ -117,8 +117,7 @@ public class MidrashTanchumaBuberParser extends JbsParser {
                 simanNum++;
                 addBook("midrashtanchumabuber");
                 addUri(getUri());
-                addWithin("midrashtanchumabuber");
-                addWithin("midrashtanchumabuber-" + simanNum);
+                addWithin("midrashtanchumabuber-" + parashaNum);
                 addPosition(position);
                 position++;
                 addRdfs("מדרש תנחומא בובר " + label2 + " סימן " + HEB_LETTERS_INDEX[simanNum-1]);

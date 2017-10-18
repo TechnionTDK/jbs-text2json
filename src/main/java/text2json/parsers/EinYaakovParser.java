@@ -97,7 +97,6 @@ public class EinYaakovParser extends JbsParser {
                 addUri( getUri());
                 addPosition( position);
                 addBook( "einyaakov");
-                addWithin( "einyaakov");
                 addWithin( "einyaakov-" + masechetNum);
                 label2 = line.getLine().replace("heb","מסכת");
                 String rdfs = "עין יעקב " + label2;

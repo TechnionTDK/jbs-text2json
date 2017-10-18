@@ -94,7 +94,7 @@ public class SifraParser extends JbsParser {
                 perekNum=0;
                 subParahaNum=0;
                 addBook(packagesJsonObject(),"sifra");
-                addPackageUri("sifra-"+parashaNum);
+                addPackageUri("sifra-" + parashaNum);
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
                 label2 = line.getLine();
@@ -107,7 +107,6 @@ public class SifraParser extends JbsParser {
                 jsonObjectFlush();
                 addBook("sifra");
                 addUri("sifra-0");
-                addWithin("sifra");
                 addPosition(0);
                 addRdfs("ספרא הקדמה" );
                 packagesJsonObjectFlush();
@@ -118,7 +117,6 @@ public class SifraParser extends JbsParser {
                 perekNum++;
                 addBook("sifra");
                 addUri(getPerekUri());
-                addWithin("sifra");
                 addWithin("sifra-" + parashaNum);
                 addPosition(position);
                 position++;
@@ -131,7 +129,6 @@ public class SifraParser extends JbsParser {
                 subParahaNum++;
                 addBook("sifra");
                 addUri(getSubParashaUri());
-                addWithin("sifra");
                 addWithin("sifra-" + parashaNum);
                 addPosition(position);
                 position++;

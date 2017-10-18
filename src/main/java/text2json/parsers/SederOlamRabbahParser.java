@@ -73,7 +73,6 @@ public class SederOlamRabbahParser extends JbsParser {
                 jsonObjectFlush();
                 chapterNum++;
                 String chapterName = line.getLine();
-
                 addUri( getUri());
                 addBook( "sederolamrabbah");
                 addPosition(chapterNum);

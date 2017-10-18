@@ -115,7 +115,6 @@ public class SeferHaYasharMidrashParser extends JbsParser {
                 jsonObjectFlush();
                 addBook("seferhayasharmidrash");
                 addUri("seferhayasharmidrash-0");
-                addWithin("seferhayasharmidrash");
                 addPosition(0);
                 addRdfs("ספר הישר (מדרש) הקדמה");
                 packagesJsonObjectFlush();
@@ -127,7 +126,6 @@ public class SeferHaYasharMidrashParser extends JbsParser {
                 parashaNum++;
                 addBook("seferhayasharmidrash");
                 addUri(getUri());
-                addWithin("seferhayasharmidrash");
                 addWithin("seferhayasharmidrash-" + perekNum);
                 addPosition(position);
                 position++;

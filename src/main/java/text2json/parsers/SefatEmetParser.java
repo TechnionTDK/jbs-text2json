@@ -18,6 +18,7 @@ public class SefatEmetParser extends JbsParser {
     private int parashaNum = 0,position=0,packagePosition=1;
     private int seferNum = 0;
     private int seifNum = 0;
+    private String label = "";
 
     public SefatEmetParser() {
         createPackagesJson();
@@ -77,6 +78,12 @@ public class SefatEmetParser extends JbsParser {
             case BEGIN_SEFER:
                 jsonObjectFlush();
                 seferNum++;
+                label = line.getLine();
+                addPackageUri( "tanach-sefatemet-" + seferNum);
+                addPosition(packagesJsonObject(),packagePosition);
+                packagePosition++;
+                addRdfs(packagesJsonObject(),  "שפת אמת " + label);
+                packagesJsonObjectFlush();
                 break;
 
             case BEGIN_PARASHA:
