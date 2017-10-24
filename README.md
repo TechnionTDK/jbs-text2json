@@ -1,8 +1,8 @@
-# text2json
-A tool for turning raw text of the Jewish bookshelf into json.
+# Jewish bookshelf: jbs-text2json
+A tool created in order to turn raw texts of the Jewish bookshelf from free format into json formats.
 
-## what is this?
-the text2json is a platforme for developers to easly add new parsers to the project. every developer can easly add new raw texts and creat a parser that inherits from the general "Parser" class we created,now the developer needs only to define the parsr rules and the output Json. the platform gives the developer very clear guide lins to create his new parser and requires him to fill in three functions
+## What is text2json?
+text2json is a platforme for developers to easly add new parsers to the jbs project. Every developer can easly add new raw texts and creat a parser that inherits from the general "Parser" class. The developer is only required to define the parser rules and the output Json. the platform gives the developer very clear guide lins to create his new parser and requires him to fill in three functions
 
 ## Background
 This tool was devleoped as part of the JBS (Jewish Book Shelf) project in the [TDK lab](http://tdk.net.technion.ac.il/).
