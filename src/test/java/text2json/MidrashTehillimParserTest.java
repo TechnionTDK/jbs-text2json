@@ -42,36 +42,36 @@ public class MidrashTehillimParserTest {
         object = json.getObject(0);
         assertTextUriProperty(object, "mdrashtehillim-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"מדרש תהילים מזמור 1");
+        assertLabelProperty( object ,"מדרש תהילים מזמור א");
         assertBookProperty(object,"mdrashtehillim");
 
         object = json.getObject(15);
         assertTextUriProperty(object, "mdrashtehillim-16");
-        assertLabelProperty( object ,"מדרש תהילים מזמור 16");
+        assertLabelProperty( object ,"מדרש תהילים מזמור טז");
         assertPositionProperty(object ,"16");
         assertBookProperty(object,"mdrashtehillim");
 
         object = json.getObject(48);
         assertTextUriProperty(object, "mdrashtehillim-49");
-        assertLabelProperty( object ,"מדרש תהילים מזמור 49");
+        assertLabelProperty( object ,"מדרש תהילים מזמור מט");
         assertPositionProperty(object ,"49");
         assertBookProperty(object,"mdrashtehillim");
 
         object = json.getObject(69);
         assertTextUriProperty(object, "mdrashtehillim-70");
-        assertLabelProperty( object ,"מדרש תהילים מזמור 70");
+        assertLabelProperty( object ,"מדרש תהילים מזמור ע");
         assertPositionProperty(object ,"70");
         assertBookProperty(object,"mdrashtehillim");
 
         object = json.getObject(100);
         assertTextUriProperty(object, "mdrashtehillim-101");
-        assertLabelProperty( object ,"מדרש תהילים מזמור 101");
+        assertLabelProperty( object ,"מדרש תהילים מזמור קא");
         assertPositionProperty(object ,"101");
         assertBookProperty(object,"mdrashtehillim");
 
         object = json.getObject(149);
         assertTextUriProperty(object, "mdrashtehillim-150");
-        assertLabelProperty( object ,"מדרש תהילים מזמור 150");
+        assertLabelProperty( object ,"מדרש תהילים מזמור קנ");
         assertPositionProperty(object ,"150");
         assertBookProperty(object,"mdrashtehillim");
     }

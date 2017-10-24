@@ -47,72 +47,72 @@ public class SifraParserTest {
 
         object = json.getObject(1);
         assertTextUriProperty(object, "sifra-1-1-1");
-        assertLabelProperty( object ,"ספרא פרשת ויקרא דבורא דנדבה פרק א");
+        assertLabelProperty( object ,"ספרא ויקרא דבורא דנדבה פרק א");
         assertPositionProperty(object ,"1");
         assertBookProperty(object,"sifra");
 
         object = json.getObject(2);
         assertTextUriProperty(object, "sifra-1-1-2");
-        assertLabelProperty( object ,"ספרא פרשת ויקרא דבורא דנדבה פרק ב");
+        assertLabelProperty( object ,"ספרא ויקרא דבורא דנדבה פרק ב");
         assertPositionProperty(object ,"2");
         assertBookProperty(object,"sifra");
 
         object = json.getObject(3);
         assertTextUriProperty(object, "sifra-1-2-1");
-        assertLabelProperty( object ,"ספרא פרשת ויקרא דבורא דנדבה פרשה א");
+        assertLabelProperty( object ,"ספרא ויקרא דבורא דנדבה פרשה א");
         assertPositionProperty(object ,"3");
         assertBookProperty(object,"sifra");
 
         object = json.getObject(18);
         assertTextUriProperty(object, "sifra-1-2-8");
-        assertLabelProperty( object ,"ספרא פרשת ויקרא דבורא דנדבה פרשה ח");
+        assertLabelProperty( object ,"ספרא ויקרא דבורא דנדבה פרשה ח");
         assertPositionProperty(object ,"18");
         assertBookProperty(object,"sifra");
 
 
         object = json.getObject(71);
         assertTextUriProperty(object, "sifra-3-2-1");
-        assertLabelProperty( object ,"ספרא פרשת צו פרשה א");
+        assertLabelProperty( object ,"ספרא צו פרשה א");
         assertPositionProperty(object ,"71");
         assertBookProperty(object,"sifra");
 
 
         object = json.getObject(101);
         assertTextUriProperty(object, "sifra-4-1-3");
-        assertLabelProperty( object ,"ספרא פרשת שמיני פרק ג");
+        assertLabelProperty( object ,"ספרא שמיני פרק ג");
         assertPositionProperty(object ,"101");
         assertBookProperty(object,"sifra");
 
 
         object = json.getObject(140);
         assertTextUriProperty(object, "sifra-6-1-11");
-        assertLabelProperty( object ,"ספרא פרשת תזריע - נגעים פרק יא");
+        assertLabelProperty( object ,"ספרא תזריע - נגעים פרק יא");
         assertPositionProperty(object ,"140");
         assertBookProperty(object,"sifra");
 
 
         object = json.getObject(161);
         assertTextUriProperty(object, "sifra-8-1-2");
-        assertLabelProperty( object ,"ספרא פרשת מצורע - זבים פרק ב");
+        assertLabelProperty( object ,"ספרא מצורע - זבים פרק ב");
         assertPositionProperty(object ,"161");
         assertBookProperty(object,"sifra");
 
 
         object = json.getObject(201);
         assertTextUriProperty(object, "sifra-10-2-3");
-        assertLabelProperty( object ,"ספרא פרשת קדושים פרשה ג");
+        assertLabelProperty( object ,"ספרא קדושים פרשה ג");
         assertPositionProperty(object ,"201");
         assertBookProperty(object,"sifra");
 
         object = json.getObject(251);
         assertTextUriProperty(object, "sifra-12-1-5");
-        assertLabelProperty( object ,"ספרא פרשת בהר פרק ה");
+        assertLabelProperty( object ,"ספרא בהר פרק ה");
         assertPositionProperty(object ,"251");
         assertBookProperty(object,"sifra");
 
         object = json.getObject(276);
         assertTextUriProperty(object, "sifra-13-1-13");
-        assertLabelProperty( object ,"ספרא פרשת בחוקתי פרק יג");
+        assertLabelProperty( object ,"ספרא בחוקתי פרק יג");
         assertPositionProperty(object ,"276");
         assertBookProperty(object,"sifra");
 

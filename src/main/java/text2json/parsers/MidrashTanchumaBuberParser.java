@@ -94,7 +94,7 @@ public class MidrashTanchumaBuberParser extends JbsParser {
                 addPackageUri("midrashtanchumabuber-" + parashaNum);
                 addPosition(packagesJsonObject(), packagePosition);
                 packagePosition++;
-                label2 = line.getLine();
+                label2 = line.getLine().replace("פרשת ","");
                 addRdfs(packagesJsonObject(), "מדרש תנחומא בובר " + label2);
                 // No need to create an object for the entire book anymore!
                 // It is created manually, outside text2json
@@ -106,7 +106,7 @@ public class MidrashTanchumaBuberParser extends JbsParser {
                 packagesJsonObjectFlush();
                 parashaNum++;
                 simanNum = 0;
-                label2 = line.getLine();
+                label2 = line.getLine().replace("פרשת ","");
                 // No need to create an object for the entire book anymore!
                 // It is created manually, outside text2json
                 break;
@@ -120,7 +120,7 @@ public class MidrashTanchumaBuberParser extends JbsParser {
                 addWithin("midrashtanchumabuber-" + parashaNum);
                 addPosition(position);
                 position++;
-                addRdfs("מדרש תנחומא בובר " + label2 + " סימן " + HEB_LETTERS_INDEX[simanNum-1]);
+                addRdfs("מדרש תנחומא בובר " + label2 + " " + HEB_LETTERS_INDEX[simanNum-1]);
                 packagesJsonObjectFlush();
                 break;
 

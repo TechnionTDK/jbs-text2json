@@ -75,10 +75,6 @@ public class NetivotOlamParserTest {
         assertPositionProperty(object ,"58");
 
         object = json.getObject(64);
-        //assertTextUriProperty(object, "netivotolam-10-3");
-        //assertPositionProperty(object, "65");
-        //assertLabelProperty(object, "נתיבות עולם נתיב הענוה ג");
-        //assertBookProperty(object,object, "netivotolam");
         assertTextUriProperty(object, "netivotolam-10-3");
         assertLabelProperty( object ,"נתיבות עולם נתיב הענוה ג");
         assertPositionProperty(object ,"65");

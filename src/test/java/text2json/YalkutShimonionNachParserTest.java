@@ -42,42 +42,42 @@ public class YalkutShimonionNachParserTest {
         object = json.getObject(0);
         assertTextUriProperty(object, "yalkutshimonionnach-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"ילקוט שמעוני על נך רמז 1");
+        assertLabelProperty( object ,"ילקוט שמעוני על נ\"ך א");
         assertBookProperty(object,"yalkutshimonionnach");
 
         object = json.getObject(144);
         assertTextUriProperty(object, "yalkutshimonionnach-145");
-        assertLabelProperty( object ,"ילקוט שמעוני על נך רמז 145");
+        assertLabelProperty( object ,"ילקוט שמעוני על נ\"ך קמה");
         assertPositionProperty(object ,"145");
         assertBookProperty(object,"yalkutshimonionnach");
 
         object = json.getObject(376);
         assertTextUriProperty(object, "yalkutshimonionnach-377");
-        assertLabelProperty( object ,"ילקוט שמעוני על נך רמז 377");
+        assertLabelProperty( object ,"ילקוט שמעוני על נ\"ך שעז");
         assertPositionProperty(object ,"377");
         assertBookProperty(object,"yalkutshimonionnach");
 
         object = json.getObject(542);
         assertTextUriProperty(object, "yalkutshimonionnach-543");
-        assertLabelProperty( object ,"ילקוט שמעוני על נך רמז 543");
+        assertLabelProperty( object ,"ילקוט שמעוני על נ\"ך תקמג");
         assertPositionProperty(object ,"543");
         assertBookProperty(object,"yalkutshimonionnach");
 
         object = json.getObject(641);
         assertTextUriProperty(object, "yalkutshimonionnach-642");
-        assertLabelProperty( object ,"ילקוט שמעוני על נך רמז 642");
+        assertLabelProperty( object ,"ילקוט שמעוני על נ\"ך תרמב");
         assertPositionProperty(object ,"642");
         assertBookProperty(object,"yalkutshimonionnach");
 
         object = json.getObject(899);
         assertTextUriProperty(object, "yalkutshimonionnach-900");
-        assertLabelProperty( object ,"ילקוט שמעוני על נך רמז 900");
+        assertLabelProperty( object ,"ילקוט שמעוני על נ\"ך תתק");
         assertPositionProperty(object ,"900");
         assertBookProperty(object,"yalkutshimonionnach");
 
         object = json.getObject(1084);
         assertTextUriProperty(object, "yalkutshimonionnach-1085");
-        assertLabelProperty( object ,"ילקוט שמעוני על נך רמז 1085");
+        assertLabelProperty( object ,"ילקוט שמעוני על נ\"ך תתרפה");
         assertPositionProperty(object ,"1085");
         assertBookProperty(object,"yalkutshimonionnach");
     }

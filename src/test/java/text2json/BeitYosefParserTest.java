@@ -39,7 +39,8 @@ public class BeitYosefParserTest {
     @Test
     public void testTotalNumberOfObjects() {
         assertNotNull(json);
-        assertEquals(19328, json.subjects.size());
+        assertEquals(18403, json.subjects.size());
+//        assertEquals(19321, json.subjects.size());
     }
 
     @Test
@@ -50,72 +51,72 @@ public class BeitYosefParserTest {
         object = json.getObject(0);
         assertTextUriProperty(object, "beityosef-1-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"בית יוסף טור אורח חיים סימן 1 סעיף 1");
+        assertLabelProperty( object ,"בית יוסף אורח חיים א א");
         assertBookProperty(object,"beityosef");
 
         object = json.getObject(3784);
-        assertTextUriProperty(object, "beityosef-1-440-8");
-        assertLabelProperty( object ,"בית יוסף טור אורח חיים סימן 440 סעיף 8");
+        assertTextUriProperty(object, "beityosef-1-441-1");
+//        assertLabelProperty( object ,"בית יוסף אורח חיים תמא א");
         assertPositionProperty(object ,"3785");
         assertBookProperty(object,"beityosef");
 
         object = json.getObject(5984);
-        assertTextUriProperty(object, "beityosef-1-697-1");
-        assertLabelProperty( object ,"בית יוסף טור אורח חיים סימן 697 סעיף 1");
+        assertTextUriProperty(object, "beityosef-2-1-3");
+        assertLabelProperty( object ,"בית יוסף יורה דעה א ג");
         assertPositionProperty(object ,"5985");
         assertBookProperty(object,"beityosef");
 
         //Second Tur יורה דעה : 5985-11860
         object = json.getObject(5985);
-        assertTextUriProperty(object, "beityosef-2-1-1");
-        assertLabelProperty( object ,"בית יוסף טור יורה דעה סימן 1 סעיף 1");
+        assertTextUriProperty(object, "beityosef-2-1-4");
+        assertLabelProperty( object ,"בית יוסף יורה דעה א ד");
         assertPositionProperty(object ,"5986");
 
         object = json.getObject(9854);
-        assertTextUriProperty(object, "beityosef-2-256-5");
-        assertLabelProperty( object ,"בית יוסף טור יורה דעה סימן 256 סעיף 5");
+        assertTextUriProperty(object, "beityosef-2-258-6");
+        assertLabelProperty( object ,"בית יוסף יורה דעה רנח ו");
         assertPositionProperty(object ,"9855");
 
         object = json.getObject(11860);
-        assertTextUriProperty(object, "beityosef-2-403-14");
-        assertLabelProperty( object ,"בית יוסף טור יורה דעה סימן 403 סעיף 14");
+        assertTextUriProperty(object, "beityosef-3-1-25");
+        assertLabelProperty( object ,"בית יוסף אבן העזר א כה");
         assertPositionProperty(object ,"11861");
         assertBookProperty(object,"beityosef");
 
         //Third Tur אבן העזר : 11861-14719
         object = json.getObject(11861);
-        assertTextUriProperty(object, "beityosef-3-1-1");
-        assertLabelProperty( object ,"בית יוסף טור אבן העזר סימן 1 סעיף 1");
+        assertTextUriProperty(object, "beityosef-3-2-1");
+        assertLabelProperty( object ,"בית יוסף אבן העזר ב א");
         assertPositionProperty(object ,"11862");
 
         object = json.getObject(12999);
-        assertTextUriProperty(object, "beityosef-3-80-13");
-        assertLabelProperty( object ,"בית יוסף טור אבן העזר סימן 80 סעיף 13");
+        assertTextUriProperty(object, "beityosef-3-83-3");
+        assertLabelProperty( object ,"בית יוסף אבן העזר פג ג");
         assertPositionProperty(object ,"13000");
 
         object = json.getObject(14718);
-        assertTextUriProperty(object, "beityosef-3-178-31");
-        assertLabelProperty( object ,"בית יוסף טור אבן העזר סימן 178 סעיף 31");
+        assertTextUriProperty(object, "beityosef-4-3-13");
+        assertLabelProperty( object ,"בית יוסף חושן משפט ג יג");
         assertPositionProperty(object ,"14719");
         assertBookProperty(object,"beityosef");
 
         //Forth Tur חושן משפט : 14719-1928
         object = json.getObject(14719);
-        assertTextUriProperty(object, "beityosef-4-1-1");
-        assertLabelProperty( object ,"בית יוסף טור חושן משפט סימן 1 סעיף 1");
+        assertTextUriProperty(object, "beityosef-4-4-1");
+        assertLabelProperty( object ,"בית יוסף חושן משפט ד א");
         assertPositionProperty(object ,"14720");
         assertBookProperty(object,"beityosef");
 
         object = json.getObject(16863);
-        assertTextUriProperty(object, "beityosef-4-155-51");
-        assertLabelProperty( object ,"בית יוסף טור חושן משפט סימן 155 סעיף 51");
+        assertTextUriProperty(object, "beityosef-4-211-3");
+        assertLabelProperty( object ,"בית יוסף חושן משפט ריא ג");
         assertPositionProperty(object ,"16864");
         assertBookProperty(object,"beityosef");
 
-        object = json.getObject(19327);
+        object = json.getObject(18402);
         assertTextUriProperty(object, "beityosef-4-426-2");
-        assertLabelProperty( object ,"בית יוסף טור חושן משפט סימן 426 סעיף 2");
-        assertPositionProperty(object ,"19328");
+        assertLabelProperty( object ,"בית יוסף חושן משפט תכו ב");
+        assertPositionProperty(object ,"18403");
         assertBookProperty(object,"beityosef");
 
     }

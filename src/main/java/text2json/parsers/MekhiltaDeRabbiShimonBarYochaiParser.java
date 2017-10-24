@@ -21,7 +21,7 @@ public class MekhiltaDeRabbiShimonBarYochaiParser extends JbsParser {
     private String label2 = "";
 
     public MekhiltaDeRabbiShimonBarYochaiParser() {
-        createPackagesJson();
+//        createPackagesJson();
     }
 
     @Override
@@ -81,9 +81,14 @@ public class MekhiltaDeRabbiShimonBarYochaiParser extends JbsParser {
                 addUri(getUri());
                 addPosition(position);
                 position++;
-                addRdfs("מכילתא דרבי שמעון בר יוחאי חלק " + HEB_LETTERS_INDEX[partNum-1] + " פרק " + HEB_LETTERS_INDEX[perekNum-1]);
+                if (partNum == 1)
+                    addRdfs("מכילתא דרשב\"י " + HEB_LETTERS_INDEX[perekNum-1]);
+                else
+                    if (partNum==2)
+                        addRdfs("מכילתא דרשב\"י " +"הוספה "+ HEB_LETTERS_INDEX[perekNum-1]);
 
-                packagesJsonObjectFlush();
+
+//                packagesJsonObjectFlush();
                 break;
 
             case NO_MATCH:

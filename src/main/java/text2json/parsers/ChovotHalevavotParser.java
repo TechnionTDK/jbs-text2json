@@ -5,6 +5,7 @@ import text2json.Line;
 import text2json.LineMatcher;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import static text2json.JbsOntology.*;
 import static text2json.JbsUtils.HEB_LETTERS_INDEX;
@@ -139,7 +140,7 @@ public class ChovotHalevavotParser extends JbsParser {
                 addBook( "chovothalevavot");
                 addPosition( position);
                 addWithin( "chovothalevavot-" + shaarNum);
-                String rdfs1 = "חובות הלבבות " + shaarName + " " + perekName;
+                String rdfs1 = "חובות הלבבות " + shaarName.split(" ",3)[2]  + " " + perekName;
                 addRdfs(rdfs1);
                 break;
 

@@ -58,7 +58,7 @@ public class DerechEretzZutaParser extends JbsParser {
 //                packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
-                String chapterName = "פרק " + chapterNum;
+                String chapterName = "פרק " + getHeb(chapterNum);
                 addUri( getUri());
                 addBook( "derecheretzzuta");
                 addPosition(chapterNum);

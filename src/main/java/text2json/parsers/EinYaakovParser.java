@@ -84,7 +84,7 @@ public class EinYaakovParser extends JbsParser {
                 addBook(packagesJsonObject(), "einyaakov");
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
-                label1=line.getLine();
+                label1=line.getLine().replace("מסכת ","");
                 addPackageUri( "einyaakov-" + masechetNum);
                 addRdfs(packagesJsonObject(),"עין יעקב " + label1);
                 packagesJsonObjectFlush();
@@ -98,8 +98,8 @@ public class EinYaakovParser extends JbsParser {
                 addPosition( position);
                 addBook( "einyaakov");
                 addWithin( "einyaakov-" + masechetNum);
-                label2 = line.getLine().replace("heb","מסכת");
-                String rdfs = "עין יעקב " + label2;
+                label2 = line.getLine().replace("heb","");
+                String rdfs = "עין יעקב" + label2;
                 addRdfs(rdfs);
                 break;
 

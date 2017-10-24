@@ -57,7 +57,7 @@ public class SifreiDevarimParser extends JbsParser {
 //                packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
-                String chapterName = "פסקה " + chapterNum;
+                String chapterName = "פסקה " + getHeb(chapterNum);
                 addUri( getUri());
                 addBook( "sifreidevarim");
                 addPosition(chapterNum);

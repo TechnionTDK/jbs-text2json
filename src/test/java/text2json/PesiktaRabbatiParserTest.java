@@ -42,36 +42,36 @@ public class PesiktaRabbatiParserTest {
         object = json.getObject(0);
         assertTextUriProperty(object, "pesiktarabbati-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"פסיקתא רבתי פרק 1");
+        assertLabelProperty( object ,"פסיקתא רבתי פרק א");
         assertBookProperty(object,"pesiktarabbati");
 
         object = json.getObject(5);
         assertTextUriProperty(object, "pesiktarabbati-6");
-        assertLabelProperty( object ,"פסיקתא רבתי פרק 6");
+        assertLabelProperty( object ,"פסיקתא רבתי פרק ו");
         assertPositionProperty(object ,"6");
         assertBookProperty(object,"pesiktarabbati");
 
         object = json.getObject(13);
         assertTextUriProperty(object, "pesiktarabbati-14");
-        assertLabelProperty( object ,"פסיקתא רבתי פרק 14");
+        assertLabelProperty( object ,"פסיקתא רבתי פרק יד");
         assertPositionProperty(object ,"14");
         assertBookProperty(object,"pesiktarabbati");
 
         object = json.getObject(21);
         assertTextUriProperty(object, "pesiktarabbati-22");
-        assertLabelProperty( object ,"פסיקתא רבתי פרק 22");
+        assertLabelProperty( object ,"פסיקתא רבתי פרק כב");
         assertPositionProperty(object ,"22");
         assertBookProperty(object,"pesiktarabbati");
 
         object = json.getObject(32);
         assertTextUriProperty(object, "pesiktarabbati-33");
-        assertLabelProperty( object ,"פסיקתא רבתי פרק 33");
+        assertLabelProperty( object ,"פסיקתא רבתי פרק לג");
         assertPositionProperty(object ,"33");
         assertBookProperty(object,"pesiktarabbati");
 
         object = json.getObject(46);
         assertTextUriProperty(object, "pesiktarabbati-47");
-        assertLabelProperty( object ,"פסיקתא רבתי פרק 47");
+        assertLabelProperty( object ,"פסיקתא רבתי פרק מז");
         assertPositionProperty(object ,"47");
         assertBookProperty(object,"pesiktarabbati");
     }

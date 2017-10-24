@@ -57,11 +57,10 @@ public class TannaDebeiEliyahuRabbahParser extends JbsParser {
 //                packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
-                String chapterName = "פרק " + chapterNum;
                 addUri( getUri());
                 addBook( "tannadebeieliyahurabbah");
                 addPosition(chapterNum);
-                String rdfs = "תנא דבי אליהו רבה " + chapterName;
+                String rdfs = "תנא דבי אליהו רבה " + getHeb(chapterNum);
                 addRdfs(rdfs);
                 break;
 

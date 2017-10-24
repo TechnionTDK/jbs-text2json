@@ -42,29 +42,29 @@ public class DerashotMaharalParserTest {
         object = json.getObject(0);
         assertTextUriProperty(object, "derashotmaharal-0");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"דרשות מהר\"ל הקדמה לדרוש על התורה");
+        assertLabelProperty( object ,"דרשות מהר\"ל - הקדמה לדרוש על התורה");
         assertBookProperty( object,"derashotmaharal");
 
         object = json.getObject(1);
         assertTextUriProperty(object, "derashotmaharal-1");
-        assertLabelProperty( object ,"דרשות מהר\"ל דרוש על התורה");
+        assertLabelProperty( object ,"דרשות מהר\"ל - דרוש על התורה");
         assertPositionProperty(object ,"2");
         assertBookProperty( object,"derashotmaharal");
 
         object = json.getObject(2);
         assertTextUriProperty(object, "derashotmaharal-2");
-        assertLabelProperty( object ,"דרשות מהר\"ל דרוש על המצות");
+        assertLabelProperty( object ,"דרשות מהר\"ל - דרוש על המצות");
         assertPositionProperty(object ,"3");
         assertBookProperty( object,"derashotmaharal");
 
         object = json.getObject(3);
         assertTextUriProperty(object, "derashotmaharal-3");
-        assertLabelProperty( object ,"דרשות מהר\"ל דרוש לשבת תשובה");
+        assertLabelProperty( object ,"דרשות מהר\"ל - דרוש לשבת תשובה");
         assertPositionProperty(object ,"4");
 
         object = json.getObject(4);
         assertTextUriProperty(object, "derashotmaharal-4");
-        assertLabelProperty( object ,"דרשות מהר\"ל דרוש לשבת הגדול");
+        assertLabelProperty( object ,"דרשות מהר\"ל - דרוש לשבת הגדול");
         assertPositionProperty(object ,"5");
         assertBookProperty( object,"derashotmaharal");
     }

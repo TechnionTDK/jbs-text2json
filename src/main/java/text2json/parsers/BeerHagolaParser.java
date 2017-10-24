@@ -74,9 +74,13 @@ public class BeerHagolaParser extends JbsParser {
 
             case BEGIN_PEREK:
 //                packagesJsonObjectFlush();
-                jsonObjectFlush();
+                if (jsonObject().hasKey(JBO_TEXT))
+                    jsonObjectFlush();
+                else{
+                    jsonObject().clear();
+                }
                 beerNum++;
-                String beerName = "באר " + HEB_LETTERS_INDEX[beerNum-1];
+                String beerName =  HEB_LETTERS_INDEX[beerNum-1];
                 addUri( getUri());
                 addBook( "beerhagola");
                 addPosition( beerNum+1);
@@ -93,7 +97,9 @@ public class BeerHagolaParser extends JbsParser {
     @Override
     protected String getUri() {
         return "beerhagola-" + beerNum ;    }
+
     protected String getcorpus() { return JBR + "beerhagola";    }
+
 
 
 }

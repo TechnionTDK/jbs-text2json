@@ -58,7 +58,7 @@ public class MidbarShurParser extends JbsParser {
 //                packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
-                String chapterName = "דרוש " + HEB_LETTERS_INDEX[chapterNum-1];
+                String chapterName = HEB_LETTERS_INDEX[chapterNum-1];
                 addUri( getUri());
                 addBook( "midbarshur");
                 addPosition(chapterNum);

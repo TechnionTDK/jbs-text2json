@@ -42,36 +42,36 @@ public class DerechEretzZutaParserTest {
         object = json.getObject(0);
         assertTextUriProperty(object, "derecheretzzuta-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"דרך ארץ זוטא פרק 1");
+        assertLabelProperty( object ,"דרך ארץ זוטא פרק א");
         assertBookProperty(object,"derecheretzzuta");
 
         object = json.getObject(3);
         assertTextUriProperty(object, "derecheretzzuta-4");
-        assertLabelProperty( object ,"דרך ארץ זוטא פרק 4");
+        assertLabelProperty( object ,"דרך ארץ זוטא פרק ד");
         assertPositionProperty(object ,"4");
         assertBookProperty(object,"derecheretzzuta");
 
         object = json.getObject(4);
         assertTextUriProperty(object, "derecheretzzuta-5");
-        assertLabelProperty( object ,"דרך ארץ זוטא פרק 5");
+        assertLabelProperty( object ,"דרך ארץ זוטא פרק ה");
         assertPositionProperty(object ,"5");
         assertBookProperty(object,"derecheretzzuta");
 
         object = json.getObject(5);
         assertTextUriProperty(object, "derecheretzzuta-6");
-        assertLabelProperty( object ,"דרך ארץ זוטא פרק 6");
+        assertLabelProperty( object ,"דרך ארץ זוטא פרק ו");
         assertPositionProperty(object ,"6");
         assertBookProperty(object,"derecheretzzuta");
 
         object = json.getObject(7);
         assertTextUriProperty(object, "derecheretzzuta-8");
-        assertLabelProperty( object ,"דרך ארץ זוטא פרק 8");
+        assertLabelProperty( object ,"דרך ארץ זוטא פרק ח");
         assertPositionProperty(object ,"8");
         assertBookProperty(object,"derecheretzzuta");
 
         object = json.getObject(9);
         assertTextUriProperty(object, "derecheretzzuta-10");
-        assertLabelProperty( object ,"דרך ארץ זוטא פרק 10");
+        assertLabelProperty( object ,"דרך ארץ זוטא פרק י");
         assertPositionProperty(object ,"10");
         assertBookProperty(object,"derecheretzzuta");
     }

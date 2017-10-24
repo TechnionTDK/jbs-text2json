@@ -42,30 +42,30 @@ public class TannaDebeiEliyahuRabbahParserTest {
         object = json.getObject(0);
         assertTextUriProperty(object, "tannadebeieliyahurabbah-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"תנא דבי אליהו רבה פרק 1");
+        assertLabelProperty( object ,"תנא דבי אליהו רבה א");
         assertBookProperty(object,"tannadebeieliyahurabbah");
 
         object = json.getObject(5);
         assertTextUriProperty(object, "tannadebeieliyahurabbah-6");
-        assertLabelProperty( object ,"תנא דבי אליהו רבה פרק 6");
+        assertLabelProperty( object ,"תנא דבי אליהו רבה ו");
         assertPositionProperty(object ,"6");
         assertBookProperty(object,"tannadebeieliyahurabbah");
 
         object = json.getObject(13);
         assertTextUriProperty(object, "tannadebeieliyahurabbah-14");
-        assertLabelProperty( object ,"תנא דבי אליהו רבה פרק 14");
+        assertLabelProperty( object ,"תנא דבי אליהו רבה יד");
         assertPositionProperty(object ,"14");
         assertBookProperty(object,"tannadebeieliyahurabbah");
 
         object = json.getObject(21);
         assertTextUriProperty(object, "tannadebeieliyahurabbah-22");
-        assertLabelProperty( object ,"תנא דבי אליהו רבה פרק 22");
+        assertLabelProperty( object ,"תנא דבי אליהו רבה כב");
         assertPositionProperty(object ,"22");
         assertBookProperty(object,"tannadebeieliyahurabbah");
 
         object = json.getObject(30);
         assertTextUriProperty(object, "tannadebeieliyahurabbah-31");
-        assertLabelProperty( object ,"תנא דבי אליהו רבה פרק 31");
+        assertLabelProperty( object ,"תנא דבי אליהו רבה לא");
         assertPositionProperty(object ,"31");
         assertBookProperty(object,"tannadebeieliyahurabbah");
 

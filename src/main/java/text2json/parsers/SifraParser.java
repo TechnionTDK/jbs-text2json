@@ -97,7 +97,7 @@ public class SifraParser extends JbsParser {
                 addPackageUri("sifra-" + parashaNum);
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
-                label2 = line.getLine();
+                label2 = line.getLine().replace("פרשת ","");
                 addRdfs(packagesJsonObject(), "ספרא " + label2);
                 // No need to create an object for the entire book anymore!
                 // It is created manually, outside text2json

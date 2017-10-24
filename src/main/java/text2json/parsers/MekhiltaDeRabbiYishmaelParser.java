@@ -74,22 +74,25 @@ public class MekhiltaDeRabbiYishmaelParser extends JbsParser {
                 addPackageUri("mekhiltaderabbiyishmael-"+perekNum);
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
-                addRdfs(packagesJsonObject(),"מכילתא דרבי ישמעאל פרק " + HEB_LETTERS_INDEX[perekNum-1]);
+                addRdfs(packagesJsonObject(),"מכילתא דרבי ישמעאל " + HEB_LETTERS_INDEX[perekNum-1]);
                 // No need to create an object for the entire book anymore!
                 // It is created manually, outside text2json
                 break;
 
 
             case BEGIN_PASUK:
-                jsonObjectFlush();
+                if (jsonObject().hasKey(JBO_TEXT)){
+                    jsonObjectFlush();
+                    position++;}
+                else{
+                    jsonObject().clear();
+                }
                 pasukNum++;
                 addBook("mekhiltaderabbiyishmael");
                 addUri(getUri());
                 addWithin("mekhiltaderabbiyishmael-" + pasukNum);
                 addPosition(position);
-                position++;
-                addRdfs("מכילתא דרבי ישמעאל פרק " + HEB_LETTERS_INDEX[perekNum-1] + " פסוק " + HEB_LETTERS_INDEX[pasukNum-1]);
-
+                addRdfs("מכילתא דרבי ישמעאל " + HEB_LETTERS_INDEX[perekNum-1] + " " + HEB_LETTERS_INDEX[pasukNum-1]);
                 packagesJsonObjectFlush();
                 break;
 

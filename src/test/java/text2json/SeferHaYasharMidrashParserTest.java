@@ -47,25 +47,25 @@ public class SeferHaYasharMidrashParserTest {
 
         object = json.getObject(4);
         assertTextUriProperty(object, "seferhayasharmidrash-1-4");
-        assertLabelProperty( object ,"ספר הישר (מדרש) פרשה וירא");
+        assertLabelProperty( object ,"ספר הישר (מדרש) וירא");
         assertPositionProperty(object ,"4");
         assertBookProperty(object,"seferhayasharmidrash");
 
         object = json.getObject(7);
         assertTextUriProperty(object, "seferhayasharmidrash-1-7");
-        assertLabelProperty( object ,"ספר הישר (מדרש) פרשה וישלח");
+        assertLabelProperty( object ,"ספר הישר (מדרש) וישלח");
         assertPositionProperty(object ,"7");
         assertBookProperty(object,"seferhayasharmidrash");
 
         object = json.getObject(9);
         assertTextUriProperty(object, "seferhayasharmidrash-1-9");
-        assertLabelProperty( object ,"ספר הישר (מדרש) פרשה מקץ");
+        assertLabelProperty( object ,"ספר הישר (מדרש) מקץ");
         assertPositionProperty(object ,"9");
         assertBookProperty(object,"seferhayasharmidrash");
 
         object = json.getObject(11);
         assertTextUriProperty(object, "seferhayasharmidrash-1-11");
-        assertLabelProperty( object ,"ספר הישר (מדרש) פרשה ויחי");
+        assertLabelProperty( object ,"ספר הישר (מדרש) ויחי");
         assertPositionProperty(object ,"11");
         assertBookProperty(object,"seferhayasharmidrash");
 

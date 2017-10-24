@@ -57,11 +57,10 @@ public class YalkutShimonionTorahParser extends JbsParser {
 //                packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
-                String chapterName = "רמז " + chapterNum;
                 addUri( getUri());
                 addBook( "yalkutshimoniontorah");
                 addPosition(chapterNum);
-                String rdfs = "ילקוט שמעוני על התורה " + chapterName;
+                String rdfs = "ילקוט שמעוני על התורה " + getHeb(chapterNum);
                 addRdfs(rdfs);
                 break;
 

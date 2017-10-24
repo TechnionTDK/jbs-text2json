@@ -31,7 +31,7 @@ public class MekhiltaDeRabbiYishmaelParserTest {
     @Test
     public void testTotalNumberOfObjects() {
         assertNotNull(json);
-        assertEquals(380, json.subjects.size());
+        assertEquals(313, json.subjects.size());
     }
 
     @Test
@@ -39,45 +39,45 @@ public class MekhiltaDeRabbiYishmaelParserTest {
         Map<String, String> object;
 
         object = json.getObject(0);
-        assertTextUriProperty(object, "mekhiltaderabbiyishmael-1-1");
+        assertTextUriProperty(object, "mekhiltaderabbiyishmael-12-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"מכילתא דרבי ישמעאל פרק א פסוק א");
+        assertLabelProperty( object ,"מכילתא דרבי ישמעאל יב א");
         assertBookProperty(object,"mekhiltaderabbiyishmael");
 
         object = json.getObject(42);
-        assertTextUriProperty(object, "mekhiltaderabbiyishmael-12-21");
-        assertLabelProperty( object ,"מכילתא דרבי ישמעאל פרק יב פסוק כא");
+        assertTextUriProperty(object, "mekhiltaderabbiyishmael-13-5");
+        assertLabelProperty( object ,"מכילתא דרבי ישמעאל יג ה");
         assertPositionProperty(object ,"43");
         assertBookProperty(object,"mekhiltaderabbiyishmael");
 
         object = json.getObject(98);
-        assertTextUriProperty(object, "mekhiltaderabbiyishmael-14-6");
-        assertLabelProperty( object ,"מכילתא דרבי ישמעאל פרק יד פסוק ו");
+        assertTextUriProperty(object, "mekhiltaderabbiyishmael-15-22");
+        assertLabelProperty( object ,"מכילתא דרבי ישמעאל טו כב");
         assertPositionProperty(object ,"99");
         assertBookProperty(object,"mekhiltaderabbiyishmael");
 
         object = json.getObject(150);
-        assertTextUriProperty(object, "mekhiltaderabbiyishmael-15-27");
-        assertLabelProperty( object ,"מכילתא דרבי ישמעאל פרק טו פסוק כז");
+        assertTextUriProperty(object, "mekhiltaderabbiyishmael-18-3");
+        assertLabelProperty( object ,"מכילתא דרבי ישמעאל יח ג");
         assertPositionProperty(object ,"151");
         assertBookProperty(object,"mekhiltaderabbiyishmael");
 
         object = json.getObject(201);
-        assertTextUriProperty(object, "mekhiltaderabbiyishmael-17-15");
-        assertLabelProperty( object ,"מכילתא דרבי ישמעאל פרק יז פסוק טו");
+        assertTextUriProperty(object, "mekhiltaderabbiyishmael-20-6");
+        assertLabelProperty( object ,"מכילתא דרבי ישמעאל כ ו");
         assertPositionProperty(object ,"202");
         assertBookProperty(object,"mekhiltaderabbiyishmael");
 
         object = json.getObject(303);
-        assertTextUriProperty(object, "mekhiltaderabbiyishmael-21-30");
-        assertLabelProperty( object ,"מכילתא דרבי ישמעאל פרק כא פסוק ל");
+        assertTextUriProperty(object, "mekhiltaderabbiyishmael-23-19");
+        assertLabelProperty( object ,"מכילתא דרבי ישמעאל כג יט");
         assertPositionProperty(object ,"304");
         assertBookProperty(object,"mekhiltaderabbiyishmael");
 
-        object = json.getObject(379);
+        object = json.getObject(312);
         assertTextUriProperty(object, "mekhiltaderabbiyishmael-35-3");
-        assertLabelProperty( object ,"מכילתא דרבי ישמעאל פרק לה פסוק ג");
-        assertPositionProperty(object ,"380");
+        assertLabelProperty( object ,"מכילתא דרבי ישמעאל לה ג");
+        assertPositionProperty(object ,"313");
         assertBookProperty(object,"mekhiltaderabbiyishmael");
     }
 }

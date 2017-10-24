@@ -42,65 +42,65 @@ public class MidrashTanchumaParserTest {
         object = json.getObject(0);
         assertTextUriProperty(object, "midrashtanchuma-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"מדרש תנחומא פרשת בראשית סימן א");
+        assertLabelProperty( object ,"מדרש תנחומא בראשית א");
         assertBookProperty(object,"midrashtanchuma");
 
         object = json.getObject(121);
         assertTextUriProperty(object, "midrashtanchuma-9-2");
-        assertLabelProperty( object ,"מדרש תנחומא פרשת וישב סימן ב");
+        assertLabelProperty( object ,"מדרש תנחומא וישב ב");
         assertPositionProperty(object ,"122");
         assertBookProperty(object,"midrashtanchuma");
 
         object = json.getObject(222);
         assertTextUriProperty(object, "midrashtanchuma-15-10");
-        assertLabelProperty( object ,"מדרש תנחומא פרשת בא סימן י");
+        assertLabelProperty( object ,"מדרש תנחומא בא י");
         assertPositionProperty(object ,"223");
         assertBookProperty(object,"midrashtanchuma");
 
         object = json.getObject(333);
         assertTextUriProperty(object, "midrashtanchuma-21-17");
-        assertLabelProperty( object ,"מדרש תנחומא פרשת כי תשא סימן יז");
+        assertLabelProperty( object ,"מדרש תנחומא כי תשא יז");
         assertPositionProperty(object ,"334");
         assertBookProperty(object,"midrashtanchuma");
 
         object = json.getObject(444);
         assertTextUriProperty(object, "midrashtanchuma-30-4");
-        assertLabelProperty( object ,"מדרש תנחומא פרשת קדושים סימן ד");
+        assertLabelProperty( object ,"מדרש תנחומא קדושים ד");
         assertPositionProperty(object ,"445");
         assertBookProperty(object,"midrashtanchuma");
 
 
         object = json.getObject(555);
         assertTextUriProperty(object, "midrashtanchuma-36-10");
-        assertLabelProperty( object ,"מדרש תנחומא פרשת בהעלותך סימן י");
+        assertLabelProperty( object ,"מדרש תנחומא בהעלותך י");
         assertPositionProperty(object ,"556");
         assertBookProperty(object,"midrashtanchuma");
 
 
         object = json.getObject(666);
         assertTextUriProperty(object, "midrashtanchuma-43-6");
-        assertLabelProperty( object ,"מדרש תנחומא פרשת מסעי סימן ו");
+        assertLabelProperty( object ,"מדרש תנחומא מסעי ו");
         assertPositionProperty(object ,"667");
         assertBookProperty(object,"midrashtanchuma");
 
 
         object = json.getObject(700);
         assertTextUriProperty(object, "midrashtanchuma-47-6");
-        assertLabelProperty( object ,"מדרש תנחומא פרשת ראה סימן ו");
+        assertLabelProperty( object ,"מדרש תנחומא ראה ו");
         assertPositionProperty(object ,"701");
         assertBookProperty(object,"midrashtanchuma");
 
 
         object = json.getObject(750);
         assertTextUriProperty(object, "midrashtanchuma-51-4");
-        assertLabelProperty( object ,"מדרש תנחומא פרשת נצבים סימן ד");
+        assertLabelProperty( object ,"מדרש תנחומא נצבים ד");
         assertPositionProperty(object ,"751");
         assertBookProperty(object,"midrashtanchuma");
 
 
         object = json.getObject(775);
         assertTextUriProperty(object, "midrashtanchuma-54-7");
-        assertLabelProperty( object ,"מדרש תנחומא פרשת וזאת הברכה סימן ז");
+        assertLabelProperty( object ,"מדרש תנחומא וזאת הברכה ז");
         assertPositionProperty(object ,"776");
         assertBookProperty(object,"midrashtanchuma");
 

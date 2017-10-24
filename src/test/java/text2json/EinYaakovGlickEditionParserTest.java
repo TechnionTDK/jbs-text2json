@@ -41,36 +41,36 @@ public class EinYaakovGlickEditionParserTest {
         object = json.getObject(0);
         assertTextUriProperty(object, "einyaakovglickedition-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"עין יעקב (מאת שמואל צבי גליק) מסכת ברכות פרק א");
+        assertLabelProperty( object ,"עין יעקב (מאת שמואל צבי גליק) ברכות פרק א");
         assertBookProperty(object,"einyaakovglickedition");
 
         object = json.getObject(42);
         assertTextUriProperty(object, "einyaakovglickedition-4-4");
-        assertLabelProperty( object ,"עין יעקב (מאת שמואל צבי גליק) מסכת פסחים פרק ד");
+        assertLabelProperty( object ,"עין יעקב (מאת שמואל צבי גליק) פסחים פרק ד");
         assertPositionProperty(object ,"43");
         assertBookProperty(object,"einyaakovglickedition");
 
         object = json.getObject(98);
         assertTextUriProperty(object, "einyaakovglickedition-13-16");
-        assertLabelProperty( object ,"עין יעקב (מאת שמואל צבי גליק) מסכת יבמות פרק טז");
+        assertLabelProperty( object ,"עין יעקב (מאת שמואל צבי גליק) יבמות פרק טז");
         assertPositionProperty(object ,"99");
         assertBookProperty(object,"einyaakovglickedition");
 
         object = json.getObject(150);
         assertTextUriProperty(object, "einyaakovglickedition-19-1");
-        assertLabelProperty( object ,"עין יעקב (מאת שמואל צבי גליק) מסכת קידושין פרק א");
+        assertLabelProperty( object ,"עין יעקב (מאת שמואל צבי גליק) קידושין פרק א");
         assertPositionProperty(object ,"151");
         assertBookProperty(object,"einyaakovglickedition");
 
         object = json.getObject(201);
         assertTextUriProperty(object, "einyaakovglickedition-25-5");
-        assertLabelProperty( object ,"עין יעקב (מאת שמואל צבי גליק) מסכת שבועות פרק ה");
+        assertLabelProperty( object ,"עין יעקב (מאת שמואל צבי גליק) שבועות פרק ה");
         assertPositionProperty(object ,"202");
         assertBookProperty(object,"einyaakovglickedition");
 
         object = json.getObject(251);
         assertTextUriProperty(object, "einyaakovglickedition-31-7");
-        assertLabelProperty( object ,"עין יעקב (מאת שמואל צבי גליק) מסכת חולין פרק ז");
+        assertLabelProperty( object ,"עין יעקב (מאת שמואל צבי גליק) חולין פרק ז");
         assertPositionProperty(object ,"252");
         assertBookProperty(object,"einyaakovglickedition");
     }

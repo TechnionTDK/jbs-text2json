@@ -92,6 +92,10 @@ public class JsonObject {
         }
     }
 
+    public void clear(){
+        tuples.clear();
+        arrays.clear();
+    }
 
     private class Tuple {
         private String key;

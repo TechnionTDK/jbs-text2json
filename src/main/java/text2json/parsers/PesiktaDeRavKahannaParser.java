@@ -57,7 +57,7 @@ public class PesiktaDeRavKahannaParser extends JbsParser {
 //                packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
-                String chapterName = "פסקה " + chapterNum;
+                String chapterName = "פסקה " + getHeb(chapterNum);
                 addUri( getUri());
                 addBook( "pesiktaderavkahanna");
                 addPosition(chapterNum);

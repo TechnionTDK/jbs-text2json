@@ -52,18 +52,18 @@ public class TalmudYerushalmiParserTest {
         object = json[1].getObject(0);
         assertTextUriProperty(object, "yerushalmi-1-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת ברכות דף 1א");
+        assertLabelProperty( object ,"תלמוד ירושלמי ברכות א א");
         assertBookProperty(object,"yerushalmi");
 
         object = json[1].getObject(87);
         assertTextUriProperty(object, "yerushalmi-1-44-2");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת ברכות דף 44ב");
+        assertLabelProperty( object ,"תלמוד ירושלמי ברכות מד ב");
         assertPositionProperty(object ,"88");
         assertBookProperty(object,"yerushalmi");
 
         object = json[1].getObject(134);
         assertTextUriProperty(object, "yerushalmi-1-68-1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת ברכות דף 68א");
+        assertLabelProperty( object ,"תלמוד ירושלמי ברכות סח א");
         assertPositionProperty(object ,"135");
         assertBookProperty(object,"yerushalmi");
 
@@ -71,18 +71,18 @@ public class TalmudYerushalmiParserTest {
         object = json[2].getObject(0);
         assertTextUriProperty(object, "yerushalmi-2-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת פאה דף 1א");
+        assertLabelProperty( object ,"תלמוד ירושלמי פאה א א");
         assertBookProperty(object,"yerushalmi");
 
         object = json[2].getObject(39);
         assertTextUriProperty(object, "yerushalmi-2-20-2");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת פאה דף 20ב");
+        assertLabelProperty( object ,"תלמוד ירושלמי פאה כ ב");
         assertPositionProperty(object ,"40");
         assertBookProperty(object,"yerushalmi");
 
         object = json[2].getObject(73);
         assertTextUriProperty(object, "yerushalmi-2-37-2");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת פאה דף 37ב");
+        assertLabelProperty( object ,"תלמוד ירושלמי פאה לז ב");
         assertPositionProperty(object ,"74");
         assertBookProperty(object,"yerushalmi");
 
@@ -90,18 +90,18 @@ public class TalmudYerushalmiParserTest {
         object = json[3].getObject(0);
         assertTextUriProperty(object, "yerushalmi-3-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת דמאי דף 1א");
+        assertLabelProperty( object ,"תלמוד ירושלמי דמאי א א");
         assertBookProperty(object,"yerushalmi");
 
         object = json[3].getObject(30);
         assertTextUriProperty(object, "yerushalmi-3-16-1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת דמאי דף 16א");
+        assertLabelProperty( object ,"תלמוד ירושלמי דמאי טז א");
         assertPositionProperty(object ,"31");
         assertBookProperty(object,"yerushalmi");
 
         object = json[3].getObject(66);
         assertTextUriProperty(object, "yerushalmi-3-34-1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת דמאי דף 34א");
+        assertLabelProperty( object ,"תלמוד ירושלמי דמאי לד א");
         assertPositionProperty(object ,"67");
         assertBookProperty(object,"yerushalmi");
 
@@ -109,18 +109,18 @@ public class TalmudYerushalmiParserTest {
         object = json[4].getObject(0);
         assertTextUriProperty(object, "yerushalmi-4-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת כלאים דף 1א");
+        assertLabelProperty( object ,"תלמוד ירושלמי כלאים א א");
         assertBookProperty(object,"yerushalmi");
 
         object = json[4].getObject(41);
         assertTextUriProperty(object, "yerushalmi-4-21-2");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת כלאים דף 21ב");
+        assertLabelProperty( object ,"תלמוד ירושלמי כלאים כא ב");
         assertPositionProperty(object ,"42");
         assertBookProperty(object,"yerushalmi");
 
         object = json[4].getObject(87);
         assertTextUriProperty(object, "yerushalmi-4-44-2");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת כלאים דף 44ב");
+        assertLabelProperty( object ,"תלמוד ירושלמי כלאים מד ב");
         assertPositionProperty(object ,"88");
         assertBookProperty(object,"yerushalmi");
 
@@ -128,18 +128,18 @@ public class TalmudYerushalmiParserTest {
         object = json[5].getObject(0);
         assertTextUriProperty(object, "yerushalmi-5-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת שביעית דף 1א");
+        assertLabelProperty( object ,"תלמוד ירושלמי שביעית א א");
         assertBookProperty(object,"yerushalmi");
 
         object = json[5].getObject(29);
         assertTextUriProperty(object, "yerushalmi-5-15-2");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת שביעית דף 15ב");
+        assertLabelProperty( object ,"תלמוד ירושלמי שביעית טו ב");
         assertPositionProperty(object ,"30");
         assertBookProperty(object,"yerushalmi");
 
         object = json[5].getObject(60);
         assertTextUriProperty(object, "yerushalmi-5-31-1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת שביעית דף 31א");
+        assertLabelProperty( object ,"תלמוד ירושלמי שביעית לא א");
         assertPositionProperty(object ,"61");
         assertBookProperty(object,"yerushalmi");
 
@@ -147,18 +147,18 @@ public class TalmudYerushalmiParserTest {
         object = json[6].getObject(0);
         assertTextUriProperty(object, "yerushalmi-6-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת תרומות דף 1א");
+        assertLabelProperty( object ,"תלמוד ירושלמי תרומות א א");
         assertBookProperty(object,"yerushalmi");
 
         object = json[6].getObject(59);
         assertTextUriProperty(object, "yerushalmi-6-30-2");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת תרומות דף 30ב");
+        assertLabelProperty( object ,"תלמוד ירושלמי תרומות ל ב");
         assertPositionProperty(object ,"60");
         assertBookProperty(object,"yerushalmi");
 
         object = json[6].getObject(116);
         assertTextUriProperty(object, "yerushalmi-6-59-1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת תרומות דף 59א");
+        assertLabelProperty( object ,"תלמוד ירושלמי תרומות נט א");
         assertPositionProperty(object ,"117");
         assertBookProperty(object,"yerushalmi");
 
@@ -166,18 +166,18 @@ public class TalmudYerushalmiParserTest {
         object = json[7].getObject(0);
         assertTextUriProperty(object, "yerushalmi-7-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת מעשרות דף 1א");
+        assertLabelProperty( object ,"תלמוד ירושלמי מעשרות א א");
         assertBookProperty(object,"yerushalmi");
 
         object = json[7].getObject(26);
         assertTextUriProperty(object, "yerushalmi-7-14-1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת מעשרות דף 14א");
+        assertLabelProperty( object ,"תלמוד ירושלמי מעשרות יד א");
         assertPositionProperty(object ,"27");
         assertBookProperty(object,"yerushalmi");
 
         object = json[7].getObject(51);
         assertTextUriProperty(object, "yerushalmi-7-26-2");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת מעשרות דף 26ב");
+        assertLabelProperty( object ,"תלמוד ירושלמי מעשרות כו ב");
         assertPositionProperty(object ,"52");
         assertBookProperty(object,"yerushalmi");
 
@@ -185,18 +185,18 @@ public class TalmudYerushalmiParserTest {
         object = json[8].getObject(0);
         assertTextUriProperty(object, "yerushalmi-8-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת מעשר שני דף 1א");
+        assertLabelProperty( object ,"תלמוד ירושלמי מעשר שני א א");
         assertBookProperty(object,"yerushalmi");
 
         object = json[8].getObject(33);
         assertTextUriProperty(object, "yerushalmi-8-17-2");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת מעשר שני דף 17ב");
+        assertLabelProperty( object ,"תלמוד ירושלמי מעשר שני יז ב");
         assertPositionProperty(object ,"34");
         assertBookProperty(object,"yerushalmi");
 
         object = json[8].getObject(65);
         assertTextUriProperty(object, "yerushalmi-8-33-2");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת מעשר שני דף 33ב");
+        assertLabelProperty( object ,"תלמוד ירושלמי מעשר שני לג ב");
         assertPositionProperty(object ,"66");
         assertBookProperty(object,"yerushalmi");
 
@@ -204,18 +204,18 @@ public class TalmudYerushalmiParserTest {
         object = json[9].getObject(0);
         assertTextUriProperty(object, "yerushalmi-9-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת חלה דף 1א");
+        assertLabelProperty( object ,"תלמוד ירושלמי חלה א א");
         assertBookProperty(object,"yerushalmi");
 
         object = json[9].getObject(24);
         assertTextUriProperty(object, "yerushalmi-9-13-1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת חלה דף 13א");
+        assertLabelProperty( object ,"תלמוד ירושלמי חלה יג א");
         assertPositionProperty(object ,"25");
         assertBookProperty(object,"yerushalmi");
 
         object = json[9].getObject(55);
         assertTextUriProperty(object, "yerushalmi-9-28-2");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת חלה דף 28ב");
+        assertLabelProperty( object ,"תלמוד ירושלמי חלה כח ב");
         assertPositionProperty(object ,"56");
         assertBookProperty(object,"yerushalmi");
 
@@ -223,18 +223,18 @@ public class TalmudYerushalmiParserTest {
         object = json[10].getObject(0);
         assertTextUriProperty(object, "yerushalmi-10-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת ערלה דף 1א");
+        assertLabelProperty( object ,"תלמוד ירושלמי ערלה א א");
         assertBookProperty(object,"yerushalmi");
 
         object = json[10].getObject(19);
         assertTextUriProperty(object, "yerushalmi-10-10-2");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת ערלה דף 10ב");
+        assertLabelProperty( object ,"תלמוד ירושלמי ערלה י ב");
         assertPositionProperty(object ,"20");
         assertBookProperty(object,"yerushalmi");
 
         object = json[10].getObject(39);
         assertTextUriProperty(object, "yerushalmi-10-20-2");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת ערלה דף 20ב");
+        assertLabelProperty( object ,"תלמוד ירושלמי ערלה כ ב");
         assertPositionProperty(object ,"40");
         assertBookProperty(object,"yerushalmi");
 
@@ -242,18 +242,18 @@ public class TalmudYerushalmiParserTest {
         object = json[11].getObject(0);
         assertTextUriProperty(object, "yerushalmi-11-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת בכורים דף 1א");
+        assertLabelProperty( object ,"תלמוד ירושלמי בכורים א א");
         assertBookProperty(object,"yerushalmi");
 
         object = json[11].getObject(11);
         assertTextUriProperty(object, "yerushalmi-11-6-2");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת בכורים דף 6ב");
+        assertLabelProperty( object ,"תלמוד ירושלמי בכורים ו ב");
         assertPositionProperty(object ,"12");
         assertBookProperty(object,"yerushalmi");
 
         object = json[11].getObject(24);
         assertTextUriProperty(object, "yerushalmi-11-13-1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת בכורים דף 13א");
+        assertLabelProperty( object ,"תלמוד ירושלמי בכורים יג א");
         assertPositionProperty(object ,"25");
         assertBookProperty(object,"yerushalmi");
 
@@ -261,18 +261,18 @@ public class TalmudYerushalmiParserTest {
         object = json[12].getObject(0);
         assertTextUriProperty(object, "yerushalmi-12-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת שבת דף 1א");
+        assertLabelProperty( object ,"תלמוד ירושלמי שבת א א");
         assertBookProperty(object,"yerushalmi");
 
         object = json[12].getObject(100);
         assertTextUriProperty(object, "yerushalmi-12-51-1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת שבת דף 51א");
+        assertLabelProperty( object ,"תלמוד ירושלמי שבת נא א");
         assertPositionProperty(object ,"101");
         assertBookProperty(object,"yerushalmi");
 
         object = json[12].getObject(183);
         assertTextUriProperty(object, "yerushalmi-12-92-2");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת שבת דף 92ב");
+        assertLabelProperty( object ,"תלמוד ירושלמי שבת צב ב");
         assertPositionProperty(object ,"184");
         assertBookProperty(object,"yerushalmi");
 
@@ -280,18 +280,18 @@ public class TalmudYerushalmiParserTest {
         object = json[13].getObject(0);
         assertTextUriProperty(object, "yerushalmi-13-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת עירובין דף 1א");
+        assertLabelProperty( object ,"תלמוד ירושלמי עירובין א א");
         assertBookProperty(object,"yerushalmi");
 
         object = json[13].getObject(84);
         assertTextUriProperty(object, "yerushalmi-13-43-1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת עירובין דף 43א");
+        assertLabelProperty( object ,"תלמוד ירושלמי עירובין מג א");
         assertPositionProperty(object ,"85");
         assertBookProperty(object,"yerushalmi");
 
         object = json[13].getObject(129);
         assertTextUriProperty(object, "yerushalmi-13-65-2");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת עירובין דף 65ב");
+        assertLabelProperty( object ,"תלמוד ירושלמי עירובין סה ב");
         assertPositionProperty(object ,"130");
         assertBookProperty(object,"yerushalmi");
 
@@ -299,18 +299,18 @@ public class TalmudYerushalmiParserTest {
         object = json[14].getObject(0);
         assertTextUriProperty(object, "yerushalmi-14-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת פסחים דף 1א");
+        assertLabelProperty( object ,"תלמוד ירושלמי פסחים א א");
         assertBookProperty(object,"yerushalmi");
 
         object = json[14].getObject(80);
         assertTextUriProperty(object, "yerushalmi-14-41-1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת פסחים דף 41א");
+        assertLabelProperty( object ,"תלמוד ירושלמי פסחים מא א");
         assertPositionProperty(object ,"81");
         assertBookProperty(object,"yerushalmi");
 
         object = json[14].getObject(141);
         assertTextUriProperty(object, "yerushalmi-14-71-2");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת פסחים דף 71ב");
+        assertLabelProperty( object ,"תלמוד ירושלמי פסחים עא ב");
         assertPositionProperty(object ,"142");
         assertBookProperty(object,"yerushalmi");
 
@@ -318,18 +318,18 @@ public class TalmudYerushalmiParserTest {
         object = json[20].getObject(0);
         assertTextUriProperty(object, "yerushalmi-20-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת תענית דף 1א");
+        assertLabelProperty( object ,"תלמוד ירושלמי תענית א א");
         assertBookProperty(object,"yerushalmi");
 
         object = json[20].getObject(30);
         assertTextUriProperty(object, "yerushalmi-20-16-1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת תענית דף 16א");
+        assertLabelProperty( object ,"תלמוד ירושלמי תענית טז א");
         assertPositionProperty(object ,"31");
         assertBookProperty(object,"yerushalmi");
 
         object = json[20].getObject(51);
         assertTextUriProperty(object, "yerushalmi-20-26-2");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת תענית דף 26ב");
+        assertLabelProperty( object ,"תלמוד ירושלמי תענית כו ב");
         assertPositionProperty(object ,"52");
         assertBookProperty(object,"yerushalmi");
 
@@ -337,18 +337,18 @@ public class TalmudYerushalmiParserTest {
         object = json[26].getObject(0);
         assertTextUriProperty(object, "yerushalmi-26-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת נדרים דף 1א");
+        assertLabelProperty( object ,"תלמוד ירושלמי נדרים א א");
         assertBookProperty(object,"yerushalmi");
 
         object = json[26].getObject(45);
         assertTextUriProperty(object, "yerushalmi-26-23-2");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת נדרים דף 23ב");
+        assertLabelProperty( object ,"תלמוד ירושלמי נדרים כג ב");
         assertPositionProperty(object ,"46");
         assertBookProperty(object,"yerushalmi");
 
         object = json[26].getObject(78);
         assertTextUriProperty(object, "yerushalmi-26-40-1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת נדרים דף 40א");
+        assertLabelProperty( object ,"תלמוד ירושלמי נדרים מ א");
         assertPositionProperty(object ,"79");
         assertBookProperty(object,"yerushalmi");
 
@@ -356,18 +356,18 @@ public class TalmudYerushalmiParserTest {
         object = json[30].getObject(0);
         assertTextUriProperty(object, "yerushalmi-30-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת קידושין דף 1א");
+        assertLabelProperty( object ,"תלמוד ירושלמי קידושין א א");
         assertBookProperty(object,"yerushalmi");
 
         object = json[30].getObject(50);
         assertTextUriProperty(object, "yerushalmi-30-26-1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת קידושין דף 26א");
+        assertLabelProperty( object ,"תלמוד ירושלמי קידושין כו א");
         assertPositionProperty(object ,"51");
         assertBookProperty(object,"yerushalmi");
 
         object = json[30].getObject(95);
         assertTextUriProperty(object, "yerushalmi-30-48-2");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת קידושין דף 48ב");
+        assertLabelProperty( object ,"תלמוד ירושלמי קידושין מח ב");
         assertPositionProperty(object ,"96");
         assertBookProperty(object,"yerushalmi");
 
@@ -375,18 +375,18 @@ public class TalmudYerushalmiParserTest {
         object = json[33].getObject(0);
         assertTextUriProperty(object, "yerushalmi-33-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת בבא בתרא דף 1א");
+        assertLabelProperty( object ,"תלמוד ירושלמי בבא בתרא א א");
         assertBookProperty(object,"yerushalmi");
 
         object = json[33].getObject(42);
         assertTextUriProperty(object, "yerushalmi-33-22-1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת בבא בתרא דף 22א");
+        assertLabelProperty( object ,"תלמוד ירושלמי בבא בתרא כב א");
         assertPositionProperty(object ,"43");
         assertBookProperty(object,"yerushalmi");
 
         object = json[33].getObject(66);
         assertTextUriProperty(object, "yerushalmi-33-34-1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת בבא בתרא דף 34א");
+        assertLabelProperty( object ,"תלמוד ירושלמי בבא בתרא לד א");
         assertPositionProperty(object ,"67");
         assertBookProperty(object,"yerushalmi");
 
@@ -394,18 +394,18 @@ public class TalmudYerushalmiParserTest {
         object = json[35].getObject(0);
         assertTextUriProperty(object, "yerushalmi-35-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת מכות דף 1א");
+        assertLabelProperty( object ,"תלמוד ירושלמי מכות א א");
         assertBookProperty(object,"yerushalmi");
 
         object = json[35].getObject(9);
         assertTextUriProperty(object, "yerushalmi-35-5-2");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת מכות דף 5ב");
+        assertLabelProperty( object ,"תלמוד ירושלמי מכות ה ב");
         assertPositionProperty(object ,"10");
         assertBookProperty(object,"yerushalmi");
 
         object = json[35].getObject(17);
         assertTextUriProperty(object, "yerushalmi-35-9-2");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת מכות דף 9ב");
+        assertLabelProperty( object ,"תלמוד ירושלמי מכות ט ב");
         assertPositionProperty(object ,"18");
         assertBookProperty(object,"yerushalmi");
 
@@ -413,18 +413,18 @@ public class TalmudYerushalmiParserTest {
         object = json[39].getObject(0);
         assertTextUriProperty(object, "yerushalmi-39-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת נידה דף 1א");
+        assertLabelProperty( object ,"תלמוד ירושלמי נידה א א");
         assertBookProperty(object,"yerushalmi");
 
         object = json[39].getObject(13);
         assertTextUriProperty(object, "yerushalmi-39-7-2");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת נידה דף 7ב");
+        assertLabelProperty( object ,"תלמוד ירושלמי נידה ז ב");
         assertPositionProperty(object ,"14");
         assertBookProperty(object,"yerushalmi");
 
         object = json[39].getObject(24);
         assertTextUriProperty(object, "yerushalmi-39-13-1");
-        assertLabelProperty( object ,"תלמוד ירושלמי מסכת נידה דף 13א");
+        assertLabelProperty( object ,"תלמוד ירושלמי נידה יג א");
         assertPositionProperty(object ,"25");
         assertBookProperty(object,"yerushalmi");
 

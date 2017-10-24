@@ -41,65 +41,65 @@ public class MidrashTanchumaBuberParserTest {
         object = json.getObject(0);
         assertTextUriProperty(object, "midrashtanchumabuber-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"מדרש תנחומא בובר פרשת בראשית סימן א");
+        assertLabelProperty( object ,"מדרש תנחומא בובר בראשית א");
         assertBookProperty(object,"midrashtanchumabuber");
 
         object = json.getObject(64);
         assertTextUriProperty(object, "midrashtanchumabuber-2-25");
-        assertLabelProperty( object ,"מדרש תנחומא בובר פרשת נח סימן כה");
+        assertLabelProperty( object ,"מדרש תנחומא בובר נח כה");
         assertPositionProperty(object ,"65");
         assertBookProperty(object,"midrashtanchumabuber");
 
         object = json.getObject(128);
         assertTextUriProperty(object, "midrashtanchumabuber-4-34");
-        assertLabelProperty( object ,"מדרש תנחומא בובר פרשת וירא סימן לד");
+        assertLabelProperty( object ,"מדרש תנחומא בובר וירא לד");
         assertPositionProperty(object ,"129");
         assertBookProperty(object,"midrashtanchumabuber");
 
         object = json.getObject(256);
         assertTextUriProperty(object, "midrashtanchumabuber-10-7");
-        assertLabelProperty( object ,"מדרש תנחומא בובר פרשת מקץ סימן ז");
+        assertLabelProperty( object ,"מדרש תנחומא בובר מקץ ז");
         assertPositionProperty(object ,"257");
         assertBookProperty(object,"midrashtanchumabuber");
 
         object = json.getObject(512);
         assertTextUriProperty(object, "midrashtanchumabuber-26-4");
-        assertLabelProperty( object ,"מדרש תנחומא בובר פרשת שמיני סימן ד");
+        assertLabelProperty( object ,"מדרש תנחומא בובר שמיני ד");
         assertPositionProperty(object ,"513");
         assertBookProperty(object,"midrashtanchumabuber");
 
 
         object = json.getObject(721);
         assertTextUriProperty(object, "midrashtanchumabuber-36-16");
-        assertLabelProperty( object ,"מדרש תנחומא בובר פרשת בהעלותך סימן טז");
+        assertLabelProperty( object ,"מדרש תנחומא בובר בהעלותך טז");
         assertPositionProperty(object ,"722");
         assertBookProperty(object,"midrashtanchumabuber");
 
 
         object = json.getObject(800);
         assertTextUriProperty(object, "midrashtanchumabuber-39-15");
-        assertLabelProperty( object ,"מדרש תנחומא בובר פרשת קרח סימן טו");
+        assertLabelProperty( object ,"מדרש תנחומא בובר קרח טו");
         assertPositionProperty(object ,"801");
         assertBookProperty(object,"midrashtanchumabuber");
 
 
         object = json.getObject(900);
         assertTextUriProperty(object, "midrashtanchumabuber-43-26");
-        assertLabelProperty( object ,"מדרש תנחומא בובר פרשת בלק סימן כו");
+        assertLabelProperty( object ,"מדרש תנחומא בובר בלק כו");
         assertPositionProperty(object ,"901");
         assertBookProperty(object,"midrashtanchumabuber");
 
 
         object = json.getObject(1024);
         assertTextUriProperty(object, "midrashtanchumabuber-57-2");
-        assertLabelProperty( object ,"מדרש תנחומא בובר פרשת נצבים סימן ב");
+        assertLabelProperty( object ,"מדרש תנחומא בובר נצבים ב");
         assertPositionProperty(object ,"1025");
         assertBookProperty(object,"midrashtanchumabuber");
 
 
         object = json.getObject(1041);
         assertTextUriProperty(object, "midrashtanchumabuber-59-7");
-        assertLabelProperty( object ,"מדרש תנחומא בובר פרשת וזאת הברכה סימן ז");
+        assertLabelProperty( object ,"מדרש תנחומא בובר וזאת הברכה ז");
         assertPositionProperty(object ,"1042");
         assertBookProperty(object,"midrashtanchumabuber");
 

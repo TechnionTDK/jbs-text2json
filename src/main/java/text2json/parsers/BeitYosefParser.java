@@ -17,7 +17,7 @@ public class BeitYosefParser extends JbsParser {
     protected static final String BEGIN_SEIF = "begin_seif";
     protected static final String BEGIN_SIMAN = "begin_siman";
 
-    private int turNum = 0,position =0,packagePosition =1;
+    private int turNum = 0,position =1,packagePosition =1;
     private int seifNum = 0;
     private int simanNum = 0;
     private String turName ="";
@@ -78,43 +78,49 @@ public class BeitYosefParser extends JbsParser {
                 break;
 
             case BEGIN_TUR:
-                jsonObjectFlush();
                 seifNum=0;
                 simanNum=0;
-                turName = line.getLine();
+                turName = line.getLine().replace("טור ","");
                 turNum++;
                 addBook(packagesJsonObject(), "beityosef");
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
-                addPackageUri( "beityosef-"+turNum);
-                addRdfs(packagesJsonObject(),"בית יוסף " + turName );
+                addPackageUri( "beityosef-"+ turNum);
+                addRdfs(packagesJsonObject(),"בית יוסף " + turName);
                 packagesJsonObjectFlush();
                 break;
 
             case BEGIN_SIMAN :
-                jsonObjectFlush();
                 seifNum=0;
                 simanNum++;
                 addBook(packagesJsonObject(), "beityosef");
                 addPosition(packagesJsonObject(), packagePosition);
                 packagePosition++;
                 addPackageUri( "beityosef-"+ turNum + "-" + simanNum);
-                String rdfs = "בית יוסף " + turName + " " + simanNum;
+                String rdfs = "בית יוסף " + turName + getHeb(simanNum);
                 addRdfs(packagesJsonObject(), rdfs);
                 packagesJsonObjectFlush();
 
                 break;
 
             case BEGIN_SEIF:
-                jsonObjectFlush();
+                if (jsonObject().hasKey(JBO_TEXT)){
+                    jsonObjectFlush();
+                    position++;
+                }
+                else{
+                    jsonObject().clear();
+                }
+//                jsonObjectFlush();
+//                position++;
+
                 seifNum++;
-                position++;
                 addUri( getUri());
                 addPosition( position);
                 addBook( "beityosef");
                 addWithin( "beityosef-" + turNum);
                 addWithin( "beityosef-" + turNum +"-" + simanNum);
-                String rdfs1 = "בית יוסף " + turName  + " סימן " + simanNum + " סעיף " + seifNum;
+                String rdfs1 = "בית יוסף " + turName  + " " + getHeb(simanNum) + " " + getHeb(seifNum);
                 addRdfs(rdfs1);
                 packagesJsonObjectFlush();
 

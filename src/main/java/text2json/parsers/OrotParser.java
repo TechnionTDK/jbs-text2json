@@ -109,7 +109,7 @@ public class OrotParser extends JbsParser {
                 addPosition(packagesJsonObject(), packagePosition);
                 packagePosition++;
                 addPackageUri( "orot-"+ maamarNum + "-" + subMaamarNum);
-                addRdfs(packagesJsonObject(), "אורות " + maamarName +" " + subMaamarName);
+                addRdfs(packagesJsonObject(), "אורות -" +" " + subMaamarName);
                 packagesJsonObjectFlush();
                 hasSubMaamar = 1;
                 break;
@@ -126,7 +126,7 @@ public class OrotParser extends JbsParser {
                         addBook( "orot");
                         addWithin( "orot-" + maamarNum);
                         addWithin( "orot-" + maamarNum +"-" + subMaamarNum);
-                        String rdfs = "אורות " + maamarName + " " + subMaamarName + " " + hebperek;
+                        String rdfs = "אורות -" + " " + subMaamarName + " " + hebperek;
                         addRdfs(rdfs);
                         break;
 
@@ -140,7 +140,7 @@ public class OrotParser extends JbsParser {
                         addBook( "orot");
                         addWithin( "orot-" + maamarNum);
                         addWithin( "orot-" + maamarNum +"-" + subMaamarNum);
-                        String rdfs1 = "אורות " + maamarName + " " + perekName;
+                        String rdfs1 = "אורות -" + " " + perekName;
                         addRdfs(rdfs1);
                         break;
                 }

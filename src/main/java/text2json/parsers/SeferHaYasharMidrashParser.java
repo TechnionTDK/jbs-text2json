@@ -129,7 +129,7 @@ public class SeferHaYasharMidrashParser extends JbsParser {
                 addWithin("seferhayasharmidrash-" + perekNum);
                 addPosition(position);
                 position++;
-                label1 = line.getLine();
+                label1 = line.getLine().replace("פרשה ","");
                 addRdfs("ספר הישר (מדרש) " + label1);
                 packagesJsonObjectFlush();
                 break;

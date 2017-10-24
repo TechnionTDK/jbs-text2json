@@ -85,7 +85,7 @@ public class EinYaakovGlickEditionParser extends JbsParser {
                 addPackageUri("einyaakovglickedition-"+tractateNum);
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
-                label2 = line.getLine();
+                label2 = line.getLine().replace("מסכת ","");
                 addRdfs(packagesJsonObject(), "עין יעקב (מאת שמואל צבי גליק) - " + label2);
                 // No need to create an object for the entire book anymore!
                 // It is created manually, outside text2json

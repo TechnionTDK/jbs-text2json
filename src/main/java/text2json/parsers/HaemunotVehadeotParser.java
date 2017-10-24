@@ -109,7 +109,7 @@ public class HaemunotVehadeotParser extends JbsParser {
                 addPackageUri( "haemunotvehadeot-" + maamarNum);
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
-                addRdfs(packagesJsonObject(),"האמונות והדעות " + maamarName );
+                addRdfs(packagesJsonObject(),"האמונות והדעות " + maamarName.split(" ",3)[2] );
                 packagesJsonObjectFlush();
                 hakdamaBool=0;
                 break;
@@ -151,7 +151,7 @@ public class HaemunotVehadeotParser extends JbsParser {
                         addBook( "haemunotvehadeot");
                         addPosition( position);
                         addWithin( "haemunotvehadeot-" + maamarNum);
-                        String rdfs1 = "האמונות והדעות " + maamarName + " " + perekName;
+                        String rdfs1 = "האמונות והדעות " + maamarName.split(" ",3)[2] + " " + perekName;
                         addRdfs(rdfs1);
                         break;
                 }
