@@ -5,6 +5,7 @@ import text2json.Line;
 import text2json.LineMatcher;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import static text2json.JbsOntology.*;
 import static text2json.JbsUtils.HEB_LETTERS_INDEX;
@@ -95,25 +96,25 @@ public class ChovotHalevavotParser extends JbsParser {
                 position++;
                 addUri( getUri());
                 addPosition( position);
-                addRdfs("חובות הלבבות - הקדמת המחבר");
+                addRdfs("חובות הלבבות הקדמת המחבר");
                 addBook( "chovothalevavot");
 
                 addPackageUri ("chovothalevavot-0-0");
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
-                addRdfs(packagesJsonObject(),"חובות הלבבות - הקדמת המחבר");
+                addRdfs(packagesJsonObject(),"חובות הלבבות הקדמת המחבר");
                 packagesJsonObjectFlush();
                 break;
 
             case BEGIN_SHAAR:
                 jsonObjectFlush();
                 perekNum=0;
-                shaarName = line.getLine();
+                shaarName = line.getLine().replace(" - "," ");
                 shaarNum++;
                 addPackageUri("chovothalevavot-" + shaarNum);
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
-                addRdfs(packagesJsonObject(),"חובות הלבבות - " + shaarName );
+                addRdfs(packagesJsonObject(),"חובות הלבבות " + shaarName );
                 packagesJsonObjectFlush();
                 break;
 
@@ -126,7 +127,7 @@ public class ChovotHalevavotParser extends JbsParser {
                 addPosition( position);
                 addBook( "chovothalevavot");
                 addWithin( "chovothalevavot-" + shaarNum);
-                String rdfs = "חובות הלבבות - " + shaarName + "הקדמה";
+                String rdfs = "חובות הלבבות " + shaarName + "הקדמה";
                 addRdfs(rdfs);
                 break;
 
@@ -139,7 +140,7 @@ public class ChovotHalevavotParser extends JbsParser {
                 addBook( "chovothalevavot");
                 addPosition( position);
                 addWithin( "chovothalevavot-" + shaarNum);
-                String rdfs1 = "חובות הלבבות - " + shaarName + " - " + perekName;
+                String rdfs1 = "חובות הלבבות " + shaarName.split(" ",3)[2]  + " " + perekName;
                 addRdfs(rdfs1);
                 break;
 

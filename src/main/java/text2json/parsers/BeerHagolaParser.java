@@ -68,19 +68,23 @@ public class BeerHagolaParser extends JbsParser {
                 addUri( getUri());
                 addBook( "beerhagola");
                 addPosition( beerNum+1);
-                addRdfs("באר הגולה - הקדמה");
+                addRdfs("באר הגולה הקדמה");
                 break;
 
 
             case BEGIN_PEREK:
 //                packagesJsonObjectFlush();
-                jsonObjectFlush();
+                if (jsonObject().hasKey(JBO_TEXT))
+                    jsonObjectFlush();
+                else{
+                    jsonObject().clear();
+                }
                 beerNum++;
-                String beerName = "באר " + HEB_LETTERS_INDEX[beerNum-1];
+                String beerName =  HEB_LETTERS_INDEX[beerNum-1];
                 addUri( getUri());
                 addBook( "beerhagola");
                 addPosition( beerNum+1);
-                String rdfs = "באר הגולה - " + beerName;
+                String rdfs = "באר הגולה " + beerName;
                 addRdfs(rdfs);
                 break;
 
@@ -93,7 +97,9 @@ public class BeerHagolaParser extends JbsParser {
     @Override
     protected String getUri() {
         return "beerhagola-" + beerNum ;    }
+
     protected String getcorpus() { return JBR + "beerhagola";    }
+
 
 
 }

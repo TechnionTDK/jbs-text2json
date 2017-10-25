@@ -42,19 +42,19 @@ public class BeerHagolaParserTest {
         object = json.getObject(0);
         assertTextUriProperty(object,"beerhagola-0");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"באר הגולה - הקדמה");
+        assertLabelProperty( object ,"באר הגולה הקדמה");
         assertBookProperty( object,"beerhagola");
 
 
         object = json.getObject(6);
         assertTextUriProperty(object,"beerhagola-6");
-        assertLabelProperty( object ,"באר הגולה - באר ו");
+        assertLabelProperty( object ,"באר הגולה ו");
         assertPositionProperty(object ,"7");
         assertBookProperty( object,"beerhagola");
 
         object = json.getObject(2);
         assertTextUriProperty(object,"beerhagola-2");
-        assertLabelProperty( object ,"באר הגולה - באר ב");
+        assertLabelProperty( object ,"באר הגולה ב");
         assertPositionProperty(object ,"3");
         assertBookProperty( object,"beerhagola");
     }

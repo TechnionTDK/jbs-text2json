@@ -41,36 +41,36 @@ public class MidbarShurParserTest {
         object = json.getObject(0);
         assertTextUriProperty(object, "midbarshur-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"מדבר שור - דרוש א");
+        assertLabelProperty( object ,"מדבר שור א");
         assertBookProperty(object,"midbarshur");
 
         object = json.getObject(3);
         assertTextUriProperty(object, "midbarshur-4");
-        assertLabelProperty( object ,"מדבר שור - דרוש ד");
+        assertLabelProperty( object ,"מדבר שור ד");
         assertPositionProperty(object ,"4");
         assertBookProperty(object,"midbarshur");
 
         object = json.getObject(18);
         assertTextUriProperty(object, "midbarshur-19");
-        assertLabelProperty( object ,"מדבר שור - דרוש יט");
+        assertLabelProperty( object ,"מדבר שור יט");
         assertPositionProperty(object ,"19");
         assertBookProperty(object,"midbarshur");
 
         object = json.getObject(19);
         assertTextUriProperty(object, "midbarshur-20");
-        assertLabelProperty( object ,"מדבר שור - דרוש כ");
+        assertLabelProperty( object ,"מדבר שור כ");
         assertPositionProperty(object ,"20");
         assertBookProperty(object,"midbarshur");
 
         object = json.getObject(28);
         assertTextUriProperty(object, "midbarshur-29");
-        assertLabelProperty( object ,"מדבר שור - דרוש כט");
+        assertLabelProperty( object ,"מדבר שור כט");
         assertPositionProperty(object ,"29");
         assertBookProperty(object,"midbarshur");
 
         object = json.getObject(37);
         assertTextUriProperty(object, "midbarshur-38");
-        assertLabelProperty( object ,"מדבר שור - דרוש לח");
+        assertLabelProperty( object ,"מדבר שור לח");
         assertPositionProperty(object ,"38");
         assertBookProperty(object,"midbarshur");
     }

@@ -96,7 +96,7 @@ public class HaemunotVehadeotParser extends JbsParser {
                 addPackageUri( "haemunotvehadeot-"+maamarNum);
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
-                addRdfs(packagesJsonObject(),"האמונות והדעות - הקדמה");
+                addRdfs(packagesJsonObject(),"האמונות והדעות הקדמה");
                 packagesJsonObjectFlush();
                 hakdamaBool=1;
                 break;
@@ -109,7 +109,7 @@ public class HaemunotVehadeotParser extends JbsParser {
                 addPackageUri( "haemunotvehadeot-" + maamarNum);
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
-                addRdfs(packagesJsonObject(),"האמונות והדעות - " + maamarName );
+                addRdfs(packagesJsonObject(),"האמונות והדעות " + maamarName.split(" ",3)[2] );
                 packagesJsonObjectFlush();
                 hakdamaBool=0;
                 break;
@@ -123,7 +123,7 @@ public class HaemunotVehadeotParser extends JbsParser {
                 addPosition( position);
                 addBook( "haemunotvehadeot");
                 addWithin( "haemunotvehadeot-" + maamarNum);
-                String rdfs = "האמונות והדעות - פתיחה";
+                String rdfs = "האמונות והדעות פתיחה";
                 addRdfs(rdfs);
                 break;
 
@@ -133,12 +133,12 @@ public class HaemunotVehadeotParser extends JbsParser {
                         jsonObjectFlush();
                         perekNum++;
                         position++;
-                        perekName = HEB_LETTERS_INDEX[perekNum - 1];
+                        perekName = HEB_LETTERS_INDEX[perekNum -1];
                         addUri( getUri());
                         addBook( "haemunotvehadeot");
                         addPosition( position);
                         addWithin( "haemunotvehadeot-" + maamarNum);
-                        String rdfs0 = "האמונות והדעות - הקדמה "  + perekName;
+                        String rdfs0 = "האמונות והדעות הקדמה "  + perekName;
                         addRdfs(rdfs0);
                         break;
 
@@ -146,12 +146,12 @@ public class HaemunotVehadeotParser extends JbsParser {
                         jsonObjectFlush();
                         perekNum++;
                         position++;
-                        perekName = HEB_LETTERS_INDEX[perekNum - 1];
+                        perekName = HEB_LETTERS_INDEX[perekNum -1];
                         addUri( getUri());
                         addBook( "haemunotvehadeot");
                         addPosition( position);
                         addWithin( "haemunotvehadeot-" + maamarNum);
-                        String rdfs1 = "האמונות והדעות - " + maamarName + " " + perekName;
+                        String rdfs1 = "האמונות והדעות " + maamarName.split(" ",3)[2] + " " + perekName;
                         addRdfs(rdfs1);
                         break;
                 }
