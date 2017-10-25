@@ -60,7 +60,7 @@ public class TannaDebeiEliyahuRabbahParser extends JbsParser {
                 addUri( getUri());
                 addBook( "tannadebeieliyahurabbah");
                 addPosition(chapterNum);
-                String rdfs = "תנא דבי אליהו רבה " + getHeb(chapterNum);
+                String rdfs = "תנא דבי אליהו רבה " + numberToHebrew(chapterNum);
                 addRdfs(rdfs);
                 break;
 

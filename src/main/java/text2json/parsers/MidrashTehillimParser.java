@@ -57,7 +57,7 @@ public class MidrashTehillimParser extends JbsParser {
 //                packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
-                String chapterName = "מזמור " + getHeb(chapterNum);
+                String chapterName = "מזמור " + numberToHebrew(chapterNum);
                 addUri( getUri());
                 addBook( "mdrashtehillim");
                 addPosition(chapterNum);

@@ -60,7 +60,7 @@ public class YalkutShimonionNachParser extends JbsParser {
                 addUri( getUri());
                 addBook( "yalkutshimonionnach");
                 addPosition(chapterNum);
-                String rdfs = "ילקוט שמעוני על נ\"ך " + getHeb(chapterNum);
+                String rdfs = "ילקוט שמעוני על נ\"ך " + numberToHebrew(chapterNum);
                 addRdfs(rdfs);
                 break;
 

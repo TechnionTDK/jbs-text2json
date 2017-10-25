@@ -83,7 +83,7 @@ public class TurParser extends JbsParser {
                 addPosition( position);
                 addBook( "tur");
                 addWithin( "tur-" + turNum);
-                String rdfs = "ארבעה טורים " + turName +" " + getHeb(simanNum);
+                String rdfs = "ארבעה טורים " + turName +" " + numberToHebrew(simanNum);
                 addRdfs(rdfs);
 
                 break;

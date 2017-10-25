@@ -139,7 +139,7 @@ public class TannaDeBeiEliyahuZutaParser extends JbsParser {
                 addWithin("tannadebeieliyahuzuta-" + partNum);
                 addPosition(position);
                 position++;
-                addRdfs("תנא דבי אליהו זוטא - " + label2 + " " + getHeb(perekNum));
+                addRdfs("תנא דבי אליהו זוטא - " + label2 + " " + numberToHebrew(perekNum));
                 packagesJsonObjectFlush();
                 break;
 

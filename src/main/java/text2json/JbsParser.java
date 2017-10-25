@@ -46,14 +46,14 @@ public abstract class JbsParser extends Parser {
     protected int toInt(String num) { return Integer.parseInt(num); }
 
 
-    protected String getHeb(int num) {
+    protected String numberToHebrew(int num) {
         String[] tenLetters = {"א", "ב", "ג", "ד", "ה", "ו", "ז", "ח", "ט"};
         String[] overTenLetters = {"י", "כ", "ל", "מ", "נ", "ס", "ע", "פ", "צ"};
         String[] overHundretLetters = {"ק", "ר", "ש", "ת", "תק", "תר", "תש", "תת", "תתק"};
         String answer = "";
         while (num > 0) {
             if (num>2000){
-                answer =getHeb(num/1000) + answer ;
+                answer = numberToHebrew(num/1000) + answer ;
                 num = num - (num / 1000) * 1000;
             }
 

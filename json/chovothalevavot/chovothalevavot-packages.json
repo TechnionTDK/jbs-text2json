@@ -1,0 +1,48 @@
+{
+  "subjects": [
+    {
+      "uri": "jbr:section-chovothalevavot - hakdamat hamehaber",
+      "rdfs:label": "חובות הלבבות - הקדמת המחבר"
+    },
+    {
+      "uri": "jbr:section-chovothalevavot - 1",
+      "rdfs:label": "חובות הלבבות - שער ראשון - שער ייחוד"
+    },
+    {
+      "uri": "jbr:section-chovothalevavot - 2",
+      "rdfs:label": "חובות הלבבות - שער שני - שער הבחינה"
+    },
+    {
+      "uri": "jbr:section-chovothalevavot - 3",
+      "rdfs:label": "חובות הלבבות - שער שלישי - שער עבודת האלוהים"
+    },
+    {
+      "uri": "jbr:section-chovothalevavot - 4",
+      "rdfs:label": "חובות הלבבות - שער רביעי - שער הביטחון"
+    },
+    {
+      "uri": "jbr:section-chovothalevavot - 5",
+      "rdfs:label": "חובות הלבבות - שער חמישי - שער ייחוד המעשה"
+    },
+    {
+      "uri": "jbr:section-chovothalevavot - 6",
+      "rdfs:label": "חובות הלבבות - שער שישי - שער הכניעה"
+    },
+    {
+      "uri": "jbr:section-chovothalevavot - 7",
+      "rdfs:label": "חובות הלבבות - שער שביעי - שער התשובה"
+    },
+    {
+      "uri": "jbr:section-chovothalevavot - 8",
+      "rdfs:label": "חובות הלבבות - שער שמיני - שער חשבון הנפש"
+    },
+    {
+      "uri": "jbr:section-chovothalevavot - 9",
+      "rdfs:label": "חובות הלבבות - שער תשיעי - שער הפרישות"
+    },
+    {
+      "uri": "jbr:section-chovothalevavot - 10",
+      "rdfs:label": "חובות הלבבות - שער עשירי - שער אהבת ה'"
+    }
+  ]
+}

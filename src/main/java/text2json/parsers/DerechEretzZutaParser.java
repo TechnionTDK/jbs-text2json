@@ -7,7 +7,6 @@ import text2json.LineMatcher;
 import java.io.IOException;
 
 import static text2json.JbsOntology.JBO_TEXT;
-import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 
 /**
  * Created by Assaf on 08/06/2017.
@@ -58,7 +57,7 @@ public class DerechEretzZutaParser extends JbsParser {
 //                packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
-                String chapterName = "פרק " + getHeb(chapterNum);
+                String chapterName = "פרק " + numberToHebrew(chapterNum);
                 addUri( getUri());
                 addBook( "derecheretzzuta");
                 addPosition(chapterNum);

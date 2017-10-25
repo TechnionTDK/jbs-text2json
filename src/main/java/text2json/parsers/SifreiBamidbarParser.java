@@ -57,7 +57,7 @@ public class SifreiBamidbarParser extends JbsParser {
 //                packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
-                String chapterName = "פסקה " + getHeb(chapterNum);
+                String chapterName = "פסקה " + numberToHebrew(chapterNum);
                 addUri( getUri());
                 addBook( "sifreibamidbar");
                 addPosition(chapterNum);

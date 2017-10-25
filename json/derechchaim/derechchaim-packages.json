@@ -1,0 +1,24 @@
+{
+  "subjects": [
+    {
+      "uri": "jbr:section-derechchaim-1",
+      "rdfs:label": "דרך חיים א"
+    },
+    {
+      "uri": "jbr:section-derechchaim-2",
+      "rdfs:label": "דרך חיים ב"
+    },
+    {
+      "uri": "jbr:section-derechchaim-3",
+      "rdfs:label": "דרך חיים ג"
+    },
+    {
+      "uri": "jbr:section-derechchaim-4",
+      "rdfs:label": "דרך חיים ד"
+    },
+    {
+      "uri": "jbr:section-derechchaim-5",
+      "rdfs:label": "דרך חיים ה"
+    }
+  ]
+}

@@ -100,7 +100,7 @@ public class DarcheiMosheParser extends JbsParser {
                 addPosition(packagesJsonObject(), packagePosition);
                 packagePosition++;
                 addPackageUri( "darcheimoshe-"+ turNum + "-" + simanNum);
-                String rdfs = "דרכי משה " + turName + " סימן " + getHeb(simanNum);
+                String rdfs = "דרכי משה " + turName + " סימן " + numberToHebrew(simanNum);
                 addRdfs(packagesJsonObject(), rdfs);
                 packagesJsonObjectFlush();
 
@@ -115,7 +115,7 @@ public class DarcheiMosheParser extends JbsParser {
                 addBook( "darcheimoshe");
                 addWithin( "darcheimoshe-" + turNum);
                 addWithin( "darcheimoshe-" + turNum +"-" + simanNum);
-                String rdfs1 = "דרכי משה " + turName  + " סימן " + getHeb(simanNum) + " סעיף " + getHeb(seifNum);
+                String rdfs1 = "דרכי משה " + turName  + " סימן " + numberToHebrew(simanNum) + " סעיף " + numberToHebrew(seifNum);
                 addRdfs(rdfs1);
                 packagesJsonObjectFlush();
 //                counter++;

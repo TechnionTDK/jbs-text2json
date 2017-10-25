@@ -7,7 +7,6 @@ import text2json.LineMatcher;
 import java.io.IOException;
 
 import static text2json.JbsOntology.JBO_TEXT;
-import static text2json.JbsOntology.JBR_TEXT;
 
 /**
  * Created by Assaf on 08/06/2017.
@@ -83,9 +82,9 @@ public class TalmudYerushalmiParser extends JbsParser {
                 addWithin( "yerushalmi-" + masechetNum);
                 String rdfs1 ="";
                 if(subDafNum==1)
-                    rdfs1 = "תלמוד ירושלמי " + masechetName  + " " + getHeb(dafNum) + " א";
+                    rdfs1 = "תלמוד ירושלמי " + masechetName  + " " + numberToHebrew(dafNum) + " א";
                 else
-                    rdfs1 = "תלמוד ירושלמי " + masechetName  + " " +  getHeb(dafNum)  + " ב";
+                    rdfs1 = "תלמוד ירושלמי " + masechetName  + " " +  numberToHebrew(dafNum)  + " ב";
                 addRdfs(rdfs1);
 
                 break;
