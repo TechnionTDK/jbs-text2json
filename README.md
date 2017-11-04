@@ -14,6 +14,7 @@ After logging in to GitHub and acquiring permissions to:
 1. jbs-text2json - https://github.com/TechnionTDK/jbs-text2json
 1. jbs-text      - https://github.com/TechnionTDK/jbs-text
 1. jbs-raw       - https://github.com/TechnionTDK/jbs-raw
+
 You can now log in and clone these repositories to you workspace. Please notice, clone the jbs-text and jbs-raw repositories INTO the jbs-text2json folder. (If cloning is new to you just give it a quick web search, it's quite simple).
 
 # Creating a new parser
@@ -29,6 +30,7 @@ You can now log in and clone these repositories to you workspace. Please notice,
 ## Writing a new parser and Tests
 
 Note: in this readme all the examples are from the raw text:
+
             פרשת בראשית  
             בראשית פרק-א
             {א}  בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָרֶץ:
@@ -40,7 +42,7 @@ Your parser needs to implement three main functions: 'registerMatchers', 'onLine
 We will elaborate on each one.
 
 
- ####       protected abstract void registerMatchers();
+        protected abstract void registerMatchers();
         
 This function defines the "rules" the parser will work by. Each line in your text file will be parsed and these 'Rules' will define the action to be taken in each case you will choose for every line you want the parser to notice. 
 for example:
@@ -72,7 +74,7 @@ The "BEGIN_PARASHA" is defined in the file Parser (also under text2json) and is 
 We can see here that we want the have a unique action for lines starting with  " פרק-" or "פרשת".
 
 
-####        protected abstract void onLineMatch(String type, Line line) throws IOException;
+        protected abstract void onLineMatch(String type, Line line) throws IOException;
   
 'onLineMatch' is the method activated when one of the LineMatchers (which were previously given) returns a true value - meaning the parser detected an interesting line. The function should contain a switch case for every relevant constant (like BEGIN_SEFER from the example) and the function is where you build your Json file (using functionalities of the class "Line” that is also defined in text2json, and Gson capabilities)
 When matching a case like BEGIN_SEFER you may add any fields you wish to your Json object and when 'jsonObjectFlush()' will occur all the information written will be stored to your output json file as a "subject".
@@ -111,7 +113,7 @@ Here we can see we added fields to our regular json Object and also to our Packa
 More examples are in the already written parsers like "tanachParser" and "mishnaParser"
       
       
-####      protected abstract String getUri();
+      protected abstract String getUri();
 This function usually returns a String contain the relevant uri for the text in hand.
 
 For example:
@@ -140,7 +142,7 @@ Each test has two parts:
 1. Running the parser - which will parse your file and create an output json file in json/name_of_your_file/name_of_your_file.json .
 1. Going over the Jsons - and retrieving subjects and fields from it in order to test them.
 
-#### running the parser has three phases:
+#### Running the parser has three phases:
 
 1. Creating a new parser
 1. Creating a new BufferReader with the source file
@@ -153,7 +155,7 @@ Each test has two parts:
         parser.parse(reader, "json/tanach-midrashraba-" + bookNums[i] + ".json");
         
         
-#### going over the Jsons
+#### Going over the Jsons
 
 In this case we had two ways to test our output:
 
@@ -199,7 +201,7 @@ Filling the array:
 of course feel free to test your Jsons any way you feel best :)
 
 
-# config file
+# Config file
 Assuming that you have a tested parser, next step is to deploy the results into jbs-text. To do that, you have to update the file **configParsers.json** with basic details about your new parser. You have to provide the fully qualified name of the parser, as well as the input and output folders in jbs-raw and jbs-text, respectively.
 
 The file is under jbs-text2json>src>main>resource>configParsers.json. An example entry:
