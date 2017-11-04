@@ -7,6 +7,7 @@ import text2json.LineMatcher;
 import java.io.IOException;
 
 import static text2json.JbsOntology.JBO_TEXT;
+import static text2json.JbsUtils.numberToHebrew;
 
 /**
  * Created by Assaf on 08/06/2017.
@@ -14,12 +15,14 @@ import static text2json.JbsOntology.JBO_TEXT;
 public class MidrashMishleiParser extends JbsParser {
 
     private int chapterNum = 0;
-    private int hakdamaNum = 0;
+    private int pasukNum = 0;
+    private int position = 0;
+    protected static final String BEGIN_PASUK = "begin_pasuk";
 
 
-//    public MidbarShurParser() {
-//        createPackagesJson();
-//    }
+    public MidrashMishleiParser() {
+        createPackagesJson();
+    }
 
     @Override
     protected void registerMatchers() {
@@ -43,6 +46,16 @@ public class MidrashMishleiParser extends JbsParser {
                 return line.beginsWith("Perek ") && line.wordCount() <= 10;
             }
         });
+
+        registerMatcher(new LineMatcher() {
+            @Override
+            public String type() { return BEGIN_PASUK;}
+
+            @Override
+            public boolean match(Line line) {
+                return line.beginsWith("(משלי ");
+            }
+        });
     }
 
     @Override
@@ -54,15 +67,29 @@ public class MidrashMishleiParser extends JbsParser {
                 break;
 
             case BEGIN_PEREK:
-//                packagesJsonObjectFlush();
+                packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
-                String chapterName = "פרק " + chapterNum;
+                pasukNum=0;
+                String chapterName = "מדרש משלי  " + numberToHebrew(chapterNum);
+                addPackageUri("midrashmishlei-" + chapterNum );
+                addBook(packagesJsonObject(), "midrashmishlei");
+                addPosition(packagesJsonObject(),chapterNum);
+                String rdfs = "מדרש משלי " + chapterName;
+                addRdfs(packagesJsonObject(),rdfs);
+                break;
+
+                case BEGIN_PASUK:
+                jsonObjectFlush();
+                pasukNum++;
+                position++;
+                int end = line.getLine().indexOf(":");
+                String pasukLabel = line.getLine().substring(1,end-1);
                 addUri( getUri());
                 addBook( "midrashmishlei");
-                addPosition(chapterNum);
-                String rdfs = "מדרש משלי " + chapterName;
-                addRdfs(rdfs);
+                addPosition(position);
+                addRdfs(pasukLabel);
+                jsonObject().add(JBO_TEXT, line.getLine().substring(end));
                 break;
 
             case NO_MATCH:
@@ -73,5 +100,5 @@ public class MidrashMishleiParser extends JbsParser {
 
     @Override
     protected String getUri() {
-        return  "midrashmishlei-" + chapterNum ;    }
+        return  "midrashmishlei-" + chapterNum  +"-" + pasukNum;    }
 }

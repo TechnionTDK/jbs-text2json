@@ -7,6 +7,7 @@ import text2json.LineMatcher;
 import java.io.IOException;
 
 import static text2json.JbsOntology.JBO_TEXT;
+import static text2json.JbsUtils.numberToHebrew;
 
 
 public class TurParser extends JbsParser {

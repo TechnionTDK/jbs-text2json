@@ -7,6 +7,7 @@ import text2json.LineMatcher;
 import java.io.IOException;
 
 import static text2json.JbsOntology.JBO_TEXT;
+import static text2json.JbsUtils.numberToHebrew;
 
 /**
  * Created by Assaf on 08/06/2017.
@@ -70,6 +71,7 @@ public class PesiktaRabbatiParser extends JbsParser {
                 break;
         }
     }
+
 
     @Override
     protected String getUri() {
