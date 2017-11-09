@@ -108,6 +108,12 @@
   {"parser":"text2json.parsers.derecheretzzuta",
     "input": derecheretzzuta",
     "output": derecheretzzuta"}
+  {"parser":"text2json.parsers.einyaakov",
+    "input": einyaakov",
+    "output": einyaakov"}
+  {"parser":"text2json.parsers.einyaakovglickedition",
+    "input": einyaakovglickedition",
+    "output": einyaakovglickedition"}
   {"parser":"text2json.parsers.gevurothashem",
     "input": gevurothashem",
     "output": gevurothashem"}
@@ -171,6 +177,9 @@
   {"parser":"text2json.parsers.orothakodesh",
     "input": orothakodesh",
     "output": orothakodesh"}
+  {"parser":"text2json.parsers.otzarmidrashim",
+    "input": otzarmidrashim",
+    "output": otzarmidrashim"}
   {"parser":"text2json.parsers.pesiktaderavkahanna",
     "input": pesiktaderavkahanna",
     "output": pesiktaderavkahanna"}
