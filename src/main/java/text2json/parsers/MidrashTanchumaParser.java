@@ -7,6 +7,7 @@ import text2json.LineMatcher;
 import java.io.IOException;
 
 import static text2json.JbsOntology.JBO_TEXT;
+import static text2json.JbsOntology.JBO_TEXT_NIKUD;
 import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 
 /**
@@ -104,7 +105,7 @@ public class MidrashTanchumaParser extends JbsParser {
 
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                jsonObject().append(JBO_TEXT_NIKUD, line.getLine());
                 break;
         }
     }

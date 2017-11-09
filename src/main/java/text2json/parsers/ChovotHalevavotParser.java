@@ -127,7 +127,7 @@ public class ChovotHalevavotParser extends JbsParser {
                 addPosition( position);
                 addBook( "chovothalevavot");
                 addWithin( "chovothalevavot-" + shaarNum);
-                String rdfs = "חובות הלבבות " + shaarName + "הקדמה";
+                String rdfs = "חובות הלבבות " + shaarName + " הקדמה";
                 addRdfs(rdfs);
                 break;
 

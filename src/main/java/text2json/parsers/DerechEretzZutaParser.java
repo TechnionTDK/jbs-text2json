@@ -58,11 +58,10 @@ public class DerechEretzZutaParser extends JbsParser {
 //                packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
-                String chapterName = "פרק " + numberToHebrew(chapterNum);
                 addUri( getUri());
                 addBook( "derecheretzzuta");
                 addPosition(chapterNum);
-                String rdfs = "דרך ארץ זוטא " + chapterName;
+                String rdfs = "דרך ארץ זוטא " + numberToHebrew(chapterNum);
                 addRdfs(rdfs);
                 break;
 

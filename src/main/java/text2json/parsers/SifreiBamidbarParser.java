@@ -58,11 +58,10 @@ public class SifreiBamidbarParser extends JbsParser {
 //                packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
-                String chapterName = "פסקה " + numberToHebrew(chapterNum);
                 addUri( getUri());
                 addBook( "sifreibamidbar");
                 addPosition(chapterNum);
-                String rdfs = "ספרי במדבר " + chapterName;
+                String rdfs = "ספרי במדבר " + numberToHebrew(chapterNum);
                 addRdfs(rdfs);
                 break;
 

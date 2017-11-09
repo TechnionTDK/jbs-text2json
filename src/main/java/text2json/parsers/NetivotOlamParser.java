@@ -88,7 +88,7 @@ public class NetivotOlamParser extends JbsParser {
                 jsonObjectFlush();
                 perekNum=0;
                 nativNum++;
-                nativName = line.getLine();
+                nativName = line.getLine().replace("נתיב ","");
                 addBook(packagesJsonObject() ,"netivotolam");
                 addPackageUri( "netivotolam-" + nativNum);
                 addPosition(packagesJsonObject(), nativNum);
