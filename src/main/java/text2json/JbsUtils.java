@@ -26,6 +26,65 @@ public class JbsUtils {
     }
     public static final String[] HEB_LETTERS_INDEX = HEB_LETTERS_LIST.toArray(new String[HEB_LETTERS_LIST.size()]);
 
+    public static int hebrewToNumber(String heb) {
+        char[] letters = heb.toCharArray();
+        int result = 0;
+        for (char letter : letters)
+            result += getGimetryValue(letter);
+
+        return result;
+    }
+
+    private static int getGimetryValue(char letter) {
+        switch (letter) {
+            case 'א':
+                return 1;
+            case 'ב':
+                return 2;
+            case 'ג':
+                return 3;
+            case 'ד':
+                return 4;
+            case 'ה':
+                return 5;
+            case 'ו':
+                return 6;
+            case 'ז':
+                return 7;
+            case 'ח':
+                return 8;
+            case 'ט':
+                return 9;
+            case 'י':
+                return 10;
+            case 'כ':
+                return 20;
+            case 'ל':
+                return 30;
+            case 'מ':
+                return 40;
+            case 'נ':
+                return 50;
+            case 'ס':
+                return 60;
+            case 'ע':
+                return 70;
+            case 'פ':
+                return 80;
+            case 'צ':
+                return 90;
+            case 'ק':
+                return 100;
+            case 'ר':
+                return 200;
+            case 'ש':
+                return 300;
+            case 'ת':
+                return 400;
+        }
+
+        return 0;
+    }
 
     public static String numberToHebrew(int num) {
         String[] tenLetters = {"א", "ב", "ג", "ד", "ה", "ו", "ז", "ח", "ט"};

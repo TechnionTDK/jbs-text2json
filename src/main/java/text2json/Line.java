@@ -92,6 +92,31 @@ public class Line {
         }
         return getLine().substring(0, getLine().indexOf(' '));
     }
+
+    /**
+     * Assume the separator between words is a space (one or more)
+     * @return
+     */
+    public Line removeFirstWord() {
+        int firstSpace = line.indexOf(" ");
+        line = line.substring(firstSpace).trim();
+        return this;
+    }
+
+    /**
+     * Removes extra spaces between words (keeps one space)
+     * @return
+     */
+    public Line removeExtraSpaces() {
+        String[] words = line.split("\\s+");
+        StringBuffer result = new StringBuffer();
+        for (String word : words)
+            result.append(word + " ");
+
+        line = result.toString().trim();
+        return this;
+    }
+
     public boolean is(String s) {
         return getLine().equals(s);
     }

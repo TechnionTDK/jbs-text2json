@@ -24,7 +24,7 @@ public class JsonObject {
     }
 
     /**
-     * append value to the tuple-object with a given key.
+     * append value (with a new line) to the tuple-object with a given key.
      * if no such key exists in the current level object, creates a new tuple-object with the given key and value.
      * a value can be appended only if from current position in object going backwards there's no beginning/end of
      * another object or array
@@ -38,6 +38,20 @@ public class JsonObject {
             String tuplekey = tuple.getKey();
             if(tuplekey == key) {
                 tuple.appendToValue(added_value);
+                return;
+            }
+        }
+        //if here, no such key in current object. create new one.
+        tuples.add(new Tuple(key, added_value));
+    }
+
+    public void appendWithSpace(String key, String added_value) {
+        ListIterator<Tuple> reverse_iterator = tuples.listIterator(tuples.size());
+        while(reverse_iterator.hasPrevious()){
+            Tuple tuple = reverse_iterator.previous();
+            String tuplekey = tuple.getKey();
+            if(tuplekey == key) {
+                tuple.appendToValueWithSpace(added_value);
                 return;
             }
         }
@@ -109,6 +123,7 @@ public class JsonObject {
         public String getKey(){return this.key;}
         public String getValue(){return this.value;}
         protected void appendToValue(String added_value){this.value = this.value+ "\n" +added_value;}
+        protected void appendToValueWithSpace(String added_value){this.value = this.value+ " " +added_value;}
 
     }
 }

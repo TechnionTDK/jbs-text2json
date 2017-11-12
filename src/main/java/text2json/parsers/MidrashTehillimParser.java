@@ -59,7 +59,7 @@ public class MidrashTehillimParser extends JbsParser {
                 chapterNum++;
                 String chapterName = "מזמור " + numberToHebrew(chapterNum);
                 addUri( getUri());
-                addBook( "mdrashtehillim");
+                addBook( "midrashtehillim");
                 addPosition(chapterNum);
                 String rdfs = "מדרש תהילים " + chapterName;
                 addRdfs(rdfs);
@@ -73,5 +73,5 @@ public class MidrashTehillimParser extends JbsParser {
 
     @Override
     protected String getUri() {
-        return  "mdrashtehillim-" + chapterNum ;    }
+        return  "midrashtehillim-" + chapterNum ;    }
 }
