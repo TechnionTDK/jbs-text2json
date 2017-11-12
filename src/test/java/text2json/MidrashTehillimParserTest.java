@@ -23,10 +23,10 @@ public class MidrashTehillimParserTest {
     public static void beforeClass() throws Exception {
         Parser parser = new MidrashTehillimParser();
         createOutputFolderIfNotExists("mdrashtehillim");
-        BufferedReader reader = getText("mdrashtehillim/mdrashtehillim.txt");
-        createOutputFolderIfNotExists("mdrashtehillim");
-        parser.parse(reader, "json/mdrashtehillim/mdrashtehillim.json");
-        json = getJson("json/mdrashtehillim/mdrashtehillim.json");
+        BufferedReader reader = getText("midrashtehillim/mdrashtehillim.txt");
+        createOutputFolderIfNotExists("midrashtehillim");
+        parser.parse(reader, "json/midrashtehillim/midrashtehillim.json");
+        json = getJson("json/midrashtehillim/midrashtehillim.json");
     }
 
     @Test
