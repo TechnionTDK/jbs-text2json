@@ -20,9 +20,9 @@ public class MekhiltaDeRabbiShimonBarYochaiParser extends JbsParser {
     private String label1 = "";
     private String label2 = "";
 
-    public MekhiltaDeRabbiShimonBarYochaiParser() {
-//        createPackagesJson();
-    }
+//    public MekhiltaDeRabbiShimonBarYochaiParser() {
+////        createPackagesJson();
+//    }
 
     @Override
     protected void registerMatchers() {

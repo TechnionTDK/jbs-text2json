@@ -98,7 +98,7 @@ public class BeitYosefParser extends JbsParser {
                 addPosition(packagesJsonObject(), packagePosition);
                 packagePosition++;
                 addPackageUri( "beityosef-"+ turNum + "-" + simanNum);
-                String rdfs = "בית יוסף " + turName + numberToHebrew(simanNum);
+                String rdfs = "בית יוסף " + turName + " " + numberToHebrew(simanNum);
                 addRdfs(packagesJsonObject(), rdfs);
                 packagesJsonObjectFlush();
 

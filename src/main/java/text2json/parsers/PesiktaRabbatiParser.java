@@ -58,11 +58,10 @@ public class PesiktaRabbatiParser extends JbsParser {
 //                packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
-                String chapterName = "פרק " + numberToHebrew(chapterNum);
                 addUri( getUri());
                 addBook( "pesiktarabbati");
                 addPosition(chapterNum);
-                String rdfs = "פסיקתא רבתי " + chapterName;
+                String rdfs = "פסיקתא רבתי " + numberToHebrew(chapterNum);
                 addRdfs(rdfs);
                 break;
 

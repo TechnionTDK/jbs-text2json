@@ -50,71 +50,71 @@ public class DarcheiMosheParserTest {
         object = json.getObject(0);
         assertTextUriProperty(object, "darcheimoshe-1-1-1");
         assertPositionProperty(object ,"1");
-        assertLabelProperty( object ,"דרכי משה טור אורח חיים סימן א סעיף א");
+        assertLabelProperty( object ,"דרכי משה אורח חיים א א");
         assertBookProperty(object,"darcheimoshe");
 
         object = json.getObject(987);
         assertTextUriProperty(object, "darcheimoshe-1-366-1");
-        assertLabelProperty( object ,"דרכי משה טור אורח חיים סימן שסו סעיף א");
+        assertLabelProperty( object ,"דרכי משה אורח חיים שסו א");
         assertPositionProperty(object ,"988");
         assertBookProperty(object,"darcheimoshe");
 
         object = json.getObject(1819);
         assertTextUriProperty(object, "darcheimoshe-1-697-3");
-        assertLabelProperty( object ,"דרכי משה טור אורח חיים סימן תרצז סעיף ג");
+        assertLabelProperty( object ,"דרכי משה אורח חיים תרצז ג");
         assertPositionProperty(object ,"1820");
         assertBookProperty(object,"darcheimoshe");
 
         //Second Tur יורה דעה : 1820-3488
         object = json.getObject(1820);
         assertTextUriProperty(object, "darcheimoshe-2-1-1");
-        assertLabelProperty( object ,"דרכי משה טור יורה דעה סימן א סעיף א");
+        assertLabelProperty( object ,"דרכי משה יורה דעה א א");
         assertPositionProperty(object ,"1821");
 
         object = json.getObject(2555);
         assertTextUriProperty(object, "darcheimoshe-2-124-9");
-        assertLabelProperty( object ,"דרכי משה טור יורה דעה סימן קכד סעיף ט");
+        assertLabelProperty( object ,"דרכי משה יורה דעה קכד ט");
         assertPositionProperty(object ,"2556");
 
         object = json.getObject(3488);
         assertTextUriProperty(object, "darcheimoshe-2-403-1");
-        assertLabelProperty( object ,"דרכי משה טור יורה דעה סימן תג סעיף א");
+        assertLabelProperty( object ,"דרכי משה יורה דעה תג א");
         assertPositionProperty(object ,"3489");
         assertBookProperty(object,"darcheimoshe");
 
         //Third Tur אבן העזר : 3489-4591
         object = json.getObject(3489);
         assertTextUriProperty(object, "darcheimoshe-3-1-1");
-        assertLabelProperty( object ,"דרכי משה טור אבן העזר סימן א סעיף א");
+        assertLabelProperty( object ,"דרכי משה אבן העזר א א");
         assertPositionProperty(object ,"3490");
 
         object = json.getObject(4000);
         assertTextUriProperty(object, "darcheimoshe-3-93-14");
-        assertLabelProperty( object ,"דרכי משה טור אבן העזר סימן צג סעיף יד");
+        assertLabelProperty( object ,"דרכי משה אבן העזר צג יד");
         assertPositionProperty(object ,"4001");
 
         object = json.getObject(4590);
         assertTextUriProperty(object, "darcheimoshe-3-178-5");
-        assertLabelProperty( object ,"דרכי משה טור אבן העזר סימן קעח סעיף ה");
+        assertLabelProperty( object ,"דרכי משה אבן העזר קעח ה");
         assertPositionProperty(object ,"4591");
         assertBookProperty(object,"darcheimoshe");
 
         //Forth Tur חושן משפט : 4592-5981
         object = json.getObject(4592);
         assertTextUriProperty(object, "darcheimoshe-4-1-1");
-        assertLabelProperty( object ,"דרכי משה טור חושן משפט סימן א סעיף א");
+        assertLabelProperty( object ,"דרכי משה חושן משפט א א");
         assertPositionProperty(object ,"4593");
         assertBookProperty(object,"darcheimoshe");
 
         object = json.getObject(5123);
         assertTextUriProperty(object, "darcheimoshe-4-110-5");
-        assertLabelProperty( object ,"דרכי משה טור חושן משפט סימן קי סעיף ה");
+        assertLabelProperty( object ,"דרכי משה חושן משפט קי ה");
         assertPositionProperty(object ,"5124");
         assertBookProperty(object,"darcheimoshe");
 
         object = json.getObject(5980);
         assertTextUriProperty(object, "darcheimoshe-4-426-1");
-        assertLabelProperty( object ,"דרכי משה טור חושן משפט סימן תכו סעיף א");
+        assertLabelProperty( object ,"דרכי משה חושן משפט תכו א");
         assertPositionProperty(object ,"5981");
         assertBookProperty(object,"darcheimoshe");
 

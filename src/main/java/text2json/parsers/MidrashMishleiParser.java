@@ -71,7 +71,7 @@ public class MidrashMishleiParser extends JbsParser {
                 jsonObjectFlush();
                 chapterNum++;
                 pasukNum=0;
-                String chapterName = "מדרש משלי  " + numberToHebrew(chapterNum);
+                String chapterName = "מדרש משלי " + numberToHebrew(chapterNum);
                 addPackageUri("midrashmishlei-" + chapterNum );
                 addBook(packagesJsonObject(), "midrashmishlei");
                 addPosition(packagesJsonObject(),chapterNum);
