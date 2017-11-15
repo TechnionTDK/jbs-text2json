@@ -147,12 +147,33 @@ public class MishneTorahParser extends Parser {
                 jsonObject().addToArray(JBO_WITHIN, getSeferURI());
                 jsonObject().addToArray(JBO_WITHIN, getPerekURI());
                 jsonObject().add(JBO_BOOK, JBR_BOOK + getMefareshName(line));
+
+                String mefareshLabel = getMefareshLabel(line);
+                jsonObject().add(RDFS_LABEL, mefareshLabel + " " + getHalachaLabel());
                 break;
             case NO_MATCH:
                 if (jsonObject().hasKey(JBO_INTERPRETS))
                     jsonObject().append(JBO_TEXT, line.getLine());
                 break;
         }
+    }
+
+    private String getMefareshLabel(Line line) {
+        switch(line.getFirstWord()) {
+            case "פירוש":
+                return "פירוש";
+            case "כסף":
+                return "כסף משנה";
+            case "לחם":
+                return "לחם משנה";
+            case "מגיד":
+                return "מגיד משנה";
+            case "ההראב\"ד":
+                return "השגות הראב\"ד";
+            case "מהר\"ל":
+                return "מהר\"ל חביב";
+        }
+        return null;
     }
 
     private String getHalachaLabel() {
