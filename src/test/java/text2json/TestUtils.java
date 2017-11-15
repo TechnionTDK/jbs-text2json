@@ -18,6 +18,10 @@ public class TestUtils {
     private static final String TEXT_DIR = "/jbs-raw/";
     private static final String JSON_DIR = "json/";
 
+    public static SubjectsJson setupParser(Parser parser, String bookId) {
+        return null;
+    }
+
     public static BufferedReader getText(String s) throws FileNotFoundException {
         return new BufferedReader(getFileReader(TEXT_DIR + s));
     }
