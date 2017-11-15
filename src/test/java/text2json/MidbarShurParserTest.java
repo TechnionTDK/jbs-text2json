@@ -4,7 +4,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.MidbarShurParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -20,12 +19,8 @@ public class MidbarShurParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new MidbarShurParser();
-        createOutputFolderIfNotExists("midbarshur");
-        BufferedReader reader = getText("midbarshur/midbarshur.txt");
-        createOutputFolderIfNotExists("midbarshur");
-        parser.parse(reader, "json/midbarshur/midbarshur.json");
-        json = getJson("json/midbarshur/midbarshur.json");
+        json = setupParser(new MidbarShurParser() , "midbarshur");
+
     }
 
     @Test

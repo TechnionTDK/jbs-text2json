@@ -25,17 +25,16 @@ public abstract class JbsParser extends Parser {
         obj.add(URI, JBR_TEXT + uri);
     }
 
-    protected void addRdfs(String rdfs) {
-        jsonObject().add(RDFS_LABEL, rdfs);
+    protected void addLabel(String label) {
+        jsonObject().add(RDFS_LABEL, label);
     }
-    protected void addRdfs(JsonObject obj, String rdfs) {
-        obj.add(RDFS_LABEL, rdfs);
+    protected void addLabel(JsonObject obj, String label) {
+        obj.add(RDFS_LABEL, label);
     }
 
     protected void addWithin(String wi) {
         jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + wi);
     }
-
     protected void addWithin(JsonObject obj, String wi) {
         obj.addToArray(JBO_WITHIN, JBR_SECTION + wi);
     }
@@ -44,4 +43,7 @@ public abstract class JbsParser extends Parser {
 
     protected int toInt(String num) { return Integer.parseInt(num); }
 
+    protected void addText(String text) {jsonObject().add(JBO_TEXT, text); }
+    protected void appendText(String text) {jsonObject().append(JBO_TEXT, text);
+    }
 }

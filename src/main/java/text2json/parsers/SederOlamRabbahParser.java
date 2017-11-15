@@ -6,22 +6,15 @@ import text2json.LineMatcher;
 
 import java.io.IOException;
 
-import static text2json.JbsOntology.JBO_TEXT;
-
 /**
  * Created by Assaf on 08/06/2017.
  */
 public class SederOlamRabbahParser extends JbsParser {
 
     private int chapterNum = 0;
-    private int hakdamaNum = 0;
-//    private String hebPerek ="";
     protected static final String BEGIN_PEREK_HEB = "begin_perek_heb";
 
 
-//    public MidbarShurParser() {
-//        createPackagesJson();
-//    }
 
     @Override
     protected void registerMatchers() {
@@ -69,24 +62,28 @@ public class SederOlamRabbahParser extends JbsParser {
                 break;
 
             case BEGIN_PEREK_HEB:
-//                packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
                 String chapterName = line.getLine().replace("פרק ","");
                 addUri( getUri());
-                addBook( "sederolamrabbah");
+                addBook( getBookId());
                 addPosition(chapterNum);
-                String rdfs = "סדר עולם רבה " + chapterName;
-                addRdfs(rdfs);
+                String label = "סדר עולם רבה " + chapterName;
+                addLabel(label);
                 break;
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return  "sederolamrabbah-" + chapterNum ;    }
+        return  getBookId()+"-" + chapterNum ;    }
+
+    @Override
+    protected String getBookId() {
+        return "sederolamrabbah";
+    }
 }

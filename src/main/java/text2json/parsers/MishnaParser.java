@@ -3,7 +3,9 @@ package text2json.parsers;
 import text2json.Line;
 import text2json.LineMatcher;
 import text2json.Parser;
+
 import java.io.IOException;
+
 import static text2json.JbsOntology.*;
 
 
@@ -118,17 +120,17 @@ public class MishnaParser extends Parser {
 
                 if (first_masechet){
                     // adding seder object in packages json
-                    packagesJsonObject().add(URI, JBR_SECTION + "mishna-" + sederNum);
+                    packagesJsonObject().add(URI, JBR_SECTION + getBookId()+"-" + sederNum);
                     packagesJsonObject().add(RDFS_LABEL, "סדר " + sederName);
-                    packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "mishna");
+                    packagesJsonObject().add(JBO_BOOK, JBR_BOOK + getBookId());
                     packagesJsonObject().add(JBO_POSITION, sederNum);
                     packagesJsonObjectFlush();
                 }
                 // adding masechet object in packages json
                 packagesJsonObject().add(URI, getMasechetUri());
                 packagesJsonObject().add(RDFS_LABEL, line.getLine());
-                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "mishna");
-                packagesJsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "mishna-" + sederNum);
+                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + getBookId());
+                packagesJsonObject().addToArray(JBO_WITHIN, JBR_SECTION + getBookId()+"-" + sederNum);
                 packagesJsonObject().add(JBO_POSITION, masechetNum);
                 packagesJsonObjectFlush();
                 break;
@@ -137,11 +139,11 @@ public class MishnaParser extends Parser {
                 perekNum ++;
                 mishnaNum = 0;
                 // adding perek object in packages json
-                packagesJsonObject().add(URI, JBR_SECTION + "mishna-" + sederNum + "-" + masechetNum + "-" + perekNum);
+                packagesJsonObject().add(URI, JBR_SECTION + getBookId()+"-" + sederNum + "-" + masechetNum + "-" + perekNum);
                 packagesJsonObject().add(RDFS_LABEL, "משנה " + masechetHE + " " +  line.getLine());
-                packagesJsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "mishna-" + sederNum);
-                packagesJsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "mishna-" + sederNum + "-" + masechetNum);
-                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "mishna");
+                packagesJsonObject().addToArray(JBO_WITHIN, JBR_SECTION + getBookId()+"-" + sederNum);
+                packagesJsonObject().addToArray(JBO_WITHIN, JBR_SECTION + getBookId()+"-" + sederNum + "-" + masechetNum);
+                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + getBookId());
                 packagesJsonObject().add(JBO_POSITION, perekNum);
                 packagesJsonObjectFlush();
                 break;
@@ -181,10 +183,10 @@ public class MishnaParser extends Parser {
                 jsonObject().add(RDFS_LABEL, MefarshimHe[mefareshId] + " משנה " + masechetHE + " " + perekLetter + " " + mishnaLetter);
                 jsonObject().add(JBO_NAME, MefarshimHe[mefareshId]);
                 jsonObject().add(JBO_BOOK, JBR_BOOK + MefarshimEn[mefareshId]);
-                jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "mishna-" + sederNum);
-                jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "mishna-" + sederNum + "-" + masechetNum);
-                jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "mishna-" + sederNum + "-" + masechetNum + "-" + perekNum);
-                jsonObject().add(JBO_INTERPRETS, JBR_TEXT + "mishna-" + sederNum + "-" + masechetNum + "-" + perekNum + "-" + mishnaNum);
+                jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + getBookId()+"-" + sederNum);
+                jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + getBookId()+"-" + sederNum + "-" + masechetNum);
+                jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + getBookId()+"-" + sederNum + "-" + masechetNum + "-" + perekNum);
+                jsonObject().add(JBO_INTERPRETS, JBR_TEXT + getBookId()+"-" + sederNum + "-" + masechetNum + "-" + perekNum + "-" + mishnaNum);
                 jsonObjectFlush();
                 Just_finished_perush = true;
                 break;
@@ -202,14 +204,14 @@ public class MishnaParser extends Parser {
                 else pasuk = line.extract(" ", ":");
 
                 jsonObjectFlush();
-                jsonObject().add(URI, JBR_TEXT + "mishna-" + sederNum + "-" + masechetNum + "-" + perekNum + "-" + mishnaNum);
+                jsonObject().add(URI, JBR_TEXT + getBookId()+"-" + sederNum + "-" + masechetNum + "-" + perekNum + "-" + mishnaNum);
                 jsonObject().add(JBO_TEXT, stripVowels(pasuk));
                 jsonObject().add(JBO_TEXT_NIKUD, pasuk);
                 jsonObject().add(RDFS_LABEL, "משנה " + masechetHE + " " + perekLetter + " " + mishnaLetter);
-                jsonObject().add(JBO_BOOK, JBR_BOOK + "mishna");
-                jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "mishna-" + sederNum);
-                jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "mishna-" + sederNum + "-" + masechetNum);
-                jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "mishna-" + sederNum + "-" + masechetNum + "-" + perekNum);
+                jsonObject().add(JBO_BOOK, JBR_BOOK + getBookId());
+                jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + getBookId()+"-" + sederNum);
+                jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + getBookId()+"-" + sederNum + "-" + masechetNum);
+                jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + getBookId()+"-" + sederNum + "-" + masechetNum + "-" + perekNum);
                 jsonObjectFlush();
                 pasuk = null;
                 break;
@@ -218,11 +220,16 @@ public class MishnaParser extends Parser {
         }
     }
     protected String getUri() {
-        return JBR_TEXT + "mishna-" + mefaresh + "-" + sederNum + "-" + masechetNum + "-" + perekNum + "-" + mishnaNum;
+        return JBR_TEXT + getBookId()+"-" + mefaresh + "-" + sederNum + "-" + masechetNum + "-" + perekNum + "-" + mishnaNum;
+    }
+
+    @Override
+    protected String getBookId() {
+        return "mishna";
     }
 
     protected  String getMasechetUri(){
-        return JBR_SECTION + "mishna-" + sederNum + "-" + masechetNum;
+        return JBR_SECTION + getBookId()+"-" + sederNum + "-" + masechetNum;
     }
 
     private int getSederNum(String MasechetName) {

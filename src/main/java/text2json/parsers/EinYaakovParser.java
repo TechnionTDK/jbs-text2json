@@ -6,9 +6,7 @@ import text2json.LineMatcher;
 
 import java.io.IOException;
 
-import static text2json.JbsOntology.JBO_TEXT;
 import static text2json.JbsOntology.JBO_TEXT_NIKUD;
-import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 
 /**
  * Created by Assaf on 08/06/2017.
@@ -74,20 +72,18 @@ public class EinYaakovParser extends JbsParser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_SEFER:
-                // No need to create an object for the entire book anymore!
-                // It is created manually, outside text2json
                 break;
 
             case BEGIN_MASECHET:
                 jsonObjectFlush();
                 perekNum=0;
                 masechetNum++;
-                addBook(packagesJsonObject(), "einyaakov");
+                addBook(packagesJsonObject(), getBookId());
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
                 label1=line.getLine().replace("מסכת ","");
-                addPackageUri( "einyaakov-" + masechetNum);
-                addRdfs(packagesJsonObject(),"עין יעקב " + label1);
+                addPackageUri( getBookId()+"-" + masechetNum);
+                addLabel(packagesJsonObject(),"עין יעקב " + label1);
                 packagesJsonObjectFlush();
                 break;
 
@@ -97,11 +93,11 @@ public class EinYaakovParser extends JbsParser {
                 position++;
                 addUri( getUri());
                 addPosition( position);
-                addBook( "einyaakov");
-                addWithin( "einyaakov-" + masechetNum);
+                addBook( getBookId());
+                addWithin( getBookId()+"-" + masechetNum);
                 label2 = line.getLine().replace("heb","");
-                String rdfs = "עין יעקב" + label2;
-                addRdfs(rdfs);
+                String label = "עין יעקב" + label2;
+                addLabel(label);
                 break;
 
             case NO_MATCH:
@@ -112,5 +108,10 @@ public class EinYaakovParser extends JbsParser {
 
     @Override
     protected String getUri() {
-        return  "einyaakov-" + masechetNum + "-"+  perekNum;    }
+        return  getBookId()+"-" + masechetNum + "-"+  perekNum;    }
+
+    @Override
+    protected String getBookId() {
+        return "einyaakov";
+    }
 }

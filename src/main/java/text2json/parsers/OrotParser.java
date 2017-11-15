@@ -6,7 +6,6 @@ import text2json.LineMatcher;
 
 import java.io.IOException;
 
-import static text2json.JbsOntology.*;
 import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 
 /**
@@ -86,16 +85,15 @@ public class OrotParser extends JbsParser {
                 perekNum=0;
                 maamarName = getMaamarName(line.getLine());
                 maamarNum++;
-                addBook(packagesJsonObject(), "orot");
+                addBook(packagesJsonObject(), getBookId());
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
-                addPackageUri( "orot-"+maamarNum);
-
+                addPackageUri( getBookId()+"-"+maamarNum);
                 int res = maamarName.compareTo("- אורות ישראל");
                 if (res == 0) {
                     maamarName = "אורות ישראל";
                 }
-                addRdfs(packagesJsonObject(),"אורות - " + maamarName );
+                addLabel(packagesJsonObject(),"אורות - " + maamarName );
                 packagesJsonObjectFlush();
                 hasSubMaamar=0;
                 break;
@@ -105,11 +103,11 @@ public class OrotParser extends JbsParser {
                 perekNum=0;
                 subMaamarNum++;
                 subMaamarName = getSubMaamarName (line.getLine());
-                addBook(packagesJsonObject(), "orot");
+                addBook(packagesJsonObject(), getBookId());
                 addPosition(packagesJsonObject(), packagePosition);
                 packagePosition++;
-                addPackageUri( "orot-"+ maamarNum + "-" + subMaamarNum);
-                addRdfs(packagesJsonObject(), "אורות" +" " + subMaamarName);
+                addPackageUri( getBookId()+"-"+ maamarNum + "-" + subMaamarNum);
+                addLabel(packagesJsonObject(), "אורות" +" " + subMaamarName);
                 packagesJsonObjectFlush();
                 hasSubMaamar = 1;
                 break;
@@ -123,11 +121,11 @@ public class OrotParser extends JbsParser {
                         String hebperek = HEB_LETTERS_INDEX[perekNum - 1];
                         addUri( getUri());
                         addPosition( position);
-                        addBook( "orot");
-                        addWithin( "orot-" + maamarNum);
-                        addWithin( "orot-" + maamarNum +"-" + subMaamarNum);
-                        String rdfs = "אורות" + " " + subMaamarName + " " + hebperek;
-                        addRdfs(rdfs);
+                        addBook( getBookId());
+                        addWithin( getBookId()+"-" + maamarNum);
+                        addWithin( getBookId()+"-" + maamarNum +"-" + subMaamarNum);
+                        String label = "אורות" + " " + subMaamarName + " " + hebperek;
+                        addLabel(label);
                         break;
 
                     case (0): // no submaamar so each chapter has a unique name
@@ -137,24 +135,30 @@ public class OrotParser extends JbsParser {
                         perekName  = getPerekName (line.getLine());
                         addUri( getUri());
                         addPosition( position);
-                        addBook( "orot");
-                        addWithin( "orot-" + maamarNum);
-                        addWithin( "orot-" + maamarNum +"-" + subMaamarNum);
-                        String rdfs1 = "אורות" + " " + perekName;
-                        addRdfs(rdfs1);
+                        addBook( getBookId());
+                        addWithin( getBookId()+"-" + maamarNum);
+                        addWithin( getBookId()+"-" + maamarNum +"-" + subMaamarNum);
+                        String label1 = "אורות" + " " + perekName;
+                        addLabel(label1);
                         break;
                 }
                 break;
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return  "orot-" + maamarNum +"-" + subMaamarNum + "-"+ perekNum;   }
+        return  getBookId()+"-" + maamarNum +"-" + subMaamarNum + "-"+ perekNum;   }
+
+    @Override
+    protected String getBookId() {
+        return "orot";
+    }
+
     protected String getMaamarName(String line){ return line.substring(line.indexOf(' ')+1);     }
     protected String getSubMaamarName(String line){ return line.substring(line.indexOf(' ')+6);     }
     protected String getPerekName(String line){ return line.substring(line.indexOf(' ')+5);     }

@@ -1,13 +1,10 @@
 package text2json;
 
-import org.junit.*;
+import org.junit.Test;
 
-import java.io.IOException;
-
+import static org.junit.Assert.assertEquals;
 import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 import static text2json.JbsUtils.hebrewToNumber;
-import static text2json.JbsUtils.numberToHebrew;
-import static org.junit.Assert.*;
 /**
  * Created by omishali on 25/10/2017.
  */

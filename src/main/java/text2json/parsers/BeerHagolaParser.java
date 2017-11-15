@@ -6,7 +6,7 @@ import text2json.LineMatcher;
 
 import java.io.IOException;
 
-import static text2json.JbsOntology.*;
+import static text2json.JbsOntology.JBO_TEXT;
 import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 
 /**
@@ -17,9 +17,6 @@ public class BeerHagolaParser extends JbsParser {
     private int beerNum = -1;
 
 
-//    public BeerHagolaParser() {
-//        createPackagesJson();
-//    }
 
     @Override
     protected void registerMatchers() {
@@ -58,22 +55,19 @@ public class BeerHagolaParser extends JbsParser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_SEFER:
-                // No need to create an object for the entire book anymore!
-                // It is created outside text2json
                 break;
 
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 beerNum++;
                 addUri( getUri());
-                addBook( "beerhagola");
+                addBook( getBookId());
                 addPosition( beerNum+1);
-                addRdfs("באר הגולה הקדמה");
+                addLabel("באר הגולה הקדמה");
                 break;
 
 
             case BEGIN_PEREK:
-//                packagesJsonObjectFlush();
                 if (jsonObject().hasKey(JBO_TEXT))
                     jsonObjectFlush();
                 else{
@@ -82,24 +76,26 @@ public class BeerHagolaParser extends JbsParser {
                 beerNum++;
                 String beerName =  HEB_LETTERS_INDEX[beerNum-1];
                 addUri( getUri());
-                addBook( "beerhagola");
+                addBook( getBookId());
                 addPosition( beerNum+1);
-                String rdfs = "באר הגולה " + beerName;
-                addRdfs(rdfs);
+                String label = "באר הגולה " + beerName;
+                addLabel(label);
                 break;
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText(line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return "beerhagola-" + beerNum ;    }
+        return getBookId() + "-" + beerNum ;    }
 
-    protected String getcorpus() { return JBR + "beerhagola";    }
-
+    @Override
+    protected String getBookId() {
+        return "beerhagola";
+    }
 
 
 }

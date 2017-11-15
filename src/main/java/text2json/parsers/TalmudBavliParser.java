@@ -1,15 +1,17 @@
 package text2json.parsers;
 
+import text2json.JbsParser;
 import text2json.Line;
 import text2json.LineMatcher;
-import text2json.Parser;
-import static text2json.JbsOntology.*;
+
 import java.io.IOException;
+
+import static text2json.JbsOntology.*;
 
 /**
  * Created by USER on 20-Jan-17.
  */
-public class TalmudBavliParser extends Parser {
+public class TalmudBavliParser extends JbsParser {
     private static final String BEGIN_MASECHET = "begin_masechet";
     private static final String BEGIN_AMUD = "begin_amud";
     private static final String BEGIN_AMUD_TEXT = "begin_daf_text";
@@ -104,7 +106,7 @@ public class TalmudBavliParser extends Parser {
                 packagesJsonObject().add(URI, getMasechetUri());
                 packagesJsonObject().add(RDFS_LABEL, "מסכת " + masechetTitle);
                 packagesJsonObject().add(JBO_POSITION, masechetNum);
-                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "talmudbavli");
+                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + getBookId());
                 packagesJsonObjectFlush();
                 break;
 
@@ -118,7 +120,7 @@ public class TalmudBavliParser extends Parser {
                 packagesJsonObject().add(URI, getPerekUri());
                 packagesJsonObject().add(RDFS_LABEL, perekTitle);
                 packagesJsonObject().add(JBO_POSITION, perekNum);
-                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "talmudbavli");
+                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + getBookId());
                 packagesJsonObjectFlush();
                 break;
 
@@ -138,7 +140,7 @@ public class TalmudBavliParser extends Parser {
                 jsonObject().addToArray(JBO_WITHIN, getPerekUri());
                 jsonObject().add(RDFS_LABEL, "מסכת " + masechetTitle + " " + dafTitle + " " + amudTitle);
                 jsonObject().add(JBO_POSITION, positionInMasechet);
-                jsonObject().add(JBO_BOOK, JBR_BOOK + "talmudbavli");
+                jsonObject().add(JBO_BOOK, JBR_BOOK + getBookId());
                 /* no need for amud package
                 if(amudTitle.equals("א") || (masechetNum == 36 && dafNum == 25)) {
                     // adding daf triplets to packages json
@@ -157,11 +159,11 @@ public class TalmudBavliParser extends Parser {
                     jsonObject().addToArray(JBO_WITHIN, getPerekUri());
                     jsonObject().add(RDFS_LABEL, masechetTitle + " " + dafTitle + " " + amudTitle);
                     jsonObject().add(JBO_POSITION, positionInMasechet);
-                    jsonObject().append(JBO_TEXT, line.getLine());
-                    jsonObject().add(JBO_BOOK, JBR_BOOK + "talmudbavli");
+                    appendText( line.getLine());
+                    jsonObject().add(JBO_BOOK, JBR_BOOK + getBookId());
                 }
                 else {
-                    jsonObject().append(JBO_TEXT, line.getLine());
+                    appendText( line.getLine());
                 }
                 //jsonObjectFlush();
                 break;
@@ -179,7 +181,7 @@ public class TalmudBavliParser extends Parser {
                 jsonObject().add(RDFS_LABEL, mefarshimHeb[mefareshIdx] + " " + masechetTitle + " " + dafTitle + " " + amudTitle);
                 jsonObject().add(JBO_POSITION, positionInMasechet);
                 jsonObject().add(JBO_INTERPRETS, getUri());
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 jsonObject().add(JBO_BOOK, JBR_BOOK + getMefareshBook(mefareshIdx));
                 //jsonObjectFlush();
                 break;
@@ -209,6 +211,12 @@ public class TalmudBavliParser extends Parser {
     protected String getUri() {
         return JBR_TEXT + "bavli-" + masechetNum + "-" + dafNum + "-" + amudNum;
     }
+
+    @Override
+    protected String getBookId() {
+        return "talmudbavli";
+    }
+
     protected String getMasechetUri() { return JBR_SECTION + "bavli-" + masechetNum; }
     private String getMefareshUri(int mefareshIdx) {
         return JBR_TEXT + "bavli-" + mefarshim[mefareshIdx] + "-" + masechetNum + "-" + dafNum + "-" + amudNum;

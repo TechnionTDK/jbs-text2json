@@ -4,7 +4,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.EinYaakovGlickEditionParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -20,12 +19,8 @@ public class EinYaakovGlickEditionParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new EinYaakovGlickEditionParser();
-        createOutputFolderIfNotExists("einyaakovglickedition");
-        BufferedReader reader = getText("einyaakovglickedition/einyaakovglickedition.txt");
-        createOutputFolderIfNotExists("einyaakovglickedition");
-        parser.parse(reader, "json/einyaakovglickedition/einyaakovglickedition.json");
-        json = getJson("json/einyaakovglickedition/einyaakovglickedition.json");
+        json = setupParser(new EinYaakovGlickEditionParser() , "einyaakovglickedition");
+
     }
 
     @Test

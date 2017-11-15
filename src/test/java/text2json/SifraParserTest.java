@@ -2,10 +2,8 @@ package text2json;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import text2json.parsers.EinYaakovGlickEditionParser;
 import text2json.parsers.SifraParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -21,12 +19,8 @@ public class SifraParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new SifraParser();
-        createOutputFolderIfNotExists("sifra");
-        BufferedReader reader = getText("sifra/sifra.txt");
-        createOutputFolderIfNotExists("sifra");
-        parser.parse(reader, "json/sifra/sifra.json");
-        json = getJson("json/sifra/sifra.json");
+        json = setupParser(new SifraParser() , "sifra");
+
     }
 
     @Test

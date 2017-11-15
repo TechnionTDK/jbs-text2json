@@ -6,7 +6,6 @@ import text2json.LineMatcher;
 
 import java.io.IOException;
 
-import static text2json.JbsOntology.JBO_TEXT;
 import static text2json.JbsUtils.numberToHebrew;
 
 /**
@@ -20,7 +19,7 @@ public class DarcheiMosheParser extends JbsParser {
 
     private int turNum = 0,position =0,packagePosition =1;
     private int seifNum = 0;
-    private int simanNum = 0; //, counter =0;
+    private int simanNum = 0;
     private String turName ="";
 
     public DarcheiMosheParser() {
@@ -74,8 +73,6 @@ public class DarcheiMosheParser extends JbsParser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_SEFER:
-                // No need to create an object for the entire book anymore!
-                // It is created outside text2json
                 break;
 
             case BEGIN_TUR:
@@ -84,25 +81,24 @@ public class DarcheiMosheParser extends JbsParser {
                 simanNum=0;
                 turName = line.getLine().replace("טור ","");
                 turNum++;
-                addBook(packagesJsonObject(), "darcheimoshe");
+                addBook(packagesJsonObject(), getBookId());
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
-                addPackageUri( "darcheimoshe-"+turNum);
-                addRdfs(packagesJsonObject(),"דרכי משה " + turName );
+                addPackageUri( getBookId() + "-"+turNum);
+                addLabel(packagesJsonObject(),"דרכי משה " + turName );
                 packagesJsonObjectFlush();
-//                System.out.println("counter: "+ counter);
                 break;
 
             case BEGIN_SIMAN :
                 jsonObjectFlush();
                 seifNum=0;
                 simanNum++;
-                addBook(packagesJsonObject(), "darcheimoshe");
+                addBook(packagesJsonObject(), getBookId());
                 addPosition(packagesJsonObject(), packagePosition);
                 packagePosition++;
-                addPackageUri( "darcheimoshe-"+ turNum + "-" + simanNum);
-                String rdfs = "דרכי משה " + turName + " " + numberToHebrew(simanNum);
-                addRdfs(packagesJsonObject(), rdfs);
+                addPackageUri( getBookId() + "-"+ turNum + "-" + simanNum);
+                String label = "דרכי משה " + turName + " " + numberToHebrew(simanNum);
+                addLabel(packagesJsonObject(), label);
                 packagesJsonObjectFlush();
 
                 break;
@@ -113,25 +109,29 @@ public class DarcheiMosheParser extends JbsParser {
                 position++;
                 addUri( getUri());
                 addPosition( position);
-                addBook( "darcheimoshe");
-                addWithin( "darcheimoshe-" + turNum);
-                addWithin( "darcheimoshe-" + turNum +"-" + simanNum);
-                String rdfs1 = "דרכי משה " + turName  + " " + numberToHebrew(simanNum) + " " + numberToHebrew(seifNum);
-                addRdfs(rdfs1);
+                addBook( getBookId());
+                addWithin( getBookId() + "-" + turNum);
+                addWithin( getBookId() + "-" + turNum +"-" + simanNum);
+                String label1 = "דרכי משה " + turName  + " " + numberToHebrew(simanNum) + " " + numberToHebrew(seifNum);
+                addLabel(label1);
                 packagesJsonObjectFlush();
-//                counter++;
                 break;
 
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return  "darcheimoshe-" + turNum +"-"  + simanNum + "-" + seifNum;   }
+        return  getBookId() + "-" + turNum +"-"  + simanNum + "-" + seifNum;   }
+
+    @Override
+    protected String getBookId() {
+        return "darcheimoshe";
+    }
 
 
 }

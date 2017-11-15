@@ -1,21 +1,20 @@
 package text2json.parsers;
 
+import text2json.JbsParser;
 import text2json.Line;
 import text2json.LineMatcher;
-import text2json.Parser;
 
 import java.io.IOException;
+
 import static text2json.JbsOntology.*;
 
 /**
  * Created by omishali on 17/01/2017.
  */
-public class ShemonaKevatzimParser extends Parser {
+public class ShemonaKevatzimParser extends JbsParser {
     private static final String BEGIN_KOVETZ = "begin_kovetz";
     private static final String BEGIN_SAIF = "begin_saif";
-
-    private String kovetz;
-    private String saif;
+    
     private int kovetzNum = 0;
     private int saifNum = 0;
 
@@ -59,10 +58,10 @@ public class ShemonaKevatzimParser extends Parser {
                 saifNum++;
                 jsonObject().add(URI, getUri());
                 jsonObject().add(RDFS_LABEL, "שמונה קבצים " + kovetzNum + " " + saifNum);
-                jsonObject().add(JBO_BOOK, JBR_BOOK + "shemonakevatzim");
+                jsonObject().add(JBO_BOOK, JBR_BOOK + getBookId());
                 break;
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
 
@@ -70,6 +69,11 @@ public class ShemonaKevatzimParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR_TEXT + "shemonakevatzim-" + kovetzNum + "-" + saifNum;
+        return JBR_TEXT + getBookId()+"-" + kovetzNum + "-" + saifNum;
+    }
+
+    @Override
+    protected String getBookId() {
+        return "shemonakevatzim";
     }
 }

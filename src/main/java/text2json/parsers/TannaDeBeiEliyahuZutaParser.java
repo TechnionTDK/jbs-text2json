@@ -6,7 +6,6 @@ import text2json.LineMatcher;
 
 import java.io.IOException;
 
-import static text2json.JbsOntology.JBO_TEXT;
 import static text2json.JbsUtils.numberToHebrew;
 
 /**
@@ -124,85 +123,90 @@ public class TannaDeBeiEliyahuZutaParser extends JbsParser {
                 perekNum = 0;
                 partNum++;
                 packagesJsonObjectFlush();
-                addBook(packagesJsonObject(), "tannadebeieliyahuzuta");
-                addPackageUri("tannadebeieliyahuzuta-" + partNum);
+                addBook(packagesJsonObject(), getBookId());
+                addPackageUri(getBookId()+"-" + partNum);
                 addPosition(packagesJsonObject(), packagePosition);
                 packagePosition++;
                 label2 = line.getLine().replace(" - ", " ").split(" ",3)[2];
-                addRdfs(packagesJsonObject(), "תנא דבי אליהו זוטא - " + label2);
+                addLabel(packagesJsonObject(), "תנא דבי אליהו זוטא - " + label2);
                 break;
 
             case BEGIN_PEREK:
                 jsonObjectFlush();
                 perekNum++;
-                addBook("tannadebeieliyahuzuta");
+                addBook(getBookId());
                 addUri(getUri());
-                addWithin("tannadebeieliyahuzuta-" + partNum);
+                addWithin(getBookId()+"-" + partNum);
                 addPosition(position);
                 position++;
-                addRdfs("תנא דבי אליהו זוטא - " + label2 + " " + numberToHebrew(perekNum));
+                addLabel("תנא דבי אליהו זוטא - " + label2 + " " + numberToHebrew(perekNum));
                 packagesJsonObjectFlush();
                 break;
 
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
-                addBook("tannadebeieliyahuzuta");
-                addUri("tannadebeieliyahuzuta-" + partNum + "-" + perekNum);
+                addBook(getBookId());
+                addUri(getBookId()+"-" + partNum + "-" + perekNum);
                 perekNum++;
-                addWithin("tannadebeieliyahuzuta-" + partNum);
+                addWithin(getBookId()+"-" + partNum);
                 addPosition(position);
                 position++;
-                addRdfs("תנא דבי אליהו זוטא נספחים -" + " הקדמה");
+                addLabel("תנא דבי אליהו זוטא נספחים -" + " הקדמה");
                 packagesJsonObjectFlush();
                 break;
 
             case BEGIN_MAVO:
                 jsonObjectFlush();
                 perekNum++;
-                addBook("tannadebeieliyahuzuta");
-                addUri("tannadebeieliyahuzuta-" + partNum + "-" + perekNum);
-                addWithin("tannadebeieliyahuzuta-" + partNum);
+                addBook(getBookId());
+                addUri(getBookId()+"-" + partNum + "-" + perekNum);
+                addWithin(getBookId()+"-" + partNum);
                 addPosition(position);
                 position++;
-                addRdfs("תנא דבי אליהו זוטא - " + label2 + " מבוא");
+                addLabel("תנא דבי אליהו זוטא - " + label2 + " מבוא");
                 packagesJsonObjectFlush();
                 break;
 
             case BEGIN_CHAPTERS:
                 jsonObjectFlush();
                 perekNum++;
-                addBook("tannadebeieliyahuzuta");
-                addUri("tannadebeieliyahuzuta-" + partNum + "-" + perekNum);
-                addWithin("tannadebeieliyahuzuta-" + partNum);
+                addBook(getBookId());
+                addUri(getBookId()+"-" + partNum + "-" + perekNum);
+                addWithin(getBookId()+"-" + partNum);
                 addPosition(position);
                 position++;
                 label1 = line.getLine().replace(" - "," ");
-                addRdfs("תנא דבי אליהו זוטא נספחים -" + " " + label1);
+                addLabel("תנא דבי אליהו זוטא נספחים -" + " " + label1);
                 packagesJsonObjectFlush();
                 break;
 
             case BEGIN_PEREK2:
                 jsonObjectFlush();
                 perekNum++;
-                addBook("tannadebeieliyahuzuta");
-                addUri("tannadebeieliyahuzuta-" + partNum + "-" + perekNum);
-                addWithin("tannadebeieliyahuzuta-" + partNum);
+                addBook(getBookId());
+                addUri(getBookId()+"-" + partNum + "-" + perekNum);
+                addWithin(getBookId()+"-" + partNum);
                 addPosition(position);
                 position++;
                 label1 = line.getLine().replace(" - ", " ").replace("פרק ","");
-                addRdfs("תנא דבי אליהו זוטא - " + label2 + " " + label1);
+                addLabel("תנא דבי אליהו זוטא - " + label2 + " " + label1);
                 packagesJsonObjectFlush();
                 break;
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return "tannadebeieliyahuzuta-" + partNum + "-" + perekNum;
+        return getBookId()+"-" + partNum + "-" + perekNum;
+    }
+
+    @Override
+    protected String getBookId() {
+        return "tannadebeieliyahuzuta";
     }
 
 

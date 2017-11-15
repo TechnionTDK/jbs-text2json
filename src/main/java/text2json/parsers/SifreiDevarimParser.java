@@ -6,7 +6,6 @@ import text2json.LineMatcher;
 
 import java.io.IOException;
 
-import static text2json.JbsOntology.JBO_TEXT;
 import static text2json.JbsUtils.numberToHebrew;
 
 /**
@@ -15,12 +14,6 @@ import static text2json.JbsUtils.numberToHebrew;
 public class SifreiDevarimParser extends JbsParser {
 
     private int chapterNum = 0;
-    private int hakdamaNum = 0;
-
-
-//    public MidbarShurParser() {
-//        createPackagesJson();
-//    }
 
     @Override
     protected void registerMatchers() {
@@ -55,23 +48,27 @@ public class SifreiDevarimParser extends JbsParser {
                 break;
 
             case BEGIN_PEREK:
-//                packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
                 addUri( getUri());
-                addBook( "sifreidevarim");
+                addBook( getBookId());
                 addPosition(chapterNum);
-                String rdfs = "ספרי דברים " + numberToHebrew(chapterNum);
-                addRdfs(rdfs);
+                String label = "ספרי דברים " + numberToHebrew(chapterNum);
+                addLabel(label);
                 break;
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return  "sifreidevarim-" + chapterNum ;    }
+        return  getBookId()+"-" + chapterNum ;    }
+
+    @Override
+    protected String getBookId() {
+        return "sifreidevarim";
+    }
 }

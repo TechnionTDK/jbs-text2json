@@ -53,7 +53,7 @@ public class TanachKtivMaleParser extends JbsParser {
                 firstWord = line.getFirstWord();
                 addUri(getUri());
                 line = line.removeFirstWord().removeExtraSpaces();
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
             case NO_MATCH:
                 // in some psukim the content is spread into two (even three) lines
@@ -70,5 +70,10 @@ public class TanachKtivMaleParser extends JbsParser {
         int perek = JbsUtils.hebrewToNumber(split[1]);
         int pasuk = JbsUtils.hebrewToNumber(split[2]);
         return "tanach-" + Integer.toString(sefer) + "-" + Integer.toString(perek) + "-" + Integer.toString(pasuk);
+    }
+
+    @Override
+    protected String getBookId() {
+        return null;
     }
 }

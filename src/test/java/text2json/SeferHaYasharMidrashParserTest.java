@@ -3,9 +3,7 @@ package text2json;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.SeferHaYasharMidrashParser;
-import text2json.parsers.SifraParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -21,12 +19,8 @@ public class SeferHaYasharMidrashParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new SeferHaYasharMidrashParser();
-        createOutputFolderIfNotExists("seferhayasharmidrash");
-        BufferedReader reader = getText("seferhayasharmidrash/seferhayasharmidrash.txt");
-        createOutputFolderIfNotExists("seferhayasharmidrash");
-        parser.parse(reader, "json/seferhayasharmidrash/seferhayasharmidrash.json");
-        json = getJson("json/seferhayasharmidrash/seferhayasharmidrash.json");
+        json = setupParser(new SeferHaYasharMidrashParser() , "seferhayasharmidrash");
+
     }
 
     @Test

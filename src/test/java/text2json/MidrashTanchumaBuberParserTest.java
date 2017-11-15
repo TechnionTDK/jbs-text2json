@@ -4,7 +4,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.MidrashTanchumaBuberParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -20,12 +19,8 @@ public class MidrashTanchumaBuberParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new MidrashTanchumaBuberParser();
-        createOutputFolderIfNotExists("midrashtanchumabuber");
-        BufferedReader reader = getText("midrashtanchumabuber/midrashtanchumabuber.txt");
-        createOutputFolderIfNotExists("midrashtanchumabuber");
-        parser.parse(reader, "json/midrashtanchumabuber/midrashtanchumabuber.json");
-        json = getJson("json/midrashtanchumabuber/midrashtanchumabuber.json");
+        json = setupParser(new MidrashTanchumaBuberParser() , "midrashtanchumabuber");
+
     }
 
     @Test

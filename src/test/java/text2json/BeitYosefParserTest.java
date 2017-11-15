@@ -3,8 +3,6 @@ package text2json;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.BeitYosefParser;
-
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -20,27 +18,15 @@ public class BeitYosefParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new BeitYosefParser();
-        createOutputFolderIfNotExists("beityosef");
-        BufferedReader reader = getText("beityosef/beityosef.txt");
-        createOutputFolderIfNotExists("beityosef");
-        parser.parse(reader, "json/beityosef/beityosef.json");
-        json = getJson("json/beityosef/beityosef.json");
-    }
+        json = setupParser(new BeitYosefParser() , "beityosef");
 
-//    @Test
-//    //test the correctness with sampling a few values
-//    public void test() {
-//        System.out.println("bla bla");
-//        System.out.println();
-//    }
+    }
 
 
     @Test
     public void testTotalNumberOfObjects() {
         assertNotNull(json);
         assertEquals(18403, json.subjects.size());
-//        assertEquals(19321, json.subjects.size());
     }
 
     @Test

@@ -245,4 +245,9 @@ public class LomdimLessonParser extends Parser {
     protected String getUri() {
         return null;
     }
+
+    @Override
+    protected String getBookId() {
+        return null;
+    }
 }

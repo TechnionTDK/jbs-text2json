@@ -1,12 +1,12 @@
 package text2json;
 
-import org.junit.*;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import text2json.parsers.TanachKtivMaleParser;
 
-import java.io.BufferedReader;
-
-import static org.junit.Assert.*;
-import static text2json.TestUtils.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static text2json.TestUtils.setupParser;
 
 /**
  * Created by omishali on 05/11/2017.
@@ -17,11 +17,8 @@ public class TanachKtivMaleParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new TanachKtivMaleParser();
-        createOutputFolderIfNotExists("tanach_ktivmale");
-        BufferedReader reader = getText("tanach_ktivmale/tanach_ktivmale.txt");
-        parser.parse(reader, "json/tanach_ktivmale/tanach_ktivmale.json");
-        json = getJson("json/tanach_ktivmale/tanach_ktivmale.json");
+        json = setupParser(new TanachKtivMaleParser() , "tanach_ktivmale");
+
     }
 
     @Test

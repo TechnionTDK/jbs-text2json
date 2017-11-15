@@ -4,7 +4,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.LikuteyMoharanParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -21,12 +20,9 @@ public class LikuteyMoharanParserTest {
 
     @BeforeClass
     public static void setup() throws Exception {
-        LikuteyMoharanParser parser = new LikuteyMoharanParser();
-        BufferedReader reader = getText("likuteymoharan/likuteymoharan.txt");
-        createOutputFolderIfNotExists("likuteymoharan");
-        parser.parse(reader, "json/likuteymoharan/likuteymoharan.json");
-        json = getJson("json/likuteymoharan/likuteymoharan.json");
         packageJson = getJson("json/likuteymoharan/likuteymoharan-packages.json");
+        json = setupParser(new LikuteyMoharanParser() , "likuteymoharan");
+
     }
 
     @Test

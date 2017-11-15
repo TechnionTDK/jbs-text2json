@@ -4,7 +4,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.OrChadashParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -20,12 +19,8 @@ public class OrChadashParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new OrChadashParser();
-        createOutputFolderIfNotExists("orchadash");
-        BufferedReader reader = getText("orchadash/orchadash.txt");
-        createOutputFolderIfNotExists("orchadash");
-        parser.parse(reader, "json/orchadash/orchadash.json");
-        json = getJson("json/orchadash/orchadash.json");
+        json = setupParser(new OrChadashParser() , "orchadash");
+
     }
 
 

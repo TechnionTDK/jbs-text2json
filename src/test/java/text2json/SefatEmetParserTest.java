@@ -4,7 +4,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.SefatEmetParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -20,12 +19,8 @@ public class SefatEmetParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new SefatEmetParser();
-        createOutputFolderIfNotExists("sefatemet");
-        BufferedReader reader = getText("sefatemet/sefatemet.txt");
-        createOutputFolderIfNotExists("sefatemet");
-        parser.parse(reader, "json/sefatemet/sefatemet.json");
-        json = getJson("json/sefatemet/sefatemet.json");
+        json = setupParser(new SefatEmetParser() , "sefatemet");
+
     }
 
     @Test

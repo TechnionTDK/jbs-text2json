@@ -6,7 +6,6 @@ import text2json.LineMatcher;
 
 import java.io.IOException;
 
-import static text2json.JbsOntology.*;
 import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 
 /**
@@ -93,10 +92,10 @@ public class HaemunotVehadeotParser extends JbsParser {
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 perekNum=0;
-                addPackageUri( "haemunotvehadeot-"+maamarNum);
+                addPackageUri( getBookId()+"-"+maamarNum);
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
-                addRdfs(packagesJsonObject(),"האמונות והדעות הקדמה");
+                addLabel(packagesJsonObject(),"האמונות והדעות הקדמה");
                 packagesJsonObjectFlush();
                 hakdamaBool=1;
                 break;
@@ -106,10 +105,10 @@ public class HaemunotVehadeotParser extends JbsParser {
                 perekNum=0;
                 maamarName = line.getLine();
                 maamarNum++;
-                addPackageUri( "haemunotvehadeot-" + maamarNum);
+                addPackageUri( getBookId()+"-" + maamarNum);
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
-                addRdfs(packagesJsonObject(),"האמונות והדעות " + maamarName.split(" ",3)[2] );
+                addLabel(packagesJsonObject(),"האמונות והדעות " + maamarName.split(" ",3)[2] );
                 packagesJsonObjectFlush();
                 hakdamaBool=0;
                 break;
@@ -121,10 +120,10 @@ public class HaemunotVehadeotParser extends JbsParser {
                 position++;
                 addUri( getUri());
                 addPosition( position);
-                addBook( "haemunotvehadeot");
-                addWithin( "haemunotvehadeot-" + maamarNum);
-                String rdfs = "האמונות והדעות פתיחה";
-                addRdfs(rdfs);
+                addBook( getBookId());
+                addWithin( getBookId()+"-" + maamarNum);
+                String label = "האמונות והדעות פתיחה";
+                addLabel(label);
                 break;
 
             case BEGIN_PEREK:
@@ -135,11 +134,11 @@ public class HaemunotVehadeotParser extends JbsParser {
                         position++;
                         perekName = HEB_LETTERS_INDEX[perekNum -1];
                         addUri( getUri());
-                        addBook( "haemunotvehadeot");
+                        addBook( getBookId());
                         addPosition( position);
-                        addWithin( "haemunotvehadeot-" + maamarNum);
-                        String rdfs0 = "האמונות והדעות הקדמה "  + perekName;
-                        addRdfs(rdfs0);
+                        addWithin( getBookId()+"-" + maamarNum);
+                        String label0 = "האמונות והדעות הקדמה "  + perekName;
+                        addLabel(label0);
                         break;
 
                     case (0): // in regular maamar chapters
@@ -148,23 +147,28 @@ public class HaemunotVehadeotParser extends JbsParser {
                         position++;
                         perekName = HEB_LETTERS_INDEX[perekNum -1];
                         addUri( getUri());
-                        addBook( "haemunotvehadeot");
+                        addBook( getBookId());
                         addPosition( position);
-                        addWithin( "haemunotvehadeot-" + maamarNum);
-                        String rdfs1 = "האמונות והדעות " + maamarName.split(" ",3)[2] + " " + perekName;
-                        addRdfs(rdfs1);
+                        addWithin( getBookId()+"-" + maamarNum);
+                        String label1 = "האמונות והדעות " + maamarName.split(" ",3)[2] + " " + perekName;
+                        addLabel(label1);
                         break;
                 }
 
                 break;
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return "haemunotvehadeot-" + maamarNum + "-" + perekNum;   }
+        return getBookId()+"-" + maamarNum + "-" + perekNum;   }
+
+    @Override
+    protected String getBookId() {
+        return "haemunotvehadeot";
+    }
 }

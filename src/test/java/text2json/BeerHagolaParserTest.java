@@ -3,10 +3,7 @@ package text2json;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.BeerHagolaParser;
-
-import java.io.BufferedReader;
 import java.util.Map;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static text2json.TestUtils.*;
@@ -20,12 +17,7 @@ public class BeerHagolaParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new BeerHagolaParser();
-        createOutputFolderIfNotExists("beerhagola");
-        BufferedReader reader = getText("beerhagola/beerhagola.txt");
-        createOutputFolderIfNotExists("beerhagola");
-        parser.parse(reader, "json/beerhagola/beerhagola.json");
-        json = getJson("json/beerhagola/beerhagola.json");
+        json = setupParser(new BeerHagolaParser() , "beerhagola");
     }
 
     @Test

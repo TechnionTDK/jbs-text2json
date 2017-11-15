@@ -6,7 +6,6 @@ import text2json.LineMatcher;
 
 import java.io.IOException;
 
-import static text2json.JbsOntology.*;
 import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 
 /**
@@ -15,12 +14,6 @@ import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 public class MidbarShurParser extends JbsParser {
 
     private int chapterNum = 0;
-    private int hakdamaNum = 0;
-
-
-//    public MidbarShurParser() {
-//        createPackagesJson();
-//    }
 
     @Override
     protected void registerMatchers() {
@@ -50,29 +43,31 @@ public class MidbarShurParser extends JbsParser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_SEFER:
-                // No need to create an object for the entire book anymore!
-                // It is created manually, outside text2json
                 break;
 
             case BEGIN_PEREK:
-//                packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
                 String chapterName = HEB_LETTERS_INDEX[chapterNum-1];
                 addUri( getUri());
-                addBook( "midbarshur");
+                addBook( getBookId());
                 addPosition(chapterNum);
-                String rdfs = "מדבר שור " + chapterName;
-                addRdfs(rdfs);
+                String label = "מדבר שור " + chapterName;
+                addLabel(label);
                 break;
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return  "midbarshur-" + chapterNum ;    }
+        return  getBookId()+"-" + chapterNum ;    }
+
+    @Override
+    protected String getBookId() {
+        return "midbarshur";
+    }
 }

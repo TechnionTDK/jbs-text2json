@@ -3,10 +3,12 @@ package text2json.parsers;
 import text2json.Line;
 import text2json.LineMatcher;
 import text2json.Parser;
-import static text2json.JbsOntology.*;
-import static text2json.JbsUtils.*;
 
 import java.io.IOException;
+
+import static text2json.JbsOntology.*;
+import static text2json.JbsUtils.SEFARIM_TANACH_EN;
+import static text2json.JbsUtils.SEFARIM_TANACH_HE;
 
 /**
  * Created by USER on 06-Jan-17.
@@ -121,11 +123,11 @@ public class TanachParser extends Parser {
                 jsonObject().add(JBO_TEXT_NIKUD, line.extract("}", end));
                 jsonObject().add(RDFS_LABEL, bookName + " " + perekTitle + " " + pasukTitle);
                 jsonObject().add(JBO_BOOK, JBR_BOOK_TANACH + bookNameEn);
-                //jsonObject().addToArray(JBO_BOOK, JBR_BOOK + "tanach");
+
                 jsonObject().add(JBO_POSITION, position);
                 if(bookNum <= 5) {
                     jsonObject().addToArray(JBO_WITHIN, getParashaUri());
-                    //jsonObject().addToArray(JBO_BOOK, JBR_BOOK + "torah");
+
                 }
                 jsonObjectFlush();
                 break;
@@ -183,5 +185,10 @@ public class TanachParser extends Parser {
     @Override
     protected String getUri() {
         return JBR_TEXT + "tanach-" + bookNum + "-" + perekNum + "-" + pasukNum;
+    }
+
+    @Override
+    protected String getBookId() {
+        return null;
     }
 }

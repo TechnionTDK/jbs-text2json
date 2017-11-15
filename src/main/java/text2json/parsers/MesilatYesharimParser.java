@@ -1,8 +1,8 @@
 package text2json.parsers;
 
+import text2json.JbsParser;
 import text2json.Line;
 import text2json.LineMatcher;
-import text2json.Parser;
 
 import java.io.IOException;
 
@@ -11,7 +11,7 @@ import static text2json.JbsOntology.*;
 /**
  * Created by USER on 23-Dec-16.
  */
-public class MesilatYesharimParser extends Parser {
+public class MesilatYesharimParser extends JbsParser {
     private static final String BEGIN_HAKDAMA = "begin_hakdama";
     private static final String BEGIN_HATIMA = "begin_hatima";
 
@@ -47,13 +47,13 @@ public class MesilatYesharimParser extends Parser {
                 jsonObject().add(URI, getUri());
                 jsonObject().add(RDFS_LABEL, line.getLine());
                 jsonObject().add(JBO_POSITION, perekNum);
-                jsonObject().add(JBO_BOOK, JBR_BOOK + "mesilatyesharim");
+                jsonObject().add(JBO_BOOK, JBR_BOOK + getBookId());
                 break;
             case BEGIN_PEREK:
                 jsonObjectFlush();
                 perekNum++;
                 jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_BOOK, JBR_BOOK + "mesilatyesharim");
+                jsonObject().add(JBO_BOOK, JBR_BOOK + getBookId());
                 jsonObject().add(JBO_POSITION, perekNum);
                 if(perekNum <= 20) {
                     jsonObject().add(RDFS_LABEL, line.extract(" - ", " "));
@@ -66,19 +66,24 @@ public class MesilatYesharimParser extends Parser {
                 jsonObjectFlush();
                 perekNum++;
                 jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_BOOK, JBR_BOOK + "mesilatyesharim");
+                jsonObject().add(JBO_BOOK, JBR_BOOK + getBookId());
                 jsonObject().add(JBO_POSITION, perekNum);
                 jsonObject().add(RDFS_LABEL, line.getLine());
                 break;
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return JBR_TEXT + "mesilatyesharim" + "-" + perekNum;
+        return JBR_TEXT + getBookId() + "-" + perekNum;
+    }
+
+    @Override
+    protected String getBookId() {
+        return "mesilatyesharim";
     }
 
 }

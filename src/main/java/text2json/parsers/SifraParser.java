@@ -6,7 +6,6 @@ import text2json.LineMatcher;
 
 import java.io.IOException;
 
-import static text2json.JbsOntology.JBO_TEXT;
 import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 
 /**
@@ -93,64 +92,69 @@ public class SifraParser extends JbsParser {
                 parashaNum++;
                 perekNum=0;
                 subParahaNum=0;
-                addBook(packagesJsonObject(),"sifra");
-                addPackageUri("sifra-" + parashaNum);
+                addBook(packagesJsonObject(),getBookId());
+                addPackageUri(getBookId()+"-" + parashaNum);
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
                 label2 = line.getLine().replace("פרשת ","");
-                addRdfs(packagesJsonObject(), "ספרא " + label2);
+                addLabel(packagesJsonObject(), "ספרא " + label2);
                 // No need to create an object for the entire book anymore!
                 // It is created manually, outside text2json
                 break;
 
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
-                addBook("sifra");
-                addUri("sifra-0");
+                addBook(getBookId());
+                addUri(getBookId()+"-0");
                 addPosition(0);
-                addRdfs("ספרא הקדמה" );
+                addLabel("ספרא הקדמה" );
                 packagesJsonObjectFlush();
                 break;
 
             case BEGIN_PEREK:
                 jsonObjectFlush();
                 perekNum++;
-                addBook("sifra");
+                addBook(getBookId());
                 addUri(getPerekUri());
-                addWithin("sifra-" + parashaNum);
+                addWithin(getBookId()+"-" + parashaNum);
                 addPosition(position);
                 position++;
-                addRdfs("ספרא " + label2  + " פרק " + HEB_LETTERS_INDEX[perekNum-1] );
+                addLabel("ספרא " + label2  + " פרק " + HEB_LETTERS_INDEX[perekNum-1] );
                 packagesJsonObjectFlush();
                 break;
 
               case BEGIN_SUB_PARASHA:
                 jsonObjectFlush();
                 subParahaNum++;
-                addBook("sifra");
+                addBook(getBookId());
                 addUri(getSubParashaUri());
-                addWithin("sifra-" + parashaNum);
+                addWithin(getBookId()+"-" + parashaNum);
                 addPosition(position);
                 position++;
-                addRdfs("ספרא " + label2  + " פרשה " + HEB_LETTERS_INDEX[subParahaNum-1] );
+                addLabel("ספרא " + label2  + " פרשה " + HEB_LETTERS_INDEX[subParahaNum-1] );
                 packagesJsonObjectFlush();
                 break;
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return  "sifra";    }
+        return  getBookId();    }
+
+    @Override
+    protected String getBookId() {
+        return "sifra";
+    }
 
 
     protected String getPerekUri() {
-        return  "sifra-" + parashaNum + "-1-"+ perekNum;    }
+        return  getBookId()+"-" + parashaNum + "-1-"+ perekNum;    }
 
 
     protected String getSubParashaUri() {
-        return  "sifra-" + parashaNum + "-2-"+ subParahaNum;    }
+        return  getBookId()+"-" + parashaNum + "-2-"+ subParahaNum;    }
 }

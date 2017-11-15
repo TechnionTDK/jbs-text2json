@@ -4,13 +4,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.SeferHamitzvotParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertNotNull;
+import static text2json.JbsOntology.JBO_TEXT;
 import static text2json.TestUtils.*;
-import static text2json.JbsOntology.*;
 
 /**
  * Created by omishali on 18/01/2017.
@@ -20,12 +18,8 @@ public class SeferHamitzvotParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new SeferHamitzvotParser();
-        createOutputFolderIfNotExists("seferhamitzvot");
-        BufferedReader reader = getText("seferhamitzvot/seferhamitzvot.txt");
-        createOutputFolderIfNotExists("seferhamitzvot");
-        parser.parse(reader, "json/seferhamitzvot/seferhamitzvot.json");
-        json = getJson("json/seferhamitzvot/seferhamitzvot.json");
+        json = setupParser(new SeferHamitzvotParser() , "seferhamitzvot");
+
     }
 
     @Test

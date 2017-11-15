@@ -2,10 +2,8 @@ package text2json;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import text2json.parsers.MidrashTehillimParser;
 import text2json.parsers.PesiktaRabbatiParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -21,12 +19,8 @@ public class PesiktaRabbatiParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new PesiktaRabbatiParser();
-        createOutputFolderIfNotExists("pesiktarabbati");
-        BufferedReader reader = getText("pesiktarabbati/pesiktarabbati.txt");
-        createOutputFolderIfNotExists("pesiktarabbati");
-        parser.parse(reader, "json/pesiktarabbati/pesiktarabbati.json");
-        json = getJson("json/pesiktarabbati/pesiktarabbati.json");
+        json = setupParser(new PesiktaRabbatiParser() , "pesiktarabbati");
+
     }
 
     @Test

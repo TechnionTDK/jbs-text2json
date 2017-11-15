@@ -50,6 +50,7 @@ public abstract class Parser {
     protected abstract void registerMatchers();
     protected abstract void onLineMatch(String type, Line line) throws IOException;
     protected abstract String getUri();
+    protected abstract String getBookId();
     protected void onEOF() throws IOException {
         jsonObjectFlush(/*defaultJsonFile, defaultJsonObject*/);
     }

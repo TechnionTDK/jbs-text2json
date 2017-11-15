@@ -4,11 +4,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.ShemonaKevatzimParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.*;
-import static text2json.JbsOntology.*;
+import static text2json.JbsOntology.JBO_TEXT;
 import static text2json.TestUtils.*;
 
 /**
@@ -19,12 +18,8 @@ public class ShemonaKvatzimParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new ShemonaKevatzimParser();
-        createOutputFolderIfNotExists("shmonakvatzim");
-        BufferedReader reader = getText("shmonakvatzim/shmonakvatzim.txt");
-        createOutputFolderIfNotExists("shmonakvatzim");
-        parser.parse(reader, "json/shmonakvatzim/shmonakvatzim.json");
-        json = getJson("json/shmonakvatzim/shmonakvatzim.json");
+        json = setupParser(new ShemonaKevatzimParser() , "shmonakvatzim");
+
     }
 
     @Test

@@ -2,10 +2,8 @@ package text2json;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import text2json.parsers.SifreiBamidbarParser;
 import text2json.parsers.SifreiDevarimParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -21,12 +19,9 @@ public class SifreiDevarimParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new SifreiDevarimParser();
-        createOutputFolderIfNotExists("sifreidevarim");
-        BufferedReader reader = getText("sifreidevarim/sifreidevarim.txt");
-        createOutputFolderIfNotExists("sifreidevarim");
-        parser.parse(reader, "json/sifreidevarim/sifreidevarim.json");
-        json = getJson("json/sifreidevarim/sifreidevarim.json");
+
+        json = setupParser(new SifreiDevarimParser() , "sifreidevarim");
+
     }
 
     @Test

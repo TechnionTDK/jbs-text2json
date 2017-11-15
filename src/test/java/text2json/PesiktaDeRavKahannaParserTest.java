@@ -3,9 +3,7 @@ package text2json;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.PesiktaDeRavKahannaParser;
-import text2json.parsers.PesiktaRabbatiParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -21,12 +19,7 @@ public class PesiktaDeRavKahannaParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new PesiktaDeRavKahannaParser();
-        createOutputFolderIfNotExists("pesiktaderavkahanna");
-        BufferedReader reader = getText("pesiktaderavkahanna/pesiktaderavkahanna.txt");
-        createOutputFolderIfNotExists("pesiktaderavkahanna");
-        parser.parse(reader, "json/pesiktaderavkahanna/pesiktaderavkahanna.json");
-        json = getJson("json/pesiktaderavkahanna/pesiktaderavkahanna.json");
+        json = setupParser(new PesiktaDeRavKahannaParser() , "pesiktaderavkahanna");
     }
 
     @Test

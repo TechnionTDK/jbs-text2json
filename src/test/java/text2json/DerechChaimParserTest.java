@@ -4,7 +4,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.DerechChaimParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -20,12 +19,8 @@ public class DerechChaimParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new DerechChaimParser();
-        createOutputFolderIfNotExists("derechchaim");
-        BufferedReader reader = getText("derechchaim/derechchaim.txt");
-        createOutputFolderIfNotExists("derechchaim");
-        parser.parse(reader, "json/derechchaim/derechchaim.json");
-        json = getJson("json/derechchaim/derechchaim.json");
+        json = setupParser(new DerechChaimParser() , "derechchaim");
+
     }
 
     @Test

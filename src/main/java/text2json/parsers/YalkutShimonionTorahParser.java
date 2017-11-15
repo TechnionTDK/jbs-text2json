@@ -6,7 +6,6 @@ import text2json.LineMatcher;
 
 import java.io.IOException;
 
-import static text2json.JbsOntology.JBO_TEXT;
 import static text2json.JbsUtils.numberToHebrew;
 
 /**
@@ -15,12 +14,6 @@ import static text2json.JbsUtils.numberToHebrew;
 public class YalkutShimonionTorahParser extends JbsParser {
 
     private int chapterNum = 0;
-    private int hakdamaNum = 0;
-
-
-//    public MidbarShurParser() {
-//        createPackagesJson();
-//    }
 
     @Override
     protected void registerMatchers() {
@@ -59,19 +52,24 @@ public class YalkutShimonionTorahParser extends JbsParser {
                 jsonObjectFlush();
                 chapterNum++;
                 addUri( getUri());
-                addBook( "yalkutshimoniontorah");
+                addBook( getBookId());
                 addPosition(chapterNum);
-                String rdfs = "ילקוט שמעוני על התורה " + numberToHebrew(chapterNum);
-                addRdfs(rdfs);
+                String label = "ילקוט שמעוני על התורה " + numberToHebrew(chapterNum);
+                addLabel(label);
                 break;
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return  "yalkutshimoniontorah-" + chapterNum ;    }
+        return  getBookId()+"-" + chapterNum ;    }
+
+    @Override
+    protected String getBookId() {
+        return "yalkutshimoniontorah";
+    }
 }

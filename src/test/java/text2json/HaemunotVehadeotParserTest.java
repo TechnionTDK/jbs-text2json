@@ -4,7 +4,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.HaemunotVehadeotParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -20,12 +19,8 @@ public class HaemunotVehadeotParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new HaemunotVehadeotParser();
-        createOutputFolderIfNotExists("haemunotvehadeot");
-        BufferedReader reader = getText("haemunotvehadeot/haemunotvehadeot.txt");
-        createOutputFolderIfNotExists("haemunotvehadeot");
-        parser.parse(reader, "json/haemunotvehadeot/haemunotvehadeot.json");
-        json = getJson("json/haemunotvehadeot/haemunotvehadeot.json");
+        json = setupParser(new HaemunotVehadeotParser() , "haemunotvehadeot");
+
     }
 
     @Test

@@ -3,9 +3,11 @@ package text2json.parsers;
 import text2json.Line;
 import text2json.LineMatcher;
 import text2json.Parser;
-import static text2json.JbsOntology.*;
+
 import java.io.IOException;
-import static text2json.JbsUtils.*;
+
+import static text2json.JbsOntology.*;
+import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 /**
  * Created by USER on 02-Mar-17.
  */
@@ -96,7 +98,7 @@ public class ShulchanAruchParser extends Parser {
                 packagesJsonObject().add(URI, getChelekUri());
                 packagesJsonObject().add(RDFS_LABEL, "שלחן ערוך - " + chelekTitle);
                 packagesJsonObject().add(JBO_POSITION, chelekNum);
-                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "shulchanaruch");
+                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + getBookId());
                 packagesJsonObjectFlush();
                 break;
 
@@ -107,7 +109,7 @@ public class ShulchanAruchParser extends Parser {
                 packagesJsonObject().add(URI, getHalachotUri());
                 packagesJsonObject().add(RDFS_LABEL, halachotTitle);
                 packagesJsonObject().addToArray(JBO_WITHIN, getChelekUri());
-                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "shulchanaruch");
+                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + getBookId());
                 packagesJsonObject().add(JBO_POSITION, halachotNum);
                 packagesJsonObjectFlush();
                 break;
@@ -127,10 +129,10 @@ public class ShulchanAruchParser extends Parser {
                 saifNum = 0;
                 //add siman to package json
                 if(simanHebIdx.equals("רצז (א)")) {
-                    packagesJsonObject().add(URI, JBR_SECTION + "shulchanaruch-" + chelekNum + "-197_1-" + saifNum);
+                    packagesJsonObject().add(URI, JBR_SECTION + getBookId()+"-" + chelekNum + "-197_1-" + saifNum);
                     packagesJsonObject().add(RDFS_LABEL, simanTitle);
                     packagesJsonObject().addToArray(JBO_WITHIN, getChelekUri());
-                    packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "shulchanaruch");
+                    packagesJsonObject().add(JBO_BOOK, JBR_BOOK + getBookId());
                     packagesJsonObject().add(JBO_POSITION, "197_1");
                 }
                 else {
@@ -138,7 +140,7 @@ public class ShulchanAruchParser extends Parser {
                     packagesJsonObject().add(RDFS_LABEL, simanTitle);
                     packagesJsonObject().addToArray(JBO_WITHIN, getChelekUri());
                     packagesJsonObject().add(JBO_POSITION, simanNum);
-                    packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "shulchanaruch");
+                    packagesJsonObject().add(JBO_BOOK, JBR_BOOK + getBookId());
                 }
                 packagesJsonObjectFlush();
                 break;
@@ -149,7 +151,7 @@ public class ShulchanAruchParser extends Parser {
                 saifHebIdx = line.getFirstWord();
                 saifText = line.extract(saifHebIdx + " ", " ");
                 if(simanHebIdx.equals("רצז (א)")) {
-                    jsonObject().add(URI, JBR_TEXT + "shulchanaruch-" + chelekNum + "-197_1-" + saifNum);
+                    jsonObject().add(URI, JBR_TEXT + getBookId()+"-" + chelekNum + "-197_1-" + saifNum);
                 }
                 else{
                     jsonObject().add(URI, getUri());
@@ -157,7 +159,7 @@ public class ShulchanAruchParser extends Parser {
                 jsonObject().addToArray(JBO_WITHIN, getHalachotUri());
                 jsonObject().addToArray(JBO_WITHIN, getChelekUri());
                 jsonObject().addToArray(JBO_WITHIN, getSimanUri());
-                jsonObject().add(JBO_BOOK, JBR_BOOK + "shulchanaruch");
+                jsonObject().add(JBO_BOOK, JBR_BOOK + getBookId());
                 jsonObject().add(JBO_POSITION_IN_SIMAN, saifNum);
                 jsonObject().add(JBO_POSITION, positionInChelek);
                 jsonObject().add(RDFS_LABEL, chelekTitle + " " + halachotTitle + " " + simanHebIdx + " " + saifHebIdx);
@@ -168,7 +170,7 @@ public class ShulchanAruchParser extends Parser {
 
             case BEGIN_PERUSH:
                 if(simanHebIdx.equals("רצז (א)")) {
-                    jsonObject().add(URI, JBR_TEXT + "shulchanaruch-baerheytev-" +  chelekNum + "-197_7-" + saifNum);
+                    jsonObject().add(URI, JBR_TEXT + getBookId()+"-baerheytev-" +  chelekNum + "-197_7-" + saifNum);
                 }
                 else{
                     jsonObject().add(URI, getPerushUri());
@@ -193,19 +195,25 @@ public class ShulchanAruchParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR_TEXT + "shulchanaruch-" + chelekNum + "-" + simanNum + "-" + saifNum;
+        return JBR_TEXT + getBookId()+"-" + chelekNum + "-" + simanNum + "-" + saifNum;
     }
+
+    @Override
+    protected String getBookId() {
+        return "shulchanaruch";
+    }
+
     private String getPerushUri() {
-        return JBR_TEXT + "shulchanaruch-baerheytev-" +  chelekNum + "-" + simanNum + "-" + saifNum;
+        return JBR_TEXT + getBookId()+"-baerheytev-" +  chelekNum + "-" + simanNum + "-" + saifNum;
     }
     private String getChelekUri(){
-        return JBR_SECTION + "shulchanaruch-" + chelekNum;
+        return JBR_SECTION + getBookId()+"-" + chelekNum;
     }
     private String getHalachotUri(){
-        return JBR_SECTION + "shulchanaruch-halachot-" + chelekNum + "-" + halachotNum;
+        return JBR_SECTION + getBookId()+"-halachot-" + chelekNum + "-" + halachotNum;
     }
     private String getSimanUri(){
-        return JBR_SECTION + "shulchanaruch-" + chelekNum + "-" + simanNum;
+        return JBR_SECTION + getBookId()+"-" + chelekNum + "-" + simanNum;
     }
 
 

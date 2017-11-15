@@ -1,8 +1,11 @@
 package text2json.parsers;
+
 import text2json.Line;
 import text2json.LineMatcher;
 import text2json.Parser;
+
 import java.io.IOException;
+
 import static text2json.JbsOntology.*;
 /**
  * Created by shilonoa on 4/24/2017.
@@ -69,10 +72,10 @@ public class SeferHakuzariParser extends Parser {
                     CreateObject();
                 }
                 // adding maamar object in packages json
-                packagesJsonObject().add(URI, JBR_SECTION + "seferhakuzari-" + maamarNum);
-                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "seferhakuzari");
+                packagesJsonObject().add(URI, JBR_SECTION + getBookId()+"-" + maamarNum);
+                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + getBookId());
                 packagesJsonObject().add(RDFS_LABEL, "הכוזרי " + short_maamar);
-                packagesJsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "seferhakuzari-" + maamarNum);
+                packagesJsonObject().addToArray(JBO_WITHIN, JBR_SECTION + getBookId()+"-" + maamarNum);
                 packagesJsonObjectFlush();
                 seifNum = 0;
                 break;
@@ -98,7 +101,12 @@ public class SeferHakuzariParser extends Parser {
     }
 
     protected String getUri() {
-        return JBR_TEXT + "seferhakuzari-" + maamarNum + "-" + seifNum;
+        return JBR_TEXT + getBookId()+"-" + maamarNum + "-" + seifNum;
+    }
+
+    @Override
+    protected String getBookId() {
+        return "seferhakuzari";
     }
 
     protected void CreateObject() throws IOException{
@@ -106,10 +114,10 @@ public class SeferHakuzariParser extends Parser {
         jsonObject().add(URI, getUri());
         jsonObject().add(JBO_TEXT, stripVowels(seif));
         jsonObject().add(JBO_TEXT_NIKUD, seif);
-        jsonObject().add(JBO_BOOK, JBR_BOOK + "seferhakuzari");
+        jsonObject().add(JBO_BOOK, JBR_BOOK + getBookId());
         jsonObject().add(JBO_POSITION, seifNum);
         jsonObject().add(RDFS_LABEL, "הכוזרי " + short_maamar + " " + short_seif);
-        jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "seferhakuzari-" + maamarNum);
+        jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + getBookId()+"-" + maamarNum);
         jsonObjectFlush();
     }
 }

@@ -1,15 +1,18 @@
 package text2json.parsers;
+
+import text2json.JbsParser;
 import text2json.Line;
 import text2json.LineMatcher;
-import text2json.Parser;
+
 import java.io.IOException;
+
 import static text2json.JbsOntology.*;
 import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 
 /**
  * Created by Assaf on 05/05/2017.
  */
-public class DerashotHaranParser extends Parser {
+public class DerashotHaranParser extends JbsParser {
     private int perekNum = 0;
 
     @Override
@@ -39,8 +42,6 @@ public class DerashotHaranParser extends Parser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_SEFER:
-                // No need to create an object for the entire book anymore!
-                // It is created outside text2json
                 break;
 
             case BEGIN_PEREK:
@@ -49,21 +50,27 @@ public class DerashotHaranParser extends Parser {
                 jsonObject().add(URI, getUri());
                 jsonObject().add(JBO_BOOK, getBookUri());
                 jsonObject().add(JBO_POSITION,perekNum);
-                String rdfs = "דרשות הר\"ן " + HEB_LETTERS_INDEX[perekNum-1];
-                jsonObject().add(RDFS_LABEL,rdfs);
+                String label = "דרשות הר\"ן " + HEB_LETTERS_INDEX[perekNum-1];
+                jsonObject().add(RDFS_LABEL,label);
                 break;
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText(line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return JBR_TEXT + "derashotharan-" + perekNum;
+        return JBR_TEXT + getBookId() + "-" + perekNum;
     }
+
+    @Override
+    protected String getBookId() {
+        return "derashotharan";
+    }
+
     protected String getBookUri() {
-        return JBR_BOOK + "derashotharan";
+        return JBR_BOOK + getBookId();
     }
 }

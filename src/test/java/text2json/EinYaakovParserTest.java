@@ -4,7 +4,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.EinYaakovParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -20,12 +19,8 @@ public class EinYaakovParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new EinYaakovParser();
-        createOutputFolderIfNotExists("einyaakov");
-        BufferedReader reader = getText("einyaakov/einyaakov.txt");
-        createOutputFolderIfNotExists("einyaakov");
-        parser.parse(reader, "json/einyaakov/einyaakov.json");
-        json = getJson("json/einyaakov/einyaakov.json");
+        json = setupParser(new EinYaakovParser() , "einyaakov");
+
     }
 
     @Test

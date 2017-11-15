@@ -6,7 +6,6 @@ import text2json.LineMatcher;
 
 import java.io.IOException;
 
-import static text2json.JbsOntology.*;
 import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 
 /**
@@ -77,10 +76,10 @@ public class NetivotOlamParser extends JbsParser {
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 position++;
-                addUri("netivotolam-" + perekNum);
-                addBook( "netivotolam");
+                addUri(getBookId()+"-" + perekNum);
+                addBook( getBookId());
                 addPosition( position);
-                addRdfs("נתיבות עולם הקדמה");
+                addLabel("נתיבות עולם הקדמה");
 
                 break;
 
@@ -89,10 +88,10 @@ public class NetivotOlamParser extends JbsParser {
                 perekNum=0;
                 nativNum++;
                 nativName = line.getLine().replace("נתיב ","");
-                addBook(packagesJsonObject() ,"netivotolam");
-                addPackageUri( "netivotolam-" + nativNum);
+                addBook(packagesJsonObject() ,getBookId());
+                addPackageUri( getBookId()+"-" + nativNum);
                 addPosition(packagesJsonObject(), nativNum);
-                addRdfs(packagesJsonObject(), nativName);
+                addLabel(packagesJsonObject(), nativName);
                 packagesJsonObjectFlush();
                 break;
 
@@ -103,20 +102,25 @@ public class NetivotOlamParser extends JbsParser {
                 String perekName = HEB_LETTERS_INDEX[perekNum-1];
                 addUri( getUri());
                 addPosition( position);
-                addBook( "netivotolam");
-                addWithin( "netivotolam-" + nativNum);
-                String rdfs = "נתיבות עולם " + nativName +" " + perekName;
-                addRdfs(rdfs);
+                addBook( getBookId());
+                addWithin( getBookId()+"-" + nativNum);
+                String label = "נתיבות עולם " + nativName +" " + perekName;
+                addLabel(label);
 
                 break;
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return  "netivotolam-" + nativNum + "-"+ perekNum;    }
+        return  getBookId()+"-" + nativNum + "-"+ perekNum;    }
+
+    @Override
+    protected String getBookId() {
+        return "netivotolam";
+    }
 }

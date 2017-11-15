@@ -6,8 +6,6 @@ import text2json.LineMatcher;
 
 import java.io.IOException;
 
-import static text2json.JbsOntology.JBO_TEXT;
-
 /**
  * Created by Assaf on 08/06/2017.
  */
@@ -88,12 +86,12 @@ public class OtzarMidrashimParser extends JbsParser {
                 perekNum = 0;
                 midrashNum++;
                 packagesJsonObjectFlush();
-                addBook(packagesJsonObject(), "otzarmidrashim");
-                addPackageUri("otzarmidrashim-" + midrashNum);
+                addBook(packagesJsonObject(), getBookId());
+                addPackageUri(getBookId()+"-" + midrashNum);
                 addPosition(packagesJsonObject(), packagePosition);
                 packagePosition++;
                 label2 = line.getLine().replace(" - "," ");
-                addRdfs(packagesJsonObject(), "אוצר מדרשים " + label2);
+                addLabel(packagesJsonObject(), "אוצר מדרשים " + label2);
 
 
                 break;
@@ -101,37 +99,42 @@ public class OtzarMidrashimParser extends JbsParser {
             case BEGIN_PEREK:
                 jsonObjectFlush();
                 perekNum++;
-                addBook("otzarmidrashim");
+                addBook(getBookId());
                 addUri(getUri());
-                addWithin("otzarmidrashim-" + midrashNum);
+                addWithin(getBookId()+"-" + midrashNum);
                 addPosition(position);
                 position++;
-                addRdfs("אוצר מדרשים " + label2 + " פרק " + perekNum);
+                addLabel("אוצר מדרשים " + label2 + " פרק " + perekNum);
                 packagesJsonObjectFlush();
                 break;
 
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
-                addBook("otzarmidrashim");
-                addUri("otzarmidrashim-" + midrashNum + "-" + perekNum);
+                addBook(getBookId());
+                addUri(getBookId()+"-" + midrashNum + "-" + perekNum);
                 perekNum++;
-                addWithin("otzarmidrashim-" + midrashNum);
+                addWithin(getBookId()+"-" + midrashNum);
                 addPosition(position);
                 position++;
-                addRdfs("אוצר מדרשים " + label2 + " הקדמה");
+                addLabel("אוצר מדרשים " + label2 + " הקדמה");
                 packagesJsonObjectFlush();
                 break;
 
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return "otzarmidrashim-" + midrashNum + "-" + perekNum;
+        return getBookId()+"-" + midrashNum + "-" + perekNum;
+    }
+
+    @Override
+    protected String getBookId() {
+        return "otzarmidrashim";
     }
 
 

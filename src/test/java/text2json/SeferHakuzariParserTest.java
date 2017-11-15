@@ -4,7 +4,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.SeferHakuzariParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static text2json.TestUtils.*;
@@ -17,12 +16,8 @@ public class SeferHakuzariParserTest {
 
     @BeforeClass
     public static void setUp() throws Exception {
-        SeferHakuzariParser parser = new SeferHakuzariParser();
-        createOutputFolderIfNotExists("seferhakuzari");
-        BufferedReader reader = getText("seferhakuzari/seferhakuzari.txt");
-        createOutputFolderIfNotExists("seferhakuzari");
-        parser.parse(reader, "json/seferhakuzari/seferhakuzari.json");
-        json = getJson("json/seferhakuzari/seferhakuzari.json");
+        json = setupParser(new SeferHakuzariParser() , "seferhakuzari");
+
     }
 
     @Test

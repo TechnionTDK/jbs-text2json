@@ -4,7 +4,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.TurParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -20,12 +19,8 @@ public class TurParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new TurParser();
-        createOutputFolderIfNotExists("tur");
-        BufferedReader reader = getText("tur/tur.txt");
-        createOutputFolderIfNotExists("tur");
-        parser.parse(reader, "json/tur/tur.json");
-        json = getJson("json/tur/tur.json");
+        json = setupParser(new TurParser() , "tur");
+
     }
 
 //    @Test

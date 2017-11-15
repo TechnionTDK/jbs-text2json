@@ -7,7 +7,6 @@ import text2json.Parser;
 import java.io.IOException;
 
 import static text2json.JbsOntology.*;
-import static text2json.JbsOntology.JBO_TEXT;
 import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 
 /**
@@ -100,8 +99,8 @@ public class MidrashRabaParser extends Parser {
                 bookName = line.extract("מדרש רבה - ", " ");
                 bookNum = getBookNum(bookName);
                 // adding sefer object in packages json
-                packagesJsonObject().add(URI, JBR_SECTION + "tanach-midrashraba-"+ bookNum);
-                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "midrashraba");
+                packagesJsonObject().add(URI, JBR_SECTION + "tanach-"+getBookId()+"-"+ bookNum);
+                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + getBookId());
                 packagesJsonObject().add(RDFS_LABEL, "מדרש רבה " + bookName);
                 packagesJsonObjectFlush();
                 break;
@@ -130,10 +129,10 @@ public class MidrashRabaParser extends Parser {
                 seifPosition = 0;
                 //getSeifPositionInParasha = 0;
                 // adding parasha object in packages json
-                packagesJsonObject().add(URI, JBR_SECTION + "tanach-midrashraba-"+ bookNum +"-"+parashaNum);
-                packagesJsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "tanach-midrashraba-"+ bookNum);
+                packagesJsonObject().add(URI, JBR_SECTION + "tanach-"+getBookId()+"-"+ bookNum +"-"+parashaNum);
+                packagesJsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "tanach-"+getBookId()+"-"+ bookNum);
                 packagesJsonObject().add(RDFS_LABEL, "מדרש רבה " + bookName + " " + parashaName);
-                packagesJsonObject().add(JBO_BOOK, "midrashraba");
+                packagesJsonObject().add(JBO_BOOK, getBookId());
                 packagesJsonObject().add(JBO_POSITION, parashaNum);
                 packagesJsonObjectFlush();
                 break;
@@ -182,9 +181,9 @@ public class MidrashRabaParser extends Parser {
         jsonObject().add(URI, getUri());
         jsonObject().add(JBO_TEXT, stripVowels(seif));
         jsonObject().add(JBO_TEXT_NIKUD, seif);
-        jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "tanach-midrashraba-"+ bookNum);
-        jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "tanach-midrashraba-"+ bookNum + "-" + parashaNum);
-        jsonObject().add(JBO_BOOK, JBR_BOOK + "midrashraba");
+        jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "tanach-"+getBookId()+"-"+ bookNum);
+        jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "tanach-"+getBookId()+"-"+ bookNum + "-" + parashaNum);
+        jsonObject().add(JBO_BOOK, JBR_BOOK + getBookId());
         jsonObject().add(JBO_POSITION, seifPosition);
         if (bookNum <=5) {
             jsonObject().add(RDFS_LABEL, "מדרש רבה " + SederName + " " + parashaName + " " + SeifLetter);
@@ -197,7 +196,12 @@ public class MidrashRabaParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR_TEXT + "tanach-midrashraba-"+ bookNum + "-" + parashaNum + "-" + seifPosition;
+        return JBR_TEXT + "tanach-"+getBookId()+"-"+ bookNum + "-" + parashaNum + "-" + seifPosition;
+    }
+
+    @Override
+    protected String getBookId() {
+        return null;
     }
 
     protected void endOfFile(Line line) throws IOException{

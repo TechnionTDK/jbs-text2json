@@ -4,7 +4,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.DarcheiMosheParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -20,20 +19,10 @@ public class DarcheiMosheParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new DarcheiMosheParser();
-        createOutputFolderIfNotExists("darcheimoshe");
-        BufferedReader reader = getText("darcheimoshe/darcheimoshe.txt");
-        createOutputFolderIfNotExists("darcheimoshe");
-        parser.parse(reader, "json/darcheimoshe/darcheimoshe.json");
-        json = getJson("json/darcheimoshe/darcheimoshe.json");
+        json = setupParser(new  DarcheiMosheParser(), "darcheimoshe");
+
     }
 
-//    @Test
-//    //test the correctness with sampling a few values
-//    public void test() {
-//        System.out.println("bla bla");
-//        System.out.println();
-//    }
 
 
     @Test

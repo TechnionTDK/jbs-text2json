@@ -6,7 +6,6 @@ import text2json.LineMatcher;
 
 import java.io.IOException;
 
-import static text2json.JbsOntology.*;
 import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 
 /**
@@ -16,10 +15,6 @@ public class TiferetIsraelParser extends JbsParser {
 
     private int chapterNum = -1;
 
-
-//    public TiferetIsraelParser() {
-//        createPackagesJson();
-//    }
 
     @Override
     protected void registerMatchers() {
@@ -67,30 +62,34 @@ public class TiferetIsraelParser extends JbsParser {
                 chapterNum++;
                 addUri( getUri());
                 addPosition( chapterNum+1);
-                addRdfs("תפארת ישראל - הקדמה");
-                addBook( "tiferetisrael");
+                addLabel("תפארת ישראל - הקדמה");
+                addBook( getBookId());
                 break;
 
 
             case BEGIN_PEREK:
-//                packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
                 String chapterName =HEB_LETTERS_INDEX[chapterNum-1];
                 addUri( getUri());
                 addPosition( chapterNum+1);
-                addBook( "tiferetisrael");
-                String rdfs = "תפארת ישראל " + chapterName;
-                addRdfs(rdfs);
+                addBook( getBookId());
+                String label = "תפארת ישראל " + chapterName;
+                addLabel(label);
                 break;
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return  "tiferetisrael-" + chapterNum ;    }
+        return  getBookId()+"-" + chapterNum ;    }
+
+    @Override
+    protected String getBookId() {
+        return "tiferetisrael";
+    }
 }

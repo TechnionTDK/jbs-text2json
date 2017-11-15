@@ -5,9 +5,7 @@ import text2json.Line;
 import text2json.LineMatcher;
 
 import java.io.IOException;
-import java.util.Arrays;
 
-import static text2json.JbsOntology.*;
 import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 
 /**
@@ -86,8 +84,7 @@ public class ChovotHalevavotParser extends JbsParser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_SEFER:
-                // No need to create an object for the entire book anymore!
-                // It is created outside text2json
+
                 break;
 
             case BEGIN_FIRST_HAKDAMA:
@@ -96,13 +93,13 @@ public class ChovotHalevavotParser extends JbsParser {
                 position++;
                 addUri( getUri());
                 addPosition( position);
-                addRdfs("חובות הלבבות הקדמת המחבר");
-                addBook( "chovothalevavot");
+                addLabel("חובות הלבבות הקדמת המחבר");
+                addBook( getBookId());
 
-                addPackageUri ("chovothalevavot-0-0");
+                addPackageUri (getBookId() + "-0-0");
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
-                addRdfs(packagesJsonObject(),"חובות הלבבות הקדמת המחבר");
+                addLabel(packagesJsonObject(),"חובות הלבבות הקדמת המחבר");
                 packagesJsonObjectFlush();
                 break;
 
@@ -111,10 +108,10 @@ public class ChovotHalevavotParser extends JbsParser {
                 perekNum=0;
                 shaarName = line.getLine().replace(" - "," ");
                 shaarNum++;
-                addPackageUri("chovothalevavot-" + shaarNum);
+                addPackageUri(getBookId() + "-" + shaarNum);
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
-                addRdfs(packagesJsonObject(),"חובות הלבבות " + shaarName );
+                addLabel(packagesJsonObject(),"חובות הלבבות " + shaarName );
                 packagesJsonObjectFlush();
                 break;
 
@@ -125,10 +122,10 @@ public class ChovotHalevavotParser extends JbsParser {
                 position++;
                 addUri( getUri());
                 addPosition( position);
-                addBook( "chovothalevavot");
-                addWithin( "chovothalevavot-" + shaarNum);
-                String rdfs = "חובות הלבבות " + shaarName + " הקדמה";
-                addRdfs(rdfs);
+                addBook( getBookId());
+                addWithin( getBookId() + "-" + shaarNum);
+                String label = "חובות הלבבות " + shaarName + " הקדמה";
+                addLabel(label);
                 break;
 
             case BEGIN_PEREK:
@@ -137,22 +134,26 @@ public class ChovotHalevavotParser extends JbsParser {
                 position++;
                 perekName = HEB_LETTERS_INDEX[perekNum - 1];
                 addUri( getUri());
-                addBook( "chovothalevavot");
+                addBook( getBookId());
                 addPosition( position);
-                addWithin( "chovothalevavot-" + shaarNum);
-                String rdfs1 = "חובות הלבבות " + shaarName.split(" ",3)[2]  + " " + perekName;
-                addRdfs(rdfs1);
+                addWithin( getBookId() + "-" + shaarNum);
+                String label1 = "חובות הלבבות " + shaarName.split(" ",3)[2]  + " " + perekName;
+                addLabel(label1);
                 break;
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return  "chovothalevavot-" + shaarNum + "-" + perekNum;   }
-    protected String getcorpus() { return JBR + "chovothalevavot";    }
+        return  getBookId() + "-" + shaarNum + "-" + perekNum;   }
+
+    @Override
+    protected String getBookId() {
+        return "chovothalevavot";
+    }
 
 }

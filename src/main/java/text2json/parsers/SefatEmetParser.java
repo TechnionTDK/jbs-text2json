@@ -6,7 +6,7 @@ import text2json.LineMatcher;
 
 import java.io.IOException;
 
-import static text2json.JbsOntology.*;
+import static text2json.JbsOntology.JBO_INTERPRETS;
 import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 import static text2json.JbsUtils.PARASHOT_HE;
 
@@ -79,10 +79,10 @@ public class SefatEmetParser extends JbsParser {
                 jsonObjectFlush();
                 seferNum++;
                 label = line.getLine();
-                addPackageUri( "tanach-sefatemet-" + seferNum);
+                addPackageUri( "tanach-"+getBookId()+"-" + seferNum);
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
-                addRdfs(packagesJsonObject(),  "שפת אמת " + label);
+                addLabel(packagesJsonObject(),  "שפת אמת " + label);
                 packagesJsonObjectFlush();
                 break;
 
@@ -90,10 +90,10 @@ public class SefatEmetParser extends JbsParser {
                 jsonObjectFlush();
                 seifNum=0;
                 parashaNum++;
-                addPackageUri( "tanach-sefatemet-" + seferNum +"-" + parashaNum);
+                addPackageUri( "tanach-"+getBookId()+"-" + seferNum +"-" + parashaNum);
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
-                addRdfs(packagesJsonObject(),  "שפת אמת " + PARASHOT_HE[parashaNum-1]);
+                addLabel(packagesJsonObject(),  "שפת אמת " + PARASHOT_HE[parashaNum-1]);
                 packagesJsonObjectFlush();
                 break;
 
@@ -106,21 +106,26 @@ public class SefatEmetParser extends JbsParser {
                 addUri( getUri());
                 jsonObject().add(JBO_INTERPRETS, parashaName1);
                 addPosition( position);
-                addBook( "sefatemet");
-                addWithin( "tanach-sefatemet-" + seferNum);
-                addWithin( "tanach-sefatemet-" + seferNum +"-" + parashaNum);
-                String rdfs = "שפת אמת" + " " + parashaName1 + " " + seifName;
-                addRdfs(rdfs);
+                addBook( getBookId());
+                addWithin( "tanach-"+getBookId()+"-" + seferNum);
+                addWithin( "tanach-"+getBookId()+"-" + seferNum +"-" + parashaNum);
+                String label = "שפת אמת" + " " + parashaName1 + " " + seifName;
+                addLabel(label);
 
                 break;
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return  "tanach-sefatemet-" + seferNum +"-" + parashaNum + "-"+ seifNum;    }
+        return  "tanach-"+getBookId()+"-" + seferNum +"-" + parashaNum + "-"+ seifNum;    }
+
+    @Override
+    protected String getBookId() {
+        return "sefatemet";
+    }
 }

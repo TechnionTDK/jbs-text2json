@@ -6,7 +6,8 @@ import text2json.LineMatcher;
 
 import java.io.IOException;
 
-import static text2json.JbsOntology.*;
+import static text2json.JbsOntology.JBO_INTERPRETS;
+import static text2json.JbsOntology.JBR_TEXT;
 import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 
 /**
@@ -18,7 +19,7 @@ public class DerechChaimParser extends JbsParser {
     private int mishnaNum = 0;
     private int perekNum = 0;
     private int position = 0, packagePosition =1;
-    private String nativName = "";
+
 
     public DerechChaimParser() {
         createPackagesJson();
@@ -71,17 +72,15 @@ public class DerechChaimParser extends JbsParser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_SEFER:
-                // No need to create an object for the entire book anymore!
-                // It is created outside text2json
                 break;
 
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 position++;
                 addUri( getUri());
-                addBook( "derechchaim");
+                addBook( getBookId() );
                 addPosition(position);
-                addRdfs("דרך חיים הקדמה");
+                addLabel("דרך חיים הקדמה");
 
                 break;
 
@@ -89,11 +88,11 @@ public class DerechChaimParser extends JbsParser {
                 jsonObjectFlush();
                 mishnaNum=0;
                 perekNum++;
-                addPackageUri( "derechchaim-" + perekNum);
+                addPackageUri( getBookId() +"-" + perekNum);
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
-                String rdfs1 = "דרך חיים " + HEB_LETTERS_INDEX[perekNum-1];
-                addRdfs(packagesJsonObject(), rdfs1);
+                String label1 = "דרך חיים " + HEB_LETTERS_INDEX[perekNum-1];
+                addLabel(packagesJsonObject(), label1);
                 packagesJsonObjectFlush();
                 break;
 
@@ -103,22 +102,26 @@ public class DerechChaimParser extends JbsParser {
                 position++;
                 addUri( getUri());
                 addPosition(position);
-                addBook( "derechchaim");
+                addBook( getBookId() );
                 jsonObject().add(JBO_INTERPRETS, JBR_TEXT + "mishna-4-9-" + perekNum+"-"+mishnaNum);
-                addWithin( "derechchaim-" +  perekNum);
-
-                String rdfs = "דרך חיים " + HEB_LETTERS_INDEX[perekNum-1] + " " + HEB_LETTERS_INDEX[mishnaNum-1];
-                addRdfs(rdfs);
+                addWithin( getBookId() +"-" +  perekNum);
+                String label = "דרך חיים " + HEB_LETTERS_INDEX[perekNum-1] + " " + HEB_LETTERS_INDEX[mishnaNum-1];
+                addLabel(label);
 
                 break;
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return  "derechchaim-" + perekNum + "-"+ mishnaNum;    }
+        return  getBookId() +"-" + perekNum + "-"+ mishnaNum;    }
+
+    @Override
+    protected String getBookId() {
+        return "derechchaim";
+    }
 }

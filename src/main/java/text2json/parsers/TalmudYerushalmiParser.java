@@ -6,7 +6,6 @@ import text2json.LineMatcher;
 
 import java.io.IOException;
 
-import static text2json.JbsOntology.JBO_TEXT;
 import static text2json.JbsUtils.numberToHebrew;
 
 /**
@@ -59,11 +58,11 @@ public class TalmudYerushalmiParser extends JbsParser {
                 // It is created outside text2json
                 masechetName = (line.getLine()).replace("תלמוד ירושלמי ","");
                 masechetNum = getMasechetNum(masechetName);
-                addBook(packagesJsonObject(), "yerushalmi");
+                addBook(packagesJsonObject(), getBookId());
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
-                addPackageUri( "yerushalmi-"+masechetNum);
-                addRdfs(packagesJsonObject(),"תלמוד ירושלמי " + masechetName );
+                addPackageUri( getBookId()+"-"+masechetNum);
+                addLabel(packagesJsonObject(),"תלמוד ירושלמי " + masechetName );
                 packagesJsonObjectFlush();
                 break;
 
@@ -79,20 +78,20 @@ public class TalmudYerushalmiParser extends JbsParser {
                 position++;
                 addUri( getUri());
                 addPosition( position);
-                addBook( "yerushalmi");
-                addWithin( "yerushalmi-" + masechetNum);
-                String rdfs1 ="";
+                addBook( getBookId());
+                addWithin( getBookId()+"-" + masechetNum);
+                String label1 ="";
                 if(subDafNum==1)
-                    rdfs1 = "תלמוד ירושלמי " + masechetName  + " " + numberToHebrew(dafNum) + " א";
+                    label1 = "תלמוד ירושלמי " + masechetName  + " " + numberToHebrew(dafNum) + " א";
                 else
-                    rdfs1 = "תלמוד ירושלמי " + masechetName  + " " +  numberToHebrew(dafNum)  + " ב";
-                addRdfs(rdfs1);
+                    label1 = "תלמוד ירושלמי " + masechetName  + " " +  numberToHebrew(dafNum)  + " ב";
+                addLabel(label1);
 
                 break;
 
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
     }
@@ -102,9 +101,7 @@ public class TalmudYerushalmiParser extends JbsParser {
                 "בכורים","שבת", "עירובין","פסחים","שקלים","יומא","סוכה","ביצה","ראש השנה","תענית","מגילה","מועד קטן",
                 "חגיגה","יבמות","כתובות","נדרים","נזיר", "סוטה", "גיטין", "קידושין", "בבא קמא",
                 "בבא מציעא", "בבא בתרא", "סנהדרין", "מכות", "שבועות", "עבודה זרה", "הוריות", "נידה"};
-//        System.out.println("got: "+masechetTitle);
         for (int i = 0; i <= 38; i++){
-//            System.out.println("i="+i+" : "+masachotNames[i]);
             if(masechetTitle.equals(masachotNames[i]))
                 return i+1;
         }
@@ -113,7 +110,12 @@ public class TalmudYerushalmiParser extends JbsParser {
 
     @Override
     protected String getUri() {
-        return "yerushalmi-" + masechetNum + "-" + dafNum + "-" + subDafNum;
+        return getBookId()+"-" + masechetNum + "-" + dafNum + "-" + subDafNum;
+    }
+
+    @Override
+    protected String getBookId() {
+        return "yerushalmi";
     }
 
 

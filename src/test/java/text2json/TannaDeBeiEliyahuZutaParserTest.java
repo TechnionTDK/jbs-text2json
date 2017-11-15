@@ -2,10 +2,8 @@ package text2json;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import text2json.parsers.SeferHaYasharMidrashParser;
 import text2json.parsers.TannaDeBeiEliyahuZutaParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -21,12 +19,8 @@ public class TannaDeBeiEliyahuZutaParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new TannaDeBeiEliyahuZutaParser();
-        createOutputFolderIfNotExists("tannadebeieliyahuzuta");
-        BufferedReader reader = getText("tannadebeieliyahuzuta/tannadebeieliyahuzuta.txt");
-        createOutputFolderIfNotExists("tannadebeieliyahuzuta");
-        parser.parse(reader, "json/tannadebeieliyahuzuta/tannadebeieliyahuzuta.json");
-        json = getJson("json/tannadebeieliyahuzuta/tannadebeieliyahuzuta.json");
+        json = setupParser(new TannaDeBeiEliyahuZutaParser() , "tannadebeieliyahuzuta");
+
     }
 
     @Test

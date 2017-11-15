@@ -3,12 +3,14 @@ package text2json;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.TanachParser;
+
+import java.io.BufferedReader;
+import java.util.Map;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static text2json.JbsOntology.*;
 import static text2json.TestUtils.*;
-import static org.junit.Assert.*;
-import java.io.BufferedReader;
-import java.util.List;
-import java.util.Map;
 
 
 /**

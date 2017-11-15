@@ -4,7 +4,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.ChovotHalevavotParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -20,12 +19,8 @@ public class ChovotHalevavotParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new ChovotHalevavotParser();
-        createOutputFolderIfNotExists("chovothalevavot");
-        BufferedReader reader = getText("chovothalevavot/chovothalevavot.txt");
-        createOutputFolderIfNotExists("chovothalevavot");
-        parser.parse(reader, "json/chovothalevavot/chovothalevavot.json");
-        json = getJson("json/chovothalevavot/chovothalevavot.json");
+        json = setupParser(new ChovotHalevavotParser() , "chovothalevavot");
+
     }
 
     @Test

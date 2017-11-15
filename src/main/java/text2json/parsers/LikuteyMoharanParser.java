@@ -1,8 +1,8 @@
 package text2json.parsers;
 
+import text2json.JbsParser;
 import text2json.Line;
 import text2json.LineMatcher;
-import text2json.Parser;
 
 import java.io.IOException;
 
@@ -11,7 +11,7 @@ import static text2json.JbsOntology.*;
 /**
  * Created by USER on 16-Mar-17.
  */
-public class LikuteyMoharanParser extends Parser{
+public class LikuteyMoharanParser extends JbsParser{
     protected static final String BEGIN_CHELEK = "begin_chelek";
     protected static final String BEGIN_TEXT = "begin_text";
 
@@ -74,8 +74,6 @@ public class LikuteyMoharanParser extends Parser{
     protected void onLineMatch(String type, Line line) throws IOException {
         switch (type) {
             case BEGIN_SEFER:
-                // No need to create an object for the entire book anymore!
-                // It is created outside text2json
                 break;
 
             case BEGIN_CHELEK:
@@ -83,11 +81,10 @@ public class LikuteyMoharanParser extends Parser{
                 saifNum = 0;
                 chelekNum++;
                 chelekHebIdx = line.extract("ליקוטי מוהר''ן - חלק ", " ");
-                //add chelek to package json
-                packagesJsonObject().add(URI, JBR_SECTION + "likuteymoharan-" + chelekNum);
+                packagesJsonObject().add(URI, JBR_SECTION + getBookId()+"-" + chelekNum);
                 packagesJsonObject().add(RDFS_LABEL, "ליקוטי מוהר''ן - חלק " + chelekHebIdx);
                 packagesJsonObject().add(JBO_POSITION, chelekNum);
-                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "likuteymoharan");
+                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + getBookId());
                 packagesJsonObjectFlush();
                 break;
 
@@ -100,15 +97,15 @@ public class LikuteyMoharanParser extends Parser{
                 saifHebIdx = line.getFirstWord();
                 saifTitle = line.extract(" - ", " ");
                 jsonObject().add(URI, getUri());
-                jsonObject().add(JBO_BOOK, JBR_BOOK + "likuteymoharan");
-                jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + "likuteymoharan-" + chelekNum);
+                jsonObject().add(JBO_BOOK, JBR_BOOK + getBookId());
+                jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + getBookId()+"-" + chelekNum);
                 jsonObject().add(JBO_POSITION, positionInSefer);
                 jsonObject().add(RDFS_LABEL, "ליקוטי מוהר''ן " + chelekHebIdx + " " + saifHebIdx);
                 jsonObject().add(JBO_NAME, saifTitle);
                 break;
 
             case BEGIN_TEXT:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
 
             case NO_MATCH:
@@ -119,7 +116,12 @@ public class LikuteyMoharanParser extends Parser{
 
     @Override
     protected String getUri() {
-        return JBR_TEXT + "likuteymoharan-" + chelekNum + "-" + saifNum;
+        return JBR_TEXT + getBookId()+"-" + chelekNum + "-" + saifNum;
+    }
+
+    @Override
+    protected String getBookId() {
+        return "likuteymoharan";
     }
 
 }

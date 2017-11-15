@@ -7,7 +7,8 @@ import text2json.parsers.MishneTorahParser;
 import java.io.BufferedReader;
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static text2json.JbsOntology.*;
 import static text2json.TestUtils.*;
 

@@ -74,8 +74,7 @@ public class BeitYosefParser extends JbsParser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_SEFER:
-                // No need to create an object for the entire book anymore!
-                // It is created outside text2json
+
                 break;
 
             case BEGIN_TUR:
@@ -83,23 +82,23 @@ public class BeitYosefParser extends JbsParser {
                 simanNum=0;
                 turName = line.getLine().replace("טור ","");
                 turNum++;
-                addBook(packagesJsonObject(), "beityosef");
+                addBook(packagesJsonObject(), getBookId());
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
-                addPackageUri( "beityosef-"+ turNum);
-                addRdfs(packagesJsonObject(),"בית יוסף " + turName);
+                addPackageUri( getBookId() + "-"+ turNum);
+                addLabel(packagesJsonObject(),"בית יוסף " + turName);
                 packagesJsonObjectFlush();
                 break;
 
             case BEGIN_SIMAN :
                 seifNum=0;
                 simanNum++;
-                addBook(packagesJsonObject(), "beityosef");
+                addBook(packagesJsonObject(), getBookId());
                 addPosition(packagesJsonObject(), packagePosition);
                 packagePosition++;
-                addPackageUri( "beityosef-"+ turNum + "-" + simanNum);
-                String rdfs = "בית יוסף " + turName + " " + numberToHebrew(simanNum);
-                addRdfs(packagesJsonObject(), rdfs);
+                addPackageUri( getBookId() + "-"+ turNum + "-" + simanNum);
+                String label = "בית יוסף " + turName + " " + numberToHebrew(simanNum);
+                addLabel(packagesJsonObject(), label);
                 packagesJsonObjectFlush();
 
                 break;
@@ -112,31 +111,34 @@ public class BeitYosefParser extends JbsParser {
                 else{
                     jsonObject().clear();
                 }
-//                jsonObjectFlush();
-//                position++;
 
                 seifNum++;
                 addUri( getUri());
                 addPosition( position);
-                addBook( "beityosef");
-                addWithin( "beityosef-" + turNum);
-                addWithin( "beityosef-" + turNum +"-" + simanNum);
-                String rdfs1 = "בית יוסף " + turName  + " " + numberToHebrew(simanNum) + " " + numberToHebrew(seifNum);
-                addRdfs(rdfs1);
+                addBook( getBookId());
+                addWithin( getBookId() + "-" + turNum);
+                addWithin( getBookId() + "-" + turNum +"-" + simanNum);
+                String label1 = "בית יוסף " + turName  + " " + numberToHebrew(simanNum) + " " + numberToHebrew(seifNum);
+                addLabel(label1);
                 packagesJsonObjectFlush();
 
                 break;
 
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return  "beityosef-" + turNum +"-"  + simanNum + "-" + seifNum;   }
+        return  getBookId() + "-" + turNum +"-"  + simanNum + "-" + seifNum;   }
+
+    @Override
+    protected String getBookId() {
+        return "beityosef";
+    }
 
 
 }

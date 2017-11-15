@@ -1,8 +1,8 @@
 package text2json.parsers;
 
+import text2json.JbsParser;
 import text2json.Line;
 import text2json.LineMatcher;
-import text2json.Parser;
 
 import java.io.IOException;
 
@@ -11,7 +11,7 @@ import static text2json.JbsOntology.*;
 /**
  * Created by omishali on 18/01/2017.
  */
-public class SeferHamitzvotParser extends Parser {
+public class SeferHamitzvotParser extends JbsParser {
     private static final String BEGIN_MITZVAT_ASE = "begin_ase";
     private static final String BEGIN_MITZVAT_LOTAASE = "begin_lotaase";
     private static final String BEGIN_MITZVA = "begin_mitzva";
@@ -78,10 +78,10 @@ public class SeferHamitzvotParser extends Parser {
                 mitzvaNum++;
                 jsonObject().add(URI, getUri());
                 jsonObject().add(RDFS_LABEL, SEFER_HAMITZVOT + " " + mitzvaType + " " + line.getLine());
-                jsonObject().add(JBO_BOOK, JBR_BOOK + "seferhamitzvot");
+                jsonObject().add(JBO_BOOK, JBR_BOOK + getBookId());
                 break;
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
 
@@ -89,6 +89,11 @@ public class SeferHamitzvotParser extends Parser {
 
     @Override
     protected String getUri() {
-        return JBR_TEXT + "seferhamitzvot-" + sectionNum + "-" + mitzvaNum;
+        return JBR_TEXT + getBookId()+"-" + sectionNum + "-" + mitzvaNum;
+    }
+
+    @Override
+    protected String getBookId() {
+        return "seferhamitzvot";
     }
 }

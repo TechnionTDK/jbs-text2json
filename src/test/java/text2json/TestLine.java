@@ -2,7 +2,7 @@ package text2json;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by omishali on 23/05/2017.

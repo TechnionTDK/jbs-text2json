@@ -4,7 +4,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.MesilatYesharimParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -19,11 +18,8 @@ public class MesilatYesharimParserTest {
 
     @BeforeClass
     public static void setup() throws Exception {
-        MesilatYesharimParser parser = new MesilatYesharimParser();
-        BufferedReader reader = getText("mesilatyesharim/mesilatyesharim.txt");
-        createOutputFolderIfNotExists("mesilatyesharim");
-        parser.parse(reader, "json/mesilatyesharim/mesilatyesharim.json");
-        json = getJson("json/mesilatyesharim/mesilatyesharim.json");
+        json = setupParser(new MesilatYesharimParser() , "mesilatyesharim");
+
     }
     @Test
     public void testTotalNumberOfObjects() {

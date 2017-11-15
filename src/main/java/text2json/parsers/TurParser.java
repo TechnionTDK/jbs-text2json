@@ -6,7 +6,6 @@ import text2json.LineMatcher;
 
 import java.io.IOException;
 
-import static text2json.JbsOntology.JBO_TEXT;
 import static text2json.JbsUtils.numberToHebrew;
 
 
@@ -69,10 +68,10 @@ public class TurParser extends JbsParser {
                 simanNum=0;
                 turNum++;
                 turName = line.getLine();
-                addBook(packagesJsonObject() ,"tur");
-                addPackageUri( "tur-" + turNum);
+                addBook(packagesJsonObject() ,getBookId());
+                addPackageUri( getBookId()+"-" + turNum);
                 addPosition(packagesJsonObject(), turNum);
-                addRdfs(packagesJsonObject(), turName);
+                addLabel(packagesJsonObject(), turName);
                 packagesJsonObjectFlush();
                 break;
 
@@ -82,20 +81,25 @@ public class TurParser extends JbsParser {
                 position++;
                 addUri( getUri());
                 addPosition( position);
-                addBook( "tur");
-                addWithin( "tur-" + turNum);
-                String rdfs = "ארבעה טורים " + turName +" " + numberToHebrew(simanNum);
-                addRdfs(rdfs);
+                addBook( getBookId());
+                addWithin( getBookId()+"-" + turNum);
+                String label = "ארבעה טורים " + turName +" " + numberToHebrew(simanNum);
+                addLabel(label);
 
                 break;
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return  "tur-" + turNum + "-"+ simanNum;    }
+        return  getBookId()+"-" + turNum + "-"+ simanNum;    }
+
+    @Override
+    protected String getBookId() {
+        return "tur";
+    }
 }

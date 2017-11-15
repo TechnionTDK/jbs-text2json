@@ -4,7 +4,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.TiferetIsraelParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -19,12 +18,8 @@ public class TiferetIsraelParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new TiferetIsraelParser();
-        createOutputFolderIfNotExists("tiferetisrael");
-        BufferedReader reader = getText("tiferetisrael/tiferetisrael.txt");
-        createOutputFolderIfNotExists("tiferetisrael");
-        parser.parse(reader, "json/tiferetisrael/tiferetisrael.json");
-        json = getJson("json/tiferetisrael/tiferetisrael.json");
+        json = setupParser(new TiferetIsraelParser() , "tiferetisrael");
+
     }
 
     @Test

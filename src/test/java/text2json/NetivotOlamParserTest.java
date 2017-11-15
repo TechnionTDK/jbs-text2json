@@ -4,7 +4,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.NetivotOlamParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -20,20 +19,10 @@ public class NetivotOlamParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new NetivotOlamParser();
-        createOutputFolderIfNotExists("netivotolam");
-        BufferedReader reader = getText("netivotolam/netivotolam.txt");
-        createOutputFolderIfNotExists("netivotolam");
-        parser.parse(reader, "json/netivotolam/netivotolam.json");
-        json = getJson("json/netivotolam/netivotolam.json");
+        json = setupParser(new NetivotOlamParser() , "netivotolam");
+
     }
 
-//    @Test
-//    //test the correctness with sampling a few values
-//    public void test() {
-//        System.out.println("bla bla");
-//        System.out.println();
-//    }
 
 
     @Test

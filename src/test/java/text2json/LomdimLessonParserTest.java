@@ -4,15 +4,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.LomdimLessonParser;
 
-import static text2json.TestUtils.createOutputFolderIfNotExists;
-import static text2json.parsers.LomdimLessonParser.*;
-
 import java.io.BufferedReader;
 import java.util.Map;
 
-import static org.junit.Assert.*;
-import static text2json.TestUtils.getJson;
-import static text2json.TestUtils.getText;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static text2json.TestUtils.*;
+import static text2json.parsers.LomdimLessonParser.*;
 
 /**
  * Created by omishali on 17/01/2017.

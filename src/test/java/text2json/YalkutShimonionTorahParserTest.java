@@ -2,10 +2,8 @@ package text2json;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import text2json.parsers.YalkutShimonionNachParser;
 import text2json.parsers.YalkutShimonionTorahParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -21,12 +19,8 @@ public class YalkutShimonionTorahParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new YalkutShimonionTorahParser();
-        createOutputFolderIfNotExists("yalkutshimoniontorah");
-        BufferedReader reader = getText("yalkutshimoniontorah/yalkutshimoniontorah.txt");
-        createOutputFolderIfNotExists("yalkutshimoniontorah");
-        parser.parse(reader, "json/yalkutshimoniontorah/yalkutshimoniontorah.json");
-        json = getJson("json/yalkutshimoniontorah/yalkutshimoniontorah.json");
+        json = setupParser(new YalkutShimonionTorahParser() , "yalkutshimoniontorah");
+
     }
 
     @Test

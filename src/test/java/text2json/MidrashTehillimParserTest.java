@@ -2,10 +2,8 @@ package text2json;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import text2json.parsers.MidrashMishleiParser;
 import text2json.parsers.MidrashTehillimParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -21,12 +19,9 @@ public class MidrashTehillimParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new MidrashTehillimParser();
-        createOutputFolderIfNotExists("mdrashtehillim");
-        BufferedReader reader = getText("midrashtehillim/mdrashtehillim.txt");
-        createOutputFolderIfNotExists("midrashtehillim");
-        parser.parse(reader, "json/midrashtehillim/midrashtehillim.json");
-        json = getJson("json/midrashtehillim/midrashtehillim.json");
+
+        json = setupParser(new MidrashTehillimParser() , "midrashtehillim");
+
     }
 
     @Test

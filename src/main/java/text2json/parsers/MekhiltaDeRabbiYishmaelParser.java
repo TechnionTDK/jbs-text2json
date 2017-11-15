@@ -17,8 +17,6 @@ public class MekhiltaDeRabbiYishmaelParser extends JbsParser {
     protected static final String BEGIN_PASUK = "begin_pasuk";
     private int pasukNum = 0,position=1 ,packagePosition=1;
     private int perekNum = 0;
-    private String label1 = "";
-    private String label2 = "";
 
     public MekhiltaDeRabbiYishmaelParser() {
         createPackagesJson();
@@ -62,21 +60,18 @@ public class MekhiltaDeRabbiYishmaelParser extends JbsParser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_SEFER:
-                // No need to create an object for the entire book anymore!
-                // It is created manually, outside text2json
+
                 break;
 
             case BEGIN_PEREK:
                 packagesJsonObjectFlush();
                 perekNum++;
                 pasukNum=0;
-                addBook(packagesJsonObject(),"mekhiltaderabbiyishmael");
-                addPackageUri("mekhiltaderabbiyishmael-"+perekNum);
+                addBook(packagesJsonObject(),getBookId());
+                addPackageUri(getBookId()+"-"+perekNum);
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
-                addRdfs(packagesJsonObject(),"מכילתא דרבי ישמעאל " + HEB_LETTERS_INDEX[perekNum-1]);
-                // No need to create an object for the entire book anymore!
-                // It is created manually, outside text2json
+                addLabel(packagesJsonObject(),"מכילתא דרבי ישמעאל " + HEB_LETTERS_INDEX[perekNum-1]);
                 break;
 
 
@@ -88,21 +83,26 @@ public class MekhiltaDeRabbiYishmaelParser extends JbsParser {
                     jsonObject().clear();
                 }
                 pasukNum++;
-                addBook("mekhiltaderabbiyishmael");
+                addBook(getBookId());
                 addUri(getUri());
-                addWithin("mekhiltaderabbiyishmael-" + pasukNum);
+                addWithin(getBookId()+"-" + pasukNum);
                 addPosition(position);
-                addRdfs("מכילתא דרבי ישמעאל " + HEB_LETTERS_INDEX[perekNum-1] + " " + HEB_LETTERS_INDEX[pasukNum-1]);
+                addLabel("מכילתא דרבי ישמעאל " + HEB_LETTERS_INDEX[perekNum-1] + " " + HEB_LETTERS_INDEX[pasukNum-1]);
                 packagesJsonObjectFlush();
                 break;
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return  "mekhiltaderabbiyishmael-" + perekNum + "-"+ pasukNum;    }
+        return  getBookId()+"-" + perekNum + "-"+ pasukNum;    }
+
+    @Override
+    protected String getBookId() {
+        return "mekhiltaderabbiyishmael";
+    }
 }

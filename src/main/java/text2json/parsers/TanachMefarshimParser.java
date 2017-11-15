@@ -1,16 +1,19 @@
 package text2json.parsers;
 
+import text2json.JbsParser;
 import text2json.Line;
 import text2json.LineMatcher;
-import text2json.Parser;
+
 import java.io.IOException;
+
 import static text2json.JbsOntology.*;
-import static text2json.JbsUtils.*;
+import static text2json.JbsUtils.MEFARSHIM_HE;
+import static text2json.JbsUtils.PARASHOT_HE;
 
 
-public class TanachMefarshimParser extends Parser {
+public class TanachMefarshimParser extends JbsParser {
     String[] MEFARSHIM_EN = {"rashi", "ramban", "orhachayim", "ibnezra", "baalhaturim", "onkelos", "seforno", "keliyekar",
-            "daatzekenim", "metzudatdavid", "metzudattzion", "malbiminyan", "malbimmilot", "ralbag", "malbim", "yonatan", "sifteychachamim"};
+            "daatzekenim", "metzudatdavid", "metzudattzion", "malbiminyan", "malbimmilot", "ralbag", getBookId(), "yonatan", "sifteychachamim"};
     private static final String BEGIN_PARASHA = "begin_parasha";
     private static final String BEGIN_PEREK = "begin_perek";
     private static final String BEGIN_PERUSH = "begin_perush";
@@ -115,8 +118,8 @@ public class TanachMefarshimParser extends Parser {
                 jsonObject().append(JBO_TEXT, format(line.getLine()));
                 jsonObject().add(RDFS_LABEL, MEFARSHIM_HE[mefareshId] + " " + bookTitle + " " + perekLetter + " " + pasukLetter);
                 jsonObject().add(JBO_NAME, MEFARSHIM_HE[mefareshId]);
-                if(MEFARSHIM_EN[mefareshId].startsWith("malbim"))
-                    jsonObject().add(JBO_BOOK, JBR_BOOK + "malbim"); // put all malbims under the same book
+                if(MEFARSHIM_EN[mefareshId].startsWith(getBookId()))
+                    jsonObject().add(JBO_BOOK, JBR_BOOK + getBookId()); // put all malbims under the same book
                 else
                     jsonObject().add(JBO_BOOK, JBR_BOOK + MEFARSHIM_EN[mefareshId]);
                 if (bookNum <= 5) {
@@ -131,7 +134,7 @@ public class TanachMefarshimParser extends Parser {
                 break;
             case NO_MATCH:
                 // add line to the current perush
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
     }
@@ -150,5 +153,10 @@ public class TanachMefarshimParser extends Parser {
         @Override
     protected String getUri() {
         return JBR_TEXT + "tanach-" + mefaresh + "-" + bookNum + "-" + perekNum + "-" + pasukNum;
+    }
+
+    @Override
+    protected String getBookId() {
+        return "malbim";
     }
 }

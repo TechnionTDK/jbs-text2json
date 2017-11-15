@@ -8,7 +8,8 @@ import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.*;
-import static text2json.JbsOntology.*;
+import static text2json.JbsOntology.JBO_TEXT;
+import static text2json.JbsOntology.JBR_TEXT;
 import static text2json.TestUtils.*;
 
 public class MishnaParserTest {

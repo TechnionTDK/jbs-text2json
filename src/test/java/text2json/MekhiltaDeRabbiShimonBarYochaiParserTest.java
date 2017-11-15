@@ -3,9 +3,7 @@ package text2json;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.MekhiltaDeRabbiShimonBarYochaiParser;
-import text2json.parsers.MekhiltaDeRabbiYishmaelParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -21,12 +19,8 @@ public class MekhiltaDeRabbiShimonBarYochaiParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new MekhiltaDeRabbiShimonBarYochaiParser();
-        createOutputFolderIfNotExists("mekhiltaderabbishimonbaryochai");
-        BufferedReader reader = getText("mekhiltaderabbishimonbaryochai/mekhiltaderabbishimonbaryochai.txt");
-        createOutputFolderIfNotExists("mekhiltaderabbishimonbaryochai");
-        parser.parse(reader, "json/mekhiltaderabbishimonbaryochai/mekhiltaderabbishimonbaryochai.json");
-        json = getJson("json/mekhiltaderabbishimonbaryochai/mekhiltaderabbishimonbaryochai.json");
+        json = setupParser(new MekhiltaDeRabbiShimonBarYochaiParser() , "mekhiltaderabbishimonbaryochai");
+
     }
 
     @Test

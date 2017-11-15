@@ -4,7 +4,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.NetzachIsraelParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -20,12 +19,8 @@ public class NetzachIsraelParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new NetzachIsraelParser();
-        createOutputFolderIfNotExists("netzachisrael");
-        BufferedReader reader = getText("netzachisrael/netzachisrael.txt");
-        createOutputFolderIfNotExists("netzachisrael");
-        parser.parse(reader, "json/netzachisrael/netzachisrael.json");
-        json = getJson("json/netzachisrael/netzachisrael.json");
+        json = setupParser(new NetzachIsraelParser() , "netzachisrael");
+
     }
 
 

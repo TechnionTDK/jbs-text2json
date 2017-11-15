@@ -2,10 +2,7 @@ package text2json;
 
 import com.google.gson.Gson;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -18,9 +15,31 @@ public class TestUtils {
     private static final String TEXT_DIR = "/jbs-raw/";
     private static final String JSON_DIR = "json/";
 
+
     public static SubjectsJson setupParser(Parser parser, String bookId) {
+        createOutputFolderIfNotExists(bookId);
+        BufferedReader reader = null;
+        try {
+            reader = getText(bookId +"/" +bookId + ".txt");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            parser.parse(reader, "json/" + bookId + "/" + bookId + ".json");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            return getJson("json/" + bookId + "/" + bookId + ".json");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
+
+
+
+
 
     public static BufferedReader getText(String s) throws FileNotFoundException {
         return new BufferedReader(getFileReader(TEXT_DIR + s));

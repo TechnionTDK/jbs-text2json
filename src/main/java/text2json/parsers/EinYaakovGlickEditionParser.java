@@ -6,7 +6,6 @@ import text2json.LineMatcher;
 
 import java.io.IOException;
 
-import static text2json.JbsOntology.JBO_TEXT;
 import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 
 /**
@@ -15,10 +14,8 @@ import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 public class EinYaakovGlickEditionParser extends JbsParser {
 
     protected static final String BEGIN_TRACTATE = "begin_tractate";
-//    protected static final String BEGIN_HEB = "begin_label";
     private int tractateNum = 0,position=1 ,packagePosition=1;
     private int perekNum = 0;
-    private String label1 = "";
     private String label2 = "";
 
     public EinYaakovGlickEditionParser() {
@@ -57,66 +54,51 @@ public class EinYaakovGlickEditionParser extends JbsParser {
             }
         });
 
-//        registerMatcher(new LineMatcher() {
-//            @Override
-//            public String type() { return BEGIN_HEB;}
-//
-//            @Override
-//            public boolean match(Line line) {
-//                return line.beginsWith("heb ") && line.wordCount() <= 10;
-//            }
-//        });
-
     }
 
     @Override
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_SEFER:
-                // No need to create an object for the entire book anymore!
-                // It is created manually, outside text2json
                 break;
 
             case BEGIN_TRACTATE:
                 packagesJsonObjectFlush();
                 tractateNum++;
                 perekNum=0;
-                addBook(packagesJsonObject(),"einyaakovglickedition");
-                addPackageUri("einyaakovglickedition-"+tractateNum);
+                addBook(packagesJsonObject(),getBookId());
+                addPackageUri(getBookId()+"-"+tractateNum);
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
                 label2 = line.getLine().replace("מסכת ","");
-                addRdfs(packagesJsonObject(), "עין יעקב (מאת שמואל צבי גליק) - " + label2);
-                // No need to create an object for the entire book anymore!
-                // It is created manually, outside text2json
+                addLabel(packagesJsonObject(), "עין יעקב (מאת שמואל צבי גליק) - " + label2);
+  
                 break;
-
-//            case BEGIN_HEB:
-//                label1 = line.getLine().replace("heb ","");
-//                addRdfs(label1);
-//                // No need to create an object for the entire book anymore!
-//                // It is created manually, outside text2json
-//                break;
 
             case BEGIN_PEREK:
                 jsonObjectFlush();
                 perekNum++;
-                addBook("einyaakovglickedition");
+                addBook(getBookId());
                 addUri(getUri());
-                addWithin("einyaakovglickedition-" + tractateNum);
+                addWithin(getBookId()+"-" + tractateNum);
                 addPosition(position);
                 position++;
-                addRdfs("עין יעקב (מאת שמואל צבי גליק) " + label2  + " פרק " + HEB_LETTERS_INDEX[perekNum-1] );
+                addLabel("עין יעקב (מאת שמואל צבי גליק) " + label2  + " פרק " + HEB_LETTERS_INDEX[perekNum-1] );
                 packagesJsonObjectFlush();
                 break;
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return  "einyaakovglickedition-" + tractateNum + "-"+ perekNum;    }
+        return  getBookId()+"-" + tractateNum + "-"+ perekNum;    }
+
+    @Override
+    protected String getBookId() {
+        return "einyaakovglickedition";
+    }
 }

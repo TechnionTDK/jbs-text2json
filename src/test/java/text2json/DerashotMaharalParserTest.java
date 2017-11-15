@@ -4,7 +4,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.DerashotMaharalParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -20,12 +19,8 @@ public class DerashotMaharalParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new DerashotMaharalParser();
-        createOutputFolderIfNotExists("derashotmaharal");
-        BufferedReader reader = getText("derashotmaharal/derashotmaharal.txt");
-        createOutputFolderIfNotExists("derashotmaharal");
-        parser.parse(reader, "json/derashotmaharal/derashotmaharal.json");
-        json = getJson("json/derashotmaharal/derashotmaharal.json");
+        json = setupParser(new DerashotMaharalParser() , "derashotmaharal");
+
     }
 
     @Test

@@ -6,7 +6,6 @@ import text2json.LineMatcher;
 
 import java.io.IOException;
 
-import static text2json.JbsOntology.JBO_TEXT;
 import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 
 /**
@@ -15,14 +14,10 @@ import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 public class MekhiltaDeRabbiShimonBarYochaiParser extends JbsParser {
 
     protected static final String BEGIN_PART = "begin_part";
-    private int partNum = 0,position=1 ,packagePosition=1;
+    private int partNum = 0,position=1 ;
     private int perekNum = 0;
-    private String label1 = "";
-    private String label2 = "";
 
-//    public MekhiltaDeRabbiShimonBarYochaiParser() {
-////        createPackagesJson();
-//    }
+    
 
     @Override
     protected void registerMatchers() {
@@ -62,42 +57,41 @@ public class MekhiltaDeRabbiShimonBarYochaiParser extends JbsParser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_SEFER:
-                // No need to create an object for the entire book anymore!
-                // It is created manually, outside text2json
                 break;
 
             case BEGIN_PART:
                 partNum++;
                 perekNum=0;
-                // No need to create an object for the entire book anymore!
-                // It is created manually, outside text2json
                 break;
 
 
             case BEGIN_PEREK:
                 jsonObjectFlush();
                 perekNum++;
-                addBook("mekhiltaderabbishimonbaryochai");
+                addBook(getBookId());
                 addUri(getUri());
                 addPosition(position);
                 position++;
                 if (partNum == 1)
-                    addRdfs("מכילתא דרשב\"י " + HEB_LETTERS_INDEX[perekNum-1]);
+                    addLabel("מכילתא דרשב\"י " + HEB_LETTERS_INDEX[perekNum-1]);
                 else
                     if (partNum==2)
-                        addRdfs("מכילתא דרשב\"י " +"הוספה "+ HEB_LETTERS_INDEX[perekNum-1]);
-
-
-//                packagesJsonObjectFlush();
+                        addLabel("מכילתא דרשב\"י " +"הוספה "+ HEB_LETTERS_INDEX[perekNum-1]);
+                
                 break;
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return  "mekhiltaderabbishimonbaryochai-" + partNum + "-"+ perekNum;    }
+        return  getBookId()+"-" + partNum + "-"+ perekNum;    }
+
+    @Override
+    protected String getBookId() {
+        return "mekhiltaderabbishimonbaryochai";
+    }
 }

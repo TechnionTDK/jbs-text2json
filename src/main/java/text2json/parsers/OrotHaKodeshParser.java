@@ -6,7 +6,6 @@ import text2json.LineMatcher;
 
 import java.io.IOException;
 
-import static text2json.JbsOntology.*;
 import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 
 /**
@@ -17,7 +16,6 @@ public class OrotHaKodeshParser extends JbsParser {
     protected static final String BEGIN_TEACHING = "begin_teaching";
     private int teachingNum = 0,position=0 ,packagePosition=1;
     private int sectionNum = 0;
-    private String nativName = "";
 
     public OrotHaKodeshParser() {
         createPackagesJson();
@@ -69,11 +67,11 @@ public class OrotHaKodeshParser extends JbsParser {
                 jsonObjectFlush();
                 teachingNum=0;
                 sectionNum++;
-                addBook(packagesJsonObject(), "orothakodesh");
+                addBook(packagesJsonObject(), getBookId());
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
-                addPackageUri( "orothakodesh-" + sectionNum);
-                addRdfs(packagesJsonObject(),"אורות הקודש" + " " + HEB_LETTERS_INDEX[sectionNum-1]);
+                addPackageUri( getBookId()+"-" + sectionNum);
+                addLabel(packagesJsonObject(),"אורות הקודש" + " " + HEB_LETTERS_INDEX[sectionNum-1]);
                 packagesJsonObjectFlush();
                 break;
 
@@ -83,19 +81,24 @@ public class OrotHaKodeshParser extends JbsParser {
                 position++;
                 addUri( getUri());
                 addPosition( position);
-                addBook( "orothakodesh");
-                addWithin( "orothakodesh-" + sectionNum);
-                String rdfs = "אורות הקודש" + " " + HEB_LETTERS_INDEX[sectionNum-1] + " " + HEB_LETTERS_INDEX[teachingNum-1];
-                addRdfs(rdfs);
+                addBook( getBookId());
+                addWithin( getBookId()+"-" + sectionNum);
+                String label = "אורות הקודש" + " " + HEB_LETTERS_INDEX[sectionNum-1] + " " + HEB_LETTERS_INDEX[teachingNum-1];
+                addLabel(label);
                 break;
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return  "orothakodesh-" + sectionNum + "-"+ teachingNum;    }
+        return  getBookId()+"-" + sectionNum + "-"+ teachingNum;    }
+
+    @Override
+    protected String getBookId() {
+        return "orothakodesh";
+    }
 }

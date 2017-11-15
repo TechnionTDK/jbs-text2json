@@ -3,9 +3,7 @@ package text2json;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.DerechEretzZutaParser;
-import text2json.parsers.MidbarShurParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -21,12 +19,9 @@ public class DerechEretzZutaParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new DerechEretzZutaParser();
-        createOutputFolderIfNotExists("derecheretzzuta");
-        BufferedReader reader = getText("derecheretzzuta/derecheretzzuta.txt");
-        createOutputFolderIfNotExists("derecheretzzuta");
-        parser.parse(reader, "json/derecheretzzuta/derecheretzzuta.json");
-        json = getJson("json/derecheretzzuta/derecheretzzuta.json");
+
+        json = setupParser(new DerechEretzZutaParser() , "derecheretzzuta");
+
     }
 
     @Test

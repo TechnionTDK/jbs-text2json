@@ -62,8 +62,6 @@ public class MidrashMishleiParser extends JbsParser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_SEFER:
-                // No need to create an object for the entire book anymore!
-                // It is created manually, outside text2json
                 break;
 
             case BEGIN_PEREK:
@@ -72,11 +70,11 @@ public class MidrashMishleiParser extends JbsParser {
                 chapterNum++;
                 pasukNum=0;
                 String chapterName = "מדרש משלי " + numberToHebrew(chapterNum);
-                addPackageUri("midrashmishlei-" + chapterNum );
-                addBook(packagesJsonObject(), "midrashmishlei");
+                addPackageUri(getBookId()+"-" + chapterNum );
+                addBook(packagesJsonObject(), getBookId());
                 addPosition(packagesJsonObject(),chapterNum);
-                String rdfs = "מדרש משלי " + chapterName;
-                addRdfs(packagesJsonObject(),rdfs);
+                String label = "מדרש משלי " + chapterName;
+                addLabel(packagesJsonObject(),label);
                 break;
 
                 case BEGIN_PASUK:
@@ -86,19 +84,24 @@ public class MidrashMishleiParser extends JbsParser {
                 int end = line.getLine().indexOf(":");
                 String pasukLabel = line.getLine().substring(1,end-1);
                 addUri( getUri());
-                addBook( "midrashmishlei");
+                addBook( getBookId());
                 addPosition(position);
-                addRdfs(pasukLabel);
+                addLabel(pasukLabel);
                 jsonObject().add(JBO_TEXT, line.getLine().substring(end));
                 break;
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return  "midrashmishlei-" + chapterNum  +"-" + pasukNum;    }
+        return  getBookId()+"-" + chapterNum  +"-" + pasukNum;    }
+
+    @Override
+    protected String getBookId() {
+        return "midrashmishlei";
+    }
 }

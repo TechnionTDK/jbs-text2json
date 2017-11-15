@@ -6,7 +6,6 @@ import text2json.LineMatcher;
 
 import java.io.IOException;
 
-import static text2json.JbsOntology.*;
 import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 
 /**
@@ -15,11 +14,7 @@ import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 public class NetzachIsraelParser extends JbsParser {
 
     private int chapterNum = -1, first =0;
-
-
-//    public NetzachIsraelParser() {
-//        createPackagesJson();
-//    }
+    
 
     @Override
     protected void registerMatchers() {
@@ -49,13 +44,10 @@ public class NetzachIsraelParser extends JbsParser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_SEFER:
-                // No need to create an object for the entire book anymore!
-                // It is created outside text2json
                 break;
 
 
             case BEGIN_PEREK:
-//                packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
                 first = 1;
@@ -63,22 +55,22 @@ public class NetzachIsraelParser extends JbsParser {
                     String chapterName = HEB_LETTERS_INDEX[chapterNum - 1];
                     addUri( getUri());
                     addPosition( chapterNum+1);
-                    addBook( "netzachisrael");
-                    String rdfs = "נצח ישראל " + chapterName;
-                    addRdfs( rdfs);
+                    addBook( getBookId());
+                    String label = "נצח ישראל " + chapterName;
+                    addLabel( label);
                 }
                 else{
                     addUri( getUri());
                     addPosition( chapterNum+1);
-                    addBook( "netzachisrael");
-                    String rdfs = "נצח ישראל הקדמה";
-                    addRdfs( rdfs);
+                    addBook( getBookId());
+                    String label = "נצח ישראל הקדמה";
+                    addLabel( label);
                 }
                 break;
 
             case NO_MATCH:
                 if(first == 0)
-                    jsonObject().append(JBO_TEXT, line.getLine());
+                    appendText( line.getLine());
                 else
                     first = 0;
                 break;
@@ -87,5 +79,10 @@ public class NetzachIsraelParser extends JbsParser {
 
     @Override
     protected String getUri() {
-        return  "netzachisrael-" + chapterNum ;    }
+        return  getBookId()+"-" + chapterNum ;    }
+
+    @Override
+    protected String getBookId() {
+        return "netzachisrael";
+    }
 }

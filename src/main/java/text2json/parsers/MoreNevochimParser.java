@@ -6,7 +6,8 @@ import text2json.LineMatcher;
 
 import java.io.IOException;
 
-import static text2json.JbsOntology.*;
+import static text2json.JbsOntology.JBO_BOOK;
+import static text2json.JbsOntology.JBR_BOOK;
 import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 
 /**
@@ -113,13 +114,13 @@ public class MoreNevochimParser extends JbsParser {
                 position++;
                 ptihaName = line.getLine();
                 addUri( getUri());
-                addBook( "morenevochim");
+                addBook( getBookId());
                 addPosition( position);
-                addRdfs("מורה נבוכים הקדמות המתרגמים " + ptihaName);
-                addPackageUri( "morenevochim-" + partNum +"-"+ perekNum);
+                addLabel("מורה נבוכים הקדמות המתרגמים " + ptihaName);
+                addPackageUri( getBookId()+"-" + partNum +"-"+ perekNum);
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
-                addRdfs(packagesJsonObject(),"מורה נבוכים - הקדמות המתרגמים " + ptihaName );
+                addLabel(packagesJsonObject(),"מורה נבוכים - הקדמות המתרגמים " + ptihaName );
                 packagesJsonObjectFlush();
                 break;
 
@@ -127,11 +128,11 @@ public class MoreNevochimParser extends JbsParser {
                 jsonObjectFlush();
                 perekNum=1;
                 partNum++;
-                addPackageUri( "morenevochim-" + partNum);
-                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + "morenevochim");
+                addPackageUri( getBookId()+"-" + partNum);
+                packagesJsonObject().add(JBO_BOOK, JBR_BOOK + getBookId());
                 addPosition(packagesJsonObject(),packagePosition);
                 packagePosition++;
-                addRdfs(packagesJsonObject(),"מורה נבוכים " + HEB_LETTERS_INDEX[partNum - 1] );
+                addLabel(packagesJsonObject(),"מורה נבוכים " + HEB_LETTERS_INDEX[partNum - 1] );
                 packagesJsonObjectFlush();
                 break;
 
@@ -142,10 +143,10 @@ public class MoreNevochimParser extends JbsParser {
                 position++;
                 addUri( getUri());
                 addPosition( position);
-                addBook( "morenevochim");
-                addWithin( "morenevochim-" + partNum);
-                String rdfs = "מורה נבוכים - חלק " + HEB_LETTERS_INDEX[partNum - 1] + " הקדמה";
-               addRdfs(rdfs);
+                addBook( getBookId());
+                addWithin( getBookId()+"-" + partNum);
+                String label = "מורה נבוכים - חלק " + HEB_LETTERS_INDEX[partNum - 1] + " הקדמה";
+               addLabel(label);
                 break;
 
             case BEGIN_PEREK:
@@ -155,19 +156,24 @@ public class MoreNevochimParser extends JbsParser {
                 perekName = HEB_LETTERS_INDEX[perekNum - 1];
                 addUri( getUri());
                 addPosition( position);
-                addBook( "morenevochim");
-                addWithin( "morenevochim-" + partNum);
-                String rdfs1 = "מורה נבוכים " + HEB_LETTERS_INDEX[partNum - 1] + " "  + perekName;
-                addRdfs(rdfs1);
+                addBook( getBookId());
+                addWithin( getBookId()+"-" + partNum);
+                String label1 = "מורה נבוכים " + HEB_LETTERS_INDEX[partNum - 1] + " "  + perekName;
+                addLabel(label1);
                 break;
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return  "morenevochim-" + partNum + "-" + perekNum;   }
+        return  getBookId()+"-" + partNum + "-" + perekNum;   }
+
+    @Override
+    protected String getBookId() {
+        return "morenevochim";
+    }
 }

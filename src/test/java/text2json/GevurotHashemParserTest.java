@@ -4,7 +4,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import text2json.parsers.GevurotHashemParser;
 
-import java.io.BufferedReader;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -20,12 +19,9 @@ public class GevurotHashemParserTest {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Parser parser = new GevurotHashemParser();
-        createOutputFolderIfNotExists("gevurothashem");
-        BufferedReader reader = getText("gevurothashem/gevurothashem.txt");
-        createOutputFolderIfNotExists("gevurothashem");
-        parser.parse(reader, "json/gevurothashem/gevurothashem.json");
-        json = getJson("json/gevurothashem/gevurothashem.json");
+
+        json = setupParser(new GevurotHashemParser() , "gevurothashem");
+
     }
 
     @Test

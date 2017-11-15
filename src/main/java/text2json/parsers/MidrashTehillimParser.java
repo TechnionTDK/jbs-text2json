@@ -1,11 +1,11 @@
 package text2json.parsers;
+
 import text2json.JbsParser;
 import text2json.Line;
 import text2json.LineMatcher;
 
 import java.io.IOException;
 
-import static text2json.JbsOntology.JBO_TEXT;
 import static text2json.JbsUtils.numberToHebrew;
 
 /**
@@ -14,12 +14,6 @@ import static text2json.JbsUtils.numberToHebrew;
 public class MidrashTehillimParser extends JbsParser {
 
     private int chapterNum = 0;
-    private int hakdamaNum = 0;
-
-
-//    public MidbarShurParser() {
-//        createPackagesJson();
-//    }
 
     @Override
     protected void registerMatchers() {
@@ -49,29 +43,31 @@ public class MidrashTehillimParser extends JbsParser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch(type) {
             case BEGIN_SEFER:
-                // No need to create an object for the entire book anymore!
-                // It is created manually, outside text2json
                 break;
 
             case BEGIN_PEREK:
-//                packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
                 String chapterName = "מזמור " + numberToHebrew(chapterNum);
                 addUri( getUri());
-                addBook( "midrashtehillim");
+                addBook( getBookId());
                 addPosition(chapterNum);
-                String rdfs = "מדרש תהילים " + chapterName;
-                addRdfs(rdfs);
+                String label = "מדרש תהילים " + chapterName;
+                addLabel(label);
                 break;
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return  "midrashtehillim-" + chapterNum ;    }
+        return  getBookId()+"-" + chapterNum ;    }
+
+    @Override
+    protected String getBookId() {
+        return "midrashtehillim";
+    }
 }

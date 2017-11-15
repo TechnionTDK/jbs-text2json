@@ -6,7 +6,6 @@ import text2json.LineMatcher;
 
 import java.io.IOException;
 
-import static text2json.JbsOntology.JBO_TEXT;
 import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 
 /**
@@ -19,7 +18,6 @@ public class MidrashTanchumaBuberParser extends JbsParser {
     protected static final String BEGIN_ADD_PARASHA = "begin_adding_psrasha";
     private int position = 1, packagePosition = 1;
     private int simanNum = 0, parashaNum = 0;
-    private String label1 = "";
     private String label2 = "";
 
     public MidrashTanchumaBuberParser() {
@@ -81,8 +79,6 @@ public class MidrashTanchumaBuberParser extends JbsParser {
     protected void onLineMatch(String type, Line line) throws IOException {
         switch (type) {
             case BEGIN_SEFER:
-                // No need to create an object for the entire book anymore!
-                // It is created manually, outside text2json
                 break;
 
             case BEGIN_PARASHA:
@@ -90,14 +86,12 @@ public class MidrashTanchumaBuberParser extends JbsParser {
                 packagesJsonObjectFlush();
                 parashaNum++;
                 simanNum = 0;
-                addBook(packagesJsonObject(), "midrashtanchumabuber");
-                addPackageUri("midrashtanchumabuber-" + parashaNum);
+                addBook(packagesJsonObject(), getBookId());
+                addPackageUri(getBookId()+"-" + parashaNum);
                 addPosition(packagesJsonObject(), packagePosition);
                 packagePosition++;
                 label2 = line.getLine().replace("פרשת ","");
-                addRdfs(packagesJsonObject(), "מדרש תנחומא בובר " + label2);
-                // No need to create an object for the entire book anymore!
-                // It is created manually, outside text2json
+                addLabel(packagesJsonObject(), "מדרש תנחומא בובר " + label2);
                 break;
 
 
@@ -107,33 +101,36 @@ public class MidrashTanchumaBuberParser extends JbsParser {
                 parashaNum++;
                 simanNum = 0;
                 label2 = line.getLine().replace("פרשת ","");
-                // No need to create an object for the entire book anymore!
-                // It is created manually, outside text2json
                 break;
 
 
             case BEGIN_SIMAN:
                 jsonObjectFlush();
                 simanNum++;
-                addBook("midrashtanchumabuber");
+                addBook(getBookId());
                 addUri(getUri());
-                addWithin("midrashtanchumabuber-" + parashaNum);
+                addWithin(getBookId()+"-" + parashaNum);
                 addPosition(position);
                 position++;
-                addRdfs("מדרש תנחומא בובר " + label2 + " " + HEB_LETTERS_INDEX[simanNum-1]);
+                addLabel("מדרש תנחומא בובר " + label2 + " " + HEB_LETTERS_INDEX[simanNum-1]);
                 packagesJsonObjectFlush();
                 break;
 
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT, line.getLine());
+                appendText( line.getLine());
                 break;
         }
     }
 
     @Override
     protected String getUri() {
-        return "midrashtanchumabuber-" + parashaNum + "-" + simanNum;
+        return getBookId()+"-" + parashaNum + "-" + simanNum;
+    }
+
+    @Override
+    protected String getBookId() {
+        return "midrashtanchumabuber";
     }
 
 
