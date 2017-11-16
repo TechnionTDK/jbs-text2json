@@ -81,35 +81,28 @@ When matching a case like BEGIN_SEFER you may add any fields you wish to your Js
 
 For example:
 
-      protected void onLineMatch(String type, Line line) throws IOException {
-        switch (type){
-            case BEGIN_PARASHA: // we assume bookNum is initialized
-                jsonObjectFlush();
-                positionInParasha = 0;
-                parashaNum++;
-                // adding parasha triples in packages json
-                packagesJsonObject().add(URI, getParashaUri());
-                packagesJsonObject().add(RDFS_LABEL, line.getLine());
-                packagesJsonObject().add(JBO_POSITION, getFixedParashaPosition());
-                packagesJsonObjectFlush();
+    protected void onLineMatch(String type, Line line) throws IOException {
+        switch(type) {
+            case BEGIN_SEFER:
                 break;
 
             case BEGIN_PEREK:
                 jsonObjectFlush();
-                perekNum++;
-                positionInPerek = 0;
-                pasukNum = 0;
-                perekTitle = line.extract("פרק-", " ");
-
-                // adding perek triples in packages json
-                packagesJsonObject().add(URI, getPerekUri());
-                packagesJsonObject().add(RDFS_LABEL, line.getLine().replace('-', ' '));
-                packagesJsonObject().add(JBO_POSITION, perekNum);
-                packagesJsonObject().add(JBO_SEFER, "jbr:tanach-"+bookNum);
-                packagesJsonObjectFlush();
+                chapterNum++;
+                String chapterName = HEB_LETTERS_INDEX[chapterNum-1];
+                addUri( getUri());
+                addBook( getBookId());
+                addPosition(chapterNum);
+                String label = "מדבר שור " + chapterName;
+                addLabel(label);
                 break;
 
-Here we can see we added fields to our regular json Object and also to our Packages object json such ass URI and POSITION.
+            case NO_MATCH:
+                appendText( line.getLine());
+                break;
+        }
+
+Here we can see we added fields to our regular json Object such ass URI and POSITION.
 More examples are in the already written parsers like "tanachParser" and "mishnaParser"
       
       
@@ -142,17 +135,17 @@ Each test has two parts:
 1. Running the parser - which will parse your file and create an output json file in json/name_of_your_file/name_of_your_file.json .
 1. Going over the Jsons - and retrieving subjects and fields from it in order to test them.
 
-#### Running the parser has three phases:
+#### Testing the parser :
 
-1. Creating a new parser
-1. Creating a new BufferReader with the source file
-1. Running the parser with the BufferReader and the destination folder
+1. Use the setupParser method with the following inputs: 'a new parser' and a 'name' (string) of the files and folders.
+The method will auto complete the parameters and bring the necessary paths and directories.
+
 
   For example:
   
-        MidrashRabaParser parser = new MidrashRabaParser();
-        BufferedReader reader = TestUtils.getText("/midrashraba/tanach-midrashraba-" + bookNums[i] + ".txt");
-        parser.parse(reader, "json/tanach-midrashraba-" + bookNums[i] + ".json");
+    public static void beforeClass() throws Exception {
+        json = setupParser(new MidbarShurParser() , "midbarshur");
+    }
         
         
 #### Going over the Jsons
@@ -182,20 +175,21 @@ and then:
              }
  
 
- 2. The second method was to put all the objects in an array and randomly test objects
+ 2. The second method was to test the objects (as Map type):
  
  For example:
  
-        static SubjectsJson json[] = new SubjectsJson[NUM_OF_LAST_MASECHET + 1];
+  public void testSpecificPackageObjects() {
+        Map<String, String> object;
 
-Filling the array:
+        object = json.getObject(0);
+        
+Than testing the fields in the object:
 
-        for (int bookNum = NUM_OF_FIRST_BOOK; bookNum <= NUM_OF_LAST_BOOK; bookNum++) {
-            TanachParser parser = new TanachParser();
-            BufferedReader reader = getText("/tanach/tanach-" + bookNum + ".txt");
-            parser.parse(reader, "../../jbs-text/tanach/tanach-" + bookNum + ".json");
-            json[bookNum] = getJson("../../jbs-text/tanach/tanach-" + bookNum + ".json");
-        }
+        assertTextUriProperty(object, "midbarshur-1");
+        assertPositionProperty(object ,"1");
+        assertLabelProperty( object ,"מדבר שור א");
+        assertBookProperty(object,"midbarshur");
         
         
 of course feel free to test your Jsons any way you feel best :)
