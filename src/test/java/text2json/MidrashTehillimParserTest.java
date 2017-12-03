@@ -35,39 +35,39 @@ public class MidrashTehillimParserTest {
         Map<String, String> object;
 
         object = json.getObject(0);
-        assertTextUriProperty(object, "mdrashtehillim-1");
+        assertTextUriProperty(object, "midrashtehillim-1");
         assertPositionProperty(object ,"1");
         assertLabelProperty( object ,"מדרש תהילים מזמור א");
-        assertBookProperty(object,"mdrashtehillim");
+        assertBookProperty(object,"midrashtehillim");
 
         object = json.getObject(15);
-        assertTextUriProperty(object, "mdrashtehillim-16");
+        assertTextUriProperty(object, "midrashtehillim-16");
         assertLabelProperty( object ,"מדרש תהילים מזמור טז");
         assertPositionProperty(object ,"16");
-        assertBookProperty(object,"mdrashtehillim");
+        assertBookProperty(object,"midrashtehillim");
 
         object = json.getObject(48);
-        assertTextUriProperty(object, "mdrashtehillim-49");
+        assertTextUriProperty(object, "midrashtehillim-49");
         assertLabelProperty( object ,"מדרש תהילים מזמור מט");
         assertPositionProperty(object ,"49");
-        assertBookProperty(object,"mdrashtehillim");
+        assertBookProperty(object,"midrashtehillim");
 
         object = json.getObject(69);
-        assertTextUriProperty(object, "mdrashtehillim-70");
+        assertTextUriProperty(object, "midrashtehillim-70");
         assertLabelProperty( object ,"מדרש תהילים מזמור ע");
         assertPositionProperty(object ,"70");
-        assertBookProperty(object,"mdrashtehillim");
+        assertBookProperty(object,"midrashtehillim");
 
         object = json.getObject(100);
-        assertTextUriProperty(object, "mdrashtehillim-101");
+        assertTextUriProperty(object, "midrashtehillim-101");
         assertLabelProperty( object ,"מדרש תהילים מזמור קא");
         assertPositionProperty(object ,"101");
-        assertBookProperty(object,"mdrashtehillim");
+        assertBookProperty(object,"midrashtehillim");
 
         object = json.getObject(149);
-        assertTextUriProperty(object, "mdrashtehillim-150");
+        assertTextUriProperty(object, "midrashtehillim-150");
         assertLabelProperty( object ,"מדרש תהילים מזמור קנ");
         assertPositionProperty(object ,"150");
-        assertBookProperty(object,"mdrashtehillim");
+        assertBookProperty(object,"midrashtehillim");
     }
 }

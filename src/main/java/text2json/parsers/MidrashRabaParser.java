@@ -201,7 +201,7 @@ public class MidrashRabaParser extends Parser {
 
     @Override
     protected String getBookId() {
-        return null;
+        return "midrashraba";
     }
 
     protected void endOfFile(Line line) throws IOException{

@@ -70,6 +70,6 @@ public class TannaDebeiEliyahuRabbahParser extends JbsParser {
 
     @Override
     protected String getBookId() {
-        return null;
+        return "tannadebeieliyahurabbah";
     }
 }

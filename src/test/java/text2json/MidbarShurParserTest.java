@@ -20,7 +20,6 @@ public class MidbarShurParserTest {
     @BeforeClass
     public static void beforeClass() throws Exception {
         json = setupParser(new MidbarShurParser() , "midbarshur");
-
     }
 
     @Test
