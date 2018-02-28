@@ -1,5 +1,4 @@
-{"inputBaseDir": "jbs-raw","outputBaseDir": "jbs-text",
-"parsers": [
+{"parsers": [
   {"parser":"text2json.parsers.MesilatYesharimParser",
   "input": "mesilatyesharim",
   "output": "mesilatyesharim"},

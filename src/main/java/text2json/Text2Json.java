@@ -8,6 +8,8 @@ import java.io.FileReader;
 import java.lang.reflect.Method;
 import java.util.List;
 
+import static java.lang.System.exit;
+
 /**
  * Created by omishali on 20/12/2016.
  */
@@ -15,14 +17,28 @@ public class Text2Json {
     public static final String PARSER_CONFIG_FILE = "src/main/resources/configParsers.json";
 
     public static void main(String[] args) throws Exception {
+        if (args.length != 1) {
+            System.out.println("Should provide a single argument to main: path of the 'jbs' repository.");
+            exit(1);
+        }
+
+        String jbsPath = args[0];
+        // the jbs repo should have subfolders raw (input) and json (for output)
+        String inputPath = jbsPath + "/" + "raw";
+        String outputPath = jbsPath + "/" + "json";
+
         Gson gson = new Gson();
         ConfigFile configFile = gson.fromJson(new BufferedReader(new FileReader(PARSER_CONFIG_FILE)), ConfigFile.class);
         List<ConfigParser> parsers = configFile.getAllParsers();
 
         // run each parser for all files within its input dir
         for (ConfigParser configParser : parsers){
-            File inputDir = new File(configFile.getInputBaseDir() + '/' + configParser.getInput());
-            File outputDir = new File(configFile.getOutputBaseDir() + '/' + configParser.getOutput());
+            File inputDir = new File(inputPath + '/' + configParser.getInput());
+            File outputDir = new File(outputPath + '/' + configParser.getOutput());
+
+            // we create the output dir if it doesn't exist
+            if (!outputDir.exists())
+                outputDir.mkdir();
 
             // we assume an input dir contains files only and not subdirectories
             for (File file : inputDir.listFiles()) {

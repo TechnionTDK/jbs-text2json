@@ -76,7 +76,7 @@ public abstract class Parser {
 
         if (createPackages == true) {
             // the name of the packages file is e.g., tanach-1-packages.json
-            String noSuffix = outputJson.split("\\.")[0];
+            String noSuffix = outputJson.split("\\.json")[0]; // we extract the name without the .json suffix
             packagesJsonFile = new JsonFile(noSuffix + "-packages.json");
             packagesJsonObject = new JsonObject();
             packagesJsonFile.createMainObject();
