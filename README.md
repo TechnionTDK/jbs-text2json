@@ -1,30 +1,53 @@
-# Jewish bookshelf - jbs-text2json
-A tool created in order to convert raw texts of the Jewish bookshelf from free raw format into json formats.
-
-## What is text2json?
-text2json is a platform for developers to easily add new parsers to the jbs project. Every developer can easily add new raw texts and create a parser that inherits from the general "Parser" class. The developer is only required to define the parser "rules" and "behavior" when addressing the rules.
+# What is text2json?
+A library created in order to (easily) convert raw text files of the Jewish bookshelf into structured json files.
 
 # Getting Started
 
-## Initialization:
-First thing first, this library is written in Java programming language and therefore requires a compatible IDE for it. We strongly recommend using the intelliJ IDEA (free to download and use from JetBrains site) due to its simple, elegant and modularity for this project's needs.
+## Get IntelliJ
+This library is written in the Java programming language and therefore requires a compatible IDE for it. We strongly recommend using the intelliJ IDEA (free for students).
 
 ## Installation
-After logging in to GitHub and acquiring permissions to: 
+After logging in to GitHub and acquiring permissions to the repositories: 
 1. jbs-text2json - https://github.com/TechnionTDK/jbs-text2json
-1. jbs-text      - https://github.com/TechnionTDK/jbs-text
-1. jbs-raw       - https://github.com/TechnionTDK/jbs-raw
+1. jbs-data      - https://github.com/TechnionTDK/jbs-data
 
-You can now log in and clone these repositories to you workspace. Please notice, clone the jbs-text and jbs-raw repositories INTO the jbs-text2json folder. (If cloning is new to you just give it a quick web search, it's quite simple).
+You can now log in and clone these repositories to you workspace:
+
+```
+clone https://github.com/TechnionTDK/jbs-text2json
+clone https://github.com/TechnionTDK/jbs-data
+```
+
+Remember the path to the jbs-data directory since you will need it in following steps.
+
+# Executing the code
+Basically, you will use this library to create text2json *parsers*. A parser turns a raw text into a structured json. But before creating any parser, you should understand how to execute the existing parsers. There are two execution modes as will be explained.
+
+## Testing mode
+Each parser should have an accompanied JUnit test class. The tests take their input from the directory *jbs-data/raw* (that you have cloned). So we should tell them where this directory is located:
+- Create a file named *pathToRawFiles.txt* within *src/main/resources*.
+- Place a single line within the file with the full path to the local *jbs-data/raw* directory. For example:
+```
+C:\Users\omishali.TD-CSF\GithubProjects\jbs-data\raw
+```
+
+Now you may simply run a single test or all the tests. The tests are located in *src/test*, right-click and run, or right-click the project and run all tests.
+
+## Production mode
+When you are certain that the parser you are developing indeed produces the correct results (i.e., after thoroughly testing it), you are ready to write the output to the *jbs-data* repository (to *jbs-data/json*). For that, you should execute the main method of the *Text2Json* class. This main method requires a single argument: the full path to the local *jbs-data* (edit the runtime configuration to supply this argument).
+
+Executing *Text2Json.main* does the follows:
+- All parsers defined in *main/resources/configParsers.json* are executed one after the other.
+- Each parser is provided with raw input from *jbs-data/raw* as specified in the config file.
+- Each parser produces its output to *jbd-data/json* as specified in the config file.
 
 # Creating a new parser
  
 ## Preparation
 
-1. Step One, add a new folder to the jbs-raw folder and add the relevant raw files to it.
-1. Step Two, make sure there is a 'json' folder in the jbs-text2json folder since the output will be stored there.
-1. Step Three, add a new folder to the jbs-text folder.
-1. Step Four, in your workspace go to jbs-jext2json>src>main>java>text2json>parsers and add a new java class in the text2json.parsers package, make sure the class extends "Parser".
+1. Add a new folder to the *jbs/raw* folder and add the relevant raw files to it.
+1. If does not exist, create a *json* folder in the jbs-text2json project. The output of the tests will go there.
+1. In the project, go to jbs-jext2json>src>main>java>text2json>parsers and add a new java class in the text2json.parsers package. Make sure the class extends "Parser".
 
 
 ## Writing a new parser and Tests
@@ -196,9 +219,9 @@ of course feel free to test your Jsons any way you feel best :)
 
 
 # Config file
-Assuming that you have a tested parser, next step is to deploy the results into jbs-text. To do that, you have to update the file **configParsers.json** with basic details about your new parser. You have to provide the fully qualified name of the parser, as well as the input and output folders in jbs-raw and jbs-text, respectively.
+Assuming that you have a tested parser, next step is to deploy the results into *jbs-data/json*. To do that, you have to update the file **configParsers.json** with basic details about your new parser. You have to provide the fully qualified name of the parser, as well as the input and output folders in *jbs-data/raw* and *jbs-data/json*, respectively.
 
-The file is under jbs-text2json>src>main>resource>configParsers.json. An example entry:
+The file is under src>main>resource>configParsers.json. An example entry:
 
 ```
 {"parser":"text2json.parsers.TanachParser",
