@@ -4,7 +4,7 @@ A library created in order to (easily) convert raw text files of the Jewish book
 # Getting Started
 
 ## Get IntelliJ
-This library is written in the Java programming language and therefore requires a compatible IDE for it. We strongly recommend using the intelliJ IDEA (free for students).
+This library is written in the Java programming language and therefore requires a compatible IDE for it. We strongly recommend using the intelliJ IDEA.
 
 ## Installation
 After logging in to GitHub and acquiring permissions to the repositories: 
