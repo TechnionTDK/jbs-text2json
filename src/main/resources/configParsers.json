@@ -146,5 +146,8 @@
     "output": "yalkutshimonionnach"},
   {"parser":"text2json.parsers.YalkutShimonionTorahParser",
     "input": "yalkutshimoniontorah",
-    "output": "yalkutshimoniontorah"}
+    "output": "yalkutshimoniontorah"},
+  {"parser":"text2json.parsers.ShemonaPerakimParser",
+    "input": "shemonaperakim",
+    "output": "shemonaperakim"}
 ]}
