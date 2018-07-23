@@ -1,6 +1,7 @@
 package text2json.parsers;
 
 import text2json.JbsParser;
+import text2json.JbsUtils;
 import text2json.Line;
 import text2json.LineMatcher;
 
@@ -13,7 +14,7 @@ import java.io.IOException;
 
 public class NefeshHachaimParser extends JbsParser {
 
-    private int perekNum = 0, gateNum = 0;
+    private int perekNum = 0, gateNum = 0, position = 0;
     private final static String BEGIN_GATE = "begin_gate"; //gate is shaar
 
     public NefeshHachaimParser() {
@@ -73,15 +74,16 @@ public class NefeshHachaimParser extends JbsParser {
                 addBook(packagesJsonObject(), getBookId());
                 addPackageUri(getBookId() + "-" + Integer.toString(gateNum));
                 addPosition(packagesJsonObject(), gateNum);
-                addLabel(packagesJsonObject(),"נפש החיים שער " + gateNum);
+                addLabel(packagesJsonObject(),"נפש החיים " + JbsUtils.numberToHebrew(gateNum));
                 break;
 
             case BEGIN_PEREK:
                 jsonObjectFlush();
                 perekNum++;
+                position++;
                 addBook(jsonObject(), getBookId());
                 addUri(getUri());
-                addPosition(jsonObject(), perekNum);
+                addPosition(jsonObject(), position);
                 addLabel(jsonObject(), getLabel());
                 packagesJsonObjectFlush();
                 break;
@@ -98,8 +100,8 @@ public class NefeshHachaimParser extends JbsParser {
     }
 
     private String getLabel() {
-        String str1 = "נפש החיים שער ", str2 = " פרק ";
-        return str1 + Integer.toString(gateNum) + str2 + Integer.toString(perekNum);
+        String str1 = "נפש החיים ";
+        return str1 + JbsUtils.numberToHebrew(gateNum) + " " + JbsUtils.numberToHebrew(perekNum);
     }
 
     @Override

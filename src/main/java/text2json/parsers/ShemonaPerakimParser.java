@@ -1,6 +1,7 @@
 package text2json.parsers;
 
 import text2json.JbsParser;
+import text2json.JbsUtils;
 import text2json.Line;
 import text2json.LineMatcher;
 
@@ -63,7 +64,7 @@ public class ShemonaPerakimParser extends JbsParser {
                 addBook(jsonObject(), getBookId());
                 addUri(getBookId()+"-" + perekNum);
                 addPosition(jsonObject(), perekNum);
-                addLabel(jsonObject(), "שמונה פרקים לרמב\"ם פרק " + perekNum);
+                addLabel(jsonObject(), "שמונה פרקים לרמב\"ם " + JbsUtils.numberToHebrew(perekNum));
                 break;
 
             case BEGIN_HAKDAMA:

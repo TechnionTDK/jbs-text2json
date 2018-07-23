@@ -44,7 +44,7 @@ public class ShemonaPerakimParserTest {
         assertBookProperty(o,"shemonaperakim");
         assertTextUriProperty( o , "shemonaperakim-1");
         assertPositionProperty(o, "1");
-        assertLabelProperty( o ,"שמונה פרקים לרמב\"ם פרק 1");
+        assertLabelProperty( o ,"שמונה פרקים לרמב\"ם א");
         text = "דע שנפש האדם נפש אחת ויש לה פעולות רבות חלוקות, יקראו קצת הפעולות הם נפשות";
         assertTrue(o.get(JBO_TEXT).startsWith(text));
         text = "והדעות כמה הם ואיך יגיעו אין זה מקומו ולא יצטרך במה שנרצהו לדבר על המדות, והוא יותר ראוי בספר הנבואה אשר זכרנו ובכאן אפסוק בזה הפרק ואתחיל באחר:";
@@ -56,7 +56,7 @@ public class ShemonaPerakimParserTest {
         assertBookProperty(o,"shemonaperakim");
         assertTextUriProperty( o , "shemonaperakim-8");
         assertPositionProperty(o, "8");
-        assertLabelProperty( o ,"שמונה פרקים לרמב\"ם פרק 8");
+        assertLabelProperty( o ,"שמונה פרקים לרמב\"ם ח");
         text = "אי אפשר שיולד האדם מתחלת ענינו בטבע בעל מעלה ולא בעל חסרון";
         assertTrue(o.get(JBO_TEXT).startsWith(text));
         text = "וכבר הגיעה עת ואפסוק הדברים הנה, ואתחיל בפרוש זאת המסכתא אשר הקדמנו לה אליו אילו הפרקים:";
