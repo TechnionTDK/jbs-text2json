@@ -4,7 +4,9 @@ import com.google.gson.Gson;
 
 import java.io.*;
 import java.util.Map;
+import java.util.Scanner;
 
+import static java.lang.System.exit;
 import static org.junit.Assert.assertEquals;
 import static text2json.JbsOntology.*;
 
@@ -12,7 +14,7 @@ import static text2json.JbsOntology.*;
  * Created by omishali on 26/12/2016.
  */
 public class TestUtils {
-    private static final String TEXT_DIR = "/jbs-raw/";
+    private static final String RAW_TEXT_DIR = readPathToRawFiles();
     private static final String JSON_DIR = "json/";
 
 
@@ -37,12 +39,8 @@ public class TestUtils {
         return null;
     }
 
-
-
-
-
     public static BufferedReader getText(String s) throws FileNotFoundException {
-        return new BufferedReader(getFileReader(TEXT_DIR + s));
+        return new BufferedReader(new FileReader(RAW_TEXT_DIR + "/" + s));
     }
 
     public static void createOutputFolderIfNotExists(String name) {
@@ -66,17 +64,6 @@ public class TestUtils {
         return count;
     }
 
-
-    static FileReader getFileReader(String s) throws FileNotFoundException {
-        String filePath = new File("").getAbsolutePath();
-        return new FileReader(filePath.concat(s));
-    }
-
-
-    static FileReader getJsonFileReader(String s) throws FileNotFoundException {
-        return getFileReader(JSON_DIR + s);
-    }
-
     static SubjectsJson getJson(String json) throws Exception {
         Gson gson = new Gson();
         return gson.fromJson(new BufferedReader(new FileReader(json)), SubjectsJson.class);
@@ -89,6 +76,20 @@ public class TestUtils {
                 { newString = newString + rawString.charAt(j); }
         }
         return(newString);
+    }
+
+    private static String readPathToRawFiles() {
+        File file = new File("src/main/resources/pathToRawFiles.txt");
+        try {
+            Scanner scanner = new Scanner(file);
+            String line = scanner.nextLine();
+            scanner.close();
+            return line;
+        } catch (FileNotFoundException e) {
+            System.out.println("Tests require file src/main/resources/pathToRawFiles.txt with a single line pointing to the location of the input raw files directory.");
+            exit(1);
+        }
+        return null;
     }
 
 

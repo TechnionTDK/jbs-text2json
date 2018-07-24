@@ -19,3 +19,4 @@ target/
 jbs-raw/
 jbs-text/
 json/
+src/main/resources/pathToRawFiles.txt
