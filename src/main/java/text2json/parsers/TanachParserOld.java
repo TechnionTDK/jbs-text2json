@@ -13,7 +13,7 @@ import static text2json.JbsUtils.SEFARIM_TANACH_HE;
 /**
  * Created by USER on 06-Jan-17.
  */
-public class TanachParser extends Parser {
+public class TanachParserOld extends Parser {
     private static final String BEGIN_PASUK = "begin_pasuk";
     private static final int PSUKIM_FOR_BOOK[] = {0, 1533, 1210, 859, 1288, 956, 658, 618, 811, 695, 817,
             719, 1291, 1364, 1273, 197, 73, 146, 21, 48, 105, 47, 56, 53, 38, 211,
@@ -29,7 +29,7 @@ public class TanachParser extends Parser {
     private String pasukTitle;
     private int position;
 
-    public TanachParser() {
+    public TanachParserOld() {
         createPackagesJson();
     }
 

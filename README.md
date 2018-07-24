@@ -224,7 +224,7 @@ Assuming that you have a tested parser, next step is to deploy the results into 
 The file is under src>main>resource>configParsers.json. An example entry:
 
 ```
-{"parser":"text2json.parsers.TanachParser",
+{"parser":"text2json.parsers.TanachParserOld",
     "input": "tanach",
     "output": "tanach"}
 ```

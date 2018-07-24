@@ -2,7 +2,7 @@ package text2json;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import text2json.parsers.TanachMefarshimParser;
+import text2json.parsers.TanachMefarshimParserOld;
 
 import java.io.BufferedReader;
 import java.util.Map;
@@ -15,7 +15,7 @@ import static text2json.TestUtils.*;
 /**
  * Created by omishali.
  */
-public class TanachMefarshimParserTest {
+public class TanachMefarshimParserOldTest {
     private static final int NUM_OF_LAST_BOOK = 39;
     private static final int NUM_OF_FIRST_BOOK = 1;
     private static final int NUM_OF_BOOKS = NUM_OF_LAST_BOOK - NUM_OF_FIRST_BOOK + 1;
@@ -24,11 +24,11 @@ public class TanachMefarshimParserTest {
     @BeforeClass
     public static void setup() throws Exception {
         for (int bookNum = NUM_OF_FIRST_BOOK; bookNum <= NUM_OF_LAST_BOOK; bookNum++) {
-            TanachMefarshimParser parser = new TanachMefarshimParser();
-            BufferedReader reader = getText("/tanach/tanach-" + bookNum + ".txt");
-            createOutputFolderIfNotExists("tanachMefarshim");
-            parser.parse(reader, "json/tanachMefarshim/tanachMefarshim-" + bookNum + ".json");
-            subjectJsons[bookNum] = getJson("json/tanachMefarshim/tanachMefarshim-" + bookNum + ".json");
+            TanachMefarshimParserOld parser = new TanachMefarshimParserOld();
+            BufferedReader reader = getText("/tanach-old/tanach-" + bookNum + ".txt");
+            createOutputFolderIfNotExists("tanachMefarshim-old");
+            parser.parse(reader, "json/tanachMefarshim-old/tanachMefarshim-" + bookNum + ".json");
+            subjectJsons[bookNum] = getJson("json/tanachMefarshim-old/tanachMefarshim-" + bookNum + ".json");
         }
     }
 
@@ -104,7 +104,7 @@ public class TanachMefarshimParserTest {
 
     @Test
     public void testGetMefareshId() {
-        TanachMefarshimParser parser = new TanachMefarshimParser();
+        TanachMefarshimParserOld parser = new TanachMefarshimParserOld();
         assertEquals(11, parser.getMefareshId("מלבי\"ם - באור הענין  למה, אחר שבאר אבדן הרשע כי הוא כמוץ אשר תדפנו רוח ואין לו תקוה רק אם הוא שומר את הבר ונוטר את הצדיק, אומר. אם כן למה רגשו גוים למרוד במשיח ה' ובישראל עמו, הלא אך בזה יהיה להם קיום אם יעבדו את ה' ואת דוד מלכו. למה רגשו גוים, יש הבדל בין גוים ובין לאומים, גוי נקרא הקיבוץ מבלי השקף אם הוא בעל דת או לאו, ובשם לאום נקרא מצד שמתאחד תחת דת מיוחד, ומצייר שהקשר שהתקשרו נגדו היה אלהותיי וגם מדיניי, כמ''ש על ה' ועל משיחו, על ה', לפרוק עול הדת ושבע מצות שהכריחם דוד לקיימם, ועל משיחו, לפרוק עול מלכותו ועבודתו, והגוים רגשו ברגש ומרד למרוד במלכות בית דוד, והלאומים מצד ענין הדת הגו מחשבות נגד דת ומצות ה' : (מלבי\"ם באור הענין)\n"));
         assertEquals(7, parser.getMefareshId("כלי יקר  מבן עשרים שנה ומעלה וגו'. אם מספר זה היה בעבור השראת השכינה למה אמר כל יוצא צבא."));
     }

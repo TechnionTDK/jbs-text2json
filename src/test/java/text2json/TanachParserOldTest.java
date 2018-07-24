@@ -2,7 +2,7 @@ package text2json;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
-import text2json.parsers.TanachParser;
+import text2json.parsers.TanachParserOld;
 
 import java.io.BufferedReader;
 import java.util.Map;
@@ -16,7 +16,7 @@ import static text2json.TestUtils.*;
 /**
  * Created by USER on 10-Jan-17.
  */
-public class TanachParserTest {
+public class TanachParserOldTest {
     private static final int NUM_OF_LAST_BOOK = 39;
     private static final int NUM_OF_FIRST_BOOK = 1;
     private static final int NUM_OF_BOOKS = NUM_OF_LAST_BOOK - NUM_OF_FIRST_BOOK + 1;
@@ -26,12 +26,12 @@ public class TanachParserTest {
     @BeforeClass
     public static void setup() throws Exception {
         for (int bookNum = NUM_OF_FIRST_BOOK; bookNum <= NUM_OF_LAST_BOOK; bookNum++) {
-            TanachParser parser = new TanachParser();
-            BufferedReader reader = getText("tanach/tanach-" + bookNum + ".txt");
-            createOutputFolderIfNotExists("tanach");
-            parser.parse(reader, "json/tanach/tanach-" + bookNum + ".json");
-            json[bookNum] = getJson("json/tanach/tanach-" + bookNum + ".json");
-            packagesJson[bookNum] = getJson("json/tanach/tanach-" + bookNum + "-packages.json");
+            TanachParserOld parser = new TanachParserOld();
+            BufferedReader reader = getText("tanach-old/tanach-" + bookNum + ".txt");
+            createOutputFolderIfNotExists("tanach-old");
+            parser.parse(reader, "json/tanach-old/tanach-" + bookNum + ".json");
+            json[bookNum] = getJson("json/tanach-old/tanach-" + bookNum + ".json");
+            packagesJson[bookNum] = getJson("json/tanach-old/tanach-" + bookNum + "-packages.json");
         }
     }
 

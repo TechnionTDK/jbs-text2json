@@ -11,7 +11,7 @@ import static text2json.JbsUtils.MEFARSHIM_HE;
 import static text2json.JbsUtils.PARASHOT_HE;
 
 
-public class TanachMefarshimParser extends JbsParser {
+public class TanachMefarshimParserOld extends JbsParser {
     String[] MEFARSHIM_EN = {"rashi", "ramban", "orhachayim", "ibnezra", "baalhaturim", "onkelos", "seforno", "keliyekar",
             "daatzekenim", "metzudatdavid", "metzudattzion", "malbiminyan", "malbimmilot", "ralbag", getBookId(), "yonatan", "sifteychachamim"};
     private static final String BEGIN_PARASHA = "begin_parasha";
