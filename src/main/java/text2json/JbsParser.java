@@ -44,6 +44,7 @@ public abstract class JbsParser extends Parser {
     protected int toInt(String num) { return Integer.parseInt(num); }
 
     protected void addText(String text) {jsonObject().add(JBO_TEXT, text); }
-    protected void appendText(String text) {jsonObject().append(JBO_TEXT, text);
+    protected void appendText(String text) {jsonObject().append(JBO_TEXT, text);}
+    protected void appendNikudText(String text) {jsonObject().append(JBO_TEXT_NIKUD, text);
     }
 }

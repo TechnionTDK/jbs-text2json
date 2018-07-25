@@ -16,6 +16,47 @@ public class JbsUtils {
     public static final String[] SEFARIM_TANACH_EN = {"bereshit","shemot","vayikra","bamidbar","devarim","yehoshua","shoftim","shemuelA","shemuelB","melachimA",
             "melachimB","yeshaaya","yirmiya","yechezkel","hoshea","yoel","amos","ovadya","yona","micha","nachum","chavakuk","tzefanya","chagay","zecharya","malachi",
             "tehilim","mishley","iyov","shirhashirim","rut","eycha","kohelet","ester","daniel","ezra","nechemya","divreyhayamimA","divreyhayamimB"};
+    public static final String[] SEFARIM_TANACH_URI_EN = {"tanach-bereshit",
+            "tanach-shemot",
+            "tanach-vayikra",
+            "tanach-bamidbar",
+            "tanach-devarim",
+            "tanach-yehoshua",
+            "tanach-shoftim",
+            "tanach-shemuelA",
+            "tanach-shemuelB",
+            "tanach-melachimA",
+            "tanach-melachimB",
+            "tanach-yeshaaya",
+            "tanach-yirmiya",
+            "tanach-yechezkel",
+            "tanach-hoshea",
+            "tanach-yoel",
+            "tanach-amos",
+            "tanach-ovadya",
+            "tanach-yona",
+            "tanach-micha",
+            "tanach-nachum",
+            "tanach-chavakuk",
+            "tanach-tzefanya",
+            "tanach-chagay",
+            "tanach-zecharya",
+            "tanach-malachi",
+            "tanach-tehilim",
+            "tanach-mishley",
+            "tanach-iyov",
+            "tanach-shirhashirim",
+            "tanach-rut",
+            "tanach-eycha",
+            "tanach-kohelet",
+            "tanach-ester",
+            "tanach-daniel",
+            "tanach-ezra",
+            "tanach-nechemya",
+            "tanach-divreyhayamimA",
+            "tanach-divreyhayamimB"
+    };
+
     public static final String[] PARASHOT_HE = {"בראשית","נח","לך לך","וירא","חיי שרה","תולדות","ויצא","וישלח","וישב","מקץ","לחנוכה","ויגש","ויחי","שמות","וארא","בא","בשלח","יתרו","משפטים","פרשת שקלים","תרומה","תצוה","פרשת זכור","לפורים","כי תשא","פרשת פרה","ויקהל","פקודי","ויקרא","פרשת החודש","צו","לשבת הגדול","פסח","שמיני","תזריע","מצורע","אחרי מות","קדושים","אמור","בהר","בחוקתי","במדבר","שבועות","נשא","בהעלותך","שלח","קרח","חקת","בלק","פנחס","מטות","מסעי","דברים","ואתחנן","עקב","ראה","שופטים","כי תצא","כי תבוא","נצבים","וילך","לחודש אלול","ראש השנה","שבת תשובה","ליום כיפור","האזינו","לסוכות","וזאת הברכה"};
 
     private static List<String> HEB_LETTERS_LIST = new ArrayList<>();
@@ -33,6 +74,18 @@ public class JbsUtils {
             result += getGimetryValue(letter);
 
         return result;
+    }
+
+    public static String removeNikkud(String hebString){
+        StringBuilder newString = new StringBuilder();
+        for(int j=0; j<hebString.length() ; j++) {
+            char c = hebString.charAt(j);
+            if(c == '־')
+                newString.append("-");
+            else if(c <1425 || c >1479)
+                newString.append(c);
+        }
+        return newString.toString();
     }
 
     private static int getGimetryValue(char letter) {
@@ -89,7 +142,7 @@ public class JbsUtils {
     public static String numberToHebrew(int num) {
         String[] tenLetters = {"א", "ב", "ג", "ד", "ה", "ו", "ז", "ח", "ט"};
         String[] overTenLetters = {"י", "כ", "ל", "מ", "נ", "ס", "ע", "פ", "צ"};
-        String[] overHundretLetters = {"ק", "ר", "ש", "ת", "תק", "תר", "תש", "תת", "תתק"};
+        String[] overHundredLetters = {"ק", "ר", "ש", "ת", "תק", "תר", "תש", "תת", "תתק"};
         String answer = "";
         while (num > 0) {
             if (num>2000){
@@ -103,7 +156,7 @@ public class JbsUtils {
                 continue;
             }
             if (num >= 100) {
-                answer = answer + overHundretLetters[num / 100 - 1];
+                answer = answer + overHundredLetters[num / 100 - 1];
                 num = num - (num / 100) * 100;
                 continue;
             }
