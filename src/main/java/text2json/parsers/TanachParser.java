@@ -7,8 +7,7 @@ import text2json.LineMatcher;
 
 import java.io.IOException;
 
-import static text2json.JbsOntology.JBO_WITHIN;
-import static text2json.JbsOntology.JBR_SECTION;
+import static text2json.JbsOntology.*;
 
 /**
  * Created by orel on 25/07/18.
@@ -17,6 +16,11 @@ public class TanachParser extends JbsParser {
 
     String[] booksNames = JbsUtils.SEFARIM_TANACH_URI_EN;
     private int book_index = 0, perek = 0, parasha = 0, pasuk = 0, position = 0;
+
+    public TanachParser() {
+        createPackagesJson();
+    }
+
     @Override
     protected void registerMatchers() {
         registerMatcher(new LineMatcher() {
@@ -53,9 +57,19 @@ public class TanachParser extends JbsParser {
             case BEGIN_PEREK:
                 perek++;
                 pasuk = 0;
+                addPackageUri(getPerekUri());
+                addLabel(packagesJsonObject(), getPerekLabel());
+                addPosition(packagesJsonObject(), perek);
+                addBook(packagesJsonObject(), getCurrentBookName());
+                packagesJsonObjectFlush();
                 break;
             case BEGIN_PARASHA:
                 parasha++;
+                addPackageUri(getParashaUri());
+                addLabel(packagesJsonObject(), line.getLine());
+                addPosition(packagesJsonObject(), parasha);
+                addBook(packagesJsonObject(), getCurrentBookName());
+                packagesJsonObjectFlush();
                 break;
             case NO_MATCH: //every regular line is a pasuk
                 if(line.wordCount() == 0) break;
@@ -67,8 +81,8 @@ public class TanachParser extends JbsParser {
                 addUri(getUri());
                 addPosition(jsonObject(), position);
                 addLabel(jsonObject(), getLabel());
-                jsonObject().addToArray(JBO_WITHIN, getPerekUri());
-                if(book_index <= 5) jsonObject().addToArray(JBO_WITHIN, getParashaUri());
+                jsonObject().addToArray(JBO_WITHIN, JBR_SECTION+getPerekUri());
+                if(book_index <= 5) jsonObject().addToArray(JBO_WITHIN, JBR_SECTION+getParashaUri());
                 jsonObjectFlush();
                 break;
         }
@@ -79,10 +93,10 @@ public class TanachParser extends JbsParser {
     }
 
     private String getParashaUri() {
-        return JBR_SECTION + "tanach-parasha-" + parasha;
+        return "tanach-parasha-" + parasha;
     }
     private String getPerekUri() {
-        return JBR_SECTION + "tanach-" + book_index + "-" + perek;
+        return "tanach-" + book_index + "-" + perek;
     }
 
     @Override
@@ -94,6 +108,12 @@ public class TanachParser extends JbsParser {
         String hebrewBookName = JbsUtils.SEFARIM_TANACH_HE[book_index-1];
         return hebrewBookName + " " +
                 JbsUtils.numberToHebrew(perek) + " " + JbsUtils.numberToHebrew(pasuk);
+    }
+
+    private String getPerekLabel() {
+        String hebrewBookName = JbsUtils.SEFARIM_TANACH_HE[book_index-1];
+        return hebrewBookName + " פרק " +
+                JbsUtils.numberToHebrew(perek);
     }
 
     @Override
