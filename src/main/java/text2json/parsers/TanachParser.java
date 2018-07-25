@@ -7,6 +7,9 @@ import text2json.LineMatcher;
 
 import java.io.IOException;
 
+import static text2json.JbsOntology.JBO_WITHIN;
+import static text2json.JbsOntology.JBR_SECTION;
+
 /**
  * Created by orel on 25/07/18.
  */
@@ -46,6 +49,7 @@ public class TanachParser extends JbsParser {
             case BEGIN_SEFER:
                 book_index++;
                 perek = 0;
+                parasha = 0;
                 break;
             case BEGIN_PEREK:
                 perek++;
@@ -64,6 +68,8 @@ public class TanachParser extends JbsParser {
                 addUri(getUri());
                 addPosition(jsonObject(), position);
                 addLabel(jsonObject(), getLabel());
+                jsonObject().addToArray(JBO_WITHIN, getPerekUri());
+                if(parasha > 0) jsonObject().addToArray(JBO_WITHIN, getParashaUri());
                 jsonObjectFlush();
                 break;
         }
@@ -71,6 +77,13 @@ public class TanachParser extends JbsParser {
 
     private String getCurrentBookName() {
         return booksNames[book_index-1];
+    }
+
+    private String getParashaUri() {
+        return JBR_SECTION + "tanach-parasha-" + parasha;
+    }
+    private String getPerekUri() {
+        return JBR_SECTION + "tanach-" + book_index + "-" + perek;
     }
 
     @Override
