@@ -49,7 +49,6 @@ public class TanachParser extends JbsParser {
             case BEGIN_SEFER:
                 book_index++;
                 perek = 0;
-                parasha = 0;
                 break;
             case BEGIN_PEREK:
                 perek++;
@@ -69,7 +68,7 @@ public class TanachParser extends JbsParser {
                 addPosition(jsonObject(), position);
                 addLabel(jsonObject(), getLabel());
                 jsonObject().addToArray(JBO_WITHIN, getPerekUri());
-                if(parasha > 0) jsonObject().addToArray(JBO_WITHIN, getParashaUri());
+                if(book_index <= 5) jsonObject().addToArray(JBO_WITHIN, getParashaUri());
                 jsonObjectFlush();
                 break;
         }
