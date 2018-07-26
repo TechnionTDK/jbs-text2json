@@ -93,9 +93,13 @@ public abstract class MefareshParser extends JbsParser {
 
             case NO_MATCH:
                 String strLine = line.getLine();
+                strLine = strLine.replace("<b>", "");
+                strLine = strLine.replace("</b>", "");
+                strLine = strLine.replace("<br>", "");
+                strLine = strLine.replace("</br>", "");
                 String strNoNikud = JbsUtils.removeNikkud(strLine);
                 appendText(strNoNikud);
-                if(!strNoNikud.equals(strLine)) appendNikudText(line.getLine());
+                if(!strNoNikud.equals(strLine)) appendNikudText(strLine);
                 break;
         }
     }
