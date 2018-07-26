@@ -78,10 +78,10 @@ public class TanachParser extends JbsParser {
                 String nikudText = line.getLine().substring(0,line.getLine().length() - 1)
                         + "\u202B" + ":" + "\u202C";
                 appendNikudText(nikudText);
-                addBook(jsonObject(), getCurrentBookName());
+                addBook(getCurrentBookName());
                 addTextUri(getUri());
-                addPosition(jsonObject(), position);
-                addLabel(jsonObject(), getLabel());
+                addPosition(position);
+                addLabel(getLabel());
                 addWithin(JbsUtils.getTanachPerekUri(book_index, perek));
                 if(book_index <= 5) addWithin(JbsUtils.getTorahParashaUri(parasha));
                 jsonObjectFlush();

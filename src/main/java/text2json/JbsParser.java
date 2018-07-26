@@ -18,9 +18,8 @@ public abstract class JbsParser extends Parser {
         obj.add(JBO_POSITION, position);
     }
 
-    protected void addTextUri(String value) {
-        jsonObject().add(URI, JBR_TEXT + value);
-    }
+    protected void addTextUri(String value) {jsonObject().add(URI, JBR_TEXT + value);}
+    protected void addTextInterprets(String value) { jsonObject().add(JBO_INTERPRETS, JBR_TEXT + value);}
     protected void addTextUri(JsonObject obj, String value) {
         obj.add(URI, JBR_TEXT + value);
     }
@@ -44,6 +43,7 @@ public abstract class JbsParser extends Parser {
     protected int toInt(String num) { return Integer.parseInt(num); }
 
     protected void addText(String text) {jsonObject().add(JBO_TEXT, text); }
+    protected void addName(String name) {jsonObject().add(JBO_NAME, name); }
     protected void appendText(String text) {jsonObject().append(JBO_TEXT, text);}
     protected void appendNikudText(String text) {jsonObject().append(JBO_TEXT_NIKUD, text);
     }

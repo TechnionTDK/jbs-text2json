@@ -152,6 +152,9 @@
   {"parser":"text2json.parsers.ShemonaPerakimParser",
     "input": "shemonaperakim",
     "output": "shemonaperakim"},
+  {"parser":"text2json.parsers.RambanParser",
+    "input": "ramban",
+    "output": "ramban"},
   {"parser":"text2json.parsers.NefeshHachaimParser",
     "input": "nefeshhachaim",
     "output": "nefeshhachaim"}
