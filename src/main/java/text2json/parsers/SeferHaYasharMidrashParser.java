@@ -111,7 +111,7 @@ public class SeferHaYasharMidrashParser extends JbsParser {
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 addBook(getBookId());
-                addUri(getBookId()+"-0");
+                addTextUri(getBookId()+"-0");
                 addPosition(0);
                 addLabel("ספר הישר (מדרש) הקדמה");
                 packagesJsonObjectFlush();
@@ -122,7 +122,7 @@ public class SeferHaYasharMidrashParser extends JbsParser {
                 jsonObjectFlush();
                 parashaNum++;
                 addBook(getBookId());
-                addUri(getUri());
+                addTextUri(getUri());
                 addWithin(getBookId()+"-" + perekNum);
                 addPosition(position);
                 position++;
@@ -135,7 +135,7 @@ public class SeferHaYasharMidrashParser extends JbsParser {
                 jsonObjectFlush();
                 parashaNum++;
                 addBook(getBookId());
-                addUri(getBookId()+"-" + perekNum + "-0");
+                addTextUri(getBookId()+"-" + perekNum + "-0");
                 addWithin(getBookId());
                 addPosition(position);
                 position++;

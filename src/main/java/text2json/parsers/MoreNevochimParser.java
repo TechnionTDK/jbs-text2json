@@ -113,7 +113,7 @@ public class MoreNevochimParser extends JbsParser {
                 perekNum++;
                 position++;
                 ptihaName = line.getLine();
-                addUri( getUri());
+                addTextUri( getUri());
                 addBook( getBookId());
                 addPosition( position);
                 addLabel("מורה נבוכים הקדמות המתרגמים " + ptihaName);
@@ -141,7 +141,7 @@ public class MoreNevochimParser extends JbsParser {
                 jsonObjectFlush();
                 perekNum=0;
                 position++;
-                addUri( getUri());
+                addTextUri( getUri());
                 addPosition( position);
                 addBook( getBookId());
                 addWithin( getBookId()+"-" + partNum);
@@ -154,7 +154,7 @@ public class MoreNevochimParser extends JbsParser {
                 perekNum++;
                 position++;
                 perekName = HEB_LETTERS_INDEX[perekNum - 1];
-                addUri( getUri());
+                addTextUri( getUri());
                 addPosition( position);
                 addBook( getBookId());
                 addWithin( getBookId()+"-" + partNum);

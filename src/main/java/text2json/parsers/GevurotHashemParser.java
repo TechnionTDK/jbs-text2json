@@ -59,7 +59,7 @@ public class GevurotHashemParser extends JbsParser {
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 hakdamaNum++;
-                addUri( getBookId()+"-0-" + (hakdamaNum-1));
+                addTextUri( getBookId()+"-0-" + (hakdamaNum-1));
                 addBook( getBookId());
                 addPosition(hakdamaNum);
                 if (hakdamaNum ==1)
@@ -75,7 +75,7 @@ public class GevurotHashemParser extends JbsParser {
                 jsonObjectFlush();
                 chapterNum++;
                 String chapterName = HEB_LETTERS_INDEX[chapterNum-1];
-                addUri( getUri());
+                addTextUri( getUri());
                 addPosition( chapterNum+3);
                 addBook( getBookId());
                 String label = "גבורות השם " + chapterName;

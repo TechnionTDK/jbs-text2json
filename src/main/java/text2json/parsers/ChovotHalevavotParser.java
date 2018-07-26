@@ -91,7 +91,7 @@ public class ChovotHalevavotParser extends JbsParser {
                 jsonObjectFlush();
                 perekNum=0;
                 position++;
-                addUri( getUri());
+                addTextUri( getUri());
                 addPosition( position);
                 addLabel("חובות הלבבות הקדמת המחבר");
                 addBook( getBookId());
@@ -120,7 +120,7 @@ public class ChovotHalevavotParser extends JbsParser {
                 jsonObjectFlush();
                 perekNum=0;
                 position++;
-                addUri( getUri());
+                addTextUri( getUri());
                 addPosition( position);
                 addBook( getBookId());
                 addWithin( getBookId() + "-" + shaarNum);
@@ -133,7 +133,7 @@ public class ChovotHalevavotParser extends JbsParser {
                 perekNum++;
                 position++;
                 perekName = HEB_LETTERS_INDEX[perekNum - 1];
-                addUri( getUri());
+                addTextUri( getUri());
                 addBook( getBookId());
                 addPosition( position);
                 addWithin( getBookId() + "-" + shaarNum);

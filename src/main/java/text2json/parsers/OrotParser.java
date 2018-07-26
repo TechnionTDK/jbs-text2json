@@ -119,7 +119,7 @@ public class OrotParser extends JbsParser {
                         perekNum++;
                         position++;
                         String hebperek = HEB_LETTERS_INDEX[perekNum - 1];
-                        addUri( getUri());
+                        addTextUri( getUri());
                         addPosition( position);
                         addBook( getBookId());
                         addWithin( getBookId()+"-" + maamarNum);
@@ -133,7 +133,7 @@ public class OrotParser extends JbsParser {
                         perekNum++;
                         position++;
                         perekName  = getPerekName (line.getLine());
-                        addUri( getUri());
+                        addTextUri( getUri());
                         addPosition( position);
                         addBook( getBookId());
                         addWithin( getBookId()+"-" + maamarNum);

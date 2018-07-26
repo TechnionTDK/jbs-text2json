@@ -78,7 +78,7 @@ public class TanachParser extends JbsParser {
                 appendText(JbsUtils.removeNikkud(line.getLine()));
                 appendNikudText(line.getLine());
                 addBook(jsonObject(), getCurrentBookName());
-                addUri(getUri());
+                addTextUri(getUri());
                 addPosition(jsonObject(), position);
                 addLabel(jsonObject(), getLabel());
                 jsonObject().addToArray(JBO_WITHIN, JBR_SECTION+getPerekUri());

@@ -107,7 +107,7 @@ public class DarcheiMosheParser extends JbsParser {
                 jsonObjectFlush();
                 seifNum++;
                 position++;
-                addUri( getUri());
+                addTextUri( getUri());
                 addPosition( position);
                 addBook( getBookId());
                 addWithin( getBookId() + "-" + turNum);

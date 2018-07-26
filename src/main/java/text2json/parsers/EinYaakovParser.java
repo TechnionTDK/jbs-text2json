@@ -91,7 +91,7 @@ public class EinYaakovParser extends JbsParser {
                 jsonObjectFlush();
                 perekNum++;
                 position++;
-                addUri( getUri());
+                addTextUri( getUri());
                 addPosition( position);
                 addBook( getBookId());
                 addWithin( getBookId()+"-" + masechetNum);

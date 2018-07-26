@@ -103,7 +103,7 @@ public class SefatEmetParser extends JbsParser {
                 position++;
                 String parashaName1 = PARASHOT_HE[parashaNum-1];
                 String seifName = HEB_LETTERS_INDEX[seifNum-1];
-                addUri( getUri());
+                addTextUri( getUri());
                 jsonObject().add(JBO_INTERPRETS, parashaName1);
                 addPosition( position);
                 addBook( getBookId());

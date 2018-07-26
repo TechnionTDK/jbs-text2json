@@ -61,7 +61,7 @@ public class DerashotMaharalParser extends JbsParser {
                 jsonObjectFlush();
                 chapterNum++;
                 String chapterName = line.getLine();
-                addUri( getUri());
+                addTextUri( getUri());
                 addPosition( chapterNum+1);
                 addBook( getBookId() );
                 String label = "דרשות מהר\"ל - " + chapterName;

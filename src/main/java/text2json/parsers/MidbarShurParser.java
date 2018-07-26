@@ -49,7 +49,7 @@ public class MidbarShurParser extends JbsParser {
                 jsonObjectFlush();
                 chapterNum++;
                 String chapterName = HEB_LETTERS_INDEX[chapterNum-1];
-                addUri( getUri());
+                addTextUri( getUri());
                 addBook( getBookId());
                 addPosition(chapterNum);
                 String label = "מדבר שור " + chapterName;

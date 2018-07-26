@@ -51,7 +51,7 @@ public class PirkeiDeRabbiEliezerParser extends JbsParser {
                 jsonObjectFlush();
                 chapterNum++;
                 String chapterName = "פרק " + numberToHebrew(chapterNum);
-                addUri( getUri());
+                addTextUri( getUri());
                 addBook( getBookId());
                 addPosition(chapterNum);
                 String label = "פרקי דרבי אליעזר " + chapterName;

@@ -69,7 +69,7 @@ public class MekhiltaDeRabbiShimonBarYochaiParser extends JbsParser {
                 jsonObjectFlush();
                 perekNum++;
                 addBook(getBookId());
-                addUri(getUri());
+                addTextUri(getUri());
                 addPosition(position);
                 position++;
                 if (partNum == 1)

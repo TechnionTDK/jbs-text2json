@@ -65,7 +65,7 @@ public class SederOlamRabbahParser extends JbsParser {
                 jsonObjectFlush();
                 chapterNum++;
                 String chapterName = line.getLine().replace("פרק ","");
-                addUri( getUri());
+                addTextUri( getUri());
                 addBook( getBookId());
                 addPosition(chapterNum);
                 String label = "סדר עולם רבה " + chapterName;

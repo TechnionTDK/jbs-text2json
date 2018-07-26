@@ -51,7 +51,7 @@ public class TanachKtivMaleParser extends JbsParser {
                 jsonObjectFlush();
                 position++;
                 firstWord = line.getFirstWord();
-                addUri(getUri());
+                addTextUri(getUri());
                 line = line.removeFirstWord().removeExtraSpaces();
                 appendText( line.getLine());
                 break;

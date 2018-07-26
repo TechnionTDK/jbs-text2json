@@ -79,7 +79,7 @@ public class TurParser extends JbsParser {
                 jsonObjectFlush();
                 simanNum++;
                 position++;
-                addUri( getUri());
+                addTextUri( getUri());
                 addPosition( position);
                 addBook( getBookId());
                 addWithin( getBookId()+"-" + turNum);

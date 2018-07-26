@@ -82,7 +82,7 @@ public class NefeshHachaimParser extends JbsParser {
                 perekNum++;
                 position++;
                 addBook(jsonObject(), getBookId());
-                addUri(getUri());
+                addTextUri(getUri());
                 addPosition(jsonObject(), position);
                 addLabel(jsonObject(), getLabel());
                 packagesJsonObjectFlush();

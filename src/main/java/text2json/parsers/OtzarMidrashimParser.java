@@ -100,7 +100,7 @@ public class OtzarMidrashimParser extends JbsParser {
                 jsonObjectFlush();
                 perekNum++;
                 addBook(getBookId());
-                addUri(getUri());
+                addTextUri(getUri());
                 addWithin(getBookId()+"-" + midrashNum);
                 addPosition(position);
                 position++;
@@ -111,7 +111,7 @@ public class OtzarMidrashimParser extends JbsParser {
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 addBook(getBookId());
-                addUri(getBookId()+"-" + midrashNum + "-" + perekNum);
+                addTextUri(getBookId()+"-" + midrashNum + "-" + perekNum);
                 perekNum++;
                 addWithin(getBookId()+"-" + midrashNum);
                 addPosition(position);

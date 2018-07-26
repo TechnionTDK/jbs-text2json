@@ -79,7 +79,7 @@ public class OrotHaKodeshParser extends JbsParser {
                 jsonObjectFlush();
                 teachingNum++;
                 position++;
-                addUri( getUri());
+                addTextUri( getUri());
                 addPosition( position);
                 addBook( getBookId());
                 addWithin( getBookId()+"-" + sectionNum);

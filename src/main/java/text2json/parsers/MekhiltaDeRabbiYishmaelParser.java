@@ -84,7 +84,7 @@ public class MekhiltaDeRabbiYishmaelParser extends JbsParser {
                 }
                 pasukNum++;
                 addBook(getBookId());
-                addUri(getUri());
+                addTextUri(getUri());
                 addWithin(getBookId()+"-" + pasukNum);
                 addPosition(position);
                 addLabel("מכילתא דרבי ישמעאל " + HEB_LETTERS_INDEX[perekNum-1] + " " + HEB_LETTERS_INDEX[pasukNum-1]);

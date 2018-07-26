@@ -51,7 +51,7 @@ public class YalkutShimonionNachParser extends JbsParser {
 //                packagesJsonObjectFlush();
                 jsonObjectFlush();
                 chapterNum++;
-                addUri( getUri());
+                addTextUri( getUri());
                 addBook( getBookId());
                 addPosition(chapterNum);
                 String label = "ילקוט שמעוני על נ\"ך " + numberToHebrew(chapterNum);

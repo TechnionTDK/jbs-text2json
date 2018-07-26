@@ -76,7 +76,7 @@ public class NetivotOlamParser extends JbsParser {
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 position++;
-                addUri(getBookId()+"-" + perekNum);
+                addTextUri(getBookId()+"-" + perekNum);
                 addBook( getBookId());
                 addPosition( position);
                 addLabel("נתיבות עולם הקדמה");
@@ -100,7 +100,7 @@ public class NetivotOlamParser extends JbsParser {
                 perekNum++;
                 position++;
                 String perekName = HEB_LETTERS_INDEX[perekNum-1];
-                addUri( getUri());
+                addTextUri( getUri());
                 addPosition( position);
                 addBook( getBookId());
                 addWithin( getBookId()+"-" + nativNum);

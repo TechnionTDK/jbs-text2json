@@ -135,7 +135,7 @@ public class TannaDeBeiEliyahuZutaParser extends JbsParser {
                 jsonObjectFlush();
                 perekNum++;
                 addBook(getBookId());
-                addUri(getUri());
+                addTextUri(getUri());
                 addWithin(getBookId()+"-" + partNum);
                 addPosition(position);
                 position++;
@@ -146,7 +146,7 @@ public class TannaDeBeiEliyahuZutaParser extends JbsParser {
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 addBook(getBookId());
-                addUri(getBookId()+"-" + partNum + "-" + perekNum);
+                addTextUri(getBookId()+"-" + partNum + "-" + perekNum);
                 perekNum++;
                 addWithin(getBookId()+"-" + partNum);
                 addPosition(position);
@@ -159,7 +159,7 @@ public class TannaDeBeiEliyahuZutaParser extends JbsParser {
                 jsonObjectFlush();
                 perekNum++;
                 addBook(getBookId());
-                addUri(getBookId()+"-" + partNum + "-" + perekNum);
+                addTextUri(getBookId()+"-" + partNum + "-" + perekNum);
                 addWithin(getBookId()+"-" + partNum);
                 addPosition(position);
                 position++;
@@ -171,7 +171,7 @@ public class TannaDeBeiEliyahuZutaParser extends JbsParser {
                 jsonObjectFlush();
                 perekNum++;
                 addBook(getBookId());
-                addUri(getBookId()+"-" + partNum + "-" + perekNum);
+                addTextUri(getBookId()+"-" + partNum + "-" + perekNum);
                 addWithin(getBookId()+"-" + partNum);
                 addPosition(position);
                 position++;
@@ -184,7 +184,7 @@ public class TannaDeBeiEliyahuZutaParser extends JbsParser {
                 jsonObjectFlush();
                 perekNum++;
                 addBook(getBookId());
-                addUri(getBookId()+"-" + partNum + "-" + perekNum);
+                addTextUri(getBookId()+"-" + partNum + "-" + perekNum);
                 addWithin(getBookId()+"-" + partNum);
                 addPosition(position);
                 position++;

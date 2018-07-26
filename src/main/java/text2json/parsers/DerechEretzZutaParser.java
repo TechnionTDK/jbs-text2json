@@ -48,7 +48,7 @@ public class DerechEretzZutaParser extends JbsParser {
             case BEGIN_PEREK:
                 jsonObjectFlush();
                 chapterNum++;
-                addUri( getUri());
+                addTextUri( getUri());
                 addBook( getBookId());
                 addPosition(chapterNum);
                 String label = "דרך ארץ זוטא " + numberToHebrew(chapterNum);

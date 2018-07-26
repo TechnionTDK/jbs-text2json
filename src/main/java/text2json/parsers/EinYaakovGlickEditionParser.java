@@ -79,7 +79,7 @@ public class EinYaakovGlickEditionParser extends JbsParser {
                 jsonObjectFlush();
                 perekNum++;
                 addBook(getBookId());
-                addUri(getUri());
+                addTextUri(getUri());
                 addWithin(getBookId()+"-" + tractateNum);
                 addPosition(position);
                 position++;

@@ -53,14 +53,14 @@ public class NetzachIsraelParser extends JbsParser {
                 first = 1;
                 if (chapterNum>0) {
                     String chapterName = HEB_LETTERS_INDEX[chapterNum - 1];
-                    addUri( getUri());
+                    addTextUri( getUri());
                     addPosition( chapterNum+1);
                     addBook( getBookId());
                     String label = "נצח ישראל " + chapterName;
                     addLabel( label);
                 }
                 else{
-                    addUri( getUri());
+                    addTextUri( getUri());
                     addPosition( chapterNum+1);
                     addBook( getBookId());
                     String label = "נצח ישראל הקדמה";

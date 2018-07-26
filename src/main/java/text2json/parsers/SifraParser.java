@@ -105,7 +105,7 @@ public class SifraParser extends JbsParser {
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 addBook(getBookId());
-                addUri(getBookId()+"-0");
+                addTextUri(getBookId()+"-0");
                 addPosition(0);
                 addLabel("ספרא הקדמה" );
                 packagesJsonObjectFlush();
@@ -115,7 +115,7 @@ public class SifraParser extends JbsParser {
                 jsonObjectFlush();
                 perekNum++;
                 addBook(getBookId());
-                addUri(getPerekUri());
+                addTextUri(getPerekUri());
                 addWithin(getBookId()+"-" + parashaNum);
                 addPosition(position);
                 position++;
@@ -127,7 +127,7 @@ public class SifraParser extends JbsParser {
                 jsonObjectFlush();
                 subParahaNum++;
                 addBook(getBookId());
-                addUri(getSubParashaUri());
+                addTextUri(getSubParashaUri());
                 addWithin(getBookId()+"-" + parashaNum);
                 addPosition(position);
                 position++;

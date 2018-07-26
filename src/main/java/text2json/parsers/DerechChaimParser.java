@@ -77,7 +77,7 @@ public class DerechChaimParser extends JbsParser {
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 position++;
-                addUri( getUri());
+                addTextUri( getUri());
                 addBook( getBookId() );
                 addPosition(position);
                 addLabel("דרך חיים הקדמה");
@@ -100,7 +100,7 @@ public class DerechChaimParser extends JbsParser {
                 jsonObjectFlush();
                 mishnaNum++;
                 position++;
-                addUri( getUri());
+                addTextUri( getUri());
                 addPosition(position);
                 addBook( getBookId() );
                 jsonObject().add(JBO_INTERPRETS, JBR_TEXT + "mishna-4-9-" + perekNum+"-"+mishnaNum);

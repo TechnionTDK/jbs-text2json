@@ -60,7 +60,7 @@ public class BeerHagolaParser extends JbsParser {
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 beerNum++;
-                addUri( getUri());
+                addTextUri( getUri());
                 addBook( getBookId());
                 addPosition( beerNum+1);
                 addLabel("באר הגולה הקדמה");
@@ -75,7 +75,7 @@ public class BeerHagolaParser extends JbsParser {
                 }
                 beerNum++;
                 String beerName =  HEB_LETTERS_INDEX[beerNum-1];
-                addUri( getUri());
+                addTextUri( getUri());
                 addBook( getBookId());
                 addPosition( beerNum+1);
                 String label = "באר הגולה " + beerName;

@@ -18,11 +18,11 @@ public abstract class JbsParser extends Parser {
         obj.add(JBO_POSITION, position);
     }
 
-    protected void addUri(String uri) {
-        jsonObject().add(URI, JBR_TEXT + uri);
+    protected void addTextUri(String value) {
+        jsonObject().add(URI, JBR_TEXT + value);
     }
-    protected void addUri(JsonObject obj, String uri) {
-        obj.add(URI, JBR_TEXT + uri);
+    protected void addTextUri(JsonObject obj, String value) {
+        obj.add(URI, JBR_TEXT + value);
     }
 
     protected void addLabel(String label) {
@@ -32,14 +32,14 @@ public abstract class JbsParser extends Parser {
         obj.add(RDFS_LABEL, label);
     }
 
-    protected void addWithin(String wi) {
-        jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + wi);
+    protected void addWithin(String value) {
+        jsonObject().addToArray(JBO_WITHIN, JBR_SECTION + value);
     }
-    protected void addWithin(JsonObject obj, String wi) {
-        obj.addToArray(JBO_WITHIN, JBR_SECTION + wi);
+    protected void addWithin(JsonObject obj, String value) {
+        obj.addToArray(JBO_WITHIN, JBR_SECTION + value);
     }
 
-    protected void addPackageUri(String pUri) { packagesJsonObject().add(URI, JBR_SECTION + pUri); }
+    protected void addPackageUri(String value) { packagesJsonObject().add(URI, JBR_SECTION + value); }
 
     protected int toInt(String num) { return Integer.parseInt(num); }
 

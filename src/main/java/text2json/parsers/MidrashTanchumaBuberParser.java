@@ -108,7 +108,7 @@ public class MidrashTanchumaBuberParser extends JbsParser {
                 jsonObjectFlush();
                 simanNum++;
                 addBook(getBookId());
-                addUri(getUri());
+                addTextUri(getUri());
                 addWithin(getBookId()+"-" + parashaNum);
                 addPosition(position);
                 position++;

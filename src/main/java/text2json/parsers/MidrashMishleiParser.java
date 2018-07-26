@@ -83,7 +83,7 @@ public class MidrashMishleiParser extends JbsParser {
                 position++;
                 int end = line.getLine().indexOf(":");
                 String pasukLabel = line.getLine().substring(1,end-1);
-                addUri( getUri());
+                addTextUri( getUri());
                 addBook( getBookId());
                 addPosition(position);
                 addLabel(pasukLabel);

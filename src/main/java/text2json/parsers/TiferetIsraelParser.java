@@ -60,7 +60,7 @@ public class TiferetIsraelParser extends JbsParser {
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 chapterNum++;
-                addUri( getUri());
+                addTextUri( getUri());
                 addPosition( chapterNum+1);
                 addLabel("תפארת ישראל - הקדמה");
                 addBook( getBookId());
@@ -71,7 +71,7 @@ public class TiferetIsraelParser extends JbsParser {
                 jsonObjectFlush();
                 chapterNum++;
                 String chapterName =HEB_LETTERS_INDEX[chapterNum-1];
-                addUri( getUri());
+                addTextUri( getUri());
                 addPosition( chapterNum+1);
                 addBook( getBookId());
                 String label = "תפארת ישראל " + chapterName;

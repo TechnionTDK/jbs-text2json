@@ -76,7 +76,7 @@ public class TalmudYerushalmiParser extends JbsParser {
                     subDafNum=2;
                 }
                 position++;
-                addUri( getUri());
+                addTextUri( getUri());
                 addPosition( position);
                 addBook( getBookId());
                 addWithin( getBookId()+"-" + masechetNum);

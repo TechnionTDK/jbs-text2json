@@ -62,7 +62,7 @@ public class ShemonaPerakimParser extends JbsParser {
                 jsonObjectFlush();
                 perekNum++;
                 addBook(jsonObject(), getBookId());
-                addUri(getBookId()+"-" + perekNum);
+                addTextUri(getBookId()+"-" + perekNum);
                 addPosition(jsonObject(), perekNum);
                 addLabel(jsonObject(), "שמונה פרקים לרמב\"ם " + JbsUtils.numberToHebrew(perekNum));
                 break;
@@ -70,7 +70,7 @@ public class ShemonaPerakimParser extends JbsParser {
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 addBook(getBookId());
-                addUri(getBookId()+"-0");
+                addTextUri(getBookId()+"-0");
                 addPosition(0);
                 addLabel("שמונה פרקים לרמב\"ם הקדמה");
                 break;

@@ -50,7 +50,7 @@ public class SifreiDevarimParser extends JbsParser {
             case BEGIN_PEREK:
                 jsonObjectFlush();
                 chapterNum++;
-                addUri( getUri());
+                addTextUri( getUri());
                 addBook( getBookId());
                 addPosition(chapterNum);
                 String label = "ספרי דברים " + numberToHebrew(chapterNum);

@@ -60,7 +60,7 @@ public class OrChadashParser extends JbsParser {
             case BEGIN_HAKDAMA:
                 jsonObjectFlush();
                 hakdamaNum++;
-                addUri( getBookId()+"-0" +hakdamaNum);
+                addTextUri( getBookId()+"-0" +hakdamaNum);
                 addBook(getBookId());
                 addPosition(hakdamaNum+1);
                 if (hakdamaNum ==00)
@@ -74,7 +74,7 @@ public class OrChadashParser extends JbsParser {
                 jsonObjectFlush();
                 chapterNum++;
                 String chapterName =HEB_LETTERS_INDEX[chapterNum-1];
-                addUri( getUri());
+                addTextUri( getUri());
                 addPosition(chapterNum+2);
                 addBook(getBookId());
                 String label = "אור חדש " + chapterName;

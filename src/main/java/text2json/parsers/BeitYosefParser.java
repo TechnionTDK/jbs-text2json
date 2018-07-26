@@ -113,7 +113,7 @@ public class BeitYosefParser extends JbsParser {
                 }
 
                 seifNum++;
-                addUri( getUri());
+                addTextUri( getUri());
                 addPosition( position);
                 addBook( getBookId());
                 addWithin( getBookId() + "-" + turNum);

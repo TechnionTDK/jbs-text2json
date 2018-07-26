@@ -50,7 +50,7 @@ public class PesiktaRabbatiParser extends JbsParser {
             case BEGIN_PEREK:
                 jsonObjectFlush();
                 chapterNum++;
-                addUri( getUri());
+                addTextUri( getUri());
                 addBook( getBookId());
                 addPosition(chapterNum);
                 String label = "פסיקתא רבתי " + numberToHebrew(chapterNum);
