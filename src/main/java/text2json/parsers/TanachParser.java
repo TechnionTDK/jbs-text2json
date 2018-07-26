@@ -7,15 +7,12 @@ import text2json.LineMatcher;
 
 import java.io.IOException;
 
-import static text2json.JbsOntology.*;
-
 /**
  * Created by orel on 25/07/18.
  */
 public class TanachParser extends JbsParser {
 
-    String[] booksNames = JbsUtils.SEFARIM_TANACH_URI_EN;
-    private int book_index = 0, perek = 0, parasha = 0, pasuk = 0, position = 0;
+    private int book_index = 0, perek = 0, parasha = 0, pasuk = 0, position = 0, perek_position = 0;
 
     public TanachParser() {
         createPackagesJson();
@@ -56,16 +53,17 @@ public class TanachParser extends JbsParser {
                 break;
             case BEGIN_PEREK:
                 perek++;
+                perek_position++;
                 pasuk = 0;
-                addPackageUri(getPerekUri());
+                addPackageUri(JbsUtils.getTanachPerekUri(book_index, perek));
                 addLabel(packagesJsonObject(), getPerekLabel());
-                addPosition(packagesJsonObject(), perek);
+                addPosition(packagesJsonObject(), perek_position);
                 addBook(packagesJsonObject(), getCurrentBookName());
                 packagesJsonObjectFlush();
                 break;
             case BEGIN_PARASHA:
                 parasha++;
-                addPackageUri(getParashaUri());
+                addPackageUri(JbsUtils.getTorahParashaUri(parasha));
                 addLabel(packagesJsonObject(), line.getLine());
                 addPosition(packagesJsonObject(), parasha);
                 addBook(packagesJsonObject(), getCurrentBookName());
@@ -76,32 +74,28 @@ public class TanachParser extends JbsParser {
                 position++;
                 pasuk++;
                 appendText(JbsUtils.removeNikkud(line.getLine()));
-                appendNikudText(line.getLine());
+                //putting a correct ":" at the end of the string. the u202 characters are to fix right-to-left issues
+                String nikudText = line.getLine().substring(0,line.getLine().length() - 1)
+                        + "\u202B" + ":" + "\u202C";
+                appendNikudText(nikudText);
                 addBook(jsonObject(), getCurrentBookName());
                 addTextUri(getUri());
                 addPosition(jsonObject(), position);
                 addLabel(jsonObject(), getLabel());
-                jsonObject().addToArray(JBO_WITHIN, JBR_SECTION+getPerekUri());
-                if(book_index <= 5) jsonObject().addToArray(JBO_WITHIN, JBR_SECTION+getParashaUri());
+                addWithin(JbsUtils.getTanachPerekUri(book_index, perek));
+                if(book_index <= 5) addWithin(JbsUtils.getTorahParashaUri(parasha));
                 jsonObjectFlush();
                 break;
         }
     }
 
     private String getCurrentBookName() {
-        return booksNames[book_index-1];
-    }
-
-    private String getParashaUri() {
-        return "tanach-parasha-" + parasha;
-    }
-    private String getPerekUri() {
-        return "tanach-" + book_index + "-" + perek;
+        return JbsUtils.SEFARIM_TANACH_URI_EN[book_index-1];
     }
 
     @Override
     protected String getUri() {
-        return getBookId() + "-" + book_index + "-" + perek + "-" + pasuk;
+        return JbsUtils.getPasukUri(book_index, perek, pasuk);
     }
 
     private String getLabel() {

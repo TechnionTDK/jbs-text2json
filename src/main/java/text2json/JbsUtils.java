@@ -88,6 +88,17 @@ public class JbsUtils {
         return newString.toString();
     }
 
+    public static String getPasukUri(int sefer, int perek, int pasuk) {
+        return "tanach-" + sefer + "-" + perek + "-" + pasuk;
+    }
+
+    public static String getTanachPerekUri(int sefer, int perek) {
+        return "tanach-" + sefer + "-" + perek;
+    }
+    public static String getTorahParashaUri(int parasha) {
+        return "tanach-parasha-" + parasha;
+    }
+
     private static int getGimetryValue(char letter) {
         switch (letter) {
             case 'א':
