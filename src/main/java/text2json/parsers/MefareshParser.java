@@ -12,8 +12,10 @@ import java.io.IOException;
 public abstract class MefareshParser extends JbsParser {
     private final static String BEGIN_TITLE = "begin_title";
 
-    private int book_index = 0, perek = 0, pasuk = 0, position = 1, perek_position = 0;
-
+    private int book_index = 0;
+    private int perek = 0;
+    private int pasuk = 0;
+    private int position = 1;
 
     @Override
     protected void registerMatchers() {
@@ -72,36 +74,38 @@ public abstract class MefareshParser extends JbsParser {
                 break;
             case BEGIN_PEREK:
                 perek++;
-                perek_position++;
                 pasuk = 0;
-                jsonFlushTextOrClear(); //for the hakdama and other verses
+                jsonFlushTextOrClear();
                 //for now i'm ignoring the packages file. im not sure what to do with it
-//                addPackageUri(JbsUtils.getTanachPerekUri(book_index, perek));
-//                addLabel(packagesJsonObject(), getPerekLabel());
-//                addPosition(packagesJsonObject(), perek_position);
-//                addBook(packagesJsonObject(), getCurrentBookName());
-//                packagesJsonObjectFlush();
+                /*addPackageUri(JbsUtils.getTanachPerekUri(book_index, perek));
+                addLabel(packagesJsonObject(), getPerekLabel());
+                addPosition(packagesJsonObject(), perek_position);
+                addBook(packagesJsonObject(), getCurrentBookName());
+                packagesJsonObjectFlush();*/
                 break;
 
             case BEGIN_PERUSH:
-                position++;
                 pasuk++;
-                //no text is just an empty verse
                 jsonFlushTextOrClear();
                 addInformation();
                 break;
 
             case NO_MATCH:
-                String strLine = line.getLine();
-                strLine = strLine.replace("<b>", "");
-                strLine = strLine.replace("</b>", "");
-                strLine = strLine.replace("<br>", "");
-                strLine = strLine.replace("</br>", "");
+                String strLine = getCleanLine(line.getLine());
                 String strNoNikud = JbsUtils.removeNikkud(strLine);
                 appendText(strNoNikud);
                 if(!strNoNikud.equals(strLine)) appendNikudText(strLine);
                 break;
         }
+    }
+
+    //cleans the line from the <b> and such characters
+    private String getCleanLine(String strLine) {
+        strLine = strLine.replace("<b>", "");
+        strLine = strLine.replace("</b>", "");
+        strLine = strLine.replace("<br>", "");
+        strLine = strLine.replace("</br>", "");
+        return strLine;
     }
 
     private void addInformation() {
@@ -116,6 +120,7 @@ public abstract class MefareshParser extends JbsParser {
     }
 
     //flushes the json if it has text. otherwise clears it
+    //this is needed because some of the Verses in the text are empty
     private void jsonFlushTextOrClear() throws IOException{
         JsonObject jo = jsonObject();
         if(!jo.hasKey(JBO_TEXT)) {
@@ -123,6 +128,7 @@ public abstract class MefareshParser extends JbsParser {
             return;
         }
         jsonObjectFlush();
+        position++;
     }
 
     private String getCurrentBookName() {
@@ -138,7 +144,7 @@ public abstract class MefareshParser extends JbsParser {
     private String getTanachUri() {
         if(perek > 0) return JbsUtils.getPasukUri(book_index, perek, pasuk);
         else { //hakdama (intro)
-            return "tanach-" + book_index + "-0";
+            return JbsUtils.getTanachPerekUri(book_index, perek);
         }
     }
 
@@ -162,6 +168,6 @@ public abstract class MefareshParser extends JbsParser {
     //this name is for the URI. no spaces allowed, only english non-caps or "-" character
     protected abstract String getMefareshName();
 
-    //this string is in the title of the mefaresh file
+    //this string is in the title of the mefaresh file and will be in the "name" property
     protected abstract String getMefareshHebrewName();
 }
