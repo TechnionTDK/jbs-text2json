@@ -51,4 +51,10 @@ public class JbsUtilsTest {
         assertEquals(1300, hebrewToNumber("תתתק"));
         assertEquals(87, hebrewToNumber("פז"));
     }
+
+    @Test
+    public void testRemoveNikkud() {
+        String text = "וְהָאָרֶץ הָיְתָה תֹהוּ וָבֹהוּ וְחשֶׁךְ עַל פְּנֵי תְהוֹם וְרוּחַ אֱלֹהִים מְרַחֶפֶת עַל פְּנֵי הַמָּיִם:";
+        assertEquals("והארץ היתה תהו ובהו וחשך על פני תהום ורוח אלהים מרחפת על פני המים:", JbsUtils.removeNikkud(text));
+    }
 }
