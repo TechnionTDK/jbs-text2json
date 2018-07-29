@@ -56,5 +56,10 @@ public class JbsUtilsTest {
     public void testRemoveNikkud() {
         String text = "וְהָאָרֶץ הָיְתָה תֹהוּ וָבֹהוּ וְחשֶׁךְ עַל פְּנֵי תְהוֹם וְרוּחַ אֱלֹהִים מְרַחֶפֶת עַל פְּנֵי הַמָּיִם:";
         assertEquals("והארץ היתה תהו ובהו וחשך על פני תהום ורוח אלהים מרחפת על פני המים:", JbsUtils.removeNikkud(text));
+
+        //this string is directly copied from the raw text. the difference is in the last character
+        text = "וְהָאָרֶץ הָיְתָה תֹהוּ וָבֹהוּ וְחֹשֶׁךְ עַל־פְּנֵי תְהוֹם וְרוּחַ אֱלֹהִים מְרַחֶפֶת עַל־פְּנֵי הַמָּיִם׃";
+        assertEquals("והארץ היתה תהו ובהו וחשך על-פני תהום ורוח אלהים מרחפת על-פני המים", JbsUtils.removeNikkud(text));
+
     }
 }
