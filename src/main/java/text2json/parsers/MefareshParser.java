@@ -11,6 +11,7 @@ import java.io.IOException;
  */
 public abstract class MefareshParser extends JbsParser {
     private final static String BEGIN_TITLE = "begin_title";
+    private final static String BEGIN_OPENING = "begin_opening";
 
     private int book_index = 0;
     private int perek = 0;
@@ -25,6 +26,13 @@ public abstract class MefareshParser extends JbsParser {
             @Override
             public boolean match(Line line) {
                 return line.beginsWith("הקדמה") && line.wordCount() <= 2;}
+        });
+        registerMatcher(new LineMatcher() {
+            @Override
+            public String type() { return BEGIN_OPENING;}
+            @Override
+            public boolean match(Line line) {
+                return line.beginsWith("פתיחה לפירוש התורה") && line.wordCount() <= 4;}
         });
         registerMatcher(new LineMatcher() {
             @Override
@@ -67,6 +75,17 @@ public abstract class MefareshParser extends JbsParser {
                 jsonFlushTextOrClear();
                 addInformation();
                 break;
+            case BEGIN_OPENING:
+                jsonFlushTextOrClear();
+                addBook(getMefareshName());
+                //this is somewhat of a special case.
+                addTextUri(getMefareshName() + "-" + JbsUtils.getTanachPerekUri(book_index, 1));
+                addPosition(jsonObject(), position);
+                addLabel(jsonObject(), getMefareshHebrewName() + " " +
+                        JbsUtils.SEFARIM_TANACH_HE[book_index-1] + " " + "פתיחה לפירוש התורה");
+                addTextInterprets(JbsUtils.getTanachPerekUri(book_index, 0));
+                addName(getMefareshHebrewName());
+                break;
             case BEGIN_SEFER:
                 book_index++;
                 perek = 0;
@@ -76,12 +95,6 @@ public abstract class MefareshParser extends JbsParser {
                 perek++;
                 pasuk = 0;
                 jsonFlushTextOrClear();
-                //for now i'm ignoring the packages file. im not sure what to do with it
-                /*addPackageUri(JbsUtils.getTanachPerekUri(book_index, perek));
-                addLabel(packagesJsonObject(), getPerekLabel());
-                addPosition(packagesJsonObject(), perek_position);
-                addBook(packagesJsonObject(), getCurrentBookName());
-                packagesJsonObjectFlush();*/
                 break;
 
             case BEGIN_PERUSH:
@@ -109,13 +122,11 @@ public abstract class MefareshParser extends JbsParser {
     }
 
     private void addInformation() {
-//        addBook(getCurrentBookName());
         addBook(getMefareshName());
         addTextUri(getUri());
-        addPosition(jsonObject(), position);
-        addLabel(jsonObject(), getLabel());
+        addPosition(position);
+        addLabel(getLabel());
         addTextInterprets(getTanachUri());
-        addWithin(getTanachUri());
         addName(getMefareshHebrewName());
     }
 
@@ -129,10 +140,6 @@ public abstract class MefareshParser extends JbsParser {
         }
         jsonObjectFlush();
         position++;
-    }
-
-    private String getCurrentBookName() {
-        return JbsUtils.SEFARIM_TANACH_URI_EN[book_index-1];
     }
 
     @Override
@@ -149,7 +156,6 @@ public abstract class MefareshParser extends JbsParser {
     }
 
     private String getLabel() {
-        String str1 = "פירוש ";
         String hebrewBookName = JbsUtils.SEFARIM_TANACH_HE[book_index-1];
         String str2;
         if(perek == 0) {
@@ -157,7 +163,7 @@ public abstract class MefareshParser extends JbsParser {
         } else {
             str2 = JbsUtils.numberToHebrew(perek) + " " + JbsUtils.numberToHebrew(pasuk);
         }
-        return str1 + getMefareshHebrewName() + " " + hebrewBookName + " " + str2;
+        return getMefareshHebrewName() + " " + hebrewBookName + " " + str2;
     }
 
     @Override

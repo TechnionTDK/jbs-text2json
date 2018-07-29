@@ -77,6 +77,7 @@ public class TanachParser extends JbsParser {
                 //putting a correct ":" at the end of the string. the u202 characters are to fix right-to-left issues
                 String nikudText = line.getLine().substring(0,line.getLine().length() - 1)
                         + "\u202B" + ":" + "\u202C";
+//                String nikudText = line.getLine();
                 appendNikudText(nikudText);
                 addBook(getCurrentBookName());
                 addTextUri(getUri());
