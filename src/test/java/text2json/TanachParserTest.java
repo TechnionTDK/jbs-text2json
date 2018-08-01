@@ -48,8 +48,7 @@ public class TanachParserTest {
         assertPositionProperty(o, positionStr);
         String pasukString = JbsUtils.removeNikkud(pasukNikudString);
         assertTrue(o.get(JBO_TEXT).equals(pasukString));
-        String nikudText = pasukNikudString.substring(0,pasukNikudString.length() - 1) + "\u202B" + ":" + "\u202C";
-        assertTrue(o.get(JBO_TEXT_NIKUD).equals(nikudText));
+        assertTrue(o.get(JBO_TEXT_NIKUD).equals(pasukNikudString));
         String hebBookName = JbsUtils.SEFARIM_TANACH_HE[bookNum-1] + " ";
         String label = hebBookName + JbsUtils.numberToHebrew(perekNum) + " " + JbsUtils.numberToHebrew(pasukNum);
         assertLabelProperty( o ,label);
