@@ -83,7 +83,6 @@ public abstract class MefareshParser extends JbsParser {
                 addPosition(jsonObject(), position);
                 addLabel(jsonObject(), getMefareshHebrewName() + " " +
                         JbsUtils.SEFARIM_TANACH_HE[book_index-1] + " " + "פתיחה לפירוש התורה");
-                addTextInterprets(JbsUtils.getTanachPerekUri(book_index, 0));
                 addName(getMefareshHebrewName());
                 break;
             case BEGIN_SEFER:
@@ -101,6 +100,7 @@ public abstract class MefareshParser extends JbsParser {
                 pasuk++;
                 jsonFlushTextOrClear();
                 addInformation();
+                addTextInterprets(getTanachUri());
                 break;
 
             case NO_MATCH:
@@ -126,7 +126,6 @@ public abstract class MefareshParser extends JbsParser {
         addTextUri(getUri());
         addPosition(position);
         addLabel(getLabel());
-        addTextInterprets(getTanachUri());
         addName(getMefareshHebrewName());
     }
 
