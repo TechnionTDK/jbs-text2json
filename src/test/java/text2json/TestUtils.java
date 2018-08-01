@@ -17,22 +17,27 @@ public class TestUtils {
     private static final String RAW_TEXT_DIR = readPathToRawFiles();
     private static final String JSON_DIR = "json/";
 
-
+    //if the folder name and the raw text file name are the same, use this method
     public static SubjectsJson setupParser(Parser parser, String bookId) {
-        createOutputFolderIfNotExists(bookId);
+        return setupParser(parser, bookId, bookId);
+    }
+
+    //this method is for Parsers that have different books inside a folder
+    public static SubjectsJson setupParser(Parser parser, String folderName, String bookId) {
+        createOutputFolderIfNotExists(folderName);
         BufferedReader reader = null;
         try {
-            reader = getText(bookId +"/" +bookId + ".txt");
+            reader = getText(folderName +"/" + bookId + ".txt");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         try {
-            parser.parse(reader, "json/" + bookId + "/" + bookId + ".json");
+            parser.parse(reader, "json/" + folderName + "/" + bookId + ".json");
         } catch (IOException e) {
             e.printStackTrace();
         }
         try {
-            return getJson("json/" + bookId + "/" + bookId + ".json");
+            return getJson("json/" + folderName + "/" + bookId + ".json");
         } catch (Exception e) {
             e.printStackTrace();
         }
