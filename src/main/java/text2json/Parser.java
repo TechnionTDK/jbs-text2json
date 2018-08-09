@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static text2json.JbsOntology.JBO_TEXT;
+import static text2json.JbsOntology.JBO_TEXT_NIKUD;
 import static text2json.JbsUtils.*;
 
 /**
@@ -52,7 +55,9 @@ public abstract class Parser {
     protected abstract String getUri();
     protected abstract String getBookId();
     protected void onEOF() throws IOException {
-        jsonObjectFlush(/*defaultJsonFile, defaultJsonObject*/);
+        //sometimes the last verse has no text, so it shouldn't be printed
+        if(jsonObject().hasKey(JBO_TEXT) || jsonObject().hasKey(JBO_TEXT_NIKUD))
+            jsonObjectFlush(/*defaultJsonFile, defaultJsonObject*/);
     }
     protected void registerMatcher(LineMatcher matcher) {
         matchers.add(matcher);

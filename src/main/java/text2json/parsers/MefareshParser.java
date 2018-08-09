@@ -1,5 +1,6 @@
 package text2json.parsers;
 
+import org.jsoup.Jsoup;
 import text2json.*;
 
 import static text2json.JbsOntology.*;
@@ -15,7 +16,7 @@ public class MefareshParser extends JbsParser {
     private final static String BEGIN_TITLE = "begin_title";
     private final static String BEGIN_OPENING = "begin_opening";
 
-    private int book_index = 0;
+    private int book_index = 1;
     private int perek = 0;
     private int pasuk = 0;
     private int position = 1;
@@ -24,6 +25,8 @@ public class MefareshParser extends JbsParser {
 
     //map from hebrew name to english name. when adding new mefarshim, simply add them to this map
     private static final Map<String, String> mefareshMap = createMefareshMap();
+    //a map from the book's hebrew name to its book index (בראשית is 1)
+    private static final Map<String, Integer> bookMap = createBookMap();
 
     @Override
     protected void registerMatchers() {
@@ -41,6 +44,7 @@ public class MefareshParser extends JbsParser {
             public boolean match(Line line) {
                 return line.beginsWith("הקדמה") && line.wordCount() <= 2;}
         });
+        //this is a special matcher for -ramban-, it comes after the hakdama
         registerMatcher(new LineMatcher() {
             @Override
             public String type() { return BEGIN_OPENING;}
@@ -53,7 +57,10 @@ public class MefareshParser extends JbsParser {
             public String type() { return BEGIN_SEFER;}
             @Override
             public boolean match(Line line) {
-                return line.beginsWith("ספר ") && line.wordCount() <= 5;
+                if(line.wordCount() > 3) return false;
+                //if the line is a name of a book, return true
+                Integer index = bookMap.get(line.getLine());
+                return index != null;
             }
         });
         registerMatcher(new LineMatcher() {
@@ -88,10 +95,10 @@ public class MefareshParser extends JbsParser {
                 addInformation();
                 break;
 
+            //this is a special case for -ramban-, it comes after the hakdama
             case BEGIN_OPENING:
                 jsonFlushTextOrClear();
                 addBook(mefareshName);
-                //this is somewhat of a special case.
                 addTextUri(mefareshName + "-" + JbsUtils.getTanachPerekUri(book_index, 1));
                 addPosition(position);
                 addLabel(mefareshHebrewName + " " +
@@ -100,7 +107,7 @@ public class MefareshParser extends JbsParser {
                 break;
 
             case BEGIN_SEFER:
-                book_index++;
+                book_index = bookMap.get(line.getLine());
                 perek = 0;
                 pasuk = 0;
                 break;
@@ -129,11 +136,7 @@ public class MefareshParser extends JbsParser {
 
     //cleans the line from the <b> and such characters
     private String getCleanLine(String strLine) {
-        strLine = strLine.replace("<b>", "");
-        strLine = strLine.replace("</b>", "");
-        strLine = strLine.replace("<br>", "");
-        strLine = strLine.replace("</br>", "");
-        return strLine;
+        return Jsoup.parse(strLine).text();
     }
 
     private void addInformation() {
@@ -191,6 +194,25 @@ public class MefareshParser extends JbsParser {
         Map<String,String> myMap = new HashMap<>();
         myMap.put("רמב\"ן", "ramban");
         myMap.put("אברבנאל", "abarbanel");
+        myMap.put("אדרת אליהו", "adereteliyahu");
+        myMap.put("אלשיך", "alshich");
+        myMap.put("חזקוני", "chizkuni");
+        myMap.put("אבי עזר", "aviezer");
+        myMap.put("בעל הטורים", "baalhaturim");
+        myMap.put("ברטנורא", "bartenura");
+        myMap.put("בכור שור", "bekhorshor");
+        myMap.put("חומת אנך", "chomatanakh");
+        myMap.put("דעת זקנים", "daatzkenim");
+        return myMap;
+    }
+
+    //it's more efficient to look in a hash map rather than search in an array every time
+    private static Map<String, Integer> createBookMap()
+    {
+        Map<String,Integer> myMap = new HashMap<>();
+        for(int i = 0; i < JbsUtils.SEFARIM_TANACH_HE.length; i++) {
+            myMap.put(JbsUtils.SEFARIM_TANACH_HE[i], i+1);
+        }
         return myMap;
     }
 }

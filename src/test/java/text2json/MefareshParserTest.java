@@ -17,7 +17,8 @@ import static text2json.TestUtils.assertLabelProperty;
  * Created by orel on 01/08/18.
  */
 public class MefareshParserTest {
-    private static SubjectsJson rambanJson, abarbanelJson;
+    private static SubjectsJson rambanJson, abarbanelJson, adereteliyahuJson, alshichJson, chizkuniJson,
+    aviezerJson, baalhaturimJson, bartenuraJson, bekhorshorJson, chomatanakhJson, daatzkenimJson;
 
     private static final int rambanSize = 1738, abarbanelSize = 477;
 
@@ -25,6 +26,15 @@ public class MefareshParserTest {
     public static void beforeClass() throws Exception {
         rambanJson = setupParser(new MefareshParser() , "tanachmefarshim", "ramban");
         abarbanelJson = setupParser(new MefareshParser() , "tanachmefarshim", "abarbanel");
+        adereteliyahuJson = setupParser(new MefareshParser() , "tanachmefarshim", "adereteliyahu");
+        alshichJson = setupParser(new MefareshParser() , "tanachmefarshim", "alshich");
+        chizkuniJson = setupParser(new MefareshParser() , "tanachmefarshim", "chizkuni");
+        aviezerJson = setupParser(new MefareshParser() , "tanachmefarshim", "aviezer");
+        baalhaturimJson = setupParser(new MefareshParser() , "tanachmefarshim", "baalhaturim");
+        bartenuraJson = setupParser(new MefareshParser() , "tanachmefarshim", "bartenura");
+        bekhorshorJson = setupParser(new MefareshParser() , "tanachmefarshim", "bekhorshor");
+        chomatanakhJson = setupParser(new MefareshParser() , "tanachmefarshim", "chomatanakh");
+        daatzkenimJson = setupParser(new MefareshParser() , "tanachmefarshim", "daatzkenim");
     }
 
     @Test
@@ -33,6 +43,9 @@ public class MefareshParserTest {
         assertEquals(rambanSize, rambanJson.subjects.size());
         assertNotNull(abarbanelJson);
         assertEquals(abarbanelSize, abarbanelJson.subjects.size());
+        assertNotNull(adereteliyahuJson);
+        assertNotNull(alshichJson);
+        assertNotNull(chizkuniJson);
     }
 
     private void testObject(Map<String, String> o, int bookNum, int perekNum, int pasukNum, String interprets,
@@ -62,7 +75,7 @@ public class MefareshParserTest {
     }
 
     @Test
-    public void testSpecificObjects() {
+    public void testRambanObjects() {
         Map<String, String> o;
         String startsWith, endsWith;
         String mefareshName = "ramban", mefareshHebrewName = "רמב\"ן";
@@ -90,9 +103,14 @@ public class MefareshParserTest {
         endsWith = "תבואה מתקדשת משתשריש וענבים משיעשו כפול הלבן";
         testObject(o, 5, 22, 8, "tanach-5-22-8",
                 mefareshName, mefareshHebrewName, startsWith, endsWith);
+    }
 
-        mefareshName = "abarbanel";
-        mefareshHebrewName = "אברבנאל";
+    @Test
+    public void testAbarbanelObjects() {
+        Map<String, String> o;
+        String startsWith, endsWith;
+        String mefareshName = "abarbanel";
+        String mefareshHebrewName = "אברבנאל";
 
         o = abarbanelJson.getObject("jbr:text-abarbanel-tanach-1-1-1");
         startsWith = "ידבר ומסדר הבריאה טעם סמיכות מלות בראשית למלת ברא";
