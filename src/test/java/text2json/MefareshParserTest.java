@@ -18,7 +18,8 @@ import static text2json.TestUtils.assertLabelProperty;
  */
 public class MefareshParserTest {
     private static SubjectsJson rambanJson, abarbanelJson, adereteliyahuJson, alshichJson, chizkuniJson,
-    aviezerJson, baalhaturimJson, bartenuraJson, bekhorshorJson, chomatanakhJson, daatzkenimJson;
+    aviezerJson, baalhaturimJson, bartenuraJson, bekhorshorJson, chomatanakhJson, daatzkenimJson,
+    guraryehJson, haktavvehakabalahJson, haamekdavarJson;
 
     private static final int rambanSize = 1738, abarbanelSize = 477;
 
@@ -35,6 +36,9 @@ public class MefareshParserTest {
         bekhorshorJson = setupParser(new MefareshParser() , "tanachmefarshim", "bekhorshor");
         chomatanakhJson = setupParser(new MefareshParser() , "tanachmefarshim", "chomatanakh");
         daatzkenimJson = setupParser(new MefareshParser() , "tanachmefarshim", "daatzkenim");
+        guraryehJson = setupParser(new MefareshParser() , "tanachmefarshim", "guraryeh");
+        haktavvehakabalahJson = setupParser(new MefareshParser() , "tanachmefarshim", "haktavvehakabalah");
+        haamekdavarJson = setupParser(new MefareshParser() , "tanachmefarshim", "haamekdavar");
     }
 
     @Test

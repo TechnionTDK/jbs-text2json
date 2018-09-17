@@ -14,17 +14,20 @@ import java.util.Map;
  */
 public class MefareshParser extends JbsParser {
     private final static String BEGIN_TITLE = "begin_title";
+    private final static String BEGIN_ENG_TITLE = "begin_eng_title";
     private final static String BEGIN_OPENING = "begin_opening";
 
     private int book_index = 1;
     private int perek = 0;
     private int pasuk = 0;
+    private int hakdama = 0;
     private int position = 1;
 
     private String mefareshName, mefareshHebrewName;
 
+    //*this next map is currently irrelevant because of change to the raw files. kept for legacy (may change back)
     //map from hebrew name to english name. when adding new mefarshim, simply add them to this map
-    private static final Map<String, String> mefareshMap = createMefareshMap();
+//    private static final Map<String, String> mefareshMap = createMefareshMap();
     //a map from the book's hebrew name to its book index (בראשית is 1)
     private static final Map<String, Integer> bookMap = createBookMap();
 
@@ -39,6 +42,13 @@ public class MefareshParser extends JbsParser {
         });
         registerMatcher(new LineMatcher() {
             @Override
+            public String type() { return BEGIN_ENG_TITLE;}
+            @Override
+            public boolean match(Line line) {
+                return line.beginsWith("perush ") && line.wordCount() <= 2;}
+        });
+        registerMatcher(new LineMatcher() {
+            @Override
             public String type() { return BEGIN_HAKDAMA;}
             @Override
             public boolean match(Line line) {
@@ -50,7 +60,8 @@ public class MefareshParser extends JbsParser {
             public String type() { return BEGIN_OPENING;}
             @Override
             public boolean match(Line line) {
-                return line.beginsWith("פתיחה לפירוש התורה") && line.wordCount() <= 4;}
+                return line.beginsWith("פתיחה ") && line.wordCount() <= 4;}
+//                return line.beginsWith("פתיחה לפירוש התורה") && line.wordCount() <= 4;}
         });
         registerMatcher(new LineMatcher() {
             @Override
@@ -59,7 +70,9 @@ public class MefareshParser extends JbsParser {
             public boolean match(Line line) {
                 if(line.wordCount() > 3) return false;
                 //if the line is a name of a book, return true
-                Integer index = bookMap.get(line.getLine());
+                //sometimes the names have this character but we don't want it
+                String str = line.getLine().replace("'", "");
+                Integer index = bookMap.get(str);
                 return index != null;
             }
         });
@@ -86,30 +99,39 @@ public class MefareshParser extends JbsParser {
                 //the title of the raw file must be in the first line and have the following format:
                 // פירוש *שם מפרש בעברית*
                 mefareshHebrewName = line.getLine().replace("פירוש ", "");
-                mefareshName = mefareshMap.get(mefareshHebrewName);
+//                mefareshName = mefareshMap.get(mefareshHebrewName);
+                break;
+
+            case BEGIN_ENG_TITLE:
+                //this line contains the english name of the mefaresh, lowercase and no spaces.
+                //it should be at the beginning of the file (line 2). it is in the following format:
+                //perush *name*
+                mefareshName = line.getLine().replace("perush ", "");
                 break;
 
             case BEGIN_HAKDAMA:
-                perek = 0;
                 jsonFlushTextOrClear();
                 addInformation();
+                hakdama = 1;
                 break;
 
-            //this is a special case for -ramban-, it comes after the hakdama
+            //this is a special case for some mefarshim (notably ramban), it comes after the hakdama
+            //or comes at the beginning of a new book
             case BEGIN_OPENING:
                 jsonFlushTextOrClear();
                 addBook(mefareshName);
-                addTextUri(mefareshName + "-" + JbsUtils.getTanachPerekUri(book_index, 1));
+                addTextUri(mefareshName + "-" + JbsUtils.getTanachPerekUri(book_index, hakdama));
                 addPosition(position);
                 addLabel(mefareshHebrewName + " " +
-                        JbsUtils.SEFARIM_TANACH_HE[book_index-1] + " " + "פתיחה לפירוש התורה");
+                         line.getLine());
                 addName(mefareshHebrewName);
                 break;
 
             case BEGIN_SEFER:
-                book_index = bookMap.get(line.getLine());
+                book_index = bookMap.get(line.getLine().replace("'", ""));
                 perek = 0;
                 pasuk = 0;
+                hakdama = 0;
                 break;
 
             case BEGIN_PEREK:
@@ -188,8 +210,10 @@ public class MefareshParser extends JbsParser {
         return null;
     }
 
+
+    //* currently irrelevant because of change to raw file (the ENG_TITLE). kept for legacy
     //when adding new mefarshim, simply add them to this map
-    private static Map<String, String> createMefareshMap()
+    /*private static Map<String, String> createMefareshMap()
     {
         Map<String,String> myMap = new HashMap<>();
         myMap.put("רמב\"ן", "ramban");
@@ -203,8 +227,18 @@ public class MefareshParser extends JbsParser {
         myMap.put("בכור שור", "bekhorshor");
         myMap.put("חומת אנך", "chomatanakh");
         myMap.put("דעת זקנים", "daatzkenim");
+        myMap.put("גור אריה", "guraryeh");
+        myMap.put("הכתב והקבלה", "haktavvehakabalah");
+        myMap.put("העמק דבר", "haamekdavar");
+        myMap.put("הרחב דבר", "harchevdavar");
+        myMap.put("אבן עזרא", "ibnezra");
+        myMap.put("אמרי יושר", "imreiyosher");
+        myMap.put("יוסף אבן יחיא", "josephibnyahya");
+        myMap.put("קיצור בעל הטורים", "kitzurbaalhaturim");
+        myMap.put("כלי יקר", "kliyakar");
+        myMap.put("מלבי\"ם באור המילות", "malbimbeurhamilot");
         return myMap;
-    }
+    }*/
 
     //it's more efficient to look in a hash map rather than search in an array every time
     private static Map<String, Integer> createBookMap()
@@ -213,6 +247,7 @@ public class MefareshParser extends JbsParser {
         for(int i = 0; i < JbsUtils.SEFARIM_TANACH_HE.length; i++) {
             myMap.put(JbsUtils.SEFARIM_TANACH_HE[i], i+1);
         }
+        myMap.put("תהלים", myMap.get("תהילים")); //some files have it spelled this way
         return myMap;
     }
 }
