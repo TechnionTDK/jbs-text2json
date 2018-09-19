@@ -25,9 +25,6 @@ public class MefareshParser extends JbsParser {
 
     private String mefareshName, mefareshHebrewName;
 
-    //*this next map is currently irrelevant because of change to the raw files. kept for legacy (may change back)
-    //map from hebrew name to english name. when adding new mefarshim, simply add them to this map
-//    private static final Map<String, String> mefareshMap = createMefareshMap();
     //a map from the book's hebrew name to its book index (בראשית is 1)
     private static final Map<String, Integer> bookMap = createBookMap();
 
@@ -54,14 +51,14 @@ public class MefareshParser extends JbsParser {
             public boolean match(Line line) {
                 return line.beginsWith("הקדמה") && line.wordCount() <= 2;}
         });
-        //this is a special matcher for -ramban-, it comes after the hakdama
+        //this is a special matcher for some mefarshim, notably ramban
+        //it comes after the hakdama or at the beginning of a new book (replaces hakdama)
         registerMatcher(new LineMatcher() {
             @Override
             public String type() { return BEGIN_OPENING;}
             @Override
             public boolean match(Line line) {
                 return line.beginsWith("פתיחה ") && line.wordCount() <= 4;}
-//                return line.beginsWith("פתיחה לפירוש התורה") && line.wordCount() <= 4;}
         });
         registerMatcher(new LineMatcher() {
             @Override
@@ -72,8 +69,7 @@ public class MefareshParser extends JbsParser {
                 //if the line is a name of a book, return true
                 //sometimes the names have this character but we don't want it
                 String str = line.getLine().replace("'", "");
-                Integer index = bookMap.get(str);
-                return index != null;
+                return bookMap.get(str) != null;
             }
         });
         registerMatcher(new LineMatcher() {
@@ -99,7 +95,6 @@ public class MefareshParser extends JbsParser {
                 //the title of the raw file must be in the first line and have the following format:
                 // פירוש *שם מפרש בעברית*
                 mefareshHebrewName = line.getLine().replace("פירוש ", "");
-//                mefareshName = mefareshMap.get(mefareshHebrewName);
                 break;
 
             case BEGIN_ENG_TITLE:
@@ -122,8 +117,7 @@ public class MefareshParser extends JbsParser {
                 addBook(mefareshName);
                 addTextUri(mefareshName + "-" + JbsUtils.getTanachPerekUri(book_index, hakdama));
                 addPosition(position);
-                addLabel(mefareshHebrewName + " " +
-                         line.getLine());
+                addLabel(mefareshHebrewName + " " + line.getLine());
                 addName(mefareshHebrewName);
                 break;
 
@@ -209,36 +203,6 @@ public class MefareshParser extends JbsParser {
     protected String getBookId() {
         return null;
     }
-
-
-    //* currently irrelevant because of change to raw file (the ENG_TITLE). kept for legacy
-    //when adding new mefarshim, simply add them to this map
-    /*private static Map<String, String> createMefareshMap()
-    {
-        Map<String,String> myMap = new HashMap<>();
-        myMap.put("רמב\"ן", "ramban");
-        myMap.put("אברבנאל", "abarbanel");
-        myMap.put("אדרת אליהו", "adereteliyahu");
-        myMap.put("אלשיך", "alshich");
-        myMap.put("חזקוני", "chizkuni");
-        myMap.put("אבי עזר", "aviezer");
-        myMap.put("בעל הטורים", "baalhaturim");
-        myMap.put("ברטנורא", "bartenura");
-        myMap.put("בכור שור", "bekhorshor");
-        myMap.put("חומת אנך", "chomatanakh");
-        myMap.put("דעת זקנים", "daatzkenim");
-        myMap.put("גור אריה", "guraryeh");
-        myMap.put("הכתב והקבלה", "haktavvehakabalah");
-        myMap.put("העמק דבר", "haamekdavar");
-        myMap.put("הרחב דבר", "harchevdavar");
-        myMap.put("אבן עזרא", "ibnezra");
-        myMap.put("אמרי יושר", "imreiyosher");
-        myMap.put("יוסף אבן יחיא", "josephibnyahya");
-        myMap.put("קיצור בעל הטורים", "kitzurbaalhaturim");
-        myMap.put("כלי יקר", "kliyakar");
-        myMap.put("מלבי\"ם באור המילות", "malbimbeurhamilot");
-        return myMap;
-    }*/
 
     //it's more efficient to look in a hash map rather than search in an array every time
     private static Map<String, Integer> createBookMap()
