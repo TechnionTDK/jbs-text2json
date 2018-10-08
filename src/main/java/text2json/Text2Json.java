@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.System.exit;
@@ -16,9 +17,16 @@ import static java.lang.System.exit;
 public class Text2Json {
     public static final String PARSER_CONFIG_FILE = "src/main/resources/configParsers.json";
 
+    /**
+     *
+     * @param args first argument is required: the path to jbs-data.
+     *             A second argument (optional) is a name of a specific raw folder.
+     *             If specified, only a parser with that raw folder will be executed.
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
-        if (args.length != 1) {
-            System.out.println("Should provide a single argument to main: path of the 'jbs' repository.");
+        if (args.length == 0) {
+            System.out.println("Should provide a single argument to main: path of the 'jbs-data' repository.");
             exit(1);
         }
 
@@ -31,8 +39,12 @@ public class Text2Json {
         ConfigFile configFile = gson.fromJson(new BufferedReader(new FileReader(PARSER_CONFIG_FILE)), ConfigFile.class);
         List<ConfigParser> parsers = configFile.getAllParsers();
 
+        if (args.length > 1)
+            parsers = filterParserList(parsers, args[1]);
+
         // run each parser for all files within its input dir
         for (ConfigParser configParser : parsers){
+            System.out.println("Executing parser " + configParser.getParser());
             File inputDir = new File(inputPath + '/' + configParser.getInput());
             File outputDir = new File(outputPath + '/' + configParser.getOutput());
 
@@ -60,5 +72,20 @@ public class Text2Json {
 
 
         }
+    }
+
+    /**
+     * Keeps only those parsers having the specified raw folder
+     * (usually it should correspond to a single parser).
+     * @param parsers
+     */
+    private static List<ConfigParser> filterParserList(List<ConfigParser> parsers, String rawFolder) {
+        List<ConfigParser> result = new ArrayList<>();
+        for (ConfigParser parser : parsers) {
+            if (parser.getInput().equals(rawFolder))
+                result.add(parser);
+        }
+
+        return result;
     }
 }
