@@ -1,5 +1,7 @@
 package text2json;
 
+import java.io.IOException;
+
 import static text2json.JbsOntology.*;
 
 /**
@@ -9,6 +11,7 @@ public abstract class JbsParser extends Parser {
     protected void addBook(String bookId) {
         jsonObject().add(JBO_BOOK, JBR_BOOK + bookId);
     }
+
     protected void addBook(JsonObject obj, String bookId) {
         obj.add(JBO_BOOK, JBR_BOOK + bookId);
     }
@@ -46,5 +49,5 @@ public abstract class JbsParser extends Parser {
     protected void addName(String name) {jsonObject().add(JBO_NAME, name); }
     protected void appendText(String text) {jsonObject().append(JBO_TEXT, text);}
     protected void appendNikudText(String text) {jsonObject().append(JBO_TEXT_NIKUD, text);
-    }
+}
 }

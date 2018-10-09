@@ -1,11 +1,13 @@
 package text2json.parsers;
 
 import text2json.JbsParser;
+import text2json.JsonObject;
 import text2json.Line;
 import text2json.LineMatcher;
 
 import java.io.IOException;
 
+import static text2json.JbsOntology.JBO_TEXT;
 import static text2json.JbsOntology.JBO_TEXT_NIKUD;
 import static text2json.JbsUtils.HEB_LETTERS_INDEX;
 
@@ -72,7 +74,7 @@ public class MidrashTanchumaParser extends JbsParser {
                 break;
 
             case BEGIN_PARASHA:
-                jsonObjectFlush();
+                jsonObjectFlushTextOrClear();
                 packagesJsonObjectFlush();
                 parashaNum++;
                 simanNum = 0;
@@ -86,7 +88,7 @@ public class MidrashTanchumaParser extends JbsParser {
 
 
             case BEGIN_SIMAN:
-                jsonObjectFlush();
+                jsonObjectFlushTextOrClear();
                 simanNum++;
                 addBook(getBookId());
                 addTextUri(getUri());
@@ -99,9 +101,21 @@ public class MidrashTanchumaParser extends JbsParser {
 
 
             case NO_MATCH:
-                jsonObject().append(JBO_TEXT_NIKUD, line.getLine());
+                appendText(stripVowels(line.getLine()));
+                appendNikudText(line.getLine());
                 break;
         }
+    }
+
+    /** Flushes the json if it has text . Otherwise clears it.
+    this is needed because some of the elements in the text are empty
+     */
+    private void jsonObjectFlushTextOrClear() throws IOException{
+        if(!jsonObject().hasKey(JBO_TEXT)) {
+            jsonObject().clear();
+            return;
+        }
+        jsonObjectFlush();
     }
 
     @Override
