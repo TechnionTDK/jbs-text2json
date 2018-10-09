@@ -7,6 +7,7 @@ import text2json.LineMatcher;
 import java.io.IOException;
 
 import static text2json.JbsOntology.*;
+import static text2json.JbsUtils.*;
 
 /**
  * Created by omishali on 17/01/2017.
@@ -17,6 +18,7 @@ public class ShemonaKevatzimParser extends JbsParser {
     
     private int kovetzNum = 0;
     private int saifNum = 0;
+    private int position = 1;
 
     @Override
     protected void registerMatchers() {
@@ -56,9 +58,10 @@ public class ShemonaKevatzimParser extends JbsParser {
             case BEGIN_SAIF:
                 jsonObjectFlush();
                 saifNum++;
-                jsonObject().add(URI, getUri());
-                jsonObject().add(RDFS_LABEL, "שמונה קבצים " + kovetzNum + " " + saifNum);
-                jsonObject().add(JBO_BOOK, JBR_BOOK + getBookId());
+                addTextUri(getUri());
+                addLabel("שמונה קבצים " + numberToHebrew(kovetzNum) + " " + numberToHebrew(saifNum));
+                addBook(getBookId());
+                addPosition(position++);
                 break;
             case NO_MATCH:
                 appendText( line.getLine());
@@ -69,7 +72,7 @@ public class ShemonaKevatzimParser extends JbsParser {
 
     @Override
     protected String getUri() {
-        return JBR_TEXT + getBookId()+"-" + kovetzNum + "-" + saifNum;
+        return getBookId()+"-" + kovetzNum + "-" + saifNum;
     }
 
     @Override

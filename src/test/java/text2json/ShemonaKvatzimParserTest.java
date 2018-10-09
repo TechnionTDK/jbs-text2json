@@ -7,6 +7,7 @@ import text2json.parsers.ShemonaKevatzimParser;
 import java.util.Map;
 
 import static org.junit.Assert.*;
+import static text2json.JbsOntology.JBO_POSITION;
 import static text2json.JbsOntology.JBO_TEXT;
 import static text2json.TestUtils.*;
 
@@ -36,7 +37,8 @@ public class ShemonaKvatzimParserTest {
         assertTextUriProperty( o , "shemonakevatzim-1-1");
         String text = "חיים אנו עם הציורים הרוחניים שבהשאיפה של נשמת האומה. בכל מקום שהניצוצות של אור הללו גנוזים הם שם, הננו מקושרים בקשר של נשמה של חיים, של כל הוייתנו, אליו. בין שיהיה מקום זה מקום ממשי, מדת ארץ, בין שיהיו מעשים שאלו הציורים כמוסים ביסודם, בין שיהיו מחשבות ורעיונות מאיזה מין שיהיו.";
         assertEquals(text, o.get(JBO_TEXT));
-        assertLabelProperty( o ,"שמונה קבצים 1 1");
+        assertEquals("1", o.get(JBO_POSITION));
+        assertLabelProperty( o ,"שמונה קבצים א א");
         assertBookProperty(o,"shemonakevatzim");
 
         // test last object
